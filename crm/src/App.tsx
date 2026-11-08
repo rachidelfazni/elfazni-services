@@ -113,6 +113,25 @@ const MainContent: React.FC = () => {
   const [presetConsulateStage, setPresetConsulateStage] =
     useState<TimelineStage>("registered");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [sidebarWidth, setSidebarWidth] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('elfazni_crm_sidebar_width');
+      if (saved) {
+        const n = parseInt(saved, 10);
+        if (!isNaN(n) && n >= 180 && n <= 420) return n;
+      }
+    }
+    return 256;
+  });
+
+  const handleSidebarWidthChange = (width: number) => {
+    const clamped = Math.max(180, Math.min(420, width));
+    setSidebarWidth(clamped);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('elfazni_crm_sidebar_width', clamped.toString());
+    }
+  };
+
   const { l } = useCopy();
   const moduleTitles: Record<string, string> = {
     dashboard: l("لوحة العمل", "Workspace", "Espace de travail"),
@@ -137,13 +156,9 @@ const MainContent: React.FC = () => {
     setIsConsulateModalOpen(true);
   };
 
-  const mainOffsetClass = isSidebarCollapsed
-    ? isRTL
-      ? "lg:mr-20"
-      : "lg:ml-20"
-    : isRTL
-      ? "lg:mr-64"
-      : "lg:ml-64";
+  const mainOffsetStyle: React.CSSProperties = {
+    [isRTL ? "marginRight" : "marginLeft"]: isSidebarCollapsed ? "80px" : `${sidebarWidth}px`,
+  };
 
   return (
     <div className="crm-app-shell ws-professional min-h-screen bg-[#F8FAFC] flex flex-col text-[#0B2E57]">
@@ -159,11 +174,14 @@ const MainContent: React.FC = () => {
         onToggleSidebarCollapse={() =>
           setIsSidebarCollapsed(!isSidebarCollapsed)
         }
+        sidebarWidth={sidebarWidth}
+        onSidebarWidthChange={handleSidebarWidthChange}
       />
 
       {/* Main Content Area offset by RTL/LTR Sidebar on Desktop */}
       <div
-        className={`crm-main-wrapper flex-1 flex flex-col transition-all duration-200 ${mainOffsetClass}`}
+        className="crm-main-wrapper flex-1 flex flex-col transition-all duration-150"
+        style={mainOffsetStyle}
       >
         <main className="crm-main-container flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
           <a href="/admin" className="no-print inline-flex items-center gap-2 rounded-lg border border-[#C7DCF5] bg-white px-3 py-2 text-sm font-bold text-[#004AA5] hover:bg-[#eaf4ff]">

@@ -40,6 +40,8 @@ import { BRAND_CONFIG } from "../../config/brandConfig";
 import { BankDetailsShare } from "../common/BankDetailsShare";
 import { showAllSections } from "../common/VisibilitySection";
 import { CalendarWorkspace, type ToolsTab } from "../tools/CalendarWorkspace";
+import { ResizeHandle } from "./resizable/ResizeHandle";
+
 interface Props {
   onOpenBackupModal: () => void;
   onOpenExchangeRatesModal: () => void;
@@ -47,6 +49,8 @@ interface Props {
   onOpenRemindersDrawer: () => void;
   isSidebarCollapsed?: boolean;
   onToggleSidebarCollapse?: () => void;
+  sidebarWidth?: number;
+  onSidebarWidthChange?: (width: number) => void;
 }
 export const WorkspaceNavbar: React.FC<Props> = (props) => {
   const app = useApp();
@@ -251,6 +255,7 @@ export const WorkspaceNavbar: React.FC<Props> = (props) => {
     <>
       <aside
         className={`ws-sidebar no-print ${props.isSidebarCollapsed ? "collapsed" : ""}`}
+        style={!props.isSidebarCollapsed && props.sidebarWidth ? { width: `${props.sidebarWidth}px` } : undefined}
       >
         <a
           className="ws-brand"
@@ -357,9 +362,38 @@ export const WorkspaceNavbar: React.FC<Props> = (props) => {
             )}
           </button>
         </div>
+
+        {/* Resizable Sidebar Handle on Desktop */}
+        {!props.isSidebarCollapsed && (
+          <div
+            className="hidden lg:block absolute inset-y-0 z-50 pointer-events-auto"
+            style={{ [isRTL ? 'left' : 'right']: '-5px' }}
+          >
+            <ResizeHandle
+              id="crm-sidebar"
+              direction="horizontal"
+              isRtl={isRTL}
+              currentSize={props.sidebarWidth || 256}
+              minSize={180}
+              maxSize={420}
+              onResize={(delta) => {
+                if (props.onSidebarWidthChange) {
+                  props.onSidebarWidthChange((props.sidebarWidth || 256) + delta);
+                }
+              }}
+              onReset={() => {
+                if (props.onSidebarWidthChange) {
+                  props.onSidebarWidthChange(256);
+                }
+              }}
+              ariaLabel={l("تعديل عرض القائمة الجانبية", "Resize sidebar width", "Redimensionner la barre")}
+            />
+          </div>
+        )}
       </aside>
       <header
         className={`ws-topbar no-print ${props.isSidebarCollapsed ? "collapsed" : ""}`}
+        style={!props.isSidebarCollapsed && props.sidebarWidth ? { [isRTL ? 'right' : 'left']: `${props.sidebarWidth}px` } : undefined}
       >
         <div className="ws-topbar-title">
           <button

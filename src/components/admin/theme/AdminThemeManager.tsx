@@ -29,6 +29,8 @@ import { ThemeOverviewView } from './ThemeOverviewView';
 import { ThemeMediaLibrary } from './ThemeMediaLibrary';
 import { ThemePresetsView } from './ThemePresetsView';
 import { ThemeHistoryView } from './ThemeHistoryView';
+import { ResizeHandle } from '../../workspace/ResizeHandle';
+import { clampPanelSize } from '../../workspace/layoutPreferences';
 
 export type ThemeSubTab =
   | 'overview'
@@ -64,6 +66,35 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
   const [selectedElementKey, setSelectedElementKey] = useState<string | null>(null);
   const [device, setDevice] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [direction, setDirection] = useState<'rtl' | 'ltr'>('rtl');
+
+  // Resizable Theme Settings Sidebar State
+  const [themeSidebarWidth, setThemeSidebarWidth] = useState<number>(() => {
+    if (typeof window === 'undefined') return 340;
+    try {
+      const saved = localStorage.getItem('elfazni_theme_sidebar_width');
+      const num = saved ? parseInt(saved, 10) : 340;
+      return isNaN(num) ? 340 : clampPanelSize(num, 260, 520);
+    } catch {
+      return 340;
+    }
+  });
+
+  const handleThemeSidebarResize = (delta: number) => {
+    setThemeSidebarWidth((prev) => {
+      const next = clampPanelSize(prev + delta, 260, 520);
+      try {
+        localStorage.setItem('elfazni_theme_sidebar_width', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleResetThemeSidebarWidth = () => {
+    setThemeSidebarWidth(340);
+    try {
+      localStorage.setItem('elfazni_theme_sidebar_width', '340');
+    } catch {}
+  };
 
   // Media picker modal state
   const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
@@ -501,7 +532,24 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
               onOpenMediaPicker={(targetType) => openMediaPickerFor(targetType)}
               selectedElementKey={selectedElementKey}
               onSelectElement={(key) => setSelectedElementKey(key)}
+              sidebarWidth={themeSidebarWidth}
+              onResetWidth={handleResetThemeSidebarWidth}
             />
+
+            {/* Resizable Separator Handle */}
+            <div className="hidden lg:block shrink-0 h-full">
+              <ResizeHandle
+                id="theme-settings-sidebar"
+                direction="horizontal"
+                isRtl={true}
+                onResize={handleThemeSidebarResize}
+                onReset={handleResetThemeSidebarWidth}
+                currentSize={themeSidebarWidth}
+                minSize={260}
+                maxSize={520}
+                ariaLabel="فاصل تغيير حجم لوحة إعدادات المظهر"
+              />
+            </div>
 
             {/* 2. CENTER: Live Interactive Preview */}
             <ThemeLivePreview

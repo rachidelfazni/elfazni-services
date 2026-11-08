@@ -35,7 +35,12 @@ import {
   RefreshCw,
   Bell,
   Palette,
+  PanelLeftClose,
+  PanelLeftOpen,
+  RotateCcw,
 } from 'lucide-react';
+import { ResizeHandle } from '../workspace/ResizeHandle';
+import { clampPanelSize } from '../workspace/layoutPreferences';
 import {
   api,
   BlogPost,
@@ -103,6 +108,56 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
   const [themeSubTab, setThemeSubTab] = useState<ThemeSubTab>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  // Desktop Sidebar resizable & collapsible state
+  const [adminSidebarWidth, setAdminSidebarWidth] = useState<number>(() => {
+    if (typeof window === 'undefined') return 288;
+    try {
+      const saved = localStorage.getItem('elfazni_admin_sidebar_width');
+      const num = saved ? parseInt(saved, 10) : 288;
+      return isNaN(num) ? 288 : clampPanelSize(num, 200, 460);
+    } catch {
+      return 288;
+    }
+  });
+  const [isAdminSidebarCollapsed, setIsAdminSidebarCollapsed] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return localStorage.getItem('elfazni_admin_sidebar_collapsed') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const handleAdminSidebarResize = (delta: number) => {
+    if (isAdminSidebarCollapsed) return;
+    setAdminSidebarWidth((prev) => {
+      const next = clampPanelSize(prev + delta, 200, 460);
+      try {
+        localStorage.setItem('elfazni_admin_sidebar_width', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleToggleAdminSidebarCollapse = () => {
+    setIsAdminSidebarCollapsed((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem('elfazni_admin_sidebar_collapsed', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleResetAdminSidebar = () => {
+    setAdminSidebarWidth(288);
+    setIsAdminSidebarCollapsed(false);
+    try {
+      localStorage.setItem('elfazni_admin_sidebar_width', '288');
+      localStorage.setItem('elfazni_admin_sidebar_collapsed', 'false');
+    } catch {}
+  };
 
   // Status & Counts
   const [chatStatus, setChatStatus] = useState<ChatStatus>({
@@ -619,11 +674,49 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
       {/* Main Admin Body: Sidebar + Main Stage */}
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar (Desktop) */}
-        <aside className="hidden lg:flex w-72 bg-white border-l border-slate-200 flex-col justify-between py-5 shrink-0">
-          <div className="px-3.5 space-y-1">
-            <div className="px-3 pb-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-              الفزني للخدمات · الإدارة
+        <aside
+          style={{ width: isAdminSidebarCollapsed ? 76 : adminSidebarWidth }}
+          className="hidden lg:flex bg-white border-l border-slate-200 flex-col justify-between py-4 shrink-0 transition-[width] duration-150 ease-out select-none"
+        >
+          <div className="px-3 space-y-1 overflow-y-auto overflow-x-hidden flex-1">
+            {/* Header: Title + Collapse/Expand + Reset */}
+            <div className={`flex items-center pb-2 mb-1 border-b border-slate-100 ${isAdminSidebarCollapsed ? 'justify-center' : 'justify-between px-2'}`}>
+              {!isAdminSidebarCollapsed ? (
+                <>
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider truncate">
+                    الفزني للخدمات · الإدارة
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={handleResetAdminSidebar}
+                      title="استعادة العرض الافتراضي (288px)"
+                      className="p-1 rounded-lg text-slate-400 hover:text-[#004AA5] hover:bg-slate-100 transition-colors cursor-pointer"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleToggleAdminSidebarCollapse}
+                      title="طي القائمة الجانبية"
+                      className="p-1 rounded-lg text-slate-400 hover:text-[#004AA5] hover:bg-slate-100 transition-colors cursor-pointer"
+                    >
+                      <PanelLeftClose className="w-4 h-4" />
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleToggleAdminSidebarCollapse}
+                  title="توسيع القائمة الجانبية"
+                  className="p-1.5 rounded-lg text-[#004AA5] hover:bg-[#EAF4FF] transition-colors cursor-pointer"
+                >
+                  <PanelLeftOpen className="w-5 h-5" />
+                </button>
+              )}
             </div>
+
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -636,34 +729,43 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
                       if (item.id === 'categories') setBlogSubTab('categories_tags');
                       if (item.id === 'media') setBlogSubTab('media_library');
                     }}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-right ${
+                    title={isAdminSidebarCollapsed ? item.label : undefined}
+                    className={`w-full flex items-center rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer relative ${
+                      isAdminSidebarCollapsed ? 'justify-center p-2.5' : 'justify-between px-3.5 py-2.5 text-right'
+                    } ${
                       isActive
                         ? 'bg-[#004AA5] text-white shadow-md shadow-[#004AA5]/20'
                         : 'text-slate-600 hover:bg-slate-100 hover:text-[#004AA5]'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className={`flex items-center ${isAdminSidebarCollapsed ? 'justify-center' : 'gap-3 min-w-0'}`}>
                       <Icon className="w-4 h-4 shrink-0" />
-                      <span>{item.label}</span>
+                      {!isAdminSidebarCollapsed && <span className="truncate">{item.label}</span>}
                     </div>
                     {typeof item.count === 'number' && item.count > 0 && (
-                      <span
-                        className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
-                          isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
-                        }`}
-                      >
-                        {item.count}
-                      </span>
+                      isAdminSidebarCollapsed ? (
+                        <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] font-bold flex items-center justify-center">
+                          {item.count > 9 ? '9+' : item.count}
+                        </span>
+                      ) : (
+                        <span
+                          className={`text-[10px] px-2 py-0.5 rounded-full font-bold shrink-0 ${
+                            isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
+                          }`}
+                        >
+                          {item.count}
+                        </span>
+                      )
                     )}
-                    {item.badge && (
-                      <span className="text-[9px] px-2 py-0.5 rounded-full font-extrabold bg-emerald-500 text-white animate-pulse">
+                    {!isAdminSidebarCollapsed && item.badge && (
+                      <span className="text-[9px] px-2 py-0.5 rounded-full font-extrabold bg-emerald-500 text-white animate-pulse shrink-0">
                         {item.badge}
                       </span>
                     )}
                   </button>
 
                   {/* Expandable Blog Subroutes under Posts */}
-                  {item.id === 'posts' &&
+                  {!isAdminSidebarCollapsed && item.id === 'posts' &&
                     (activeTab === 'posts' || activeTab === 'categories' || activeTab === 'media') && (
                       <div className="ps-6 pe-2 py-1 space-y-1 border-s-2 border-[#004AA5]/20 ms-4">
                         {(
@@ -698,7 +800,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
                     )}
 
                   {/* Expandable Theme & Appearance Subroutes */}
-                  {item.id === 'theme' && activeTab === 'theme' && (
+                  {!isAdminSidebarCollapsed && item.id === 'theme' && activeTab === 'theme' && (
                     <div className="ps-6 pe-2 py-1 space-y-1 border-s-2 border-[#004AA5]/20 ms-4">
                       {(
                         [
@@ -734,19 +836,56 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
                 </React.Fragment>
               );
             })}
-            <a className="block rounded-xl border p-3 my-3" href="/workspace">مساحة العمل · جميع الأنظمة</a>{crmMenuLink}
+            {!isAdminSidebarCollapsed ? (
+              <>
+                <a className="block rounded-xl border p-3 my-3 text-xs font-bold text-center text-[#0B2E57] hover:bg-slate-50" href="/workspace">مساحة العمل · جميع الأنظمة</a>
+                {crmMenuLink}
+              </>
+            ) : (
+              <div className="pt-2 flex flex-col items-center gap-2">
+                <a className="p-2 rounded-xl border text-[#0B2E57] hover:bg-slate-50" href="/workspace" title="مساحة العمل · جميع الأنظمة">
+                  <Globe2 className="w-4 h-4" />
+                </a>
+                {hasCrmAccess && (
+                  <a href="/admin/login?next=crm" className="p-2 rounded-xl border border-[#E3C88F] bg-[#FFF9ED] text-[#0B2E57]" title="الدخول إلى نظام CRM">
+                    <Briefcase className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+            )}
           </div>
 
-          <div className="px-4 pt-4 border-t border-slate-100">
-            <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs space-y-1">
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-slate-900">الحساب النشط</span>
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+          <div className="px-3 pt-3 border-t border-slate-100">
+            {!isAdminSidebarCollapsed ? (
+              <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 truncate">الحساب النشط</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                </div>
+                <p className="text-[11px] text-slate-500 font-mono truncate">{account?.username}</p>
               </div>
-              <p className="text-[11px] text-slate-500 font-mono">{account?.username}</p>
-            </div>
+            ) : (
+              <div className="flex justify-center" title={`الحساب النشط: ${account?.username || ''}`}>
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+              </div>
+            )}
           </div>
         </aside>
+
+        {/* Resizable Separator Handle */}
+        <div className="hidden lg:block shrink-0 h-full">
+          <ResizeHandle
+            id="admin-sidebar"
+            direction="horizontal"
+            isRtl={isRtl}
+            onResize={handleAdminSidebarResize}
+            onReset={handleResetAdminSidebar}
+            currentSize={isAdminSidebarCollapsed ? 76 : adminSidebarWidth}
+            minSize={200}
+            maxSize={460}
+            ariaLabel="فاصل تغيير عرض قائمة الإدارة"
+          />
+        </div>
 
         {/* Sidebar (Mobile Drawer) */}
         {mobileMenuOpen && (

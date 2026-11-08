@@ -276,6 +276,7 @@ export const CalendarWorkspace: React.FC<CalendarWorkspaceProps> = ({
               activeNoteId={activeNoteId}
               onSelectNoteId={setActiveNoteId}
               onNavigateToTasks={() => setTab("tasks")}
+              onClose={onClose}
             />
           )}
 

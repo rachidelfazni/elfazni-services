@@ -1,0 +1,263 @@
+/* ==========================================================================
+   ELFAZNI SERVICES — Desktop Resizable Panels & Workspace Design System
+   Identity: Cobalt Blue (#004AA5), Warm Gold (#CC9048), Navy (#0B2E57)
+   ========================================================================== */
+
+/* Root Shell */
+.ws-shell {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.ws-shell-horizontal {
+  flex-direction: row;
+}
+
+.ws-shell-vertical {
+  flex-direction: column;
+}
+
+/* Individual Panel */
+.ws-panel {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ws-panel-maximized {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 40 !important;
+  background: #ffffff;
+}
+
+.ws-panel-collapsed {
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Resize Separator Handle */
+.ws-resize-handle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 20;
+  user-select: none;
+  touch-action: none;
+  background-color: transparent;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+/* Horizontal Handle (divides left & right) */
+.ws-resize-handle-horizontal {
+  width: 10px;
+  cursor: col-resize;
+  margin: 0 -4px;
+}
+
+/* Vertical Handle (divides top & bottom) */
+.ws-resize-handle-vertical {
+  height: 10px;
+  cursor: row-resize;
+  margin: -4px 0;
+}
+
+/* Visible Inner Indicator Line */
+.ws-resize-handle-bar {
+  display: block;
+  background-color: #D7E7F7;
+  border-radius: 9999px;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ws-resize-handle-horizontal .ws-resize-handle-bar {
+  width: 2px;
+  height: 100%;
+}
+
+.ws-resize-handle-vertical .ws-resize-handle-bar {
+  height: 2px;
+  width: 100%;
+}
+
+/* Hover & Focus State */
+.ws-resize-handle:hover .ws-resize-handle-bar,
+.ws-resize-handle:focus-visible .ws-resize-handle-bar {
+  background-color: #004AA5;
+  box-shadow: 0 0 0 1.5px rgba(0, 74, 165, 0.25);
+}
+
+.ws-resize-handle-horizontal:hover .ws-resize-handle-bar,
+.ws-resize-handle-horizontal:focus-visible .ws-resize-handle-bar {
+  width: 4px;
+}
+
+.ws-resize-handle-vertical:hover .ws-resize-handle-bar,
+.ws-resize-handle-vertical:focus-visible .ws-resize-handle-bar {
+  height: 4px;
+}
+
+/* Active Dragging State */
+.ws-resize-handle.is-dragging .ws-resize-handle-bar {
+  background-color: #004AA5;
+  box-shadow: 0 0 10px rgba(0, 74, 165, 0.5);
+}
+
+.ws-resize-handle.is-dragging.ws-resize-handle-horizontal .ws-resize-handle-bar {
+  width: 4px;
+}
+
+.ws-resize-handle.is-dragging.ws-resize-handle-vertical .ws-resize-handle-bar {
+  height: 4px;
+}
+
+/* Accessibility Focus Ring */
+.ws-resize-handle:focus-visible {
+  outline: 2px solid #004AA5;
+  outline-offset: 1px;
+}
+
+/* Grab handle notch icon (subtle pill) */
+.ws-handle-notch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 28px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #C7DCF5;
+  box-shadow: 0 1px 3px rgba(11, 46, 87, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+}
+
+.ws-resize-handle:hover .ws-handle-notch,
+.ws-resize-handle.is-dragging .ws-handle-notch {
+  opacity: 1;
+}
+
+/* Prevent Selection Body Class during drag */
+body.ws-resizing-active {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* ==========================================================================
+   Rich Text Editor Overflow Fixes (Tables, Code Blocks, Images)
+   ========================================================================== */
+
+/* Responsive Table Wrapper */
+.ws-table-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.ws-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+  text-align: inherit;
+}
+
+.ws-table-wrapper th,
+.ws-table-wrapper td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #E2E8F0;
+  border-inline-end: 1px solid #E2E8F0;
+  font-size: 13px;
+  color: #1E293B;
+}
+
+.ws-table-wrapper th {
+  background-color: #F8FAFC;
+  font-weight: 700;
+  color: #0B2E57;
+}
+
+/* Responsive Code Block */
+.ws-code-wrapper {
+  position: relative;
+  margin: 1rem 0;
+  border-radius: 12px;
+  background-color: #0F172A;
+  color: #F1F5F9;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.ws-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background-color: #1E293B;
+  border-bottom: 1px solid #334155;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+.ws-code-content {
+  overflow-x: auto;
+  padding: 12px 16px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  white-space: pre;
+  tab-size: 2;
+}
+
+/* Responsive Image within Editor */
+.ws-image-figure {
+  margin: 1.25rem 0;
+  max-width: 100%;
+  text-align: center;
+}
+
+.ws-image-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Callout Box */
+.ws-callout {
+  padding: 12px 16px;
+  margin: 1rem 0;
+  border-radius: 12px;
+  border-inline-start: 4px solid #004AA5;
+  background-color: #F0F7FF;
+  color: #0B2E57;
+  font-size: 13.5px;
+  line-height: 1.55;
+}

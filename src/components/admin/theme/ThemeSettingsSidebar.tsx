@@ -42,6 +42,8 @@ interface ThemeSettingsSidebarProps {
   onOpenMediaPicker: (targetType?: 'illustration' | 'background' | 'logo') => void;
   selectedElementKey?: string | null;
   onSelectElement?: (key: string) => void;
+  sidebarWidth?: number;
+  onResetWidth?: () => void;
 }
 
 export const ThemeSettingsSidebar: React.FC<ThemeSettingsSidebarProps> = ({
@@ -54,6 +56,8 @@ export const ThemeSettingsSidebar: React.FC<ThemeSettingsSidebarProps> = ({
   onOpenMediaPicker,
   selectedElementKey,
   onSelectElement,
+  sidebarWidth = 340,
+  onResetWidth,
 }) => {
   const [activeAccordion, setActiveAccordion] = useState<string>('illustration');
 
@@ -88,12 +92,27 @@ export const ThemeSettingsSidebar: React.FC<ThemeSettingsSidebarProps> = ({
   const isVisualInterface = target === 'admin_login' || target === 'crm_login' || target === 'portal';
 
   return (
-    <aside className="w-80 bg-white border-l border-slate-200 flex flex-col justify-between overflow-y-auto shrink-0 shadow-sm z-10 text-right">
+    <aside
+      style={{ width: sidebarWidth }}
+      className="bg-white border-l border-slate-200 flex flex-col justify-between overflow-y-auto shrink-0 shadow-sm z-10 text-right transition-[width] duration-75 select-none"
+    >
       {/* Top Interface Selector */}
       <div className="p-4 border-b border-slate-100 bg-slate-50 space-y-2">
-        <label className="text-[11px] font-black text-[#0B2E57] uppercase tracking-wider block">
-          اختر الواجهة المراد تعديلها:
-        </label>
+        <div className="flex items-center justify-between">
+          <label className="text-[11px] font-black text-[#0B2E57] uppercase tracking-wider block">
+            اختر الواجهة المراد تعديلها:
+          </label>
+          {onResetWidth && (
+            <button
+              type="button"
+              onClick={onResetWidth}
+              title="استعادة العرض الافتراضي (340px)"
+              className="p-1 rounded-lg text-slate-400 hover:text-[#004AA5] hover:bg-slate-200/60 transition-colors cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </button>
+          )}
+        </div>
         <select
           value={target}
           onChange={(e) => onTargetChange(e.target.value as InterfaceTarget)}

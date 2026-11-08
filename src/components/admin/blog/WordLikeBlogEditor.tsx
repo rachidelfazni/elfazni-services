@@ -56,7 +56,12 @@ import {
   BookOpen,
   IndentIncrease,
   IndentDecrease,
+  Maximize2,
+  Minimize2,
+  RotateCcw,
 } from 'lucide-react';
+import { ResizeHandle } from '../../workspace/ResizeHandle';
+import { clampPanelSize } from '../../workspace/layoutPreferences';
 import {
   api,
   BlogPost,
@@ -198,6 +203,34 @@ export const WordLikeBlogEditor: React.FC<WordLikeBlogEditorProps> = ({
 
   // UI drawers & modals
   const [drawerOpen, setDrawerOpen] = useState<boolean>(true);
+  const [isEditorMaximized, setIsEditorMaximized] = useState<boolean>(false);
+  const [drawerWidth, setDrawerWidth] = useState<number>(() => {
+    if (typeof window === 'undefined') return 380;
+    try {
+      const saved = localStorage.getItem('elfazni_blog_drawer_width');
+      const num = saved ? parseInt(saved, 10) : 380;
+      return isNaN(num) ? 380 : clampPanelSize(num, 260, 520);
+    } catch {
+      return 380;
+    }
+  });
+
+  const handleDrawerResize = (delta: number) => {
+    setDrawerWidth((prev) => {
+      const next = clampPanelSize(prev - delta, 260, 520);
+      try {
+        localStorage.setItem('elfazni_blog_drawer_width', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleResetDrawerWidth = () => {
+    setDrawerWidth(380);
+    try {
+      localStorage.setItem('elfazni_blog_drawer_width', '380');
+    } catch {}
+  };
   const [sourceMode, setSourceMode] = useState<boolean>(false);
   const [sourceCodeText, setSourceCodeText] = useState<string>('');
   const [moreMenuOpen, setMoreMenuOpen] = useState<boolean>(false);
@@ -1018,7 +1051,11 @@ export const WordLikeBlogEditor: React.FC<WordLikeBlogEditorProps> = ({
 
   return (
     <div
-      className="flex flex-col bg-[#F4F7FB] rounded-3xl border border-slate-200/90 shadow-lg overflow-hidden min-h-[85vh]"
+      className={
+        isEditorMaximized
+          ? 'fixed inset-0 z-50 bg-[#F4F7FB] flex flex-col overflow-hidden'
+          : 'flex flex-col bg-[#F4F7FB] rounded-3xl border border-slate-200/90 shadow-lg overflow-hidden min-h-[85vh]'
+      }
       dir={isUiRtl ? 'rtl' : 'ltr'}
     >
       {/* Hidden File Inputs for Direct Device Uploads */}
@@ -1331,6 +1368,24 @@ export const WordLikeBlogEditor: React.FC<WordLikeBlogEditorProps> = ({
               </div>
             )}
           </div>
+
+          {/* Maximize / Restore Editor Fullscreen Button */}
+          <button
+            type="button"
+            onClick={() => setIsEditorMaximized((v) => !v)}
+            className={`p-2 rounded-xl border text-xs font-bold transition-colors cursor-pointer ${
+              isEditorMaximized
+                ? 'bg-[#004AA5] text-white border-[#004AA5]'
+                : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
+            }`}
+            title={isEditorMaximized ? 'استعادة حجم المحرر' : 'تكبير المحرر بكامل الشاشة (Focus Mode)'}
+          >
+            {isEditorMaximized ? (
+              <Minimize2 className="w-4 h-4" />
+            ) : (
+              <Maximize2 className="w-4 h-4" />
+            )}
+          </button>
 
           {/* Toggle Settings Drawer */}
           <button
@@ -2183,17 +2238,47 @@ export const WordLikeBlogEditor: React.FC<WordLikeBlogEditorProps> = ({
         {/* 4. RIGHT-SIDE COLLAPSIBLE SETTINGS & SEO DRAWER                   */}
         {/* ================================================================= */}
         {drawerOpen && (
-          <aside className="w-full lg:w-96 bg-white border-t lg:border-t-0 lg:border-s border-slate-200 overflow-y-auto p-5 space-y-6 shrink-0">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="font-black text-sm text-[#0B2E57]">إعدادات المقال والـ SEO</h3>
-              <button
-                type="button"
-                onClick={() => setDrawerOpen(false)}
-                className="p-1 rounded-lg hover:bg-slate-100 text-slate-400"
-              >
-                <X className="w-4 h-4" />
-              </button>
+          <>
+            {/* Desktop Resizable Separator Handle */}
+            <div className="hidden lg:block shrink-0 h-full">
+              <ResizeHandle
+                id="blog-settings-drawer"
+                direction="horizontal"
+                isRtl={isArticleRtl}
+                onResize={handleDrawerResize}
+                onReset={handleResetDrawerWidth}
+                currentSize={drawerWidth}
+                minSize={260}
+                maxSize={520}
+                ariaLabel="فاصل تغيير حجم لوحة إعدادات المقال"
+              />
             </div>
+
+            <aside
+              style={{ width: drawerWidth }}
+              className="w-full lg:w-auto bg-white border-t lg:border-t-0 lg:border-s border-slate-200 overflow-y-auto p-5 space-y-6 shrink-0"
+            >
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                <h3 className="font-black text-sm text-[#0B2E57]">إعدادات المقال والـ SEO</h3>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={handleResetDrawerWidth}
+                    title="استعادة العرض الافتراضي (380px)"
+                    className="p-1 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-[#004AA5] transition-colors cursor-pointer"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDrawerOpen(false)}
+                    className="p-1 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-[#0B2E57] cursor-pointer"
+                    title="إغلاق اللوحة الجانبية"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
 
             {/* Featured Cover Image */}
             <div className="space-y-2">
@@ -2479,7 +2564,8 @@ export const WordLikeBlogEditor: React.FC<WordLikeBlogEditorProps> = ({
               )}
             </div>
           </aside>
-        )}
+        </>
+      )}
       </div>
 
       {/* =================================================================== */}

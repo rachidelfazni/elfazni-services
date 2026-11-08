@@ -50,6 +50,7 @@ import {
 import { Request } from 'express';
 import { productivityRouter } from './productivityRoutes';
 import { themeRouter } from './themeRoutes';
+import { syncInquiryToCrmLead } from './crmLeadSync';
 
 export const apiRouter = Router();
 
@@ -2245,6 +2246,15 @@ apiRouter.post(['/public/requests', '/requests'], async (req, res) => {
   }
   writeDb(db);
 
+  syncInquiryToCrmLead({
+    name: newRequest.name,
+    phone: newRequest.phone || newRequest.whatsappPhone,
+    email: newRequest.email,
+    serviceRequested: newRequest.serviceRequested,
+    reference: newRequest.reference,
+    message: newRequest.message,
+  });
+
   // Enqueue tagged email alert
   const emailAlertPromise = dispatchAdminEmailAlert({
     ticketNumber: newRequest.ticketNumber,
@@ -2408,6 +2418,15 @@ apiRouter.post('/public/offline-messages', async (req, res) => {
   db.messages.unshift(newRequest);
   writeDb(db);
 
+  syncInquiryToCrmLead({
+    name: newRequest.name,
+    phone: newRequest.phone || newRequest.whatsappPhone,
+    email: newRequest.email,
+    serviceRequested: newRequest.serviceRequested,
+    reference: newRequest.reference,
+    message: newRequest.message,
+  });
+
   const emailAlertPromise = dispatchAdminEmailAlert({
     ticketNumber: refCode,
     reference: refCode,
@@ -2533,6 +2552,15 @@ apiRouter.post('/mailbox', async (req, res) => {
     db.analytics.trafficHistory = db.analytics.trafficPeriods.weekly;
   }
   writeDb(db);
+
+  syncInquiryToCrmLead({
+    name: newMessage.name,
+    phone: newMessage.phone || newMessage.whatsappPhone,
+    email: newMessage.email,
+    serviceRequested: newMessage.serviceRequested,
+    reference: newMessage.reference,
+    message: newMessage.message,
+  });
 
   const notification = dispatchAdminEmailAlert({
     ticketNumber: newMessage.ticketNumber,
@@ -3920,3 +3948,8 @@ apiRouter.post('/admin/system/sync-cloud', requireAuth, (_req, res) => {
 
 apiRouter.use('/productivity', productivityRouter);
 apiRouter.use('/theme', themeRouter);
+
+// 404 handler for unmatched API routes
+apiRouter.use((_req, res) => {
+  res.status(404).json({ error: 'Endpoint not found' });
+});

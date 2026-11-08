@@ -134,40 +134,8 @@
       "inheritBrandColors": true,
       "inheritTypography": true,
       "logoVariant": "horizontal-on-blue",
-      "colors": {
-        "primary": "#004AA5",
-        "secondary": "#0B2E57",
-        "accent": "#0066E6",
-        "gold": "#CC9048",
-        "goldTextOnWhite": "#81521C",
-        "background": "#FFFFFF",
-        "surface": "#F7F9FC",
-        "text": "#102D4D",
-        "mutedText": "#5E7086",
-        "border": "#DCE6F2",
-        "button": "#004AA5",
-        "buttonHover": "#003B84",
-        "success": "#16A34A",
-        "warning": "#D97706",
-        "error": "#DC2626",
-        "navySupport": "#10345B"
-      },
-      "typography": {
-        "fontFamily": "'Bahij TheSansArabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        "headingFontFamily": "'Bahij TheSansArabic', sans-serif",
-        "baseFontSize": "16px",
-        "lineHeight": "1.6",
-        "letterSpacing": "0px",
-        "h1Size": "2.25rem",
-        "h2Size": "1.75rem",
-        "h3Size": "1.25rem",
-        "buttonFontSize": "0.875rem",
-        "inputLabelSize": "0.75rem",
-        "fontWeightNormal": "400",
-        "fontWeightMedium": "600",
-        "fontWeightBold": "700",
-        "fontWeightHeavy": "800"
-      },
+      "colors": {},
+      "typography": {},
       "decorativeIllustration": "/assets/brand/3d/01-master-service-hero-transparent.png",
       "illustrationPosition": "center",
       "illustrationScale": 100,
@@ -295,8 +263,8 @@
           }
         }
       ],
-      "updatedAt": "2026-11-08T10:31:55.208Z",
-      "updatedBy": "system",
+      "updatedAt": "2026-11-08T12:30:07.262Z",
+      "updatedBy": "elfazni.admin",
       "version": 1,
       "layers": [
         {
@@ -345,96 +313,44 @@
           "opacity": 100
         }
       ],
-      "gradient": {
-        "enabled": true,
-        "type": "linear",
-        "direction": "to top",
-        "angle": 0,
-        "opacity": 0.85,
-        "stops": [
-          {
-            "position": 0,
-            "color": "#012247",
-            "opacity": 0.95
-          },
-          {
-            "position": 45,
-            "color": "#004AA5",
-            "opacity": 0.65
-          },
-          {
-            "position": 100,
-            "color": "#071629",
-            "opacity": 0.2
-          }
-        ]
-      },
       "illustrationUrl": "/assets/brand/3d/07-hero-flight-appointment-transparent.png",
       "kickerColor": "#CC9048",
       "titleColor": "#FFFFFF",
       "noteColor": "#E2E8F0",
-      "backgroundColor": "#012247",
+      "backgroundColor": "#071629",
       "backgroundImage": "/assets/brand/3d/01-master-service-hero-transparent.png",
       "formBg": "#FFFFFF",
       "formTextColor": "#0B2E57",
       "formMutedColor": "#5E7086",
       "inputBg": "#F8FAFC",
-      "inputBorder": "#DCE6F2",
-      "inputTextColor": "#102D4D",
+      "inputBorder": "#D7E7F7",
+      "inputTextColor": "#0B2E57",
       "primaryButtonBg": "#004AA5",
       "primaryButtonTextColor": "#FFFFFF",
       "illustrationVerticalPosition": "center",
       "layoutType": "split-right",
-      "formWidth": "480px"
+      "formWidth": "480px",
+      "illustrationCustomX": 0,
+      "illustrationCustomY": 0,
+      "illustrationRotation": 0,
+      "illustrationFit": "contain"
     },
     "admin_login": {
       "target": "admin_login",
       "name": "Admin Login",
       "nameAr": "مظهر تسجيل دخول الإدارة",
-      "inheritBrandColors": false,
-      "inheritTypography": false,
+      "inheritBrandColors": true,
+      "inheritTypography": true,
       "layoutType": "split-right",
       "logoVariant": "horizontal-on-white",
       "illustrationLogoVariant": "horizontal-on-blue",
       "illustrationUrl": "/assets/brand/3d/02-consular-documents-transparent.png",
       "illustrationPosition": "center",
-      "illustrationScale": 105,
+      "illustrationScale": 100,
       "illustrationOpacity": 100,
       "illustrationBgGradient": "radial-gradient(circle at center, #0B2E57 0%, #071629 100%)",
-      "colors": {
-        "primary": "#004AA5",
-        "secondary": "#0B2E57",
-        "accent": "#0066E6",
-        "gold": "#CC9048",
-        "goldTextOnWhite": "#81521C",
-        "background": "#FFFFFF",
-        "surface": "#F7F9FC",
-        "text": "#102D4D",
-        "mutedText": "#5E7086",
-        "border": "#DCE6F2",
-        "button": "#004AA5",
-        "buttonHover": "#003B84",
-        "success": "#16A34A",
-        "warning": "#D97706",
-        "error": "#DC2626",
-        "navySupport": "#10345B"
-      },
-      "typography": {
-        "fontFamily": "'Bahij TheSansArabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        "headingFontFamily": "'Bahij TheSansArabic', sans-serif",
-        "baseFontSize": "16px",
-        "lineHeight": "1.6",
-        "letterSpacing": "0px",
-        "h1Size": "2.25rem",
-        "h2Size": "1.75rem",
-        "h3Size": "1.25rem",
-        "buttonFontSize": "0.875rem",
-        "inputLabelSize": "0.75rem",
-        "fontWeightNormal": "400",
-        "fontWeightMedium": "600",
-        "fontWeightBold": "700",
-        "fontWeightHeavy": "800"
-      },
+      "colors": {},
+      "typography": {},
       "formWidth": "480px",
       "formBg": "#FFFFFF",
       "inputBg": "#F8FAFC",
@@ -480,39 +396,15 @@
           "fr": "Connexion au tableau"
         }
       },
-      "updatedAt": "2026-11-08T10:13:02.284Z",
+      "updatedAt": "2026-11-08T12:44:47.282Z",
       "updatedBy": "elfazni.admin",
-      "version": 6,
+      "version": 10,
       "titleColor": "#FFFFFF",
       "kickerColor": "#CC9048",
       "noteColor": "#E2E8F0",
       "backgroundColor": "#071629",
       "backgroundImage": "/assets/brand/3d/01-master-service-hero-transparent.png",
       "backgroundOpacity": 40,
-      "gradient": {
-        "enabled": true,
-        "type": "linear",
-        "direction": "to top",
-        "angle": 0,
-        "opacity": 0.88,
-        "stops": [
-          {
-            "position": 0,
-            "color": "#012247",
-            "opacity": 0.96
-          },
-          {
-            "position": 50,
-            "color": "#004AA5",
-            "opacity": 0.72
-          },
-          {
-            "position": 100,
-            "color": "#071629",
-            "opacity": 0.25
-          }
-        ]
-      },
       "layers": [
         {
           "id": "logo",
@@ -555,14 +447,17 @@
           "opacity": 100
         }
       ],
-      "appliedPresetId": "official-elfazni",
-      "appliedPresetName": "هوية الفزني الرسمية",
       "formTextColor": "#0B2E57",
       "formMutedColor": "#5E7086",
       "primaryButtonTextColor": "#FFFFFF",
       "illustrationVerticalPosition": "center",
       "illustrationCustomX": 0,
-      "illustrationCustomY": 0
+      "illustrationCustomY": 0,
+      "illustrationFit": "contain",
+      "titleFontSize": "32px",
+      "noteFontSize": "15px",
+      "textAlign": "start",
+      "illustrationRotation": 0
     },
     "crm_login": {
       "target": "crm_login",
@@ -1063,7 +958,7 @@
       "illustrationLogoVariant": "horizontal-on-blue",
       "illustrationUrl": "/assets/brand/3d/02-consular-documents-transparent.png",
       "illustrationPosition": "center",
-      "illustrationScale": 105,
+      "illustrationScale": 120,
       "illustrationOpacity": 100,
       "illustrationBgGradient": "radial-gradient(circle at center, #0B2E57 0%, #071629 100%)",
       "colors": {
@@ -1145,39 +1040,15 @@
           "fr": "Connexion au tableau"
         }
       },
-      "updatedAt": "2026-11-08T10:13:02.284Z",
+      "updatedAt": "2026-11-08T12:44:47.262Z",
       "updatedBy": "elfazni.admin",
-      "version": 6,
+      "version": 10,
       "titleColor": "#FFFFFF",
       "kickerColor": "#CC9048",
       "noteColor": "#E2E8F0",
       "backgroundColor": "#071629",
       "backgroundImage": "/assets/brand/3d/01-master-service-hero-transparent.png",
       "backgroundOpacity": 40,
-      "gradient": {
-        "enabled": true,
-        "type": "linear",
-        "direction": "to top",
-        "angle": 0,
-        "opacity": 0.88,
-        "stops": [
-          {
-            "position": 0,
-            "color": "#012247",
-            "opacity": 0.96
-          },
-          {
-            "position": 50,
-            "color": "#004AA5",
-            "opacity": 0.72
-          },
-          {
-            "position": 100,
-            "color": "#071629",
-            "opacity": 0.25
-          }
-        ]
-      },
       "layers": [
         {
           "id": "logo",
@@ -1220,14 +1091,43 @@
           "opacity": 100
         }
       ],
-      "appliedPresetId": "official-elfazni",
-      "appliedPresetName": "هوية الفزني الرسمية",
       "formTextColor": "#0B2E57",
       "formMutedColor": "#5E7086",
       "primaryButtonTextColor": "#FFFFFF",
       "illustrationVerticalPosition": "center",
-      "illustrationCustomX": 0,
-      "illustrationCustomY": 0
+      "illustrationCustomX": -45,
+      "illustrationCustomY": 80,
+      "illustrationFit": "contain",
+      "titleFontSize": "32px",
+      "noteFontSize": "15px",
+      "textAlign": "start",
+      "illustrationRotation": 0,
+      "appliedPresetId": "official-elfazni",
+      "appliedPresetName": "هوية الفزني الرسمية",
+      "gradient": {
+        "enabled": true,
+        "type": "linear",
+        "direction": "to top",
+        "angle": 0,
+        "opacity": 0.88,
+        "stops": [
+          {
+            "position": 0,
+            "color": "#012247",
+            "opacity": 0.96
+          },
+          {
+            "position": 50,
+            "color": "#004AA5",
+            "opacity": 0.72
+          },
+          {
+            "position": 100,
+            "color": "#071629",
+            "opacity": 0.25
+          }
+        ]
+      }
     },
     "crm_login": {
       "target": "crm_login",
@@ -1808,6 +1708,764 @@
     }
   ],
   "versions": [
+    {
+      "id": "ver_admin_login_1794141887262",
+      "target": "admin_login",
+      "versionNumber": 10,
+      "snapshot": {
+        "target": "admin_login",
+        "name": "Admin Login",
+        "nameAr": "مظهر تسجيل دخول الإدارة",
+        "inheritBrandColors": false,
+        "inheritTypography": false,
+        "layoutType": "split-right",
+        "logoVariant": "horizontal-on-white",
+        "illustrationLogoVariant": "horizontal-on-blue",
+        "illustrationUrl": "/assets/brand/3d/02-consular-documents-transparent.png",
+        "illustrationPosition": "center",
+        "illustrationScale": 120,
+        "illustrationOpacity": 100,
+        "illustrationBgGradient": "radial-gradient(circle at center, #0B2E57 0%, #071629 100%)",
+        "colors": {
+          "primary": "#004AA5",
+          "secondary": "#0B2E57",
+          "accent": "#0066E6",
+          "gold": "#CC9048",
+          "goldTextOnWhite": "#81521C",
+          "background": "#FFFFFF",
+          "surface": "#F7F9FC",
+          "text": "#102D4D",
+          "mutedText": "#5E7086",
+          "border": "#DCE6F2",
+          "button": "#004AA5",
+          "buttonHover": "#003B84",
+          "success": "#16A34A",
+          "warning": "#D97706",
+          "error": "#DC2626",
+          "navySupport": "#10345B"
+        },
+        "typography": {
+          "fontFamily": "'Bahij TheSansArabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "headingFontFamily": "'Bahij TheSansArabic', sans-serif",
+          "baseFontSize": "16px",
+          "lineHeight": "1.6",
+          "letterSpacing": "0px",
+          "h1Size": "2.25rem",
+          "h2Size": "1.75rem",
+          "h3Size": "1.25rem",
+          "buttonFontSize": "0.875rem",
+          "inputLabelSize": "0.75rem",
+          "fontWeightNormal": "400",
+          "fontWeightMedium": "600",
+          "fontWeightBold": "700",
+          "fontWeightHeavy": "800"
+        },
+        "formWidth": "480px",
+        "formBg": "#FFFFFF",
+        "inputBg": "#F8FAFC",
+        "inputBorder": "#D7E7F7",
+        "inputRadius": "12px",
+        "inputTextColor": "#0B2E57",
+        "primaryButtonBg": "#004AA5",
+        "primaryButtonRadius": "12px",
+        "texts": {
+          "panelKicker": {
+            "ar": "ELFAZNI SERVICES · ADMIN",
+            "en": "ELFAZNI SERVICES · ADMIN",
+            "fr": "ELFAZNI SERVICES · ADMIN"
+          },
+          "panelTitle": {
+            "ar": "الفزني سيرفيسز",
+            "en": "ELFAZNI SERVICES",
+            "fr": "ELFAZNI SERVICES"
+          },
+          "panelNote": {
+            "ar": "مدونة، خدمات، ولوحة إدارة محتوى الموقع.",
+            "en": "Blog, services and site content management.",
+            "fr": "Blog, services et gestion du contenu du site."
+          },
+          "formKicker": {
+            "ar": "لوحة إدارة الموقع",
+            "en": "Site administration",
+            "fr": "Administration du site"
+          },
+          "loginTitle": {
+            "ar": "تسجيل الدخول",
+            "en": "Sign in",
+            "fr": "Connexion"
+          },
+          "loginDesc": {
+            "ar": "أدخل بيانات حسابك للوصول إلى النظام.",
+            "en": "Enter your account credentials to access the system.",
+            "fr": "Saisissez vos identifiants pour accéder au système."
+          },
+          "submitButton": {
+            "ar": "دخول إلى لوحة التحكم",
+            "en": "Sign in to dashboard",
+            "fr": "Connexion au tableau"
+          }
+        },
+        "updatedAt": "2026-11-08T12:44:47.262Z",
+        "updatedBy": "elfazni.admin",
+        "version": 10,
+        "titleColor": "#FFFFFF",
+        "kickerColor": "#CC9048",
+        "noteColor": "#E2E8F0",
+        "backgroundColor": "#071629",
+        "backgroundImage": "/assets/brand/3d/01-master-service-hero-transparent.png",
+        "backgroundOpacity": 40,
+        "layers": [
+          {
+            "id": "logo",
+            "labelAr": "الشعار",
+            "labelEn": "Logo",
+            "visible": true,
+            "zIndex": 5,
+            "opacity": 100
+          },
+          {
+            "id": "content",
+            "labelAr": "العنوان والنصوص",
+            "labelEn": "Headings & Text",
+            "visible": true,
+            "zIndex": 4,
+            "opacity": 100
+          },
+          {
+            "id": "illustration",
+            "labelAr": "المجسم التوضيحي",
+            "labelEn": "Illustration",
+            "visible": true,
+            "zIndex": 3,
+            "opacity": 100
+          },
+          {
+            "id": "gradient",
+            "labelAr": "التدرج اللوني",
+            "labelEn": "Gradient Overlay",
+            "visible": true,
+            "zIndex": 2,
+            "opacity": 85
+          },
+          {
+            "id": "background",
+            "labelAr": "الخلفية",
+            "labelEn": "Background",
+            "visible": true,
+            "zIndex": 1,
+            "opacity": 100
+          }
+        ],
+        "formTextColor": "#0B2E57",
+        "formMutedColor": "#5E7086",
+        "primaryButtonTextColor": "#FFFFFF",
+        "illustrationVerticalPosition": "center",
+        "illustrationCustomX": -45,
+        "illustrationCustomY": 80,
+        "illustrationFit": "contain",
+        "titleFontSize": "32px",
+        "noteFontSize": "15px",
+        "textAlign": "start",
+        "illustrationRotation": 0,
+        "appliedPresetId": "official-elfazni",
+        "appliedPresetName": "هوية الفزني الرسمية",
+        "gradient": {
+          "enabled": true,
+          "type": "linear",
+          "direction": "to top",
+          "angle": 0,
+          "opacity": 0.88,
+          "stops": [
+            {
+              "position": 0,
+              "color": "#012247",
+              "opacity": 0.96
+            },
+            {
+              "position": 50,
+              "color": "#004AA5",
+              "opacity": 0.72
+            },
+            {
+              "position": 100,
+              "color": "#071629",
+              "opacity": 0.25
+            }
+          ]
+        }
+      },
+      "publishedAt": "2026-11-08T12:44:47.262Z",
+      "publishedBy": "elfazni.admin",
+      "changeSummary": "QA Master Audit publish test"
+    },
+    {
+      "id": "ver_admin_login_1794140950773",
+      "target": "admin_login",
+      "versionNumber": 9,
+      "snapshot": {
+        "target": "admin_login",
+        "name": "Admin Login",
+        "nameAr": "مظهر تسجيل دخول الإدارة",
+        "inheritBrandColors": false,
+        "inheritTypography": false,
+        "layoutType": "split-right",
+        "logoVariant": "horizontal-on-white",
+        "illustrationLogoVariant": "horizontal-on-blue",
+        "illustrationUrl": "/assets/brand/3d/02-consular-documents-transparent.png",
+        "illustrationPosition": "center",
+        "illustrationScale": 120,
+        "illustrationOpacity": 100,
+        "illustrationBgGradient": "radial-gradient(circle at center, #0B2E57 0%, #071629 100%)",
+        "colors": {
+          "primary": "#004AA5",
+          "secondary": "#0B2E57",
+          "accent": "#0066E6",
+          "gold": "#CC9048",
+          "goldTextOnWhite": "#81521C",
+          "background": "#FFFFFF",
+          "surface": "#F7F9FC",
+          "text": "#102D4D",
+          "mutedText": "#5E7086",
+          "border": "#DCE6F2",
+          "button": "#004AA5",
+          "buttonHover": "#003B84",
+          "success": "#16A34A",
+          "warning": "#D97706",
+          "error": "#DC2626",
+          "navySupport": "#10345B"
+        },
+        "typography": {
+          "fontFamily": "'Bahij TheSansArabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "headingFontFamily": "'Bahij TheSansArabic', sans-serif",
+          "baseFontSize": "16px",
+          "lineHeight": "1.6",
+          "letterSpacing": "0px",
+          "h1Size": "2.25rem",
+          "h2Size": "1.75rem",
+          "h3Size": "1.25rem",
+          "buttonFontSize": "0.875rem",
+          "inputLabelSize": "0.75rem",
+          "fontWeightNormal": "400",
+          "fontWeightMedium": "600",
+          "fontWeightBold": "700",
+          "fontWeightHeavy": "800"
+        },
+        "formWidth": "480px",
+        "formBg": "#FFFFFF",
+        "inputBg": "#F8FAFC",
+        "inputBorder": "#D7E7F7",
+        "inputRadius": "12px",
+        "inputTextColor": "#0B2E57",
+        "primaryButtonBg": "#004AA5",
+        "primaryButtonRadius": "12px",
+        "texts": {
+          "panelKicker": {
+            "ar": "ELFAZNI SERVICES · ADMIN",
+            "en": "ELFAZNI SERVICES · ADMIN",
+            "fr": "ELFAZNI SERVICES · ADMIN"
+          },
+          "panelTitle": {
+            "ar": "الفزني سيرفيسز",
+            "en": "ELFAZNI SERVICES",
+            "fr": "ELFAZNI SERVICES"
+          },
+          "panelNote": {
+            "ar": "مدونة، خدمات، ولوحة إدارة محتوى الموقع.",
+            "en": "Blog, services and site content management.",
+            "fr": "Blog, services et gestion du contenu du site."
+          },
+          "formKicker": {
+            "ar": "لوحة إدارة الموقع",
+            "en": "Site administration",
+            "fr": "Administration du site"
+          },
+          "loginTitle": {
+            "ar": "تسجيل الدخول",
+            "en": "Sign in",
+            "fr": "Connexion"
+          },
+          "loginDesc": {
+            "ar": "أدخل بيانات حسابك للوصول إلى النظام.",
+            "en": "Enter your account credentials to access the system.",
+            "fr": "Saisissez vos identifiants pour accéder au système."
+          },
+          "submitButton": {
+            "ar": "دخول إلى لوحة التحكم",
+            "en": "Sign in to dashboard",
+            "fr": "Connexion au tableau"
+          }
+        },
+        "updatedAt": "2026-11-08T12:29:10.773Z",
+        "updatedBy": "elfazni.admin",
+        "version": 9,
+        "titleColor": "#FFFFFF",
+        "kickerColor": "#CC9048",
+        "noteColor": "#E2E8F0",
+        "backgroundColor": "#071629",
+        "backgroundImage": "/assets/brand/3d/01-master-service-hero-transparent.png",
+        "backgroundOpacity": 40,
+        "layers": [
+          {
+            "id": "logo",
+            "labelAr": "الشعار",
+            "labelEn": "Logo",
+            "visible": true,
+            "zIndex": 5,
+            "opacity": 100
+          },
+          {
+            "id": "content",
+            "labelAr": "العنوان والنصوص",
+            "labelEn": "Headings & Text",
+            "visible": true,
+            "zIndex": 4,
+            "opacity": 100
+          },
+          {
+            "id": "illustration",
+            "labelAr": "المجسم التوضيحي",
+            "labelEn": "Illustration",
+            "visible": true,
+            "zIndex": 3,
+            "opacity": 100
+          },
+          {
+            "id": "gradient",
+            "labelAr": "التدرج اللوني",
+            "labelEn": "Gradient Overlay",
+            "visible": true,
+            "zIndex": 2,
+            "opacity": 85
+          },
+          {
+            "id": "background",
+            "labelAr": "الخلفية",
+            "labelEn": "Background",
+            "visible": true,
+            "zIndex": 1,
+            "opacity": 100
+          }
+        ],
+        "formTextColor": "#0B2E57",
+        "formMutedColor": "#5E7086",
+        "primaryButtonTextColor": "#FFFFFF",
+        "illustrationVerticalPosition": "center",
+        "illustrationCustomX": -45,
+        "illustrationCustomY": 80,
+        "illustrationFit": "contain",
+        "titleFontSize": "32px",
+        "noteFontSize": "15px",
+        "textAlign": "start",
+        "illustrationRotation": 0,
+        "appliedPresetId": "official-elfazni",
+        "appliedPresetName": "هوية الفزني الرسمية",
+        "gradient": {
+          "enabled": true,
+          "type": "linear",
+          "direction": "to top",
+          "angle": 0,
+          "opacity": 0.88,
+          "stops": [
+            {
+              "position": 0,
+              "color": "#012247",
+              "opacity": 0.96
+            },
+            {
+              "position": 50,
+              "color": "#004AA5",
+              "opacity": 0.72
+            },
+            {
+              "position": 100,
+              "color": "#071629",
+              "opacity": 0.25
+            }
+          ]
+        }
+      },
+      "publishedAt": "2026-11-08T12:29:10.773Z",
+      "publishedBy": "elfazni.admin",
+      "changeSummary": "QA Master Audit publish test"
+    },
+    {
+      "id": "ver_admin_login_1794140891202",
+      "target": "admin_login",
+      "versionNumber": 8,
+      "snapshot": {
+        "target": "admin_login",
+        "name": "Admin Login",
+        "nameAr": "مظهر تسجيل دخول الإدارة",
+        "inheritBrandColors": false,
+        "inheritTypography": false,
+        "layoutType": "split-right",
+        "logoVariant": "horizontal-on-white",
+        "illustrationLogoVariant": "horizontal-on-blue",
+        "illustrationUrl": "/assets/brand/3d/02-consular-documents-transparent.png",
+        "illustrationPosition": "center",
+        "illustrationScale": 120,
+        "illustrationOpacity": 100,
+        "illustrationBgGradient": "radial-gradient(circle at center, #0B2E57 0%, #071629 100%)",
+        "colors": {
+          "primary": "#004AA5",
+          "secondary": "#0B2E57",
+          "accent": "#0066E6",
+          "gold": "#CC9048",
+          "goldTextOnWhite": "#81521C",
+          "background": "#FFFFFF",
+          "surface": "#F7F9FC",
+          "text": "#102D4D",
+          "mutedText": "#5E7086",
+          "border": "#DCE6F2",
+          "button": "#004AA5",
+          "buttonHover": "#003B84",
+          "success": "#16A34A",
+          "warning": "#D97706",
+          "error": "#DC2626",
+          "navySupport": "#10345B"
+        },
+        "typography": {
+          "fontFamily": "'Bahij TheSansArabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "headingFontFamily": "'Bahij TheSansArabic', sans-serif",
+          "baseFontSize": "16px",
+          "lineHeight": "1.6",
+          "letterSpacing": "0px",
+          "h1Size": "2.25rem",
+          "h2Size": "1.75rem",
+          "h3Size": "1.25rem",
+          "buttonFontSize": "0.875rem",
+          "inputLabelSize": "0.75rem",
+          "fontWeightNormal": "400",
+          "fontWeightMedium": "600",
+          "fontWeightBold": "700",
+          "fontWeightHeavy": "800"
+        },
+        "formWidth": "480px",
+        "formBg": "#FFFFFF",
+        "inputBg": "#F8FAFC",
+        "inputBorder": "#D7E7F7",
+        "inputRadius": "12px",
+        "inputTextColor": "#0B2E57",
+        "primaryButtonBg": "#004AA5",
+        "primaryButtonRadius": "12px",
+        "texts": {
+          "panelKicker": {
+            "ar": "ELFAZNI SERVICES · ADMIN",
+            "en": "ELFAZNI SERVICES · ADMIN",
+            "fr": "ELFAZNI SERVICES · ADMIN"
+          },
+          "panelTitle": {
+            "ar": "الفزني سيرفيسز",
+            "en": "ELFAZNI SERVICES",
+            "fr": "ELFAZNI SERVICES"
+          },
+          "panelNote": {
+            "ar": "مدونة، خدمات، ولوحة إدارة محتوى الموقع.",
+            "en": "Blog, services and site content management.",
+            "fr": "Blog, services et gestion du contenu du site."
+          },
+          "formKicker": {
+            "ar": "لوحة إدارة الموقع",
+            "en": "Site administration",
+            "fr": "Administration du site"
+          },
+          "loginTitle": {
+            "ar": "تسجيل الدخول",
+            "en": "Sign in",
+            "fr": "Connexion"
+          },
+          "loginDesc": {
+            "ar": "أدخل بيانات حسابك للوصول إلى النظام.",
+            "en": "Enter your account credentials to access the system.",
+            "fr": "Saisissez vos identifiants pour accéder au système."
+          },
+          "submitButton": {
+            "ar": "دخول إلى لوحة التحكم",
+            "en": "Sign in to dashboard",
+            "fr": "Connexion au tableau"
+          }
+        },
+        "updatedAt": "2026-11-08T12:28:11.202Z",
+        "updatedBy": "elfazni.admin",
+        "version": 8,
+        "titleColor": "#FFFFFF",
+        "kickerColor": "#CC9048",
+        "noteColor": "#E2E8F0",
+        "backgroundColor": "#071629",
+        "backgroundImage": "/assets/brand/3d/01-master-service-hero-transparent.png",
+        "backgroundOpacity": 40,
+        "gradient": {
+          "enabled": true,
+          "type": "linear",
+          "direction": "to top",
+          "angle": 0,
+          "opacity": 0.88,
+          "stops": [
+            {
+              "position": 0,
+              "color": "#012247",
+              "opacity": 0.96
+            },
+            {
+              "position": 50,
+              "color": "#004AA5",
+              "opacity": 0.72
+            },
+            {
+              "position": 100,
+              "color": "#071629",
+              "opacity": 0.25
+            }
+          ]
+        },
+        "layers": [
+          {
+            "id": "logo",
+            "labelAr": "الشعار",
+            "labelEn": "Logo",
+            "visible": true,
+            "zIndex": 5,
+            "opacity": 100
+          },
+          {
+            "id": "content",
+            "labelAr": "العنوان والنصوص",
+            "labelEn": "Headings & Text",
+            "visible": true,
+            "zIndex": 4,
+            "opacity": 100
+          },
+          {
+            "id": "illustration",
+            "labelAr": "المجسم التوضيحي",
+            "labelEn": "Illustration",
+            "visible": true,
+            "zIndex": 3,
+            "opacity": 100
+          },
+          {
+            "id": "gradient",
+            "labelAr": "التدرج اللوني",
+            "labelEn": "Gradient Overlay",
+            "visible": true,
+            "zIndex": 2,
+            "opacity": 85
+          },
+          {
+            "id": "background",
+            "labelAr": "الخلفية",
+            "labelEn": "Background",
+            "visible": true,
+            "zIndex": 1,
+            "opacity": 100
+          }
+        ],
+        "appliedPresetId": "official-elfazni",
+        "appliedPresetName": "هوية الفزني الرسمية",
+        "formTextColor": "#0B2E57",
+        "formMutedColor": "#5E7086",
+        "primaryButtonTextColor": "#FFFFFF",
+        "illustrationVerticalPosition": "center",
+        "illustrationCustomX": -45,
+        "illustrationCustomY": 80,
+        "illustrationFit": "contain",
+        "titleFontSize": "32px",
+        "noteFontSize": "15px",
+        "textAlign": "start"
+      },
+      "publishedAt": "2026-11-08T12:28:11.202Z",
+      "publishedBy": "elfazni.admin",
+      "changeSummary": "QA Master Audit publish test"
+    },
+    {
+      "id": "ver_admin_login_1794140859310",
+      "target": "admin_login",
+      "versionNumber": 7,
+      "snapshot": {
+        "target": "admin_login",
+        "name": "Admin Login",
+        "nameAr": "مظهر تسجيل دخول الإدارة",
+        "inheritBrandColors": false,
+        "inheritTypography": false,
+        "layoutType": "split-right",
+        "logoVariant": "horizontal-on-white",
+        "illustrationLogoVariant": "horizontal-on-blue",
+        "illustrationUrl": "/assets/brand/3d/02-consular-documents-transparent.png",
+        "illustrationPosition": "center",
+        "illustrationScale": 120,
+        "illustrationOpacity": 100,
+        "illustrationBgGradient": "radial-gradient(circle at center, #0B2E57 0%, #071629 100%)",
+        "colors": {
+          "primary": "#004AA5",
+          "secondary": "#0B2E57",
+          "accent": "#0066E6",
+          "gold": "#CC9048",
+          "goldTextOnWhite": "#81521C",
+          "background": "#FFFFFF",
+          "surface": "#F7F9FC",
+          "text": "#102D4D",
+          "mutedText": "#5E7086",
+          "border": "#DCE6F2",
+          "button": "#004AA5",
+          "buttonHover": "#003B84",
+          "success": "#16A34A",
+          "warning": "#D97706",
+          "error": "#DC2626",
+          "navySupport": "#10345B"
+        },
+        "typography": {
+          "fontFamily": "'Bahij TheSansArabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "headingFontFamily": "'Bahij TheSansArabic', sans-serif",
+          "baseFontSize": "16px",
+          "lineHeight": "1.6",
+          "letterSpacing": "0px",
+          "h1Size": "2.25rem",
+          "h2Size": "1.75rem",
+          "h3Size": "1.25rem",
+          "buttonFontSize": "0.875rem",
+          "inputLabelSize": "0.75rem",
+          "fontWeightNormal": "400",
+          "fontWeightMedium": "600",
+          "fontWeightBold": "700",
+          "fontWeightHeavy": "800"
+        },
+        "formWidth": "480px",
+        "formBg": "#FFFFFF",
+        "inputBg": "#F8FAFC",
+        "inputBorder": "#D7E7F7",
+        "inputRadius": "12px",
+        "inputTextColor": "#0B2E57",
+        "primaryButtonBg": "#004AA5",
+        "primaryButtonRadius": "12px",
+        "texts": {
+          "panelKicker": {
+            "ar": "ELFAZNI SERVICES · ADMIN",
+            "en": "ELFAZNI SERVICES · ADMIN",
+            "fr": "ELFAZNI SERVICES · ADMIN"
+          },
+          "panelTitle": {
+            "ar": "الفزني سيرفيسز",
+            "en": "ELFAZNI SERVICES",
+            "fr": "ELFAZNI SERVICES"
+          },
+          "panelNote": {
+            "ar": "مدونة، خدمات، ولوحة إدارة محتوى الموقع.",
+            "en": "Blog, services and site content management.",
+            "fr": "Blog, services et gestion du contenu du site."
+          },
+          "formKicker": {
+            "ar": "لوحة إدارة الموقع",
+            "en": "Site administration",
+            "fr": "Administration du site"
+          },
+          "loginTitle": {
+            "ar": "تسجيل الدخول",
+            "en": "Sign in",
+            "fr": "Connexion"
+          },
+          "loginDesc": {
+            "ar": "أدخل بيانات حسابك للوصول إلى النظام.",
+            "en": "Enter your account credentials to access the system.",
+            "fr": "Saisissez vos identifiants pour accéder au système."
+          },
+          "submitButton": {
+            "ar": "دخول إلى لوحة التحكم",
+            "en": "Sign in to dashboard",
+            "fr": "Connexion au tableau"
+          }
+        },
+        "updatedAt": "2026-11-08T12:27:39.310Z",
+        "updatedBy": "elfazni.admin",
+        "version": 7,
+        "titleColor": "#FFFFFF",
+        "kickerColor": "#CC9048",
+        "noteColor": "#E2E8F0",
+        "backgroundColor": "#071629",
+        "backgroundImage": "/assets/brand/3d/01-master-service-hero-transparent.png",
+        "backgroundOpacity": 40,
+        "gradient": {
+          "enabled": true,
+          "type": "linear",
+          "direction": "to top",
+          "angle": 0,
+          "opacity": 0.88,
+          "stops": [
+            {
+              "position": 0,
+              "color": "#012247",
+              "opacity": 0.96
+            },
+            {
+              "position": 50,
+              "color": "#004AA5",
+              "opacity": 0.72
+            },
+            {
+              "position": 100,
+              "color": "#071629",
+              "opacity": 0.25
+            }
+          ]
+        },
+        "layers": [
+          {
+            "id": "logo",
+            "labelAr": "الشعار",
+            "labelEn": "Logo",
+            "visible": true,
+            "zIndex": 5,
+            "opacity": 100
+          },
+          {
+            "id": "content",
+            "labelAr": "العنوان والنصوص",
+            "labelEn": "Headings & Text",
+            "visible": true,
+            "zIndex": 4,
+            "opacity": 100
+          },
+          {
+            "id": "illustration",
+            "labelAr": "المجسم التوضيحي",
+            "labelEn": "Illustration",
+            "visible": true,
+            "zIndex": 3,
+            "opacity": 100
+          },
+          {
+            "id": "gradient",
+            "labelAr": "التدرج اللوني",
+            "labelEn": "Gradient Overlay",
+            "visible": true,
+            "zIndex": 2,
+            "opacity": 85
+          },
+          {
+            "id": "background",
+            "labelAr": "الخلفية",
+            "labelEn": "Background",
+            "visible": true,
+            "zIndex": 1,
+            "opacity": 100
+          }
+        ],
+        "appliedPresetId": "official-elfazni",
+        "appliedPresetName": "هوية الفزني الرسمية",
+        "formTextColor": "#0B2E57",
+        "formMutedColor": "#5E7086",
+        "primaryButtonTextColor": "#FFFFFF",
+        "illustrationVerticalPosition": "center",
+        "illustrationCustomX": -45,
+        "illustrationCustomY": 80,
+        "illustrationFit": "contain",
+        "titleFontSize": "32px",
+        "noteFontSize": "15px",
+        "textAlign": "start"
+      },
+      "publishedAt": "2026-11-08T12:27:39.310Z",
+      "publishedBy": "elfazni.admin",
+      "changeSummary": "QA Master Audit publish test"
+    },
     {
       "id": "ver_admin_login_1794132782284",
       "target": "admin_login",
@@ -10181,6 +10839,310 @@
       "actorUsername": "elfazni.admin",
       "timestamp": "2026-11-08T10:13:02.284Z",
       "details": "تم نشر النسخة #6 من واجهة [مظهر تسجيل دخول الإدارة] للعامة بنجاح"
+    },
+    {
+      "id": "log_1794140540433_a25r",
+      "action": "RESET_GLOBAL",
+      "target": "portal",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:22:20.433Z",
+      "details": "إعادة ربط الواجهة [مظهر البوابة الرئيسية (HUB / Workspace)] بالهوية البصرية العامة وإلغاء التخصيصات الفردية"
+    },
+    {
+      "id": "log_1794140851428_1bl0",
+      "action": "RESET_GLOBAL",
+      "target": "portal",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:27:31.428Z",
+      "details": "إعادة ربط الواجهة [مظهر البوابة الرئيسية (HUB / Workspace)] بالهوية البصرية العامة وإلغاء التخصيصات الفردية"
+    },
+    {
+      "id": "log_1794140859287_cua2",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:27:39.287Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140859292_fweu",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:27:39.292Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140859299_r3o3",
+      "action": "PRESET_APPLY",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:27:39.299Z",
+      "details": "تطبيق القالب الجاهز: [هوية الفزني الرسمية] على [admin_login]"
+    },
+    {
+      "id": "log_1794140859304_guni",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:27:39.304Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140859310_uq0c",
+      "action": "PUBLISH",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:27:39.310Z",
+      "details": "تم نشر النسخة #7 من واجهة [مظهر تسجيل دخول الإدارة] للعامة بنجاح"
+    },
+    {
+      "id": "log_1794140891180_5pf6",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:28:11.180Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140891185_y04b",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:28:11.185Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140891192_7p8s",
+      "action": "PRESET_APPLY",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:28:11.192Z",
+      "details": "تطبيق القالب الجاهز: [هوية الفزني الرسمية] على [admin_login]"
+    },
+    {
+      "id": "log_1794140891197_3tk1",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:28:11.197Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140891202_no48",
+      "action": "PUBLISH",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:28:11.202Z",
+      "details": "تم نشر النسخة #8 من واجهة [مظهر تسجيل دخول الإدارة] للعامة بنجاح"
+    },
+    {
+      "id": "log_1794140891208_2a2i",
+      "action": "RESET_GLOBAL",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:28:11.208Z",
+      "details": "إعادة ربط الواجهة [مظهر تسجيل دخول الإدارة] بالهوية البصرية العامة وإلغاء التخصيصات الفردية"
+    },
+    {
+      "id": "log_1794140950723_i5yw",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.723Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950728_46ok",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.728Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950733_56ch",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.733Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950738_dit0",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.738Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950742_n0lk",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.742Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950747_4uor",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.747Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950751_upqr",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.751Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950756_vy0a",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.756Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950762_cz5o",
+      "action": "PRESET_APPLY",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.762Z",
+      "details": "تطبيق القالب الجاهز: [هوية الفزني الرسمية] على [admin_login]"
+    },
+    {
+      "id": "log_1794140950767_118z",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.767Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794140950773_3285",
+      "action": "PUBLISH",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.773Z",
+      "details": "تم نشر النسخة #9 من واجهة [مظهر تسجيل دخول الإدارة] للعامة بنجاح"
+    },
+    {
+      "id": "log_1794140950779_oglj",
+      "action": "RESET_GLOBAL",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:29:10.779Z",
+      "details": "إعادة ربط الواجهة [مظهر تسجيل دخول الإدارة] بالهوية البصرية العامة وإلغاء التخصيصات الفردية"
+    },
+    {
+      "id": "log_1794141007262_cyc3",
+      "action": "RESET_GLOBAL",
+      "target": "portal",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:30:07.262Z",
+      "details": "إعادة ربط الواجهة [مظهر البوابة الرئيسية (HUB / Workspace)] بالهوية البصرية العامة وإلغاء التخصيصات الفردية"
+    },
+    {
+      "id": "log_1794141887071_aa9w",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.071Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887088_zhf6",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.088Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887105_hi0j",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.105Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887121_1awu",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.121Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887137_xltk",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.137Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887163_r6to",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.163Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887180_85cc",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.180Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887199_znv5",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.199Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887223_qeef",
+      "action": "PRESET_APPLY",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.223Z",
+      "details": "تطبيق القالب الجاهز: [هوية الفزني الرسمية] على [admin_login]"
+    },
+    {
+      "id": "log_1794141887246_ub0o",
+      "action": "DRAFT_SAVE",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.246Z",
+      "details": "تم حفظ مسودة مظهر [مظهر تسجيل دخول الإدارة]"
+    },
+    {
+      "id": "log_1794141887262_d3lw",
+      "action": "PUBLISH",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.262Z",
+      "details": "تم نشر النسخة #10 من واجهة [مظهر تسجيل دخول الإدارة] للعامة بنجاح"
+    },
+    {
+      "id": "log_1794141887282_5cfe",
+      "action": "RESET_GLOBAL",
+      "target": "admin_login",
+      "actorUsername": "elfazni.admin",
+      "timestamp": "2026-11-08T12:44:47.282Z",
+      "details": "إعادة ربط الواجهة [مظهر تسجيل دخول الإدارة] بالهوية البصرية العامة وإلغاء التخصيصات الفردية"
     }
   ]
 }

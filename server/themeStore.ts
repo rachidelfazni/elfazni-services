@@ -230,6 +230,8 @@ export interface InterfaceThemeConfig {
   primaryButtonRadius?: string;
   appliedPresetId?: string;
   appliedPresetName?: string;
+  cardRadius?: string;
+  headingShadow?: boolean;
   texts: Record<string, Record<string, string>>;
   portalCards?: PortalCard[];
   customCss?: string;
@@ -1320,7 +1322,14 @@ export function writeThemes(db: ThemesDatabase): void {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
-    fs.writeFileSync(THEMES_FILE, JSON.stringify(db, null, 2), 'utf8');
+    const tempFile = `${THEMES_FILE}.${process.pid}.${Date.now()}_${Math.random().toString(36).slice(2, 8)}.tmp`;
+    try {
+      fs.writeFileSync(tempFile, JSON.stringify(db, null, 2), 'utf8');
+      fs.renameSync(tempFile, THEMES_FILE);
+    } catch {
+      fs.writeFileSync(THEMES_FILE, JSON.stringify(db, null, 2), 'utf8');
+      if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
+    }
   } catch (err) {
     console.error('Failed writing themes.json:', err);
   }

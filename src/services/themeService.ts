@@ -257,6 +257,8 @@ export interface InterfaceThemeConfig {
   primaryButtonRadius?: string;
   appliedPresetId?: string;
   appliedPresetName?: string;
+  cardRadius?: string;
+  headingShadow?: boolean;
   texts: Record<string, Record<string, string>>;
   portalCards?: PortalCard[];
   customCss?: string;

@@ -16,6 +16,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { api, ServiceTag, ContactMessage } from '../../services/api';
 import { tracker } from '../../services/tracker';
 import { WhatsAppLogo } from '../WhatsAppLogo';
+import { SITE_CONTACT } from '../../data/content';
 
 export interface CountryCodeOption {
   code: string;
@@ -283,6 +284,19 @@ export const ServiceContactModal: React.FC<ServiceContactModalProps> = ({
                   {t('يرجى ملاحظة أن هذا إشعار باستلام الطلب وليس حجزاً أو موعداً نهائياً مؤكداً، وسيتم التأكيد بعد مراجعة الفريق.')}
                 </span>
               </div>
+
+              <a
+                href={`https://wa.me/${SITE_CONTACT.whatsappRaw}?text=${encodeURIComponent(
+                  `مرحباً، أود متابعة طلبي برقم مرجع: ${submittedRequest.reference || submittedRequest.ticketNumber}\n• الخدمة: ${serviceTitle}\n• الاسم: ${fullName.trim()}`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="whatsapp-direct-link"
+                className="w-full py-3 px-6 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
+              >
+                <WhatsAppLogo className="w-5 h-5 text-white" />
+                <span>{t('متابعة الطلب عبر واتساب مع رقم المرجع')}</span>
+              </a>
 
               <button
                 type="button"

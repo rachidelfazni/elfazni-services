@@ -42,14 +42,61 @@ crmRouter.use((req, res, next) => {
 
 crmRouter.get('/state', (_req, res, next) => {
   try {
+    const user = res.locals.crmOwner;
     const { data, revision, updatedAt } = store.read();
-    res.json({ data, revision, updatedAt });
+    if (!data) {
+      return res.json({ data: null, revision, updatedAt });
+    }
+
+    const canAccounting =
+      user.role === 'superadmin' ||
+      user.role === 'admin' ||
+      user.role === 'accountant' ||
+      hasPermission(user, 'crm.accounting.view') ||
+      Boolean((user as any).canAccessAccounting);
+
+    const canDebts =
+      canAccounting ||
+      hasPermission(user, 'crm.debts.view') ||
+      Boolean((user as any).canAccessDebts);
+
+    const scopedData = {
+      ...data,
+      invoices: canAccounting ? data.invoices : [],
+      contactBook: {
+        ...data.contactBook,
+        manualDebts: canDebts ? (data.contactBook?.manualDebts || []) : [],
+      },
+    };
+
+    res.json({ data: scopedData, revision, updatedAt });
   } catch (error) { next(error); }
 });
 
 crmRouter.put('/state', (req, res, next) => {
-  try { res.json(store.save(req.body.data, req.body.revision, req.body.requestId, res.locals.crmOwner.id)); }
-  catch (error) { next(error); }
+  try {
+    const user = res.locals.crmOwner;
+    const incomingData = req.body.data;
+
+    const canEditAccounting =
+      user.role === 'superadmin' ||
+      user.role === 'admin' ||
+      user.role === 'accountant' ||
+      hasPermission(user, 'crm.accounting.edit') ||
+      Boolean((user as any).canEditFinances);
+
+    if (!canEditAccounting && incomingData) {
+      const current = store.read();
+      if (current.data) {
+        incomingData.invoices = current.data.invoices;
+        if (incomingData.contactBook) {
+          incomingData.contactBook.manualDebts = current.data.contactBook?.manualDebts || [];
+        }
+      }
+    }
+
+    res.json(store.save(incomingData, req.body.revision, req.body.requestId, user.id));
+  } catch (error) { next(error); }
 });
 
 crmRouter.get('/backups', (_req, res, next) => {

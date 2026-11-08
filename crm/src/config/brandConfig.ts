@@ -4,25 +4,27 @@
  * https://elfazni-services-online.uzmanlarltd.chatgpt.site/
  */
 
+const env = (typeof import.meta !== 'undefined' && (import.meta as any).env) || {};
+
 export const BRAND_CONFIG = {
   // Brand Names (spelled strictly with 'ز' — never 'الفزني')
-  name: import.meta.env.VITE_BRAND_NAME || 'ELFAZNI SERVICES',
+  name: env.VITE_BRAND_NAME || 'ELFAZNI SERVICES',
   nameArabic: 'الفزني سيرفيسز',
   nameArabicAlt: 'الفزني للخدمات',
-  tagline: import.meta.env.VITE_BRAND_TAGLINE || 'الفزني للخدمات والتسيير الإداري والقنصلي',
+  tagline: env.VITE_BRAND_TAGLINE || 'الفزني للخدمات والتسيير الإداري والقنصلي',
   founder: 'رشيد الفزني (Rachid Elfazni)',
   founderShort: 'رشيد الفزني',
   
   // Official URLs
-  websiteUrl: import.meta.env.VITE_WEBSITE_URL || '/',
+  websiteUrl: env.VITE_WEBSITE_URL || '/',
   proWebsiteUrl: 'https://elfazni-services-pro.uzmanlarltd.chatgpt.site/',
   onlineWebsiteUrl: 'https://elfazni-services-online.uzmanlarltd.chatgpt.site/',
   
   // Contacts
-  phone: import.meta.env.VITE_OFFICIAL_PHONE || '+905522677851',
-  email: import.meta.env.VITE_OFFICIAL_EMAIL || 'rachidelfazni@gmail.com',
+  phone: env.VITE_OFFICIAL_PHONE || '+905522677851',
+  email: env.VITE_OFFICIAL_EMAIL || 'rachidelfazni@gmail.com',
   headquarters:
-    (import.meta.env.VITE_HEADQUARTERS || 'إسطنبول')
+    (env.VITE_HEADQUARTERS || 'إسطنبول')
       .replace(/\s*[•–-]\s*أنقرة/g, '')
       .replace(/\s*[•–-]\s*الدار البيضاء/g, '')
       .trim() || 'إسطنبول',
@@ -87,7 +89,7 @@ export const BRAND_CONFIG = {
   },
 
   adminAuth: {
-    username: import.meta.env.VITE_ADMIN_USER || 'elfazni.admin',
+    username: env.VITE_ADMIN_USER || 'elfazni.admin',
     password: '',
   },
 };

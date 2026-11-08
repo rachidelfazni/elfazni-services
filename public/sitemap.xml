@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage with full multilingual alternates -->
+  <url>
+    <loc>https://elfazni-services-online.uzmanlarltd.chatgpt.site/</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=tr" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/" />
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Consular Appointments Section -->
+  <url>
+    <loc>https://elfazni-services-online.uzmanlarltd.chatgpt.site/#consular-checklist</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=ar#consular-checklist" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=tr#consular-checklist" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=en#consular-checklist" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=fr#consular-checklist" />
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Unified Bookings: Flights, Hotels, Airport Transfer -->
+  <url>
+    <loc>https://elfazni-services-online.uzmanlarltd.chatgpt.site/#airlines</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=ar#airlines" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=tr#airlines" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=en#airlines" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=fr#airlines" />
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- All Services Section -->
+  <url>
+    <loc>https://elfazni-services-online.uzmanlarltd.chatgpt.site/#services</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=ar#services" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=tr#services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=en#services" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=fr#services" />
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Diaspora Guides & Knowledge Hub -->
+  <url>
+    <loc>https://elfazni-services-online.uzmanlarltd.chatgpt.site/#guides</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=ar#guides" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=tr#guides" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=en#guides" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=fr#guides" />
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Founder Profile Section -->
+  <url>
+    <loc>https://elfazni-services-online.uzmanlarltd.chatgpt.site/#about</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=ar#about" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=tr#about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=en#about" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=fr#about" />
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- FAQs Section -->
+  <url>
+    <loc>https://elfazni-services-online.uzmanlarltd.chatgpt.site/#faq</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=ar#faq" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=tr#faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=en#faq" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=fr#faq" />
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Contact Section -->
+  <url>
+    <loc>https://elfazni-services-online.uzmanlarltd.chatgpt.site/#contact-form</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=ar#contact-form" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=tr#contact-form" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=en#contact-form" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://elfazni-services-online.uzmanlarltd.chatgpt.site/?lang=fr#contact-form" />
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

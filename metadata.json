@@ -1,0 +1,6 @@
+{
+  "name": "ELFAZNI SERVICES | خدمات الجالية المغربية في تركيا",
+  "description": "خدمات ELFAZNI SERVICES للجالية المغربية في تركيا: المساعدة في المواعيد القنصلية بإسطنبول وأنقرة، حجوزات الطيران والفنادق، الترجمة المحلفة، والإقامات عبر واتساب.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

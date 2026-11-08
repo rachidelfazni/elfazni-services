@@ -1,0 +1,15 @@
+{
+  "name": "ELFAZNI SERVICES",
+  "short_name": "ELFAZNI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#004AA5",
+  "icons": [
+    {
+      "src": "/assets/logo-vertical.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

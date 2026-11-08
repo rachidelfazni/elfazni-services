@@ -1,0 +1,317 @@
+/* =====================================================================
+   ELFAZNI SERVICES HUB — unified access portal
+   APPROVED identity (Blue-Gold Kit) on the classic navy backdrop:
+   deep-blue page with fine concentric arcs, one white split card with
+   the soft-blue 3D brand panel, language switcher, official logo and
+   the three entries.
+   ===================================================================== */
+
+.hub-entry {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  min-height: 100dvh;
+  position: relative;
+  isolation: isolate;
+  padding: clamp(18px, 4.5vw, 56px) clamp(16px, 4vw, 48px) clamp(22px, 3vw, 34px);
+  background:
+    radial-gradient(circle at 0% 114%, rgba(42, 131, 213, 0.18) 0%, transparent 52%),
+    #012247;
+  color: #0B2E57;
+  font-family: "Bahij_TheSansArabic", "Bahij", sans-serif;
+}
+
+/* fine concentric arcs radiating from the lower corner */
+.hub-entry::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-radial-gradient(
+      circle at 4% 116%,
+      transparent 0 64px,
+      rgba(255, 255, 255, 0.055) 64px 65.5px,
+      transparent 65.5px 132px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hub-entry-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.02fr);
+  width: min(100%, 1120px);
+  overflow: hidden;
+  border-radius: 30px;
+  background: white;
+  box-shadow: 0 44px 120px -34px rgba(0, 12, 32, 0.7);
+}
+
+/* --------------------------- 3D brand panel --------------------------- */
+
+.hub-entry-photo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 660px;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.9), transparent 55%),
+    linear-gradient(165deg, #EAF4FF 0%, #F8FAFC 64%, #ffffff 100%);
+}
+
+.hub-entry-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 74%;
+  object-fit: contain;
+}
+
+/* soft light scrim keeps the overlay copy readable over the ribbon */
+.hub-entry-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.55) 34%, transparent 58%);
+}
+
+.hub-entry-photo-overlay {
+  position: relative;
+  z-index: 1;
+  padding: clamp(22px, 3.2vw, 40px);
+  color: #0B2E57;
+  text-align: start;
+}
+
+.hub-entry-photo-kicker {
+  margin: 0 0 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #CC9048;
+}
+
+.hub-entry-photo-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.9rem);
+  font-weight: 900;
+  line-height: 1.22;
+}
+
+.hub-entry-photo-note {
+  margin: 10px 0 0;
+  color: #5E7086;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* thin warm-gold accent under the panel note */
+.hub-entry-photo-note::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 2px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #CC9048, #E3C88F);
+}
+
+/* --------------------------- content column --------------------------- */
+
+.hub-entry-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(26px, 4.2vw, 48px);
+  text-align: center;
+}
+
+.hub-entry-langs {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 999px;
+  background: #EAF4FF;
+  border: 1px solid #D7E7F7;
+}
+
+.hub-entry-lang {
+  min-width: 30px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0B2E57;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+}
+
+.hub-entry-lang:hover { color: #004AA5; }
+
+.hub-entry-lang.is-active {
+  background: #004AA5;
+  color: white;
+}
+
+.hub-entry-logo {
+  width: min(220px, 58%);
+  height: auto;
+  margin: 30px 0 22px;
+}
+
+.hub-entry-kicker {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #CC9048;
+}
+
+.hub-entry-title {
+  margin: 8px 0 10px;
+  font-size: clamp(1.65rem, 3vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.22;
+  color: #0B2E57;
+}
+
+.hub-entry-desc {
+  max-width: 38ch;
+  color: #5E7086;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* ------------------------------ tiles -------------------------------- */
+
+.hub-entry-tiles {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  margin-top: 26px;
+}
+
+.hub-entry-tile {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid #D7E7F7;
+  background: #F8FAFC;
+  text-align: start;
+  transition: transform 0.16s, border-color 0.16s, box-shadow 0.16s;
+}
+
+.hub-entry-tile:hover {
+  transform: translateY(-2px);
+  border-color: #E3C88F;
+  box-shadow: 0 14px 30px -16px rgba(18, 85, 154, 0.4);
+}
+
+.hub-entry-tile-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(150deg, #E3C88F, #CC9048);
+  color: #0B2E57;
+}
+
+.hub-entry-tile-body { min-width: 0; }
+
+.hub-entry-tile-body strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #0B2E57;
+}
+
+.hub-entry-tile-body small {
+  display: block;
+  margin-top: 3px;
+  color: #5E7086;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.hub-entry-tile-arrow { color: #004AA5; opacity: 0.55; }
+
+/* featured (CRM) tile — the single cobalt emphasis */
+.hub-entry-tile.is-featured {
+  border-color: #004AA5;
+  background: linear-gradient(160deg, #004AA5 0%, #2A83D5 100%);
+  box-shadow: 0 22px 44px -20px rgba(18, 85, 154, 0.55);
+}
+
+.hub-entry-tile.is-featured:hover { border-color: #E3C88F; }
+
+.hub-entry-tile.is-featured .hub-entry-tile-body strong { color: white; }
+.hub-entry-tile.is-featured .hub-entry-tile-body small { color: #D7E7F7; }
+.hub-entry-tile.is-featured .hub-entry-tile-arrow { color: #E3C88F; opacity: 1; }
+
+.hub-entry-tile-icon.is-featured {
+  background: white;
+  color: #004AA5;
+}
+
+/* ------------------------------ footer row ---------------------------- */
+
+.hub-entry-foot {
+  width: 100%;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #D7E7F7;
+}
+
+.hub-entry-note {
+  color: #5E7086;
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.hub-entry-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  color: #004AA5;
+  font-size: 0.83rem;
+  font-weight: 800;
+}
+
+.hub-entry-back:hover { color: #0B2E57; }
+
+/* ------------------------------ copyright ------------------------------ */
+
+.hub-entry-copyright {
+  position: relative;
+  z-index: 1;
+  color: rgba(185, 213, 246, 0.75);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* ------------------------------ mobile -------------------------------- */
+
+@media (max-width: 940px) {
+  .hub-entry-shell { grid-template-columns: minmax(0, 1fr); max-width: 560px; border-radius: 24px; }
+  .hub-entry-photo { min-height: 240px; }
+  .hub-entry-photo-img { height: 62%; }
+  .hub-entry-photo-title { font-size: 1.5rem; }
+  .hub-entry-photo-note { display: none; }
+  .hub-entry-content { padding: 24px 20px 28px; }
+  .hub-entry-logo { width: min(190px, 62%); margin: 20px 0 14px; }
+  .hub-entry-title { font-size: 1.6rem; }
+}

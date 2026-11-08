@@ -1,0 +1,3175 @@
+{
+  "(الإدارة العامة)": [
+    "Management",
+    "Direction"
+  ],
+  ") في هذه الفترة.": [
+    ") in this period.",
+    ") sur cette période."
+  ],
+  ") كملف ZIP": [
+    ") as a ZIP file",
+    ") au format ZIP"
+  ],
+  "). سيتم تحديثها فوراً دون الحاجة لكلمة المرور القديمة.": [
+    "). The new password takes effect immediately.",
+    "). Le nouveau mot de passe prend effet immédiatement."
+  ],
+  "+ إضافة مستخدم جديد": [
+    "Add user",
+    "Ajouter un utilisateur"
+  ],
+  "+ موعد جديد": [
+    "New appointment",
+    "Nouveau rendez-vous"
+  ],
+  "+90 552 ... أو بريدك الإلكتروني": [
+    "+90 552… or your email",
+    "+90 552… ou votre e-mail"
+  ],
+  "-- اختر من قائمة العملاء أو اكتب بالأسفل --": [
+    "Choose a customer or enter details below",
+    "Sélectionnez un client ou saisissez ses coordonnées"
+  ],
+  ". تُستخدم هذه الأسعار في التحويل الفوري عند الدفع بعملة مختلفة وفي لوحة التقارير الموحدة.": [
+    ". These rates apply to cross-currency settlements and consolidated reports.",
+    ". Ces taux servent aux règlements multidevises et aux rapports consolidés."
+  ],
+  "1 دولار أمريكي (1 USD)": [
+    "1 US dollar (USD)",
+    "1 dollar américain (USD)"
+  ],
+  "1. تم التسجيل": [
+    "1. Registered",
+    "1. Enregistré"
+  ],
+  "1. تم التسجيل / جديد": [
+    "1. Registered / New",
+    "1. Enregistré / Nouveau"
+  ],
+  "2. قيد المعالجة": [
+    "2. In progress",
+    "2. En cours"
+  ],
+  "2. قيد المعالجة والقنصلية": [
+    "2. Processing at the consulate",
+    "2. Traitement consulaire"
+  ],
+  "3. بانتظار الرد / تم الرد": [
+    "3. Awaiting / received response",
+    "3. Réponse en attente / reçue"
+  ],
+  "3. رد القنصلية": [
+    "3. Consular response",
+    "3. Réponse du consulat"
+  ],
+  "4. انتهاء الخدمة": [
+    "4. Completed",
+    "4. Terminé"
+  ],
+  "ELFAZNI SERVICES — الفزني سيرفيسز": [
+    "ELFAZNI SERVICES",
+    "ELFAZNI SERVICES"
+  ],
+  "آجل / دين": [
+    "Deferred / Credit",
+    "Différé / Crédit"
+  ],
+  "أخرى (تحديد مخصص)...": [
+    "Other (specify)…",
+    "Autre (préciser)…"
+  ],
+  "أدخل اسم المستخدم أو البريد المسجل للتحقق الآمن من حالة الحساب في النظام، وإرسال طلب إعادة تعيين كلمة المرور إلى مدير النظام.": [
+    "Enter your username or registered email to check your account and request a password reset from your administrator.",
+    "Saisissez votre identifiant ou e-mail pour vérifier votre compte et demander une réinitialisation à l’administrateur."
+  ],
+  "أدخل اسم المستخدم المسجل...": [
+    "Enter your username…",
+    "Saisissez votre identifiant…"
+  ],
+  "أدخل اسم المستخدم للتحقق...": [
+    "Username to verify…",
+    "Identifiant à vérifier…"
+  ],
+  "أدخل كلمة المرور": [
+    "Enter password",
+    "Saisissez le mot de passe"
+  ],
+  "أدخل كلمة المرور الجديدة لحساب (@": [
+    "Enter a new password for (@",
+    "Nouveau mot de passe pour (@"
+  ],
+  "أدخل كلمة المرور الحالية": [
+    "Enter current password",
+    "Saisissez le mot de passe actuel"
+  ],
+  "أرباح القنصلية + هامش الطيران": [
+    "Consular earnings + flight margin",
+    "Revenus consulaires + marge aérienne"
+  ],
+  "أسعار الصرف المرجعية (Exchange Rates)": [
+    "Reference exchange rates",
+    "Taux de change de référence"
+  ],
+  "أضف أي ملاحظات تظهر للعميل أسفل الفاتورة...": [
+    "Add notes to appear on the invoice…",
+    "Ajoutez une note à afficher sur la facture…"
+  ],
+  "أعد إدخال الجديدة": [
+    "Repeat new password",
+    "Confirmez le nouveau mot de passe"
+  ],
+  "أنت (الحساب الحالي)": [
+    "You (current account)",
+    "Vous (compte actuel)"
+  ],
+  "أي ملاحظات أو مستندات خاصة...": [
+    "Special notes or documents…",
+    "Notes ou documents particuliers…"
+  ],
+  "إجراءات سريعة": [
+    "Quick actions",
+    "Actions rapides"
+  ],
+  "إجمالي الإشعارات الدائنة:": [
+    "Total credits:",
+    "Total des avoirs :"
+  ],
+  "إجمالي الدائن / المدفوع (Credit)": [
+    "Total credit / paid",
+    "Total crédit / payé"
+  ],
+  "إجمالي الديون مفصلة:": [
+    "Outstanding by currency:",
+    "Soldes par devise :"
+  ],
+  "إجمالي السعر": [
+    "Total price",
+    "Prix total"
+  ],
+  "إجمالي الضرائب:": [
+    "Total taxes:",
+    "Total des taxes :"
+  ],
+  "إجمالي الفاتورة:": [
+    "Invoice total:",
+    "Total de la facture :"
+  ],
+  "إجمالي المبيعات (": [
+    "Total sales (",
+    "Ventes totales ("
+  ],
+  "إجمالي المدين للفترة (Debit)": [
+    "Period debits",
+    "Débits de la période"
+  ],
+  "إجمالي المفوتر": [
+    "Total billed",
+    "Total facturé"
+  ],
+  "إجمالي المقبوض": [
+    "Total received",
+    "Total encaissé"
+  ],
+  "إجمالي المقبوضات:": [
+    "Total receipts:",
+    "Total encaissé :"
+  ],
+  "إدارة البيانات والنسخ الاحتياطي": [
+    "Data & backups",
+    "Données et sauvegardes"
+  ],
+  "إدارة المستخدمين": [
+    "User management",
+    "Gestion des utilisateurs"
+  ],
+  "إدارة المستخدمين والصلاحيات": [
+    "Users & permissions",
+    "Utilisateurs et droits"
+  ],
+  "إدارة طلبات التأشيرات والمواعيد القنصلية مع دعم إصدار الفواتير وكشوف الحساب المباشرة": [
+    "Manage visa and consular service files, with invoices and customer statements.",
+    "Gérez les dossiers consulaires et de visa, les factures et les relevés clients."
+  ],
+  "إدارة كافة المستخدمين": [
+    "Manage all users",
+    "Gérer tous les utilisateurs"
+  ],
+  "إدارة مكتب ELFAZNI SERVICES": [
+    "ELFAZNI SERVICES workspace",
+    "Espace ELFAZNI SERVICES"
+  ],
+  "إرسال تذكير سداد واتساب": [
+    "WhatsApp payment reminder",
+    "Rappel de paiement WhatsApp"
+  ],
+  "إرسال تذكير واتساب مع الحسابات البنكية (IBAN)": [
+    "WhatsApp reminder with bank details",
+    "Rappel WhatsApp avec coordonnées bancaires"
+  ],
+  "إرسال رسالة رسمية تتضمن المبلغ المتبقي ورقم الآيبان (RACHID EL FAZNI)": [
+    "Prepare a message with the balance and IBAN (RACHID EL FAZNI)",
+    "Préparer un message avec le solde et l’IBAN (RACHID EL FAZNI)"
+  ],
+  "إرسال رسالة واتساب للمستخدم": [
+    "Message user on WhatsApp",
+    "Contacter l’utilisateur sur WhatsApp"
+  ],
+  "إرسال طلب إعادة التعيين": [
+    "Request password reset",
+    "Demander la réinitialisation"
+  ],
+  "إرسال مطالبة سداد مع الـ IBAN واتساب": [
+    "Payment request with IBAN via WhatsApp",
+    "Demande de paiement avec IBAN via WhatsApp"
+  ],
+  "إشعارات دائنة": [
+    "Credit notes",
+    "Avoirs"
+  ],
+  "إصدار إشعار دائن / تسوية محاسبية (Credit Note)": [
+    "Issue a credit note / adjustment",
+    "Émettre un avoir / ajustement"
+  ],
+  "إصدار فاتورة رسمية للعميل (Invoice)": [
+    "Create customer invoice",
+    "Créer une facture client"
+  ],
+  "إصدار واعتماد الفاتورة": [
+    "Issue invoice",
+    "Émettre la facture"
+  ],
+  "إضافة": [
+    "Add",
+    "Ajouter"
+  ],
+  "إضافة بند جديد": [
+    "Add line item",
+    "Ajouter une ligne"
+  ],
+  "إضافة مستخدم جديد وتحديد الصلاحيات": [
+    "Add user and set permissions",
+    "Ajouter un utilisateur et ses droits"
+  ],
+  "إضافة موعد قنصلية جديد": [
+    "New consular appointment",
+    "Nouveau rendez-vous consulaire"
+  ],
+  "إضافة وتعديل حسابات الموظفين": [
+    "Add and edit staff accounts",
+    "Ajouter et modifier les comptes employés"
+  ],
+  "إضافة وتعديل وحالات المواعيد": [
+    "Appointments and status updates",
+    "Rendez-vous et changements de statut"
+  ],
+  "إضافة وحذف الخيارات المنسدلة في الاستمارات": [
+    "Customize form dropdown options",
+    "Personnaliser les options des formulaires"
+  ],
+  "إظهار الختم الرقمي على الفواتير والمطبوعات": [
+    "Show company signature on documents",
+    "Afficher la signature de l’entreprise"
+  ],
+  "إعادة تعيين": [
+    "Reset",
+    "Réinitialiser"
+  ],
+  "إعادة تعيين البيانات التجريبية (Demo Data)": [
+    "Reset demo data",
+    "Réinitialiser les données de démonstration"
+  ],
+  "إعادة للخط الزمني": [
+    "Return to pipeline",
+    "Remettre dans le suivi"
+  ],
+  "إعداد المحاسب المسؤول": [
+    "Assign responsible accountant",
+    "Désigner le comptable responsable"
+  ],
+  "إعداد فاتورة من المحدد (": [
+    "Invoice selected (",
+    "Facturer la sélection ("
+  ],
+  "إعدادات الفواتير والطباعة": [
+    "Invoice & print settings",
+    "Paramètres de facturation et d’impression"
+  ],
+  "إعدادات المستندات والهوية الرسمية للطباعة": [
+    "Document & brand settings",
+    "Paramètres des documents et de l’identité"
+  ],
+  "إغلاق": [
+    "Close",
+    "Fermer"
+  ],
+  "إغلاق النافذة": [
+    "Close window",
+    "Fermer la fenêtre"
+  ],
+  "إلغاء": [
+    "Cancel",
+    "Annuler"
+  ],
+  "إلغاء (Void)": [
+    "Void",
+    "Annuler"
+  ],
+  "إلغاء الفاتورة رسمياً مع حفظ الأثر (Void Invoice)": [
+    "Void invoice and preserve audit history",
+    "Annuler la facture et conserver l’historique"
+  ],
+  "إلغاء القفل والمتابعة": [
+    "Unlock and continue",
+    "Déverrouiller et continuer"
+  ],
+  "إلى تاريخ (اختياري)": [
+    "To date (optional)",
+    "Jusqu’au (facultatif)"
+  ],
+  "إنشاء المستخدم وحفظ الصلاحيات": [
+    "Create user and save permissions",
+    "Créer l’utilisateur et enregistrer les droits"
+  ],
+  "إنشاء فاتورة": [
+    "Create invoice",
+    "Créer une facture"
+  ],
+  "إنشاء فاتورة جديدة": [
+    "New invoice",
+    "Nouvelle facture"
+  ],
+  "إيصال دفع (Payment Receipt)": [
+    "Payment receipt",
+    "Reçu de paiement"
+  ],
+  "إيصال دفع واستلام (Payment Receipt)": [
+    "Payment receipt",
+    "Reçu de paiement"
+  ],
+  "اختر العميل، ثم أضف معاملاته غير المفوترة تلقائياً أو أدخل بنود الخدمة يدوياً": [
+    "Choose a customer, then add uninvoiced services or enter line items manually.",
+    "Sélectionnez un client puis ses dossiers non facturés, ou ajoutez les lignes manuellement."
+  ],
+  "اختر صورة جاهزة أو ارفع صورة جديدة ليتم حفظها مباشرة داخل مجلد": [
+    "Choose an existing image or upload a new one",
+    "Choisissez une image ou importez-en une nouvelle"
+  ],
+  "اختر من صور مجلد التطبيق (/assets):": [
+    "Choose an uploaded image:",
+    "Choisissez une image disponible :"
+  ],
+  "اختيار عميل مسجل في النظام": [
+    "Select an existing customer",
+    "Sélectionner un client existant"
+  ],
+  "اختيار ملف": [
+    "Choose file",
+    "Choisir un fichier"
+  ],
+  "استرجاع الأمثلة الافتراضية الجاهزة للتجربة والتعلم": [
+    "Restore sample records for exploring the app",
+    "Restaurer les exemples pour découvrir l’application"
+  ],
+  "استعادة الافتراضي": [
+    "Restore default",
+    "Rétablir les valeurs par défaut"
+  ],
+  "استعادة بيانات (Import JSON)": [
+    "Restore data (JSON)",
+    "Restaurer les données (JSON)"
+  ],
+  "استعلام آمن RBAC": [
+    "Account access lookup",
+    "Vérification des accès"
+  ],
+  "استعلام آمن من الحالة الإدارية للنظام": [
+    "Check account status",
+    "Vérifier le statut du compte"
+  ],
+  "اسحب بطاقة إلى هنا أو اضغط (+) للإضافة": [
+    "Drag a card here or select + to add",
+    "Déposez une carte ici ou sélectionnez +"
+  ],
+  "اسحب لتحريك البطاقة": [
+    "Drag to move card",
+    "Glisser pour déplacer la carte"
+  ],
+  "اسم الزبون والهاتف": [
+    "Customer & phone",
+    "Client et téléphone"
+  ],
+  "اسم الزبون ورقم الهاتف": [
+    "Customer & phone",
+    "Client et téléphone"
+  ],
+  "اسم العميل (إلزامي) *": [
+    "Customer name (required) *",
+    "Nom du client (obligatoire) *"
+  ],
+  "اسم العميل الثلاثي": [
+    "Customer full name",
+    "Nom complet du client"
+  ],
+  "اسم المسافر / العميل": [
+    "Passenger / customer name",
+    "Nom du passager / client"
+  ],
+  "اسم المستخدم (Username)": [
+    "Username",
+    "Identifiant"
+  ],
+  "اسم المستخدم (غير قابل للتعديل للحساب الأساسي)": [
+    "Username (root account cannot be renamed)",
+    "Identifiant (non modifiable pour le compte principal)"
+  ],
+  "اسم المستخدم أو البريد المسجل": [
+    "Username or registered email",
+    "Identifiant ou e-mail enregistré"
+  ],
+  "اسم المستخدم:": [
+    "Username:",
+    "Identifiant :"
+  ],
+  "اضغط لرفع صورة شخصية جديدة في مجلد التطبيق (/assets)": [
+    "Upload a profile image",
+    "Importer une photo de profil"
+  ],
+  "اعتماد الإشعار الدائن": [
+    "Approve credit note",
+    "Valider l’avoir"
+  ],
+  "اعتماد كلمة المرور وإغلاق الطلب": [
+    "Save password and close request",
+    "Enregistrer le mot de passe et clôturer la demande"
+  ],
+  "اعتماد وإصدار الفاتورة رسمياً": [
+    "Approve and issue invoice",
+    "Valider et émettre la facture"
+  ],
+  "اكتب المستندات التي طلبتها القنصلية...": [
+    "Documents requested by the consulate…",
+    "Documents demandés par le consulat…"
+  ],
+  "اكتب سبب الإلغاء لتوثيقه في سجل التدقيق...": [
+    "Explain the cancellation for the audit history…",
+    "Motif d’annulation pour l’historique…"
+  ],
+  "اكتب عنصراً جديداً لإضافته للقائمة...": [
+    "Enter a new list item…",
+    "Saisissez une nouvelle option…"
+  ],
+  "الأرشيف المسدد (": [
+    "Settled archive (",
+    "Archives réglées ("
+  ],
+  "الإجراءات": [
+    "Actions",
+    "Actions"
+  ],
+  "الإجراءات السريعة": [
+    "Quick actions",
+    "Actions rapides"
+  ],
+  "الإجمالي": [
+    "Total",
+    "Total"
+  ],
+  "الإجمالي الكلي للفاتورة:": [
+    "Invoice grand total:",
+    "Total de la facture :"
+  ],
+  "الاسم التجاري (عربي)": [
+    "Trading name (Arabic)",
+    "Nom commercial (arabe)"
+  ],
+  "الاسم القانوني / البديل": [
+    "Legal / alternative name",
+    "Nom légal / alternatif"
+  ],
+  "الاسم الكامل الظاهر في المعاملات": [
+    "Full name shown on transactions",
+    "Nom complet affiché sur les dossiers"
+  ],
+  "الاسم الكامل للعميل...": [
+    "Customer full name…",
+    "Nom complet du client…"
+  ],
+  "الاسم المعروض": [
+    "Display name",
+    "Nom affiché"
+  ],
+  "الاسم المعروض (Display Name)": [
+    "Display name",
+    "Nom affiché"
+  ],
+  "البريد الإلكتروني": [
+    "Email",
+    "E-mail"
+  ],
+  "البريد الإلكتروني الرسمي": [
+    "Company email",
+    "E-mail de l’entreprise"
+  ],
+  "البنود والخدمات": [
+    "Items & services",
+    "Lignes et services"
+  ],
+  "البيان والتفاصيل": [
+    "Description & details",
+    "Libellé et détails"
+  ],
+  "البيانات المالية وتعدد العملات": [
+    "Financial details & currencies",
+    "Données financières et devises"
+  ],
+  "البيانات المالية وعملة التسديد": [
+    "Financial details & payment currency",
+    "Données financières et devise de règlement"
+  ],
+  "التاريخ": [
+    "Date",
+    "Date"
+  ],
+  "التالية": [
+    "Next",
+    "Suivant"
+  ],
+  "التصنيف الافتراضي للمستند": [
+    "Default document type",
+    "Type de document par défaut"
+  ],
+  "التقارير": [
+    "Reports",
+    "Rapports"
+  ],
+  "التقارير المالية واستخراج المبيعات (ELFAZNI SERVICES — الفزني سيرفيسز)": [
+    "Financial reports & sales exports",
+    "Rapports financiers et export des ventes"
+  ],
+  "التقرير المالي الشامل (PDF)": [
+    "Financial report (PDF)",
+    "Rapport financier (PDF)"
+  ],
+  "التقرير المالي الشامل لجميع حسابات العملاء (All-Accounts Consolidated Report)": [
+    "Consolidated customer accounts report",
+    "Rapport consolidé des comptes clients"
+  ],
+  "التكلفة": [
+    "Cost",
+    "Coût"
+  ],
+  "التوقيع والاعتماد": [
+    "Signature & approval",
+    "Signature et validation"
+  ],
+  "التوقيع والتاريخ": [
+    "Signature & date",
+    "Signature et date"
+  ],
+  "الحالة": [
+    "Status",
+    "Statut"
+  ],
+  "الحساب الجذري الأساسي (Root) يمتلك حق المراقبة والتحكم الكامل في كافة الأقسام": [
+    "The root account can oversee and manage all sections.",
+    "Le compte principal dispose d’un accès à toutes les rubriques."
+  ],
+  "الحسابات البنكية المعتمدة للتحويل والسداد (مضمنة تلقائياً في رسائل واتساب):": [
+    "Bank details for payment (included in WhatsApp messages):",
+    "Coordonnées bancaires (incluses dans les messages WhatsApp) :"
+  ],
+  "الختم الرقمي الرسمي للمؤسسة (Official Digital Stamp — PDF & Print)": [
+    "Company digital signature for documents",
+    "Signature numérique de l’entreprise sur les documents"
+  ],
+  "الختم والاعتماد الرسمي للمؤسسة": [
+    "Company signature",
+    "Signature de l’entreprise"
+  ],
+  "الخدمة": [
+    "Service",
+    "Service"
+  ],
+  "الخصم": [
+    "Discount",
+    "Remise"
+  ],
+  "الخط الزمني التفاعلي للمواعيد": [
+    "Service pipeline",
+    "Suivi des dossiers"
+  ],
+  "الدرهم المغربي": [
+    "Moroccan dirham",
+    "Dirham marocain"
+  ],
+  "الدرهم المغربي (MAD د.م)": [
+    "Moroccan dirham (MAD)",
+    "Dirham marocain (MAD)"
+  ],
+  "الدور الأساسي (Role)": [
+    "Primary role",
+    "Rôle principal"
+  ],
+  "الدولار الأمريكي (USD)": [
+    "US dollar (USD)",
+    "Dollar américain (USD)"
+  ],
+  "الديون": [
+    "Receivables",
+    "Créances"
+  ],
+  "الديون المعلقة للفترة": [
+    "Outstanding this period",
+    "Créances de la période"
+  ],
+  "الرصيد الافتتاحي (Opening)": [
+    "Opening balance",
+    "Solde initial"
+  ],
+  "الرصيد التراكمي": [
+    "Running balance",
+    "Solde cumulé"
+  ],
+  "الرصيد الختامي المستحق (Closing)": [
+    "Closing balance due",
+    "Solde final dû"
+  ],
+  "الرصيد السابق قبل الفترة المحددة": [
+    "Balance before the selected period",
+    "Solde avant la période sélectionnée"
+  ],
+  "الرصيد المتبقي": [
+    "Remaining balance",
+    "Solde restant"
+  ],
+  "الرصيد المتبقي المستحق:": [
+    "Outstanding balance:",
+    "Solde dû :"
+  ],
+  "الرقم الضريبي (اختياري — يترك فارغاً إن لم يتوفر)": [
+    "Tax ID (optional)",
+    "Identifiant fiscal (facultatif)"
+  ],
+  "السابقة": [
+    "Previous",
+    "Précédent"
+  ],
+  "السعر": [
+    "Price",
+    "Prix"
+  ],
+  "السعر (انقر للتعديل)": [
+    "Price (click to edit)",
+    "Prix (cliquer pour modifier)"
+  ],
+  "السنة": [
+    "Year",
+    "Année"
+  ],
+  "الشركة والمسار:": [
+    "Airline & route:",
+    "Compagnie et trajet :"
+  ],
+  "الشهر": [
+    "Month",
+    "Mois"
+  ],
+  "الصورة الرمزية للملف الشخصي (اختيار أو رفع في مجلد التطبيق)": [
+    "Profile image (choose or upload)",
+    "Photo de profil (choisir ou importer)"
+  ],
+  "الضريبة %": [
+    "Tax %",
+    "Taxe %"
+  ],
+  "الطيران": [
+    "Flights",
+    "Vols"
+  ],
+  "العلامة:": [
+    "Flag:",
+    "Marqueur :"
+  ],
+  "العملة": [
+    "Currency",
+    "Devise"
+  ],
+  "العملة المرجعية الأساسية (1.00)": [
+    "Base currency (1.00)",
+    "Devise de référence (1,00)"
+  ],
+  "العميل": [
+    "Customer",
+    "Client"
+  ],
+  "العميل:": [
+    "Customer:",
+    "Client :"
+  ],
+  "العودة لصفحة الدخول": [
+    "Back to sign in",
+    "Retour à la connexion"
+  ],
+  "الفترة:": [
+    "Period:",
+    "Période :"
+  ],
+  "الفزني سيرفيسز — التقرير المالي": [
+    "ELFAZNI SERVICES · Financial report",
+    "ELFAZNI SERVICES · Rapport financier"
+  ],
+  "الفزني للخدمات – إسطنبول": [
+    "ELFAZNI SERVICES · Istanbul",
+    "ELFAZNI SERVICES · Istanbul"
+  ],
+  "الفواتير الصادرة وكشوف الحساب": [
+    "Issued invoices & statements",
+    "Factures émises et relevés"
+  ],
+  "الفواتير وكشوف الحساب والطباعة الرسمية": [
+    "Invoices, statements & documents",
+    "Factures, relevés et documents"
+  ],
+  "القائمة فارغة": [
+    "This list is empty",
+    "Cette liste est vide"
+  ],
+  "القسم": [
+    "Section",
+    "Rubrique"
+  ],
+  "القنصلية": [
+    "Consular",
+    "Consulaire"
+  ],
+  "الكل": [
+    "All",
+    "Tous"
+  ],
+  "الكل (": [
+    "All (",
+    "Tous ("
+  ],
+  "الكل (القنصلية والطيران)": [
+    "All (consular & flights)",
+    "Tous (consulaire et vols)"
+  ],
+  "الكمية": [
+    "Quantity",
+    "Quantité"
+  ],
+  "الليرة التركية": [
+    "Turkish lira",
+    "Livre turque"
+  ],
+  "الليرة التركية (TRY ₺)": [
+    "Turkish lira (TRY)",
+    "Livre turque (TRY)"
+  ],
+  "المبلغ المتبقي": [
+    "Remaining amount",
+    "Montant restant"
+  ],
+  "المبلغ المدفوع": [
+    "Amount paid",
+    "Montant payé"
+  ],
+  "المبلغ المدفوع حالياً:": [
+    "Amount paid so far:",
+    "Montant déjà payé :"
+  ],
+  "المبلغ المدفوع مقدماً عند الإصدار (": [
+    "Initial payment at issue (",
+    "Acompte à l’émission ("
+  ],
+  "المبلغ المدفوع:": [
+    "Amount paid:",
+    "Montant payé :"
+  ],
+  "المبلغ المستلم": [
+    "Amount received",
+    "Montant reçu"
+  ],
+  "المبلغ المستلم فعلياً:": [
+    "Actual amount received:",
+    "Montant effectivement reçu :"
+  ],
+  "المتبقي (الدين)": [
+    "Outstanding balance",
+    "Solde dû"
+  ],
+  "المتبقي (الدين):": [
+    "Outstanding balance:",
+    "Solde dû :"
+  ],
+  "المتبقي المستحق": [
+    "Balance due",
+    "Solde dû"
+  ],
+  "المتبقي المستحق:": [
+    "Balance due:",
+    "Solde dû :"
+  ],
+  "المجاميع والتقارير الشهرية": [
+    "Monthly totals & reports",
+    "Totaux et rapports mensuels"
+  ],
+  "المجموع التقديري:": [
+    "Estimated total:",
+    "Total estimé :"
+  ],
+  "المجموع قبل الضريبة:": [
+    "Subtotal before tax:",
+    "Sous-total hors taxes :"
+  ],
+  "المحاسبة": [
+    "Accounting",
+    "Comptabilité"
+  ],
+  "المحصل": [
+    "Collected",
+    "Encaissé"
+  ],
+  "المحصل فعلياً": [
+    "Actually collected",
+    "Encaissements réels"
+  ],
+  "المحصل:": [
+    "Collected:",
+    "Encaissé :"
+  ],
+  "المدفوع": [
+    "Paid",
+    "Payé"
+  ],
+  "المدفوع:": [
+    "Paid:",
+    "Payé :"
+  ],
+  "المرجع / PNR": [
+    "Reference / PNR",
+    "Référence / PNR"
+  ],
+  "المسافر والهاتف": [
+    "Passenger & phone",
+    "Passager et téléphone"
+  ],
+  "المستخدمون النشطون (": [
+    "Active users (",
+    "Utilisateurs actifs ("
+  ],
+  "المسدد": [
+    "Settled",
+    "Réglé"
+  ],
+  "المسدد بالكامل ينتقل للأرشيف تلقائياً": [
+    "Fully settled services are archived automatically",
+    "Les dossiers entièrement réglés sont archivés automatiquement"
+  ],
+  "المسمى / الدور (Role)": [
+    "Position / role",
+    "Fonction / rôle"
+  ],
+  "المصادقة الرسمية": [
+    "Approval",
+    "Validation"
+  ],
+  "المطلوب:": [
+    "Required:",
+    "À fournir :"
+  ],
+  "المقبوضات المستلمة": [
+    "Receipts",
+    "Encaissements"
+  ],
+  "الملاحظات المسجلة:": [
+    "Recorded notes:",
+    "Notes enregistrées :"
+  ],
+  "المميزة فقط": [
+    "Flagged only",
+    "Marqués uniquement"
+  ],
+  "الموقع: بجانب التوقيع المعتمد (Next to Signature)": [
+    "Position: beside signature",
+    "Position : près de la signature"
+  ],
+  "الموقع: زاوية المستند السفلية (Bottom Corner)": [
+    "Position: bottom corner",
+    "Position : angle inférieur"
+  ],
+  "النشط (": [
+    "Active (",
+    "Actifs ("
+  ],
+  "النوع": [
+    "Type",
+    "Type"
+  ],
+  "الهاتف": [
+    "Phone",
+    "Téléphone"
+  ],
+  "اليورو": [
+    "Euro",
+    "Euro"
+  ],
+  "اليورو الأوروبي (EUR €)": [
+    "Euro (EUR)",
+    "Euro (EUR)"
+  ],
+  "انتهاء الخدمة": [
+    "Service completed",
+    "Service terminé"
+  ],
+  "انقر لنسخ آيبان الدولار الأمريكي (USD)": [
+    "Copy USD IBAN",
+    "Copier l’IBAN USD"
+  ],
+  "انقر لنسخ آيبان الليرة التركية (TRY)": [
+    "Copy TRY IBAN",
+    "Copier l’IBAN TRY"
+  ],
+  "انقر نقراً مزدوجاً لتعديل اسم المسافر": [
+    "Double-click to edit passenger name",
+    "Double-cliquez pour modifier le passager"
+  ],
+  "انقر نقراً مزدوجاً لتعديل الاسم": [
+    "Double-click to edit name",
+    "Double-cliquez pour modifier le nom"
+  ],
+  "انقر نقراً مزدوجاً لتعديل السعر": [
+    "Double-click to edit price",
+    "Double-cliquez pour modifier le prix"
+  ],
+  "انقر نقراً مزدوجاً لتعديل سعر البيع": [
+    "Double-click to edit selling price",
+    "Double-cliquez pour modifier le prix de vente"
+  ],
+  "انقر نقراً مزدوجاً لتعديل مبلغ الدين": [
+    "Double-click to edit balance",
+    "Double-cliquez pour modifier le solde"
+  ],
+  "انقر نقراً مزدوجاً للتعديل السريع للاسم": [
+    "Double-click for quick name edit",
+    "Double-cliquez pour modifier rapidement le nom"
+  ],
+  "بادئة ترقيم الفواتير (Invoice Prefix)": [
+    "Invoice number prefix",
+    "Préfixe des numéros de facture"
+  ],
+  "باقٍ:": [
+    "Remaining:",
+    "Restant :"
+  ],
+  "بحث باسم الزبون المدين، الهاتف، تفاصيل الخدمة...": [
+    "Search customer, phone, service…",
+    "Rechercher un client, téléphone, service…"
+  ],
+  "بحث بالاسم أو اسم المستخدم أو الهاتف...": [
+    "Search name, username or phone…",
+    "Rechercher un nom, identifiant ou téléphone…"
+  ],
+  "بحث بالاسم أو الهاتف...": [
+    "Search name or phone…",
+    "Rechercher un nom ou téléphone…"
+  ],
+  "بحث بالاسم، الجوال، التأشيرة...": [
+    "Search name, phone or visa…",
+    "Rechercher un nom, téléphone ou visa…"
+  ],
+  "بحث بالمسافر، PNR، الوجهة، الهاتف...": [
+    "Search passenger, PNR, route, phone…",
+    "Rechercher un passager, PNR, trajet, téléphone…"
+  ],
+  "بحث برقم الفاتورة، اسم العميل، الهاتف...": [
+    "Search invoice, customer or phone…",
+    "Rechercher une facture, un client ou téléphone…"
+  ],
+  "بدون تمييز": [
+    "No flag",
+    "Sans marqueur"
+  ],
+  "بطاقة بنكية": [
+    "Bank card",
+    "Carte bancaire"
+  ],
+  "بند • عملة": [
+    "items · currency",
+    "lignes · devise"
+  ],
+  "بند)": [
+    "items)",
+    "lignes)"
+  ],
+  "بنود الفاتورة المعتمدة": [
+    "Approved invoice items",
+    "Lignes de facture validées"
+  ],
+  "بنود الفاتورة وتفاصيل التسعير (": [
+    "Invoice items & pricing (",
+    "Lignes et tarification ("
+  ],
+  "بوابة التحكم والإدارة المركزية المعتمدة": [
+    "Business management portal",
+    "Portail de gestion"
+  ],
+  "بواسطة @": [
+    "By @",
+    "Par @"
+  ],
+  "بيان الخدمة (عربي / إنجليزي اختياري)": [
+    "Service description (Arabic / optional English)",
+    "Description du service (arabe / anglais facultatif)"
+  ],
+  "بيانات الاتصال والتواصل": [
+    "Contact details",
+    "Coordonnées"
+  ],
+  "بيانات التواصل:": [
+    "Contact details:",
+    "Coordonnées :"
+  ],
+  "بيانات ملف المستخدم": [
+    "User profile details",
+    "Informations du profil"
+  ],
+  "تأجيل التذكير لساعة واحدة": [
+    "Snooze reminder for one hour",
+    "Reporter le rappel d’une heure"
+  ],
+  "تأجيل ساعة": [
+    "Snooze 1 hour",
+    "Reporter d’une heure"
+  ],
+  "تأكيد تسجيل الدفعة": [
+    "Confirm payment",
+    "Confirmer le paiement"
+  ],
+  "تأكيد تصدير أرشيف الفواتير المحددة (ZIP)": [
+    "Confirm invoice archive export (ZIP)",
+    "Confirmer l’export des factures (ZIP)"
+  ],
+  "تأكيد كلمة المرور الجديدة": [
+    "Confirm new password",
+    "Confirmez le nouveau mot de passe"
+  ],
+  "تأكيد وتحديث كلمة المرور": [
+    "Confirm and update password",
+    "Confirmer le nouveau mot de passe"
+  ],
+  "تأكيد وتنزيل الأرشيف (.ZIP)": [
+    "Confirm & download archive (.ZIP)",
+    "Confirmer et télécharger l’archive (.ZIP)"
+  ],
+  "تاريخ آخر تسجيل دخول:": [
+    "Last sign-in:",
+    "Dernière connexion :"
+  ],
+  "تاريخ الإصدار": [
+    "Issue date",
+    "Date d’émission"
+  ],
+  "تاريخ الاستحقاق": [
+    "Due date",
+    "Échéance"
+  ],
+  "تاريخ الاستخراج:": [
+    "Exported on:",
+    "Date d’export :"
+  ],
+  "تاريخ الاستلام": [
+    "Received on",
+    "Date de réception"
+  ],
+  "تاريخ التقديم": [
+    "Submission date",
+    "Date de dépôt"
+  ],
+  "تاريخ الحجز": [
+    "Booking date",
+    "Date de réservation"
+  ],
+  "تاريخ الحجز / السفر": [
+    "Booking / travel date",
+    "Date de réservation / voyage"
+  ],
+  "تاريخ المعاملة": [
+    "Transaction date",
+    "Date du dossier"
+  ],
+  "تاريخ ووقت التنبيه": [
+    "Reminder date & time",
+    "Date et heure du rappel"
+  ],
+  "تاريخ:": [
+    "Date:",
+    "Date :"
+  ],
+  "تبديل حجم عرض البطاقات": [
+    "Change card display size",
+    "Changer la taille des cartes"
+  ],
+  "تجربة 10 بنود (DEMO QA)": [
+    "Demo: 10 items",
+    "Démo : 10 lignes"
+  ],
+  "تجربة 100 بند (A4 Multi-Page QA)": [
+    "Demo: 100 items (multipage A4)",
+    "Démo : 100 lignes (A4 multipage)"
+  ],
+  "تجميع معاملات العميل غير المفوترة وإصدار فاتورة A4 ثنائية اللغة": [
+    "Combine uninvoiced services into a bilingual A4 invoice",
+    "Regrouper les dossiers non facturés en une facture A4 bilingue"
+  ],
+  "تحديد": [
+    "Select",
+    "Sélectionner"
+  ],
+  "تحديد الصلاحيات المخصصة لكل موظف (مواعيد القنصلية، الطيران، المحاسبة والمالية)": [
+    "Set each employee’s access to consular, flight and accounting modules",
+    "Définissez les droits de chaque employé sur les services consulaires, vols et finances"
+  ],
+  "تحديد نوع الموعد المخصص:": [
+    "Specify appointment type:",
+    "Précisez le type de rendez-vous :"
+  ],
+  "تحريك لأسفل القائمة": [
+    "Move down",
+    "Déplacer vers le bas"
+  ],
+  "تحريك لأعلى القائمة": [
+    "Move up",
+    "Déplacer vers le haut"
+  ],
+  "تحميل ملف البرومبت الشامل (Master Prompt .MD)": [
+    "Download project reference (.MD)",
+    "Télécharger la référence du projet (.MD)"
+  ],
+  "تحميل ملف نسخة احتياطية واستعادة المعاملات السابقة": [
+    "Upload a backup to restore previous records",
+    "Importer une sauvegarde pour restaurer les dossiers"
+  ],
+  "تحويل العملات واحتساب المجموع التقديري الموحد": [
+    "Convert currencies for an estimated unified total",
+    "Convertir les devises pour un total indicatif"
+  ],
+  "تحويل بنكي": [
+    "Bank transfer",
+    "Virement bancaire"
+  ],
+  "تخصيص قوائم النظام (Custom Lists)": [
+    "Custom system lists",
+    "Listes personnalisées"
+  ],
+  "تذكر هذا الجهاز (حفظ الجلسة)": [
+    "Remember this device",
+    "Se souvenir de cet appareil"
+  ],
+  "تذكرة": [
+    "Ticket",
+    "Billet"
+  ],
+  "تذكير مجدول قيد المتابعة": [
+    "Scheduled follow-up reminder",
+    "Rappel de suivi programmé"
+  ],
+  "تذكير مجدول:": [
+    "Scheduled reminder:",
+    "Rappel programmé :"
+  ],
+  "تذكير 🔔": [
+    "Reminder",
+    "Rappel"
+  ],
+  "تذكير:": [
+    "Reminder:",
+    "Rappel :"
+  ],
+  "تذكيرات اليوم والمتابعات العاجلة": [
+    "Today’s reminders & urgent follow-ups",
+    "Rappels du jour et suivis urgents"
+  ],
+  "تراجع (Undo)": [
+    "Undo",
+    "Annuler"
+  ],
+  "تسجيل التذاكر وأسعار التكلفة": [
+    "Flight tickets & purchase costs",
+    "Billets et coûts d’achat"
+  ],
+  "تسجيل الخروج بالكامل": [
+    "Sign out",
+    "Déconnexion"
+  ],
+  "تسجيل تذكرة طيران جديدة": [
+    "New flight booking",
+    "Nouvelle réservation de vol"
+  ],
+  "تسجيل دخول النظام": [
+    "Sign in to your workspace",
+    "Connectez-vous à votre espace"
+  ],
+  "تسجيل دفعة جديدة على الفاتورة (": [
+    "Record invoice payment (",
+    "Enregistrer un paiement ("
+  ],
+  "تسجيل سعر الشراء وسعر البيع بالعملة المناسبة وحساب الأرباح والديون تلقائياً": [
+    "Track purchase and selling prices, with automatic margins and balances",
+    "Suivez les prix d’achat et de vente, les marges et les soldes calculés"
+  ],
+  "تسديد": [
+    "Pay",
+    "Régler"
+  ],
+  "تسديد الآن": [
+    "Pay now",
+    "Régler maintenant"
+  ],
+  "تسديد الدفعات والأرباح": [
+    "Payments & margins",
+    "Paiements et marges"
+  ],
+  "تسديد الدين الآن": [
+    "Settle balance now",
+    "Régler le solde maintenant"
+  ],
+  "تسديد الدين بالكامل الآن": [
+    "Settle full balance now",
+    "Régler la totalité du solde"
+  ],
+  "تسديد المبلغ المتبقي بالكامل الآن": [
+    "Pay remaining amount in full",
+    "Régler tout le montant restant"
+  ],
+  "تسديد المتبقي بالكامل الآن": [
+    "Settle remaining balance",
+    "Régler le solde restant"
+  ],
+  "تصدير CSV / Excel": [
+    "Export CSV / Excel",
+    "Exporter CSV / Excel"
+  ],
+  "تصدير CSV/XLSX": [
+    "Export spreadsheet",
+    "Exporter le tableau"
+  ],
+  "تصدير Excel": [
+    "Export Excel",
+    "Exporter vers Excel"
+  ],
+  "تصدير الفواتير المحددة (": [
+    "Export selected invoices (",
+    "Exporter les factures sélectionnées ("
+  ],
+  "تصدير نسخة احتياطية (Export JSON)": [
+    "Export backup (JSON)",
+    "Exporter la sauvegarde (JSON)"
+  ],
+  "تصفية حسب الدور:": [
+    "Filter by role:",
+    "Filtrer par rôle :"
+  ],
+  "تصفية شاملة للمبيعات والأرباح والديون بالعملات الأربع (TRY, MAD, EUR, USD)": [
+    "Filter sales, margins and balances across TRY, MAD, EUR and USD",
+    "Filtrez les ventes, marges et soldes en TRY, MAD, EUR et USD"
+  ],
+  "تصفير ومسح كافة البيانات": [
+    "Clear all data",
+    "Effacer toutes les données"
+  ],
+  "تصنيف المستند (Document Classification)": [
+    "Document type",
+    "Type de document"
+  ],
+  "تعديل البيانات وتخصيص الصلاحيات": [
+    "Edit details & permissions",
+    "Modifier les informations et les droits"
+  ],
+  "تعديل المسودة": [
+    "Edit draft",
+    "Modifier le brouillon"
+  ],
+  "تعديل صلاحيات المستخدم: (": [
+    "Edit permissions for: (",
+    "Modifier les droits de : ("
+  ],
+  "تعديل كامل للاستمارة": [
+    "Edit full record",
+    "Modifier le dossier"
+  ],
+  "تعديل كامل ✏️": [
+    "Edit details",
+    "Modifier les détails"
+  ],
+  "تعديل كلمة المرور": [
+    "Change password",
+    "Changer le mot de passe"
+  ],
+  "تعيين كلمة مرور جديدة": [
+    "Set a new password",
+    "Définir un nouveau mot de passe"
+  ],
+  "تغيير كلمة المرور لـ (": [
+    "Change password for (",
+    "Changer le mot de passe de ("
+  ],
+  "تغيير كلمة المرور لهذا المستخدم مباشرة": [
+    "Reset this user’s password",
+    "Réinitialiser le mot de passe de cet utilisateur"
+  ],
+  "تفاصيل الخدمة": [
+    "Service details",
+    "Détails du service"
+  ],
+  "تفاصيل وملاحظات الأوراق الناقصة المطلوبة:": [
+    "Details of missing documents:",
+    "Documents manquants :"
+  ],
+  "تفعيل تذكير فوري مجدول لهذا الحجز": [
+    "Schedule a reminder for this booking",
+    "Programmer un rappel pour cette réservation"
+  ],
+  "تفعيل تذكير فوري مجدول لهذه المعاملة": [
+    "Schedule a reminder for this service",
+    "Programmer un rappel pour ce dossier"
+  ],
+  "تقرير الأرصدة المتبقية (PDF)": [
+    "Receivables report (PDF)",
+    "Rapport des créances (PDF)"
+  ],
+  "تقرير المدفوعات الدوري (PDF)": [
+    "Payment report (PDF)",
+    "Rapport des paiements (PDF)"
+  ],
+  "تقرير جميع الحسابات": [
+    "All accounts report",
+    "Rapport de tous les comptes"
+  ],
+  "تقرير محاسبي مجمع حسب العملة ولكل عميل على حدة — مخصص للإدارة والمحاسبة فقط.": [
+    "Customer accounts consolidated by currency. Available to management and accounting.",
+    "Comptes clients consolidés par devise. Réservé à la direction et à la comptabilité."
+  ],
+  "تكبير البطاقة وعرض كامل التفاصيل (Spotlight)": [
+    "Expand card details",
+    "Afficher tous les détails"
+  ],
+  "تكرار المعاملة (Duplicate)": [
+    "Duplicate transaction",
+    "Dupliquer le dossier"
+  ],
+  "تم الإنجاز ✅": [
+    "Completed",
+    "Terminé"
+  ],
+  "تم التسجيل": [
+    "Registered",
+    "Enregistré"
+  ],
+  "تم النسخ ✓": [
+    "Copied",
+    "Copié"
+  ],
+  "تم تسجيل طلب الاستعادة بنجاح!": [
+    "Password reset request recorded",
+    "Demande de réinitialisation enregistrée"
+  ],
+  "تم حذف المعاملة (": [
+    "Transaction deleted (",
+    "Dossier supprimé ("
+  ],
+  "تم نسخ بيانات التحويل كاملة": [
+    "Bank details copied",
+    "Coordonnées bancaires copiées"
+  ],
+  "تمييز البطاقة بعلامة": [
+    "Flag this card",
+    "Marquer cette carte"
+  ],
+  "تنبيه أمني:": [
+    "Security notice:",
+    "Information de sécurité :"
+  ],
+  "تنزيل .MD": [
+    "Download .MD",
+    "Télécharger .MD"
+  ],
+  "تنزيل النسخة": [
+    "Download copy",
+    "Télécharger une copie"
+  ],
+  "تنزيل ملف يحتوي على كافة مواعيد القنصلية، التذاكر، الديون والتواريخ": [
+    "Download all consular appointments, bookings, balances and dates",
+    "Télécharger les rendez-vous, réservations, soldes et dates"
+  ],
+  "تواصل عبر واتساب": [
+    "Contact on WhatsApp",
+    "Contacter sur WhatsApp"
+  ],
+  "توليد تلقائي": [
+    "Generate automatically",
+    "Générer automatiquement"
+  ],
+  "توليد كلمة مرور أخرى": [
+    "Generate another password",
+    "Générer un autre mot de passe"
+  ],
+  "توليد كلمة مرور قوية تلقائياً": [
+    "Generate a strong password",
+    "Générer un mot de passe robuste"
+  ],
+  "جاري التحقق من الدور والصلاحيات...": [
+    "Checking account access…",
+    "Vérification des accès…"
+  ],
+  "جاري الحفظ في المجلد...": [
+    "Saving image…",
+    "Enregistrement de l’image…"
+  ],
+  "جدول الديون والمستحقات المالية المعلقة": [
+    "Outstanding customer balances",
+    "Créances clients en attente"
+  ],
+  "جدولة تذكير 🔔": [
+    "Schedule reminder",
+    "Programmer un rappel"
+  ],
+  "جميع المعاملات مسددة بنسبة 100%": [
+    "All transactions are fully settled",
+    "Tous les dossiers sont entièrement réglés"
+  ],
+  "حالة الدفع": [
+    "Payment status",
+    "Statut du paiement"
+  ],
+  "حالة السداد والتحصيل الفعلي": [
+    "Payment & collection status",
+    "Statut des paiements et encaissements"
+  ],
+  "حجوزات الطيران فقط": [
+    "Flight bookings only",
+    "Réservations de vols uniquement"
+  ],
+  "حدد تذكرة أو أكثر لنفس المسافر غير مفوترة مسبقاً لإصدار فاتورة": [
+    "Select uninvoiced tickets for one passenger to create an invoice",
+    "Sélectionnez les billets non facturés d’un même passager"
+  ],
+  "حدد معاملة أو أكثر لنفس العميل غير مفوترة مسبقاً لإصدار فاتورة": [
+    "Select uninvoiced services for one customer to create an invoice",
+    "Sélectionnez les dossiers non facturés d’un même client"
+  ],
+  "حذف": [
+    "Delete",
+    "Supprimer"
+  ],
+  "حذف التذكير": [
+    "Delete reminder",
+    "Supprimer le rappel"
+  ],
+  "حذف الطلب من السجل": [
+    "Remove request from history",
+    "Supprimer la demande de l’historique"
+  ],
+  "حذف المستخدم نهائياً": [
+    "Delete user permanently",
+    "Supprimer définitivement l’utilisateur"
+  ],
+  "حذف من القائمة": [
+    "Remove from list",
+    "Retirer de la liste"
+  ],
+  "حذف هذه الصورة من مجلد التطبيق": [
+    "Delete this uploaded image",
+    "Supprimer cette image importée"
+  ],
+  "حساب التكلفة وسعر البيع وصافي الربح بالعملات": [
+    "Purchase cost, selling price & margin by currency",
+    "Coût, prix de vente et marge par devise"
+  ],
+  "حساب موثق:": [
+    "Verified account:",
+    "Compte vérifié :"
+  ],
+  "حفظ الأسعار": [
+    "Save rates",
+    "Enregistrer les taux"
+  ],
+  "حفظ التذكير": [
+    "Save reminder",
+    "Enregistrer le rappel"
+  ],
+  "حفظ التعديلات على الملف": [
+    "Save profile changes",
+    "Enregistrer le profil"
+  ],
+  "حفظ التعديلات والصلاحيات": [
+    "Save changes & permissions",
+    "Enregistrer les modifications et droits"
+  ],
+  "حفظ كلمة المرور الجديدة": [
+    "Save new password",
+    "Enregistrer le nouveau mot de passe"
+  ],
+  "حفظ كمسودة (Draft)": [
+    "Save draft",
+    "Enregistrer le brouillon"
+  ],
+  "حفظ وإغلاق": [
+    "Save & close",
+    "Enregistrer et fermer"
+  ],
+  "حفظ، تصدير، واستعادة بيانات المعاملات والمالية": [
+    "Save, export and restore service and financial data",
+    "Sauvegarder, exporter et restaurer les données"
+  ],
+  "خبرة تقرّب المسافات.": [
+    "Expertise that brings you closer.",
+    "L’expertise qui rapproche."
+  ],
+  "ختم وتوقيع الإدارة المعتمد": [
+    "Management signature",
+    "Signature de la direction"
+  ],
+  "خدمة مساعدة مستقلة ولا تمثل أي جهة حكومية.": [
+    "Independent support service, not affiliated with a government entity.",
+    "Service indépendant, sans affiliation à une autorité publique."
+  ],
+  "خدمة منتهية معلقة بالدين!": [
+    "Completed service with an outstanding balance",
+    "Service terminé avec un solde restant"
+  ],
+  "خصم إضافي على الفاتورة:": [
+    "Additional invoice discount:",
+    "Remise globale sur la facture :"
+  ],
+  "خيارات التذكير السريع:": [
+    "Quick reminder options:",
+    "Rappels rapides :"
+  ],
+  "خيارات التصفية والفترة:": [
+    "Filters & period:",
+    "Filtres et période :"
+  ],
+  "د.م": [
+    "MAD",
+    "MAD"
+  ],
+  "دائن (Credit)": [
+    "Credit",
+    "Crédit"
+  ],
+  "دخول النظام الإداري": [
+    "Open management workspace",
+    "Accéder à l’espace de gestion"
+  ],
+  "دفع جزئي": [
+    "Part paid",
+    "Paiement partiel"
+  ],
+  "دفعة تذكرة طيران:": [
+    "Flight payment:",
+    "Paiement de vol :"
+  ],
+  "دفعة معاملة:": [
+    "Service payment:",
+    "Paiement de dossier :"
+  ],
+  "رابط الصورة الرمزية الحالي (Avatar URL / App Folder Path)": [
+    "Profile image URL",
+    "URL de la photo de profil"
+  ],
+  "رد القنصلية": [
+    "Consular response",
+    "Réponse du consulat"
+  ],
+  "رد القنصلية:": [
+    "Consular response:",
+    "Réponse du consulat :"
+  ],
+  "رصيد افتتاحي": [
+    "Opening balance",
+    "Solde initial"
+  ],
+  "رفع صورة إلى مجلد التطبيق": [
+    "Upload image",
+    "Importer une image"
+  ],
+  "رقم الإيصال المرجعي": [
+    "Receipt reference",
+    "Référence du reçu"
+  ],
+  "رقم الحجز (PNR)": [
+    "Booking reference (PNR)",
+    "Référence de réservation (PNR)"
+  ],
+  "رقم الحجز (PNR):": [
+    "Booking reference (PNR):",
+    "Référence de réservation (PNR) :"
+  ],
+  "رقم الفاتورة": [
+    "Invoice number",
+    "Numéro de facture"
+  ],
+  "رقم المرجع": [
+    "Reference",
+    "Référence"
+  ],
+  "رقم الهاتف": [
+    "Phone number",
+    "Numéro de téléphone"
+  ],
+  "رقم الهاتف / الواتساب": [
+    "Phone / WhatsApp",
+    "Téléphone / WhatsApp"
+  ],
+  "رقم الهاتف / واتساب": [
+    "Phone / WhatsApp",
+    "Téléphone / WhatsApp"
+  ],
+  "رقم الهاتف أو وسيلة التواصل (اختياري)": [
+    "Phone or contact details (optional)",
+    "Téléphone ou coordonnées (facultatif)"
+  ],
+  "رقم الهاتف للتواصل": [
+    "Contact phone",
+    "Téléphone de contact"
+  ],
+  "رقم الهاتف:": [
+    "Phone:",
+    "Téléphone :"
+  ],
+  "زبون مدين": [
+    "Customer with balance due",
+    "Client avec un solde dû"
+  ],
+  "سبب الاستعادة أو توضيح إضافي...": [
+    "Reason for recovery or additional details…",
+    "Motif de récupération ou précisions…"
+  ],
+  "سبب التذكير / المطلوب تنفيذه": [
+    "Reminder reason / action required",
+    "Motif du rappel / action à effectuer"
+  ],
+  "سبب التذكير:": [
+    "Reminder reason:",
+    "Motif du rappel :"
+  ],
+  "سبب التسوية أو الخصم اللاحق...": [
+    "Reason for adjustment or discount…",
+    "Motif d’ajustement ou de remise…"
+  ],
+  "سجل التدقيق والعمليات (Immutable Audit Trail)": [
+    "Audit history",
+    "Historique des opérations"
+  ],
+  "سجل الفواتير (": [
+    "Invoice history (",
+    "Historique des factures ("
+  ],
+  "سجل المعاملات المكتملة والمسددة 100% (": [
+    "Completed & fully settled records (",
+    "Dossiers terminés et réglés ("
+  ],
+  "سجل بيانات الزبون، العملة المتفق عليها، وحالة السداد": [
+    "Record customer details, currency and payment status",
+    "Saisissez le client, la devise et le statut du paiement"
+  ],
+  "سجل تذاكر وحجوزات الطيران": [
+    "Flight bookings & tickets",
+    "Réservations de vols et billets"
+  ],
+  "سجل مواعيد وخدمات القنصلية": [
+    "Consular appointments & services",
+    "Rendez-vous et services consulaires"
+  ],
+  "سحب وإفلات حر، تتبع فوري لحالات القنصلية، والمتابعات المستعجلة": [
+    "Drag cards to track progress and urgent follow-ups",
+    "Déplacez les cartes pour suivre les dossiers et les urgences"
+  ],
+  "سعر البيع": [
+    "Selling price",
+    "Prix de vente"
+  ],
+  "سعر البيع للزبون (المتفق عليه)": [
+    "Agreed customer price",
+    "Prix convenu avec le client"
+  ],
+  "سعر التكلفة (سعر الشراء من المزود)": [
+    "Purchase cost from supplier",
+    "Coût d’achat fournisseur"
+  ],
+  "سعر الخدمة / البيع": [
+    "Service / selling price",
+    "Prix de vente du service"
+  ],
+  "سعر الخدمة المتفق عليه": [
+    "Agreed service price",
+    "Prix du service convenu"
+  ],
+  "سعر الوحدة": [
+    "Unit price",
+    "Prix unitaire"
+  ],
+  "سيتم إنشاء ملف مضغوط": [
+    "An archive will be created",
+    "Une archive sera créée"
+  ],
+  "شاشة النظام مقفلة للحفاظ على سرية السجلات والزبائن. أدخل كلمة المرور لإلغاء القفل:": [
+    "Your workspace is locked. Enter your password to continue.",
+    "Votre espace est verrouillé. Saisissez votre mot de passe pour continuer."
+  ],
+  "شركة الطيران والمسار": [
+    "Airline & route",
+    "Compagnie et trajet"
+  ],
+  "شركة الطيران والوجهة / المسار": [
+    "Airline & destination / route",
+    "Compagnie et destination / trajet"
+  ],
+  "شعار أفقي (logo-horizontal.svg)": [
+    "Horizontal logo",
+    "Logo horizontal"
+  ],
+  "شعار عمودي (logo-vertical.svg)": [
+    "Vertical logo",
+    "Logo vertical"
+  ],
+  "صادرة (Issued)": [
+    "Issued",
+    "Émise"
+  ],
+  "صادرة ومعتمدة": [
+    "Issued",
+    "Émise"
+  ],
+  "صافي الأرباح": [
+    "Net earnings",
+    "Bénéfice net"
+  ],
+  "صافي البند": [
+    "Net line amount",
+    "Montant net de la ligne"
+  ],
+  "صافي الربح": [
+    "Net margin",
+    "Marge nette"
+  ],
+  "صافي الربح التلقائي (": [
+    "Calculated net margin (",
+    "Marge nette calculée ("
+  ],
+  "صلاحيات الوصول للأقسام والبيانات (Granular RBAC):": [
+    "Section & data access permissions:",
+    "Droits d’accès aux rubriques et données :"
+  ],
+  "ضبط تذكير فوري (Reminder)": [
+    "Set reminder",
+    "Programmer un rappel"
+  ],
+  "طباعة / PDF": [
+    "Print / PDF",
+    "Imprimer / PDF"
+  ],
+  "طباعة التقرير الشامل A4 / PDF": [
+    "Print financial report A4 / PDF",
+    "Imprimer le rapport A4 / PDF"
+  ],
+  "طباعة كشف الحساب": [
+    "Print statement",
+    "Imprimer le relevé"
+  ],
+  "طباعة كشف حساب العميل (Account Statement)": [
+    "Print customer statement",
+    "Imprimer le relevé client"
+  ],
+  "طريقة الدفع": [
+    "Payment method",
+    "Mode de paiement"
+  ],
+  "طلب إعادة تعيين كلمة المرور": [
+    "Password reset request",
+    "Demande de réinitialisation"
+  ],
+  "طلبات استعادة": [
+    "Recovery requests",
+    "Demandes de récupération"
+  ],
+  "طلبات استعادة كلمة المرور": [
+    "Password recovery requests",
+    "Demandes de récupération de mot de passe"
+  ],
+  "طيران": [
+    "Flights",
+    "Vols"
+  ],
+  "طيران:": [
+    "Flights:",
+    "Vols :"
+  ],
+  "عرض": [
+    "View",
+    "Voir"
+  ],
+  "عرض الفاتورة المرتبطة": [
+    "View linked invoice",
+    "Voir la facture liée"
+  ],
+  "عرض تفاصيل الفاتورة والدفعات": [
+    "View invoice & payments",
+    "Voir la facture et les paiements"
+  ],
+  "عرض كل التواريخ": [
+    "All dates",
+    "Toutes les dates"
+  ],
+  "عرض مدمج": [
+    "Compact view",
+    "Vue compacte"
+  ],
+  "عرض مفصل": [
+    "Detailed view",
+    "Vue détaillée"
+  ],
+  "علامة التمييز": [
+    "Flag",
+    "Marqueur"
+  ],
+  "عملة التسديد الفعلي المستلمة:": [
+    "Actual settlement currency:",
+    "Devise du règlement reçu :"
+  ],
+  "عملة الدفع المستلمة:": [
+    "Payment currency received:",
+    "Devise du paiement reçu :"
+  ],
+  "عملة الفاتورة (Currency)": [
+    "Invoice currency",
+    "Devise de la facture"
+  ],
+  "عملة المعاملة المتفق عليها": [
+    "Agreed transaction currency",
+    "Devise convenue du dossier"
+  ],
+  "عندما يطلب أي موظف أو مستخدم استعادة كلمة مروره من شاشة الدخول، يظهر إشعاره هنا فوراً لتقوم بتوليد كلمة مرور جديدة له وإرسالها عبر واتساب بضغطة زر.": [
+    "Password reset requests appear here for administrators to review and process.",
+    "Les demandes de réinitialisation apparaissent ici pour être traitées par l’administrateur."
+  ],
+  "غير مدفوع / دفع جزئي": [
+    "Unpaid / part paid",
+    "Impayé / partiel"
+  ],
+  "فاتورة أولية (Pro Forma)": [
+    "Pro forma invoice",
+    "Facture pro forma"
+  ],
+  "فاتورة أولية / عرض سعر (Pro Forma)": [
+    "Pro forma invoice / quote",
+    "Facture pro forma / devis"
+  ],
+  "فاتورة خدمات (Invoice)": [
+    "Service invoice",
+    "Facture de services"
+  ],
+  "فاتورة مستقلة بصيغة A4 قابلة للطباعة مع ملف بيان مرجعي (Manifest)، دون دمج فواتير العملاء في فاتورة واحدة.": [
+    "A separate printable A4 invoice and reference manifest for each customer.",
+    "Une facture A4 distincte avec son manifeste de référence pour chaque client."
+  ],
+  "فتح كشف الحساب التفصيلي": [
+    "Open detailed statement",
+    "Ouvrir le relevé détaillé"
+  ],
+  "فصل محاسبي دقيق بين (1) الفاتورة الفردية للعميل، (2) كشف حساب العميل الشامل، و(3) التقرير المالي المجمع لجميع الحسابات.": [
+    "Separate documents for individual invoices, customer statements and consolidated financial reports.",
+    "Documents distincts pour les factures, relevés clients et rapports financiers consolidés."
+  ],
+  "فك القفل التلقائي": [
+    "Automatic unlock",
+    "Déverrouillage automatique"
+  ],
+  "فواتير العميل (": [
+    "Customer invoices (",
+    "Factures client ("
+  ],
+  "فواتير:": [
+    "Invoices:",
+    "Factures :"
+  ],
+  "قنصلية": [
+    "Consular",
+    "Consulaire"
+  ],
+  "قنصلية:": [
+    "Consular:",
+    "Consulaire :"
+  ],
+  "قيد الانتظار": [
+    "Pending",
+    "En attente"
+  ],
+  "قيد المعالجة": [
+    "In progress",
+    "En cours"
+  ],
+  "كاش / نقداً": [
+    "Cash",
+    "Espèces"
+  ],
+  "كافة الأدوار": [
+    "All roles",
+    "Tous les rôles"
+  ],
+  "كشف الحساب": [
+    "Statement",
+    "Relevé de compte"
+  ],
+  "كشف حساب العميل": [
+    "Customer statement",
+    "Relevé client"
+  ],
+  "كشف حساب عميل (Statement)": [
+    "Customer statement",
+    "Relevé client"
+  ],
+  "كشف حساب عميل مفصل (Customer Account Statement)": [
+    "Detailed customer account statement",
+    "Relevé détaillé du compte client"
+  ],
+  "كشف حساب هذا العميل": [
+    "This customer’s statement",
+    "Relevé de ce client"
+  ],
+  "كل الحالات": [
+    "All statuses",
+    "Tous les statuts"
+  ],
+  "كل الشهور (": [
+    "All months (",
+    "Tous les mois ("
+  ],
+  "كل العملاء (": [
+    "All customers (",
+    "Tous les clients ("
+  ],
+  "كل العملات": [
+    "All currencies",
+    "Toutes les devises"
+  ],
+  "كل حالات الدفع": [
+    "All payment statuses",
+    "Tous les statuts de paiement"
+  ],
+  "كل حالات السداد": [
+    "All settlement statuses",
+    "Tous les statuts de règlement"
+  ],
+  "كل ردود القنصلية": [
+    "All consular responses",
+    "Toutes les réponses consulaires"
+  ],
+  "كل طرق الدفع": [
+    "All payment methods",
+    "Tous les modes de paiement"
+  ],
+  "كل مراحل الخط الزمني": [
+    "All pipeline stages",
+    "Toutes les étapes du suivi"
+  ],
+  "كلمة المرور (Password)": [
+    "Password",
+    "Mot de passe"
+  ],
+  "كلمة المرور الابتدائية": [
+    "Initial password",
+    "Mot de passe initial"
+  ],
+  "كلمة المرور الجديدة": [
+    "New password",
+    "Nouveau mot de passe"
+  ],
+  "كلمة المرور الجديدة (New Password)": [
+    "New password",
+    "Nouveau mot de passe"
+  ],
+  "كلمة المرور الجديدة المقترحة للحساب:": [
+    "Suggested new account password:",
+    "Nouveau mot de passe proposé :"
+  ],
+  "كلمة المرور الحالية (Current Password)": [
+    "Current password",
+    "Mot de passe actuel"
+  ],
+  "كلمة مرور جديدة": [
+    "New password",
+    "Nouveau mot de passe"
+  ],
+  "لإعادة التعيين الفورية، تواصل مع الإدارة:": [
+    "For immediate assistance, contact management:",
+    "Pour une assistance immédiate, contactez la direction :"
+  ],
+  "لا توجد تذكيرات معلقة حالياً": [
+    "No pending reminders",
+    "Aucun rappel en attente"
+  ],
+  "لا توجد حجوزات طيران مطابقة للشروط": [
+    "No flight bookings match your filters",
+    "Aucune réservation ne correspond à vos filtres"
+  ],
+  "لا توجد حركات مسجلة لهذا العميل بعملة (": [
+    "No entries for this customer in (",
+    "Aucune écriture pour ce client en ("
+  ],
+  "لا توجد خدمات منتهية بديون": [
+    "No completed services with balances due",
+    "Aucun service terminé avec un solde dû"
+  ],
+  "لا توجد دفعات مسجلة بعد.": [
+    "No payments recorded yet.",
+    "Aucun paiement enregistré."
+  ],
+  "لا توجد طلبات استعادة كلمة مرور حالياً، كل الحسابات منتظمة!": [
+    "No pending password recovery requests.",
+    "Aucune demande de récupération en attente."
+  ],
+  "لا توجد فواتير مصدرة لهذا العميل بعد. يمكنك إصدار فاتورة جديدة بضغطة زر.": [
+    "No invoices issued for this customer yet. Create one to get started.",
+    "Aucune facture émise pour ce client. Créez-en une pour commencer."
+  ],
+  "لا توجد فواتير مطابقة لخيارات البحث الحالية.": [
+    "No invoices match the current search.",
+    "Aucune facture ne correspond à la recherche."
+  ],
+  "لا توجد معاملات مؤرشفة حالياً": [
+    "No archived transactions",
+    "Aucun dossier archivé"
+  ],
+  "لا توجد مواعيد تطابق شروط البحث الحالية": [
+    "No appointments match your search",
+    "Aucun rendez-vous ne correspond à la recherche"
+  ],
+  "لا توجد مواعيد قنصلية مسجلة لهذا العميل.": [
+    "No consular appointments for this customer.",
+    "Aucun rendez-vous consulaire pour ce client."
+  ],
+  "لا يوجد مستخدمون يطابقون خيارات البحث": [
+    "No users match your filters",
+    "Aucun utilisateur ne correspond aux filtres"
+  ],
+  "لتغيير كلمة المرور، يرجى إدخال كلمة المرور الحالية أولاً للتحقق من هويتك.": [
+    "Enter your current password before setting a new one.",
+    "Saisissez votre mot de passe actuel avant d’en définir un nouveau."
+  ],
+  "لم يتم العثور على حساب مطابق بعد، تأكد من كتابة اسم المستخدم الصحيح": [
+    "No matching account found. Check the username.",
+    "Aucun compte correspondant. Vérifiez l’identifiant."
+  ],
+  "لم يدفع (دين كامل)": [
+    "Unpaid (full balance)",
+    "Impayé (solde total)"
+  ],
+  "لم يدفع (دين)": [
+    "Unpaid",
+    "Impayé"
+  ],
+  "لم يدفع بعد": [
+    "Not paid yet",
+    "Pas encore payé"
+  ],
+  "لم يدفع بعد (دين)": [
+    "Unpaid (balance due)",
+    "Impayé (solde dû)"
+  ],
+  "لم يسدد": [
+    "Unsettled",
+    "Non réglé"
+  ],
+  "لوحة إشعارات استعادة كلمات المرور المعلقة:": [
+    "Pending password recovery requests:",
+    "Demandes de récupération en attente :"
+  ],
+  "متابعة أسعار الشراء، أسعار البيع، وصافي الأرباح مع إصدار الفواتير وكشوف الحساب": [
+    "Track purchase costs, selling prices and margins, with invoices and statements.",
+    "Suivez les coûts, prix de vente et marges, avec factures et relevés."
+  ],
+  "متابعة استلام التحويل، إصدار التذكرة...": [
+    "Follow up on payment receipt or ticket issue…",
+    "Suivre le paiement ou l’émission du billet…"
+  ],
+  "متابعة تسليم الجواز أو رد القنصلية...": [
+    "Follow up on passport delivery or consular response…",
+    "Suivre la remise du passeport ou la réponse consulaire…"
+  ],
+  "متابعة ديون القنصلية وحجوزات الطيران مع إمكانية التعديل السريع والتسديد بضغطة زر": [
+    "Track and settle consular and flight balances, with quick inline edits.",
+    "Suivez et réglez les soldes des dossiers consulaires et des vols."
+  ],
+  "متابعة وتسوية ديون الزبائن": [
+    "Customer balance follow-up & settlement",
+    "Suivi et règlement des créances clients"
+  ],
+  "مثال: AT-8820B": [
+    "Example: AT-8820B",
+    "Exemple : AT-8820B"
+  ],
+  "مثال: agent.morocco": [
+    "Example: agent.morocco",
+    "Exemple : agent.morocco"
+  ],
+  "مثال: أمين — مكتب الرباط": [
+    "Example: Amine · Rabat office",
+    "Exemple : Amine · Bureau de Rabat"
+  ],
+  "مثال: الخطوط الملكية المغربية - كازا إلى إسطنبول": [
+    "Example: Royal Air Maroc · Casablanca to Istanbul",
+    "Exemple : Royal Air Maroc · Casablanca–Istanbul"
+  ],
+  "مثال: تصديق شهادة جامعية أو حجز موعد عاجل": [
+    "Example: document certification or urgent appointment",
+    "Exemple : légalisation de document ou rendez-vous urgent"
+  ],
+  "مثال: رشيد الفزني": [
+    "Example: Rachid Elfazni",
+    "Exemple : Rachid Elfazni"
+  ],
+  "مثال: سفيان المراكشي": [
+    "Example: Soufiane Marrakchi",
+    "Exemple : Soufiane Marrakchi"
+  ],
+  "مثال: متابعة سداد الدفعة الثانية، إرسال تذكرة الطيران، فحص رد القنصلية...": [
+    "Example: follow up on payment, send ticket, check consular response…",
+    "Exemple : relancer un paiement, envoyer un billet, vérifier la réponse du consulat…"
+  ],
+  "مثال: مقاعد، أمتعة إضافية...": [
+    "Example: seats, extra baggage…",
+    "Exemple : sièges, bagages supplémentaires…"
+  ],
+  "محادثة واتساب مباشرة": [
+    "Open WhatsApp chat",
+    "Ouvrir une discussion WhatsApp"
+  ],
+  "محاسب مالي (Accountant)": [
+    "Accountant",
+    "Comptable"
+  ],
+  "محرر الفاتورة": [
+    "Invoice editor",
+    "Éditeur de facture"
+  ],
+  "محرر عمليات (Editor)": [
+    "Operations editor",
+    "Éditeur des opérations"
+  ],
+  "مدفوع": [
+    "Paid",
+    "Payé"
+  ],
+  "مدفوع بالكامل": [
+    "Fully paid",
+    "Entièrement payé"
+  ],
+  "مدفوعة بالكامل": [
+    "Fully paid",
+    "Entièrement payée"
+  ],
+  "مدفوعة بالكامل (Paid)": [
+    "Paid in full",
+    "Entièrement payée"
+  ],
+  "مدفوعة جزئياً": [
+    "Part paid",
+    "Partiellement payée"
+  ],
+  "مدفوعة جزئياً (Partial)": [
+    "Part paid",
+    "Partiellement payée"
+  ],
+  "مدير عام (Root)": [
+    "Root administrator",
+    "Administrateur principal"
+  ],
+  "مدير نظام (Admin)": [
+    "Administrator",
+    "Administrateur"
+  ],
+  "مدين (Debit)": [
+    "Debit",
+    "Débit"
+  ],
+  "مرحلة الخدمة": [
+    "Service stage",
+    "Étape du service"
+  ],
+  "مرحلة الخط الزمني": [
+    "Pipeline stage",
+    "Étape du suivi"
+  ],
+  "مرفوض": [
+    "Rejected",
+    "Refusé"
+  ],
+  "مساعدة ودعم فني واتساب": [
+    "WhatsApp support",
+    "Assistance WhatsApp"
+  ],
+  "مستحقات قيد التحصيل": [
+    "Receivables awaiting collection",
+    "Créances à encaisser"
+  ],
+  "مستخدم نظام": [
+    "System user",
+    "Utilisateur"
+  ],
+  "مستخدمين": [
+    "Users",
+    "Utilisateurs"
+  ],
+  "مسح الكل": [
+    "Clear all",
+    "Tout effacer"
+  ],
+  "مسح جميع المعاملات لبدء استخدام فارغ جديد": [
+    "Clear all transactions to start afresh",
+    "Effacer tous les dossiers pour repartir de zéro"
+  ],
+  "مسدد": [
+    "Settled",
+    "Réglé"
+  ],
+  "مسدد 100%": [
+    "Fully settled",
+    "Entièrement réglé"
+  ],
+  "مسودة": [
+    "Draft",
+    "Brouillon"
+  ],
+  "مسودة (Draft)": [
+    "Draft",
+    "Brouillon"
+  ],
+  "مشاركة مطالبة السداد عبر واتساب مع الحسابات البنكية": [
+    "Share payment request and bank details on WhatsApp",
+    "Partager la demande de paiement et les coordonnées bancaires sur WhatsApp"
+  ],
+  "مشاهد فقط (Viewer)": [
+    "Viewer",
+    "Lecteur"
+  ],
+  "مصادقة واعتماد كشف الحساب — الفزني للخدمات إسطنبول (ELFAZNI SERVICES ISTANBUL)": [
+    "Account statement approval · ELFAZNI SERVICES Istanbul",
+    "Validation du relevé · ELFAZNI SERVICES Istanbul"
+  ],
+  "معالجة طلب استعادة كلمة المرور": [
+    "Process password recovery request",
+    "Traiter la demande de récupération"
+  ],
+  "معاملات تمت أرشفتها تلقائياً بعد اكتمال الخدمة واستلام كامل المبلغ": [
+    "Records archived after service completion and full payment",
+    "Dossiers archivés après fin du service et paiement intégral"
+  ],
+  "معاملات مسجلة لهذا العميل غير مفوترة بعد (انقر لإدراجها في الفاتورة ومنع الفوترة المزدوجة):": [
+    "Uninvoiced services for this customer (select to add them once):",
+    "Dossiers non facturés de ce client (sélectionnez pour les ajouter une seule fois) :"
+  ],
+  "معاملة": [
+    "transaction",
+    "dossier"
+  ],
+  "معاملة في هذه الفترة": [
+    "transactions in this period",
+    "dossiers sur cette période"
+  ],
+  "معاملة نشطة": [
+    "active transactions",
+    "dossiers actifs"
+  ],
+  "معاينة الطباعة A4 / تنزيل PDF": [
+    "Preview A4 / Save PDF",
+    "Aperçu A4 / Enregistrer PDF"
+  ],
+  "معاينة الطباعة القياسية A4 / تنزيل PDF": [
+    "Preview A4 / Save PDF",
+    "Aperçu A4 / Enregistrer PDF"
+  ],
+  "معاينة فورية للتحويل: 100 دولار ($) تعادل:": [
+    "Conversion preview: USD 100 equals:",
+    "Aperçu de conversion : 100 USD valent :"
+  ],
+  "معاينة وتنزيل كشف حساب مفصل بجميع الفواتير والدفعات والرصيد المتبقي": [
+    "Preview a detailed statement with invoices, payments and balance",
+    "Voir le relevé détaillé des factures, paiements et du solde"
+  ],
+  "معاينة وطباعة كشف الحساب A4 / PDF": [
+    "Preview statement A4 / PDF",
+    "Aperçu du relevé A4 / PDF"
+  ],
+  "معتمد للطباعة والتنزيل بصيغة PDF (A4)": [
+    "Ready to print or save as PDF (A4)",
+    "Prêt à imprimer ou enregistrer en PDF (A4)"
+  ],
+  "مقبول": [
+    "Accepted",
+    "Accepté"
+  ],
+  "مكتمل ومسدد": [
+    "Completed & settled",
+    "Terminé et réglé"
+  ],
+  "ملاحظات إضافية": [
+    "Additional notes",
+    "Notes complémentaires"
+  ],
+  "ملاحظات الحجز": [
+    "Booking notes",
+    "Notes de réservation"
+  ],
+  "ملاحظات الفاتورة وشروط السداد": [
+    "Invoice notes & payment terms",
+    "Notes et conditions de paiement"
+  ],
+  "ملاحظة للإدارة (اختياري)": [
+    "Note for management (optional)",
+    "Note à la direction (facultatif)"
+  ],
+  "ملغاة (VOID)": [
+    "Voided",
+    "Annulée"
+  ],
+  "ملغاة (Void)": [
+    "Voided",
+    "Annulée"
+  ],
+  "ملف Markdown متكامل يوثق بنية النظام، الصلاحيات، الحسابات البنكية، والخدمات": [
+    "Project reference covering structure, permissions, payment details and services",
+    "Référence du projet : structure, droits, coordonnées de paiement et services"
+  ],
+  "ملفات العملاء والفوترة (": [
+    "Customer profiles & billing (",
+    "Fiches clients et facturation ("
+  ],
+  "ممتاز! لا توجد ديون معلقة حالياً": [
+    "No outstanding balances. All settled.",
+    "Aucun solde en attente. Tout est réglé."
+  ],
+  "من تاريخ (اختياري — لحساب الرصيد الافتتاحي)": [
+    "From date (optional, for opening balance)",
+    "Depuis le (facultatif, pour le solde initial)"
+  ],
+  "مواعيد القنصلية فقط": [
+    "Consular appointments only",
+    "Rendez-vous consulaires uniquement"
+  ],
+  "موظف حجوزات (Agent)": [
+    "Booking agent",
+    "Agent de réservation"
+  ],
+  "موظف مواعيد / طيران (Agent)": [
+    "Consular / flight agent",
+    "Agent consulaire / vols"
+  ],
+  "نسخ اسم صاحب الحساب": [
+    "Copy account holder name",
+    "Copier le titulaire du compte"
+  ],
+  "نسخ الاسم": [
+    "Copy name",
+    "Copier le nom"
+  ],
+  "نسخ رسالة الحساب البنكي": [
+    "Copy bank details message",
+    "Copier le message des coordonnées bancaires"
+  ],
+  "نسيت كلمة المرور؟": [
+    "Forgot password?",
+    "Mot de passe oublié ?"
+  ],
+  "نظام التسيير الإداري والمالي لمؤسسة الفزني للخدمات": [
+    "ELFAZNI SERVICES administration & finance workspace",
+    "Espace de gestion administrative et financière ELFAZNI SERVICES"
+  ],
+  "نقص أوراق": [
+    "Missing documents",
+    "Documents manquants"
+  ],
+  "نقص أوراق...": [
+    "Missing documents…",
+    "Documents manquants…"
+  ],
+  "نمط الشعار المعتمد": [
+    "Logo style",
+    "Style du logo"
+  ],
+  "نوع الحركة": [
+    "Entry type",
+    "Type d’écriture"
+  ],
+  "نوع الموعد": [
+    "Appointment type",
+    "Type de rendez-vous"
+  ],
+  "نوع الموعد المطلوب": [
+    "Requested appointment type",
+    "Type de rendez-vous demandé"
+  ],
+  "نوع الموعد:": [
+    "Appointment type:",
+    "Type de rendez-vous :"
+  ],
+  "واتساب": [
+    "WhatsApp",
+    "WhatsApp"
+  ],
+  "واتساب الإدارة": [
+    "Management WhatsApp",
+    "WhatsApp de la direction"
+  ],
+  "وصف الخدمة بالعربية...": [
+    "Service description in Arabic…",
+    "Description du service en arabe…"
+  ],
+  "وقت التذكير:": [
+    "Reminder time:",
+    "Heure du rappel :"
+  ],
+  "يتم تحديد أسعار الصرف بالنسبة لـ": [
+    "Exchange rates are relative to",
+    "Les taux sont définis par rapport à"
+  ],
+  "يحتوي على": [
+    "Contains",
+    "Contient"
+  ],
+  "يظهر هذا الختم الرسمي تلقائياً عند طباعة كشف الحساب بصيغة A4 أو حفظه كملف PDF.": [
+    "The company signature is included on printed and PDF statements.",
+    "La signature de l’entreprise figure sur les relevés imprimés ou PDF."
+  ],
+  "يعرض الرصيد الافتتاحي، حركات المدين والدائن، والرصيد التراكمي والختامي لعميل واحد محدد (وليس فاتورة جديدة).": [
+    "Opening balance, debits, credits and closing balance for a single customer.",
+    "Solde initial, débits, crédits et solde final pour un seul client."
+  ],
+  "يمكنك إرسال إشعار مباشر عبر واتساب إلى مدير النظام للمصادقة على الرمز الجديد لحسابك (": [
+    "You can contact management on WhatsApp about your account (",
+    "Vous pouvez contacter la direction sur WhatsApp pour votre compte ("
+  ],
+  "يمكنك جدولة تذكير لأي معاملة بالضغط على علامة الجرس أو زر التذكير.": [
+    "Use the bell icon on any transaction to schedule a reminder.",
+    "Utilisez l’icône cloche d’un dossier pour programmer un rappel."
+  ],
+  "يُدرج الختم الرقمي الشفاف لمؤسسة الفزني للخدمات (ELFAZNI SERVICES) تلقائياً في زاوية المستند أو بجانب التوقيع المعتمد دون تغطية أي بيانات أو أرقام مالية.": [
+    "The company visual signature appears beside the signing area without covering financial details.",
+    "La signature visuelle de l’entreprise apparaît près de la zone de signature, sans recouvrir les montants."
+  ],
+  "• الفزني سيرفيسز (ELFAZNI SERVICES)": [
+    "ELFAZNI SERVICES",
+    "ELFAZNI SERVICES"
+  ],
+  "• تاريخ الإصدار:": [
+    "Issue date:",
+    "Date d’émission :"
+  ],
+  "• صفحة 1 من": [
+    "Page 1 of",
+    "Page 1 sur"
+  ],
+  "⏱️ بعد ساعة": [
+    "In one hour",
+    "Dans une heure"
+  ],
+  "⏳ قيد الانتظار": [
+    "Pending",
+    "En attente"
+  ],
+  "☀️ غداً صباحاً (09:30)": [
+    "Tomorrow morning (09:30)",
+    "Demain matin (09:30)"
+  ],
+  "⚠️ نقص أوراق": [
+    "Missing documents",
+    "Documents manquants"
+  ],
+  "⚡ تخصيص سريع للصلاحيات حسب الدور الوظيفي:": [
+    "Quick role-based permissions:",
+    "Droits rapides par rôle :"
+  ],
+  "✅ مقبول": [
+    "Accepted",
+    "Accepté"
+  ],
+  "✈️ حجوزات الطيران": [
+    "Flight bookings",
+    "Réservations de vols"
+  ],
+  "✈️ طيران فقط": [
+    "Flights only",
+    "Vols uniquement"
+  ],
+  "✏️ محرر (Editor)": [
+    "Editor",
+    "Éditeur"
+  ],
+  "❌ مرفوض": [
+    "Rejected",
+    "Refusé"
+  ],
+  "⭐ نجمة": [
+    "Star",
+    "Étoile"
+  ],
+  "⭐ نجمة مميزة": [
+    "Starred",
+    "Favori"
+  ],
+  "🌆 مساء اليوم (19:00)": [
+    "This evening (19:00)",
+    "Ce soir (19:00)"
+  ],
+  "🌟 توهج ذهبي": [
+    "Gold highlight",
+    "Surbrillance dorée"
+  ],
+  "🌟 توهج ذهبي (#E39622)": [
+    "Gold highlight",
+    "Surbrillance dorée"
+  ],
+  "🏛️ مواعيد القنصلية": [
+    "Consular appointments",
+    "Rendez-vous consulaires"
+  ],
+  "🏛️ مواعيد فقط": [
+    "Appointments only",
+    "Rendez-vous uniquement"
+  ],
+  "🏦 الحساب البنكي للسداد (": [
+    "Payment bank details (",
+    "Coordonnées bancaires ("
+  ],
+  "👑 مدير (Admin)": [
+    "Administrator",
+    "Administrateur"
+  ],
+  "👥 إدارة المستخدمين": [
+    "User management",
+    "Gestion des utilisateurs"
+  ],
+  "💰 المالية والمحاسبة": [
+    "Finance & accounting",
+    "Finances et comptabilité"
+  ],
+  "💰 محاسب مالي": [
+    "Accountant",
+    "Comptable"
+  ],
+  "📅 الأسبوع القادم": [
+    "Next week",
+    "La semaine prochaine"
+  ],
+  "📊 التقارير والإحصائيات": [
+    "Reports & analytics",
+    "Rapports et analyses"
+  ],
+  "📌 تثبيت بالدبوس": [
+    "Pinned",
+    "Épinglé"
+  ],
+  "📌 تثبيت دبوس": [
+    "Pin",
+    "Épingler"
+  ],
+  "📑 جدول الديون والمتبقي": [
+    "Outstanding balances",
+    "Soldes à recevoir"
+  ],
+  "🚨 تنبيه أحمر": [
+    "Red alert",
+    "Alerte rouge"
+  ],
+  "🚨 تنبيه أحمر (#EF4444)": [
+    "Red alert",
+    "Alerte rouge"
+  ],
+  "+ تعيين تذكير": [
+    "Add reminder",
+    "Ajouter un rappel"
+  ],
+  "إعداد وإصدار فاتورة لعميل محدد": [
+    "Prepare and issue a customer invoice",
+    "Préparer et émettre une facture client"
+  ],
+  "إنشاء المعاملة": [
+    "Create service record",
+    "Créer le dossier"
+  ],
+  "الآن": [
+    "Now",
+    "Maintenant"
+  ],
+  "بانتظار إعادة التعيين": [
+    "Awaiting reset",
+    "En attente de réinitialisation"
+  ],
+  "تسجيل التذكرة": [
+    "Save ticket",
+    "Enregistrer le billet"
+  ],
+  "تسجيل حجز طيران جديد": [
+    "New flight booking",
+    "Nouvelle réservation de vol"
+  ],
+  "تعديل التذكير": [
+    "Edit reminder",
+    "Modifier le rappel"
+  ],
+  "تعديل حجز طيران": [
+    "Edit flight booking",
+    "Modifier la réservation"
+  ],
+  "تعديل موعد قنصلية": [
+    "Edit consular appointment",
+    "Modifier le rendez-vous consulaire"
+  ],
+  "تم السداد بالكامل 100%": [
+    "Fully settled",
+    "Entièrement réglé"
+  ],
+  "تمت المعالجة": [
+    "Processed",
+    "Traité"
+  ],
+  "حجز طيران": [
+    "Flight booking",
+    "Réservation de vol"
+  ],
+  "حفظ التعديلات": [
+    "Save changes",
+    "Enregistrer les modifications"
+  ],
+  "قيد الانتظار ⏳": [
+    "Pending",
+    "En attente"
+  ],
+  "مخفي (Hidden)": [
+    "Hidden",
+    "Masqué"
+  ],
+  "معاملة قنصلية": [
+    "Consular service",
+    "Dossier consulaire"
+  ],
+  "مفعل (Active)": [
+    "Active",
+    "Actif"
+  ],
+  "🔔 مستحق الآن!": [
+    "Due now",
+    "À traiter maintenant"
+  ],
+  "استلام المستندات وتجهيز الملف": [
+    "Collect documents & prepare file",
+    "Réception et préparation du dossier"
+  ],
+  "الملف قيد التقديم والمعالجة": [
+    "File submitted and in progress",
+    "Dossier déposé, en traitement"
+  ],
+  "مقبول / مرفوض / نقص أوراق": [
+    "Accepted / rejected / documents needed",
+    "Accepté / refusé / documents manquants"
+  ],
+  "4. انتهاء الخدمة (معلقة بالسداد)": [
+    "4. Completed / awaiting payment",
+    "4. Terminé / paiement en attente"
+  ],
+  "الخدمة انتهت ومتبقي عليها دين": [
+    "Service completed, balance outstanding",
+    "Service terminé, solde à régler"
+  ],
+  "أنواع المواعيد والتأشيرات": [
+    "Appointment & visa types",
+    "Types de rendez-vous et de visa"
+  ],
+  "شركات الطيران": [
+    "Airlines",
+    "Compagnies aériennes"
+  ],
+  "طرق الدفع والتسديد": [
+    "Payment methods",
+    "Modes de paiement"
+  ],
+  "توهج ذهبي 🌟": [
+    "Gold highlight",
+    "Surbrillance dorée"
+  ],
+  "تنبيه أحمر 🚨": [
+    "Red alert",
+    "Alerte rouge"
+  ],
+  "نجمة مميزة ⭐": [
+    "Starred",
+    "Favori"
+  ],
+  "تثبيت بالدبوس 📌": [
+    "Pinned",
+    "Épinglé"
+  ],
+  "مدير عام جذري (Super Admin)": [
+    "Root administrator",
+    "Administrateur principal"
+  ],
+  "دولار أمريكي": [
+    "US dollar",
+    "Dollar américain"
+  ],
+  "ليرة تركية": [
+    "Turkish lira",
+    "Livre turque"
+  ],
+  "درهم مغربي": [
+    "Moroccan dirham",
+    "Dirham marocain"
+  ],
+  "يورو": [
+    "Euro",
+    "Euro"
+  ],
+  "تأشيرة سياحية": [
+    "Tourist visa",
+    "Visa touristique"
+  ],
+  "تأشيرة دراسة": [
+    "Student visa",
+    "Visa étudiant"
+  ],
+  "لم شمل": [
+    "Family reunification",
+    "Regroupement familial"
+  ],
+  "تجديد جواز سفر": [
+    "Passport renewal",
+    "Renouvellement du passeport"
+  ],
+  "تصديق أوراق": [
+    "Document certification",
+    "Légalisation de documents"
+  ],
+  "حجز موعد عاجل": [
+    "Urgent appointment",
+    "Rendez-vous urgent"
+  ],
+  "أخرى": [
+    "Other",
+    "Autre"
+  ],
+  "فوري": [
+    "Immediate",
+    "Immédiat"
+  ],
+  "cash": [
+    "Cash",
+    "Espèces",
+    "نقدًا"
+  ],
+  "bank_transfer": [
+    "Bank transfer",
+    "Virement bancaire",
+    "تحويل بنكي"
+  ],
+  "credit_card": [
+    "Bank card",
+    "Carte bancaire",
+    "بطاقة بنكية"
+  ],
+  "debt": [
+    "Deferred payment",
+    "Paiement différé",
+    "دفع آجل"
+  ],
+  "يناير (01)": [
+    "January (01)",
+    "Janvier (01)"
+  ],
+  "فبراير (02)": [
+    "February (02)",
+    "Février (02)"
+  ],
+  "مارس (03)": [
+    "March (03)",
+    "Mars (03)"
+  ],
+  "أبريل (04)": [
+    "April (04)",
+    "Avril (04)"
+  ],
+  "مايو (05)": [
+    "May (05)",
+    "Mai (05)"
+  ],
+  "يونيو (06)": [
+    "June (06)",
+    "Juin (06)"
+  ],
+  "يوليو (07)": [
+    "July (07)",
+    "Juillet (07)"
+  ],
+  "أغسطس (08)": [
+    "August (08)",
+    "Août (08)"
+  ],
+  "سبتمبر (09)": [
+    "September (09)",
+    "Septembre (09)"
+  ],
+  "أكتوبر (10)": [
+    "October (10)",
+    "Octobre (10)"
+  ],
+  "نوفمبر (11)": [
+    "November (11)",
+    "Novembre (11)"
+  ],
+  "ديسمبر (12)": [
+    "December (12)",
+    "Décembre (12)"
+  ],
+  "أدوات المعاينة التجريبية": [
+    "Preview sample tools",
+    "Outils de prévisualisation"
+  ],
+  "آجل / دين مؤجل": [
+    "Deferred payment",
+    "Paiement différé"
+  ],
+  "تحويل بنكي / Virement": [
+    "Bank transfer",
+    "Virement bancaire"
+  ],
+  "بطاقة بنكية / TPE": [
+    "Bank card",
+    "Carte bancaire"
+  ],
+  "اسم المستخدم غير مسجل في قاعدة بيانات النظام الإدارية": [
+    "This username is not registered.",
+    "Cet identifiant n’est pas enregistré."
+  ],
+  "كلمة المرور غير صحيحة، يرجى المحاولة مرة أخرى أو استخدام خيار \"نسيت كلمة المرور؟\"": [
+    "Incorrect password. Try again or use “Forgot password?”.",
+    "Mot de passe incorrect. Réessayez ou utilisez « Mot de passe oublié ? »."
+  ],
+  "تم إيقاف هذا الحساب مؤقتاً من قِبل الإدارة، يرجى مراجعة المسؤول العام": [
+    "This account is disabled. Contact your administrator.",
+    "Ce compte est désactivé. Contactez votre administrateur."
+  ],
+  "لا توجد جلسة نشطة": [
+    "No active session.",
+    "Aucune session active."
+  ],
+  "كلمة المرور غير صحيحة": [
+    "Incorrect password.",
+    "Mot de passe incorrect."
+  ],
+  "يجب تحديد اسم المستخدم": [
+    "Enter a username.",
+    "Saisissez un identifiant."
+  ],
+  "يجب أن لا تقل كلمة المرور عن 4 أحرف أو أرقام": [
+    "Password must contain at least 4 characters.",
+    "Le mot de passe doit contenir au moins 4 caractères."
+  ],
+  "اسم المستخدم هذا موجود مسبقاً، اختر اسماً آخر": [
+    "Username already exists. Choose another.",
+    "Cet identifiant existe déjà. Choisissez-en un autre."
+  ],
+  "اسم المستخدم مأخوذ من قبل حساب آخر": [
+    "Username is already in use.",
+    "Cet identifiant est déjà utilisé."
+  ],
+  "تم تحديث دور وصلاحيات المستخدم بنجاح": [
+    "User role and permissions updated.",
+    "Rôle et droits mis à jour."
+  ],
+  "تم تغيير كلمة المرور بنجاح!": [
+    "Password updated.",
+    "Mot de passe modifié."
+  ],
+  "المستخدم غير موجود": [
+    "User not found.",
+    "Utilisateur introuvable."
+  ],
+  "غير مسجل": [
+    "Not signed in.",
+    "Non connecté."
+  ],
+  "لا يمكن حذف حساب الإدارة الرئيسي (Root User) نهائياً": [
+    "The root account cannot be deleted.",
+    "Le compte principal ne peut pas être supprimé."
+  ],
+  "لا يمكنك حذف حسابك أثناء تسجيل الدخول منه": [
+    "You cannot delete your current account.",
+    "Vous ne pouvez pas supprimer le compte connecté."
+  ],
+  "كلمة المرور الحالية غير صحيحة": [
+    "Current password is incorrect.",
+    "Le mot de passe actuel est incorrect."
+  ],
+  "كلمة المرور الجديدة يجب أن تكون 4 خانات على الأقل": [
+    "New password must contain at least 4 characters.",
+    "Le nouveau mot de passe doit contenir au moins 4 caractères."
+  ],
+  "يرجى إدخال اسم المستخدم الخاص بك": [
+    "Enter your username.",
+    "Saisissez votre identifiant."
+  ],
+  "الطلب غير موجود": [
+    "Request not found.",
+    "Demande introuvable."
+  ],
+  "تمت معالجة وإغلاق طلب استعادة كلمة المرور بنجاح!": [
+    "Password recovery request completed.",
+    "Demande de récupération clôturée."
+  ],
+  "يرجى تحديد اسم العميل لإصدار الفاتورة.": [
+    "Enter the customer name to create an invoice.",
+    "Saisissez le nom du client pour créer une facture."
+  ],
+  "يرجى إضافة بند خدمة واحد على الأقل في الفاتورة.": [
+    "Add at least one invoice line.",
+    "Ajoutez au moins une ligne à la facture."
+  ],
+  "يرجى إدخال وصف لبند واحد على الأقل في الفاتورة.": [
+    "Describe at least one invoice item.",
+    "Décrivez au moins une ligne de facture."
+  ],
+  "لا يمكن تعديل البنود الأساسية لفاتورة معتمدة وصادرة رسمياً. استخدم الإشعار الدائن أو الإلغاء (Void).": [
+    "Issued invoices cannot be edited. Use a credit note or void the invoice.",
+    "Une facture émise ne peut pas être modifiée. Utilisez un avoir ou annulez-la."
+  ],
+  "الفاتورة غير موجودة.": [
+    "Invoice not found.",
+    "Facture introuvable."
+  ],
+  "هذه الفاتورة صادرة مسبقاً.": [
+    "This invoice has already been issued.",
+    "Cette facture a déjà été émise."
+  ],
+  "لا يمكن تسجيل دفعة على فاتورة ملغاة (Void).": [
+    "Cannot add a payment to a void invoice.",
+    "Impossible d’ajouter un paiement à une facture annulée."
+  ],
+  "يرجى إدخال مبلغ دفعة صحيح أكبر من الصفر.": [
+    "Enter a valid payment greater than zero.",
+    "Saisissez un paiement valide supérieur à zéro."
+  ],
+  "تم تسجيل الدفعة وتحديث الرصيد المتبقي بنجاح!": [
+    "Payment recorded and balance updated.",
+    "Paiement enregistré et solde mis à jour."
+  ],
+  "الإشعار الدائن متاح فقط للفواتير الصادرة.": [
+    "Credit notes are available for issued invoices only.",
+    "Les avoirs sont réservés aux factures émises."
+  ],
+  "يرجى تحديد سبب وقيمة الإشعار الدائن.": [
+    "Enter a reason and amount for the credit note.",
+    "Saisissez le motif et le montant de l’avoir."
+  ],
+  "الفاتورة ملغاة مسبقاً.": [
+    "Invoice is already void.",
+    "La facture est déjà annulée."
+  ],
+  "يرجى كتابة سبب إلغاء الفاتورة في سجل التدقيق.": [
+    "Enter the invoice cancellation reason.",
+    "Saisissez le motif d’annulation."
+  ],
+  "يرجى تحديد معاملة واحدة على الأقل لإعداد الفاتورة.": [
+    "Select at least one transaction to invoice.",
+    "Sélectionnez au moins un dossier à facturer."
+  ],
+  "لم يتم العثور على المعاملات المحددة.": [
+    "Selected transactions were not found.",
+    "Les dossiers sélectionnés sont introuvables."
+  ],
+  "لا يمكن جمع معاملات لعملاء مختلفين في فاتورة واحدة. يرجى اختيار معاملات تخص عميلاً واحداً فقط.": [
+    "Select transactions for a single customer.",
+    "Sélectionnez les dossiers d’un seul client."
+  ],
+  "يرجى تحديد وقت وتاريخ التذكير": [
+    "Choose the reminder date and time.",
+    "Choisissez la date et l’heure du rappel."
+  ],
+  "شهادة أهلية الزواج": [
+    "Marriage eligibility certificate",
+    "Certificat de capacité à mariage"
+  ],
+  "مواعيد الوكالة": [
+    "Power of attorney appointment",
+    "Rendez-vous de procuration"
+  ],
+  "تسجيل المواليد": [
+    "Birth registration",
+    "Déclaration de naissance"
+  ],
+  "الترجمة المحلفة": [
+    "Sworn translation",
+    "Traduction assermentée"
+  ],
+  "تجديد الإقامات": [
+    "Residence renewal",
+    "Renouvellement de séjour"
+  ],
+  "حجوزات فنادق": [
+    "Hotel bookings",
+    "Réservations d’hôtels"
+  ],
+  "توصيل إلى المطار": [
+    "Airport transfer",
+    "Transfert aéroport"
+  ],
+  "تصديق الوثائق": [
+    "Document certification",
+    "Légalisation de documents"
+  ],
+  "الخطوط الملكية المغربية (RAM)": [
+    "Royal Air Maroc (RAM)",
+    "Royal Air Maroc (RAM)"
+  ],
+  "الخطوط التركية (Turkish Airlines)": [
+    "Turkish Airlines",
+    "Turkish Airlines"
+  ],
+  "طيران بيغاسوس (Pegasus)": [
+    "Pegasus Airlines",
+    "Pegasus Airlines"
+  ],
+  "أجيت للطيران (AJet)": [
+    "AJet",
+    "AJet"
+  ],
+  "العربية للطيران (Air Arabia)": [
+    "Air Arabia",
+    "Air Arabia"
+  ],
+  "الخطوط الجوية القطرية (Qatar Airways)": [
+    "Qatar Airways",
+    "Qatar Airways"
+  ],
+  "طيران الإمارات (Emirates)": [
+    "Emirates",
+    "Emirates"
+  ],
+  "الخطوط السعودية (Saudia)": [
+    "Saudia",
+    "Saudia"
+  ],
+  "الخطوط الجوية الفرنسية (Air France)": [
+    "Air France",
+    "Air France"
+  ],
+  "فلاي دبي (flydubai)": [
+    "flydubai",
+    "flydubai"
+  ],
+  "رشيد الفزني (الرسمية)": [
+    "Rachid Elfazni · portrait",
+    "Rachid Elfazni · portrait"
+  ],
+  "شعار ELFAZNI العمودي": [
+    "ELFAZNI vertical logo",
+    "Logo vertical ELFAZNI"
+  ],
+  "شعار ELFAZNI الأفقي": [
+    "ELFAZNI horizontal logo",
+    "Logo horizontal ELFAZNI"
+  ],
+  "أيقونة الطيران": [
+    "Flight illustration",
+    "Illustration de vol"
+  ],
+  "خدمات الفزني": [
+    "ELFAZNI services",
+    "Services ELFAZNI"
+  ],
+  "غلاف المؤسسة": [
+    "Company cover",
+    "Visuel de l’entreprise"
+  ],
+  "تمت استعادة البيانات بنجاح تام!": [
+    "Data restored successfully.",
+    "Données restaurées avec succès."
+  ],
+  "فشل استيراد الملف. يرجى التأكد من اختيار ملف JSON صحيح تم تصديره من هذا النظام.": [
+    "Import failed. Choose a valid backup exported from this workspace.",
+    "L’import a échoué. Choisissez une sauvegarde valide exportée depuis cet espace."
+  ],
+  "إضافة سريعة": [
+    "Quick add",
+    "Ajout rapide"
+  ],
+  "Language": [
+    "Language",
+    "Langue",
+    "اللغة"
+  ],
+  "Travel · Consular · Administrative Services": [
+    "Travel · Consular · Administrative Services",
+    "Voyages · Services consulaires · Administration",
+    "سفر · خدمات قنصلية · متابعة إدارية"
+  ],
+  "ELFAZNI SERVICES · Business workspace": [
+    "ELFAZNI SERVICES · Business workspace",
+    "ELFAZNI SERVICES · Espace de travail",
+    "الفزني للخدمات · مساحة العمل"
+  ],
+  "ELFAZNI SERVICES Multi-User CRM": [
+    "ELFAZNI SERVICES · Team accounts",
+    "ELFAZNI SERVICES · Comptes de l’équipe",
+    "الفزني للخدمات · حسابات فريق العمل"
+  ],
+  "images available": [
+    "images available",
+    "images disponibles",
+    "صورة متاحة"
+  ],
+  "ID:": [
+    "ID:",
+    "Identifiant :",
+    "المعرّف:"
+  ],
+  "• ID:": [
+    "· ID:",
+    "· Identifiant :",
+    "· المعرّف:"
+  ],
+  "• Page": [
+    "· Page",
+    "· Page",
+    "· الصفحة"
+  ],
+  "Due:": [
+    "Due:",
+    "Solde dû :",
+    "المستحق:"
+  ],
+  "Total:": [
+    "Total:",
+    "Total :",
+    "الإجمالي:"
+  ],
+  "OPENING": [
+    "Opening",
+    "Ouverture",
+    "افتتاحي"
+  ],
+  "Page 1 of": [
+    "Page 1 of",
+    "Page 1 sur",
+    "صفحة 1 من"
+  ],
+  "[DEMO]": [
+    "[SAMPLE]",
+    "[SPÉCIMEN]",
+    "[نموذج]"
+  ],
+  "نظام إدارة العملاء والمعاملات.": [
+    "Customer and transaction management system.",
+    "Système de gestion des clients et des transactions."
+  ]
+}

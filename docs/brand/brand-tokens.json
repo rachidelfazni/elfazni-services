@@ -1,0 +1,77 @@
+{
+  "brand": {
+    "name": "ELFAZNI SERVICES",
+    "visualSystem": "White + Cobalt Blue + Warm Gold + Blue 3D Forms",
+    "whatsapp": "+905522677851"
+  },
+  "logo": {
+    "primary": "assets/logo/ELFAZNI-Logo-Cobalt.svg",
+    "source": "assets/logo/ELFAZNI-Original-Logo.svg",
+    "showcase": "logo-showcase.html",
+    "assetColors": {
+      "blue": "#004AA5",
+      "gold": "#CC9048",
+      "white": "#FFFFFF",
+      "blueBackground": "#01336F"
+    },
+    "variants": {
+      "white": {
+        "horizontal": "assets/logo-variants/elfazni-horizontal-on-white.svg",
+        "vertical": "assets/logo-variants/elfazni-vertical-on-white.svg"
+      },
+      "blue": {
+        "horizontal": "assets/logo-variants/elfazni-horizontal-on-blue.svg",
+        "vertical": "assets/logo-variants/elfazni-vertical-on-blue.svg"
+      },
+      "gold": {
+        "horizontal": "assets/logo-variants/elfazni-horizontal-on-gold.svg",
+        "vertical": "assets/logo-variants/elfazni-vertical-on-gold.svg"
+      }
+    },
+    "variantQuality": "JPEG-derived approximate vectors; use the original master for sensitive print production"
+  },
+  "color": {
+    "white": "#FFFFFF",
+    "primaryBlue": "#004AA5",
+    "officialGold": "#CC9048",
+    "supportingBlue": "#2A83D5",
+    "navySupport": "#10345B",
+    "deepInkBlue": "#0B2E57",
+    "goldTextOnWhite": "#81521C",
+    "softBlue": "#EAF4FF",
+    "lineBlue": "#DCE6F2",
+    "offWhite": "#F7F9FC"
+  },
+  "proportion": {
+    "white": 70,
+    "cobaltBlue": 25,
+    "warmGold": 5
+  },
+  "typography": {
+    "family": "Bahij TheSansArabic",
+    "fallback": "Tahoma, Arial, sans-serif",
+    "weights": {
+      "light": 300,
+      "plain": 400,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800,
+      "black": 900
+    }
+  },
+  "radius": {
+    "button": "14px",
+    "card": "22px",
+    "pill": "999px"
+  },
+  "layout": {
+    "contentMax": "1280px",
+    "touchTargetMin": "44px",
+    "baseSpacing": "4px"
+  },
+  "motion": {
+    "fast": "180ms",
+    "normal": "240ms",
+    "ease": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+  }
+}

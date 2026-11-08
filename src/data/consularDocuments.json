@@ -1,0 +1,393 @@
+[
+  {
+    "id": "marriage",
+    "ar": "شهادة أهلية الزواج",
+    "tr": "Evlenme ehliyet belgesi",
+    "arRows": [
+      [
+        "",
+        "أولاً: الوثائق المطلوبة من الطرف المغربي"
+      ],
+      [
+        "نسخة كاملة من رسم الولادة",
+        "حديثة وتحمل ختم الأبوستيل (Apostille) من المغرب."
+      ],
+      [
+        "شهادة الخطوبة",
+        "تحمل ختم الأبوستيل من المغرب."
+      ],
+      [
+        "شهادة السجل العدلي",
+        "حديثة وتحمل ختم الأبوستيل من المغرب."
+      ],
+      [
+        "صورة جواز السفر",
+        "نسخة واضحة من صفحة المعلومات الشخصية."
+      ],
+      [
+        "صورة بطاقة التعريف الوطنية",
+        "نسخة من البطاقة الوطنية المغربية سارية المفعول."
+      ],
+      [
+        "إثبات التواجد القانوني في تركيا",
+        "صورة بطاقة الإقامة، وفي حال عدم وجود إقامة يتم تقديم صورة جواز السفر مع صورة ختم الدخول إلى تركيا."
+      ],
+      [
+        "في حالة الطلاق",
+        "شهادة حكم المحكمة النهائي بالطلاق."
+      ],
+      [
+        "في حالة الترمل (للأرملة)",
+        "شهادة وفاة الزوج السابق، بالإضافة إلى نسخة كاملة من رسم الولادة تتضمن بيان وفاة الزوج."
+      ],
+      [
+        "",
+        "ثانياً: الوثائق المطلوبة من الطرف التركي"
+      ],
+      [
+        "إثبات السكن (Yerleşim Yeri / İkametgah)",
+        "مستخرج رسمي مصدق بختم الأبوستيل."
+      ],
+      [
+        "شهادة السجل العدلي (Adli Sicil Kaydı)",
+        "مصدقة بختم الأبوستيل."
+      ],
+      [
+        "إثبات العمل أو الدخل",
+        "أوراق العمل الرسمية، وفي حال عدم وجود وظيفة رسمية يتم تقديم كشف حساب بنكي."
+      ]
+    ],
+    "trRows": [
+      [
+        "",
+        "A. Fas Vatandaşı Tarafından Hazırlanacak Evraklar"
+      ],
+      [
+        "Tam Tekmil Doğum Kayıt Örneği (النسخة الكاملة)",
+        "Fas'tan Apostil onaylı olmalıdır."
+      ],
+      [
+        "Nişanlılık / Bekarlık Belgesi (شهادة الخطوبة)",
+        "Fas'tan Apostil onaylı olmalıdır."
+      ],
+      [
+        "Adli Sicil Kaydı (السجل العدلي)",
+        "Fas'tan Apostil onaylı olmalıdır."
+      ],
+      [
+        "Pasaport Fotokopisi",
+        "Kişisel bilgilerin yer aldığı sayfanın fotokopisi."
+      ],
+      [
+        "Ulusal Kimlik Kartı Fotokopisi",
+        "Geçerli Fas kimlik kartının fotokopisi."
+      ],
+      [
+        "İkamet İzni Fotokopisi",
+        "İkamet izni bulunmaması durumunda pasaport fotokopisi ve Türkiye'ye son giriş mührünün fotokopisi."
+      ],
+      [
+        "Boşanmış İse",
+        "Kesinleşmiş mahkeme boşanma kararı belgesi."
+      ],
+      [
+        "Dul (Eşi Vefat Etmiş) İse",
+        "Eski eşin ölüm belgesi ve vefat bilgisinin işlenmiş olduğu Tam Tekmil Doğum Kayıt Örneği."
+      ],
+      [
+        "",
+        "B. Türk Vatandaşı Tarafından Hazırlanacak Evraklar"
+      ],
+      [
+        "Yerleşim Yeri (İkametgah) Belgesi",
+        "Kaymakamlık veya Valilikten Apostil onaylı olmalıdır."
+      ],
+      [
+        "Adli Sicil (Sabıka) Kaydı",
+        "Kaymakamlık, Valilik veya Adliyeden Apostil onaylı olmalıdır."
+      ],
+      [
+        "Çalışma ve Gelir Belgeleri",
+        "Resmi iş yeri/çalışma evrakları; resmi bir çalışması bulunmaması durumunda güncel banka hesap dökümü."
+      ]
+    ]
+  },
+  {
+    "id": "passport",
+    "ar": "تجديد جواز السفر المغربي",
+    "tr": "Fas pasaportu yenileme",
+    "arRows": [
+      [
+        "جواز السفر",
+        "أصل جواز السفر المراد تجديده ونسخة واضحة من صفحة البيانات."
+      ],
+      [
+        "بطاقة التعريف الوطنية",
+        "نسخة من البطاقة الوطنية للتعريف الإلكترونية سارية الصلاحية."
+      ],
+      [
+        "بطاقة الإقامة",
+        "نسخة من بطاقة الإقامة التركية."
+      ],
+      [
+        "إثبات السكن",
+        "شهادة السكن، أو فاتورة كهرباء أو ماء أو غاز باسمك، أو عقد إيجار عند عدم توفر فاتورة."
+      ]
+    ],
+    "trRows": [
+      [
+        "Pasaport",
+        "Yenilenecek pasaportun aslı ve kişisel bilgilerin bulunduğu sayfanın okunaklı fotokopisi."
+      ],
+      [
+        "Ulusal kimlik kartı",
+        "Geçerli Fas elektronik ulusal kimlik kartının fotokopisi."
+      ],
+      [
+        "İkamet izni",
+        "Türkiye ikamet izni kartının fotokopisi."
+      ],
+      [
+        "Adres kanıtı",
+        "Yerleşim yeri belgesi, adınıza kayıtlı elektrik, su veya doğal gaz faturası ya da fatura yoksa kira sözleşmesi."
+      ]
+    ]
+  },
+  {
+    "id": "identity",
+    "ar": "تجديد بطاقة التعريف الوطنية",
+    "tr": "Fas ulusal kimlik kartı yenileme",
+    "arRows": [
+      [
+        "جواز السفر",
+        "أصل جواز السفر المراد تجديده ونسخة واضحة من صفحة البيانات."
+      ],
+      [
+        "بطاقة التعريف الوطنية",
+        "نسخة من البطاقة الوطنية للتعريف الإلكترونية سارية الصلاحية."
+      ],
+      [
+        "بطاقة الإقامة",
+        "نسخة من بطاقة الإقامة التركية."
+      ],
+      [
+        "إثبات السكن",
+        "شهادة السكن، أو فاتورة كهرباء أو ماء أو غاز باسمك، أو عقد إيجار عند عدم توفر فاتورة."
+      ]
+    ],
+    "trRows": [
+      [
+        "Pasaport",
+        "Yenilenecek pasaportun aslı ve kişisel bilgilerin bulunduğu sayfanın okunaklı fotokopisi."
+      ],
+      [
+        "Ulusal kimlik kartı",
+        "Geçerli Fas elektronik ulusal kimlik kartının fotokopisi."
+      ],
+      [
+        "İkamet izni",
+        "Türkiye ikamet izni kartının fotokopisi."
+      ],
+      [
+        "Adres kanıtı",
+        "Yerleşim yeri belgesi, adınıza kayıtlı elektrik, su veya doğal gaz faturası ya da fatura yoksa kira sözleşmesi."
+      ]
+    ]
+  },
+  {
+    "id": "legalisation",
+    "ar": "تصديق الوثائق",
+    "tr": "Belge tasdiki",
+    "arRows": [
+      [
+        "التسجيل القنصلي",
+        "شرط أساسي قبل التصديق، وفي حال عدم وجود تسجيل مسبق يجب إحضار الوثائق التالية للتسجيل:"
+      ],
+      [
+        "صورة جواز السفر",
+        "نسخة واضحة من جواز السفر المغربي."
+      ],
+      [
+        "صورة بطاقة التعريف الوطنية",
+        "نسخة من البطاقة الوطنية المغربية."
+      ],
+      [
+        "صورة الإقامة",
+        "نسخة من بطاقة الإقامة التركية."
+      ],
+      [
+        "إثبات السكن",
+        "شهادة السكن (Yerleşim Yeri Belgesi)، أو فاتورة باسم المعني بالأمر، أو عقد كراء (إيجار)."
+      ],
+      [
+        "الوثيقة المراد تصديقها",
+        "إحضار الوثيقة الأصلية المطلوب المصادقة عليها."
+      ]
+    ],
+    "trRows": [
+      [
+        "Konsolosluk Kaydı",
+        "Tasdik işlemi için konsolosluk kaydı şarttır. Kaydı bulunmayanların öncelikle aşağıdaki evraklarla kayıt yaptırması gerekmektedir:"
+      ],
+      [
+        "Pasaport Fotokopisi",
+        "Fas pasaportunun fotokopisi."
+      ],
+      [
+        "Ulusal Kimlik Kartı Fotokopisi",
+        "Fas kimlik kartının fotokopisi."
+      ],
+      [
+        "İkamet İzni Fotokopisi",
+        "Türkiye ikamet izni kartının fotokopisi."
+      ],
+      [
+        "Adres Kanıtı",
+        "Yerleşim Yeri (İkametgah) Belgesi, başvuru sahibinin adına kayıtlı bir fatura veya kira sözleşmesi."
+      ],
+      [
+        "Tasdik Edilecek Belge",
+        "Onaylanacak olan evrakın aslı."
+      ]
+    ]
+  },
+  {
+    "id": "power-of-attorney",
+    "ar": "إنجاز أو تصديق وكالة",
+    "tr": "Vekaletname düzenleme veya tasdiki",
+    "arRows": [
+      [
+        "التسجيل القنصلي",
+        "شرط أساسي، وفي حال عدم وجود تسجيل مسبق يجب إحضار الوثائق التالية للتسجيل:"
+      ],
+      [
+        "صورة جواز السفر",
+        "نسخة واضحة من جواز السفر المغربي."
+      ],
+      [
+        "صورة بطاقة التعريف الوطنية",
+        "نسخة من البطاقة الوطنية المغربية."
+      ],
+      [
+        "صورة الإقامة",
+        "نسخة من بطاقة الإقامة التركية."
+      ],
+      [
+        "إثبات السكن",
+        "شهادة السكن (Yerleşim Yeri Belgesi)، أو فاتورة باسم المعني بالأمر، أو عقد كراء (إيجار)."
+      ],
+      [
+        "صورة الوكالة",
+        "نسخة أو نص الوكالة المراد المصادقة عليها."
+      ]
+    ],
+    "trRows": [
+      [
+        "Konsolosluk Kaydı",
+        "İşlem yapılabilmesi için konsolosluk kaydı şarttır. Kaydı bulunmayanların öncelikle aşağıdaki evraklarla kayıt yaptırması gerekmektedir:"
+      ],
+      [
+        "Pasaport Fotokopisi",
+        "Fas pasaportunun fotokopisi."
+      ],
+      [
+        "Ulusal Kimlik Kartı Fotokopisi",
+        "Fas kimlik kartının fotokopisi."
+      ],
+      [
+        "İkamet İzni Fotokopisi",
+        "Türkiye ikamet izni kartının fotokopisi."
+      ],
+      [
+        "Adres Kanıtı",
+        "Yerleşim Yeri (İkametgah) Belgesi, başvuru sahibinin adına kayıtlı bir fatura veya kira sözleşmesi."
+      ],
+      [
+        "Vekaletname Fotokopisi / Metni",
+        "Onaylanacak olan vekaletname belgesi."
+      ]
+    ]
+  },
+  {
+    "id": "birth-certificate",
+    "ar": "استخراج شهادة الميلاد",
+    "tr": "Doğum belgesi alma",
+    "arRows": [
+      [
+        "التسجيل القنصلي",
+        "شرط أساسي لاستخراج الوثيقة، وفي حال عدم وجود تسجيل مسبق يجب إجراء التسجيل أولاً عبر تقديم الوثائق التالية:"
+      ],
+      [
+        "صورة جواز السفر",
+        "نسخة واضحة من جواز السفر المغربي."
+      ],
+      [
+        "صورة بطاقة التعريف الوطنية",
+        "نسخة من البطاقة الوطنية المغربية."
+      ],
+      [
+        "صورة الإقامة",
+        "نسخة من بطاقة الإقامة التركية."
+      ],
+      [
+        "إثبات السكن",
+        "شهادة السكن (Yerleşim Yeri Belgesi)، أو فاتورة باسم المعني بالأمر، أو عقد كراء (إيجار)."
+      ],
+      [
+        "وثيقة ميلاد سابقة",
+        "صورة قديمة من شهادة الميلاد (عقد الازدياد) أو صورة من نسخة كاملة قديمة."
+      ]
+    ],
+    "trRows": [
+      [
+        "Konsolosluk Kaydı",
+        "Belgenin çıkarılabilmesi için konsolosluk kaydı şarttır. Kaydı bulunmayanların öncelikle aşağıdaki evraklarla kayıt yaptırması gerekmektedir:"
+      ],
+      [
+        "Pasaport Fotokopisi",
+        "Fas pasaportunun fotokopisi."
+      ],
+      [
+        "Ulusal Kimlik Kartı Fotokopisi",
+        "Fas kimlik kartının fotokopisi."
+      ],
+      [
+        "İkamet İzni Fotokopisi",
+        "Türkiye ikamet izni kartının fotokopisi."
+      ],
+      [
+        "Adres Kanıtı",
+        "Yerleşim Yeri (İkametgah) Belgesi, başvuru sahibinin adına kayıtlı bir fatura veya kira sözleşmesi."
+      ],
+      [
+        "Eski Doğum Belgesi",
+        "Eski tarihli bir doğum belgesi (شهادة الميلاد) veya Tam Tekmil Doğum Kayıt Örneği (نسخة كاملة) fotokopisi."
+      ]
+    ]
+  },
+  {
+    "id": "return-document",
+    "ar": "ورقة الرجوع إلى المغرب",
+    "tr": "Fas’a dönüş belgesi",
+    "arRows": [
+      [
+        "صورة شخصية",
+        "صورة شمسية حديثة."
+      ],
+      [
+        "إثبات الجنسية المغربية",
+        "صورة عن وثيقة تثبت الجنسية المغربية، مثل صورة جواز السفر أو صورة بطاقة التعريف الوطنية."
+      ]
+    ],
+    "trRows": [
+      [
+        "Biyometrik / Vesikalık Fotoğraf",
+        "Güncel kişisel fotoğraf."
+      ],
+      [
+        "Fas Vatandaşlığını Kanıtlayan Belge",
+        "Pasaport fotokopisi veya Fas ulusal kimlik kartı fotokopisi gibi vatandaşlığı ispatlayan bir belgenin kopyası."
+      ]
+    ]
+  }
+]

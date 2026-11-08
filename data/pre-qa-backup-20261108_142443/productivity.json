@@ -1,0 +1,282 @@
+{
+  "version": 2,
+  "users": {
+    "elfazni.admin": {
+      "notes": [
+        {
+          "id": "note_1794089683503_rkcr",
+          "userId": "elfazni.admin",
+          "title": "ملاحظة تجريبية لاجتماع القنصلية",
+          "icon": "🏛️",
+          "coverColor": "#0B2E57",
+          "body": "💡\nتنبيه هام: اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n\n\n\n\n💡\nتنبيه هام: اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n\n\n\n\nJAVASCRIPT\nنسخ الكود\n// اكتب الكود هنا...\n\n\n\n\nملاحظة تجريبية لاجتماع القنصلية\nJAVASCRIPT\nنسخ الكود\n// اكتب الكود هنا...\n\n\n\n\nJAVASCRIPT\nنسخ الكود\n// اكتب الكود هنا...\n\n\n\n\nخلايا 1,1\tخلايا 1,2\tخلايا 1,3\nخلايا 2,1\tخلايا 2,2\tخلايا 2,3\nخلايا 3,1\t\nخلايا 1,1\tخلايا 1,2\tخلايا 1,3\nخلايا 2,1\tخلايا 2,2\tخلايا 2,3\nخلايا 3,1\tخلايا 3,2\tخلايا 3,3\n\n\n\n\nخلايا 1,1\tخلايا 1,2\tخلايا 1,3\nخلايا 2,1\tخلايا 2,2\tخلايا 2,3\nخلايا 3,1\tخلايا 3,2\tخلايا 3,3\n\n\n\n\n\n\t\n\n\n\n\nتم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.\n\nحجز الطيران مؤكد\nالتأمين ساري",
+          "contentHtml": "<h1>\n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091220121\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+          "tags": [
+            "قنصلية",
+            "تأشيرات"
+          ],
+          "pinned": true,
+          "favorite": true,
+          "archived": false,
+          "linkedTaskIds": [
+            "task_1794089683506_bvwj"
+          ],
+          "revisions": [
+            {
+              "id": "21f19016-96b5-4c9f-8b3f-477c38822e96",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>\n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:40:19.351Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "2e4d77df-1e43-4f51-b655-0ccea5423d57",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>\n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#CC9048] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:40:17.666Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "121393bd-50e0-40aa-a814-76aba31f42ae",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:40:16.456Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "92d847e5-d451-47f9-8970-e7c3770c5bcd",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:48.372Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "e0f6c592-7380-4079-aeef-94293bd21307",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:46.002Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "a886dbd9-cd84-4044-9524-5f75781244c0",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:39.248Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "94bbf591-d781-4ce0-bb08-7047d42f6d92",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    </h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:36.469Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "73fc89a0-8d33-43f3-95c9-132372dbc28e",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    </h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:34.800Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "81330150-875f-4bf4-be07-d3bd3ad61814",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:28.525Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "ae38e3d8-f375-4e1d-a4da-1612fef8dac7",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1><b>ملاحظة تجريبية لاجتماع القنصلية</b></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:27.188Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "274febc6-78f8-46ad-ab90-d2ccbcf25349",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:11.555Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "91e1f595-c82d-4524-ba90-4684f74b6e50",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل <b>على تجهي</b>ز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:10.698Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "950614fd-f8dd-47d4-93dd-5e041b34ef3d",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:07.703Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "2e4657e7-fbe8-4870-9b06-33330b00dfa4",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل <i>على تجهي</i>ز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:39:07.085Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "f75d62d4-5ee8-45fc-a185-5e5b779ce5cd",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-07T22:14:43.508Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            }
+          ],
+          "createdAt": "2026-11-07T22:14:43.503Z",
+          "updatedAt": "2026-11-07T22:40:20.731Z"
+        },
+        {
+          "id": "n_1794089455038_h1h6",
+          "userId": "elfazni.admin",
+          "title": "ملاحظة جديدة",
+          "icon": "📝",
+          "coverColor": "#0B2E57",
+          "body": "ابدأ بكتابة أفكارك، أو اكتب / لإدراج العناوين والجداول والمهام...\n\nزنيسنتkkjhadskjsdkj",
+          "contentHtml": "<p>ابدأ بكتابة أفكارك، أو اكتب <strong>/</strong> لإدراج العناوين والجداول والمهام...<br><div style=\"text-align: left;\">زنيسنتkkjhadskjsdkj</div></p>",
+          "tags": [
+            "عام"
+          ],
+          "pinned": false,
+          "favorite": false,
+          "archived": false,
+          "linkedTaskIds": [],
+          "revisions": [
+            {
+              "id": "54432b62-665c-43c1-80d5-3a7195dfb0d8",
+              "title": "ملاحظة جديدة",
+              "contentHtml": "<p>ابدأ بكتابة أفكارك، أو اكتب <strong>/</strong> لإدراج العناوين والجداول والمهام...<br>زنيسنتkkjhadskjsdkj</p>",
+              "updatedAt": "2026-11-07T22:42:01.006Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "c9440f74-f953-4ee0-b96d-a6761012d009",
+              "title": "ملاحظة جديدة",
+              "contentHtml": "<p>ابدأ بكتابة أفكارك، أو اكتب <strong>/</strong> لإدراج العناوين والجداول والمهام...<br>زنيسنت</p>",
+              "updatedAt": "2026-11-07T22:41:58.698Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "b34c1913-9348-4863-b783-813eacdf9836",
+              "title": "ملاحظة جديدة",
+              "contentHtml": "<p>ابدأ بكتابة أفكارك، أو اكتب <strong>/</strong> لإدراج العناوين والجداول والمهام...<br><br></p>",
+              "updatedAt": "2026-11-07T22:41:54.285Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "1b1d77f7-1d60-46de-85a1-0aa014a7808b",
+              "title": "ملاحظة جديدة",
+              "contentHtml": "<p>ابدأ بكتابة أفكارك، أو اكتب <strong>/</strong> لإدراج العناوين والجداول والمهام...</p>",
+              "updatedAt": "2026-11-07T22:10:55.044Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            }
+          ],
+          "createdAt": "2026-11-07T22:10:55.044Z",
+          "updatedAt": "2026-11-07T22:42:05.548Z"
+        }
+      ],
+      "tasks": [
+        {
+          "id": "task_1794089683506_bvwj",
+          "userId": "elfazni.admin",
+          "title": "تأكيد حجز الفندق للعميل يوسف",
+          "descriptionHtml": "",
+          "description": "التواصل مع الفندق وإصدار قسيمة الحجز الرسمية",
+          "status": "in_progress",
+          "priority": "urgent",
+          "dueDate": "2026-11-15",
+          "assignee": "رشيد الفزني (المدير)",
+          "tags": [
+            "حجوزات",
+            "عاجل"
+          ],
+          "color": "#6B5BD2",
+          "subtasks": [
+            {
+              "id": "sub_1",
+              "title": "مراجعة التواريخ والأسماء",
+              "done": true
+            },
+            {
+              "id": "sub_2",
+              "title": "إرسال التأكيد للعميل",
+              "done": false
+            }
+          ],
+          "attachments": [],
+          "linkedNoteId": "note_1794089683503_rkcr",
+          "linkedNoteTitle": "ملاحظة تجريبية لاجتماع القنصلية",
+          "reminderDismissed": false,
+          "recurrence": "none",
+          "comments": [],
+          "activities": [
+            {
+              "id": "0063d92c-8ec9-4c43-aa3d-a341bc9fcd32",
+              "action": "إنشاء المهمة",
+              "actor": "المستخدم",
+              "createdAt": "2026-11-07T22:14:43.506Z"
+            }
+          ],
+          "createdAt": "2026-11-07T22:14:43.506Z",
+          "updatedAt": "2026-11-07T22:14:43.506Z"
+        },
+        {
+          "id": "task_1794089468952_iwx6",
+          "userId": "elfazni.admin",
+          "title": "KJHK",
+          "descriptionHtml": "",
+          "description": "",
+          "status": "todo",
+          "priority": "medium",
+          "assignee": "رشيد الفزني (المدير)",
+          "tags": [
+            "عام"
+          ],
+          "color": "#6B5BD2",
+          "subtasks": [],
+          "attachments": [],
+          "reminderDismissed": false,
+          "recurrence": "none",
+          "comments": [],
+          "activities": [
+            {
+              "id": "6f00c541-80bc-4ecd-9066-4f5a05a3e9db",
+              "action": "إنشاء المهمة",
+              "actor": "المستخدم",
+              "createdAt": "2026-11-07T22:11:08.952Z"
+            }
+          ],
+          "createdAt": "2026-11-07T22:11:08.952Z",
+          "updatedAt": "2026-11-07T22:11:08.952Z"
+        }
+      ],
+      "events": [
+        {
+          "id": "cal_1794089683510_8d74",
+          "userId": "elfazni.admin",
+          "title": "موعد إيداع ملف القنصلية الإسبانية",
+          "kind": "cns",
+          "date": "2026-11-20",
+          "time": "09:30",
+          "endTime": "10:30",
+          "durationMin": 60,
+          "allDay": false,
+          "description": "حضور العميل شخصياً لتقديم البصمات",
+          "location": "قنصلية إسبانيا بالدار البيضاء",
+          "color": "#CC9048",
+          "participants": [],
+          "recurrence": "none",
+          "createdAt": "2026-11-07T22:14:43.510Z",
+          "updatedAt": "2026-11-07T22:14:43.510Z"
+        }
+      ],
+      "reminders": []
+    }
+  },
+  "updatedAt": "2026-11-07T22:42:05.548Z"
+}

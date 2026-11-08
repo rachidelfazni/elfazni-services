@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { createCrmStore } from './server/crmStore';
+import { initialConsulateAppointments, initialFlightBookings, initialInvoices } from './crm/src/data/mockData';
+import { freshSnapshot } from './crm/src/services/crmClient';
+import { validSnapshot } from './crm/src/services/crmSnapshot';
+const directory = fs.mkdtempSync(path.join(os.tmpdir(),'elfazni-store-'));
+try {
+ const store = createCrmStore(directory), data = freshSnapshot(), id = randomUUID();
+ assert(validSnapshot(data), 'defaults valid');
+ assert(validSnapshot({...data, consulateAppointments:initialConsulateAppointments, flightBookings:initialFlightBookings, invoices:initialInvoices}), 'existing sample records valid');
+ assert.equal(store.read().revision,0);
+ assert.equal(store.save(data,0,id,'test').revision,1);
+ assert.equal(createCrmStore(directory).read().revision,1);
+ assert.equal(store.save(data,0,id,'test').replayed,true);
+ assert.throws(()=>store.save(data,0,randomUUID(),'test'), (e: any)=>e.status===409);
+ const next=structuredClone(data); next.documentSettings.tradingNameEn='Updated';
+ assert.throws(()=>store.save(next,0,id,'test'), (e: any)=>e.status===409);
+ store.save(next,1,randomUUID(),'test');
+ assert.equal(store.getBackup(store.backups()[0]).data?.documentSettings.tradingNameEn,data.documentSettings.tradingNameEn);
+ assert(!validSnapshot({...next, invoices:[{id:'bad'}]}));
+ fs.writeFileSync(path.join(directory,'crm-write.lock'),'test');
+ assert.throws(()=>store.save(next,2,randomUUID(),'test'), (e: any)=>e.status===503);
+ fs.unlinkSync(path.join(directory,'crm-write.lock'));
+ fs.writeFileSync(path.join(directory,'crm.json'),'{broken');
+ assert.throws(()=>store.read(),(e: any)=>e.status===503);
+ assert.throws(()=>store.save(next,2,randomUUID(),'test'),(e: any)=>e.status===503);
+ fs.unlinkSync(path.join(directory,'crm.json'));
+ assert.throws(()=>store.read(),(e: any)=>e.status===503);
+ console.log('PASS: defaults, persistence, restart, replay, conflicts, backups, malformed input, locking, corruption, missing file protection');
+} finally { fs.rmSync(directory,{recursive:true,force:true}); }

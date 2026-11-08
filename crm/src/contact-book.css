@@ -1,0 +1,1158 @@
+/* Contacts, interaction histories and standalone debt ledgers. */
+.crm-book-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 20px 0;
+}
+.crm-book-heading h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #0B2E57;
+}
+.crm-book-heading p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5E7086;
+  margin-top: 5px;
+  max-width: 750px;
+}
+.crm-book-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.crm-book-actions button {
+  font-size: 12px;
+}
+.crm-book-hint {
+  font-size: 12px;
+  color: #5E7086;
+  line-height: 1.8;
+  margin: 10px 0;
+}
+.crm-book-error {
+  padding: 14px;
+  border: 1px solid #e5b7a5;
+  border-radius: 12px;
+  background: #fff3ed;
+  color: #963c1b;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.crm-bank-share {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+.crm-bank-share > button {
+  font-size: 12px;
+}
+.crm-bank-share > span {
+  font-size: 11px;
+  color: #238f8b;
+}
+.crm-bank-share.compact {
+  display: block;
+  margin: 0;
+}
+.crm-bank-share.compact > span {
+  display: block;
+  padding-inline: 12px;
+}
+.crm-bank-fallback {
+  width: 100%;
+  font-size: 12px;
+  color: #5E7086;
+  margin-top: 12px;
+}
+.crm-bank-fallback textarea {
+  display: block;
+  width: 100%;
+  min-height: 110px;
+  max-height: 160px;
+  border: 1px solid #D7E7F7;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 13px;
+  background: #f7faff;
+  color: #0B2E57;
+}
+.crm-customer-tabs {
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+.crm-contact-layout {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  margin-top: 20px;
+}
+.crm-contact-directory {
+  background: #fff;
+  border: 1px solid #D7E7F7;
+  border-radius: 20px;
+  min-width: 0;
+  overflow: hidden;
+  padding: 16px;
+}
+.crm-contact-search {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #D7E7F7;
+  border-radius: 10px;
+  background: #f7faff;
+  padding: 0 10px;
+}
+.crm-contact-search svg {
+  color: #8294a8;
+  flex-shrink: 0;
+}
+.crm-contact-search input {
+  min-width: 0;
+  flex: 1;
+  border: 0 !important;
+  background: transparent !important;
+  outline: none;
+  padding: 12px 0;
+  font-size: 13px;
+}
+.crm-contact-directory > select {
+  width: 100%;
+  font-size: 12px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #D7E7F7;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.crm-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 14px;
+  max-height: 720px;
+  overflow: auto;
+}
+.crm-contact-list > button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 8px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  text-align: start;
+  background: #fff;
+  cursor: pointer;
+  min-width: 0;
+}
+.crm-contact-list > button:hover {
+  background: #f3f8fe;
+}
+.crm-contact-list > button.selected {
+  background: #eaf4ff;
+  border-color: #bcd3ef;
+}
+.crm-contact-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: #eaf1fa;
+  color: #004AA5;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.crm-contact-avatar.large {
+  width: 58px;
+  height: 58px;
+  font-size: 26px;
+  border-radius: 18px;
+  background: #0B2E57;
+  color: #e3bc74;
+}
+.crm-contact-list > button > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.crm-contact-list strong {
+  display: block;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.crm-contact-list small {
+  font-size: 11px;
+  color: #8294a8;
+  display: block;
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+}
+.crm-contact-status {
+  display: inline-flex;
+  font-size: 10px;
+  background: #f0f5fb;
+  padding: 3px 7px;
+  border-radius: 6px;
+  color: #5E7086;
+  white-space: nowrap;
+}
+.crm-contact-profile {
+  min-width: 0;
+  border: 1px solid #D7E7F7;
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+}
+.crm-contact-profile-header {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.crm-contact-profile-header h3 {
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.crm-contact-profile-header > .crm-book-actions {
+  margin-inline-start: auto;
+}
+.crm-contact-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 7px 0;
+}
+.crm-contact-rating small {
+  font-size: 10px;
+  color: #8294a8;
+  margin-inline-start: 5px;
+}
+.crm-contact-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 0;
+  border-bottom: 1px solid #e8eff7;
+}
+.crm-contact-links a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #5E7086;
+  overflow-wrap: anywhere;
+}
+.crm-contact-links svg {
+  color: #004AA5;
+  flex-shrink: 0;
+}
+.crm-contact-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+.crm-contact-metrics > div {
+  display: flex;
+  flex-direction: column;
+  background: #f5f9fe;
+  border: 1px solid #e4edf8;
+  border-radius: 14px;
+  padding: 15px;
+}
+.crm-contact-metrics strong {
+  font-size: 25px;
+  color: #004AA5;
+  line-height: 1.4;
+}
+.crm-contact-metrics span {
+  font-size: 11px;
+  color: #5E7086;
+  margin-top: 4px;
+  line-height: 1.8;
+}
+.crm-contact-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0 24px;
+}
+.crm-contact-notes article {
+  padding: 16px;
+  border: 1px solid #e4edf8;
+  border-radius: 14px;
+  min-width: 0;
+}
+.crm-contact-notes h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0B2E57;
+  margin-bottom: 8px;
+}
+.crm-contact-notes p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #5E7086;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.crm-contact-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0 14px;
+}
+.crm-contact-section-heading h4 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0B2E57;
+}
+.crm-contact-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+}
+.crm-contact-timeline li {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  padding-bottom: 22px;
+}
+.crm-contact-timeline li:before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 5px;
+  top: 12px;
+  bottom: 0;
+  width: 1px;
+  background: #D7E7F7;
+}
+.crm-contact-timeline li:last-child:before {
+  display: none;
+}
+.crm-contact-timeline li > span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 3px solid #d2e3f6;
+  background: #004AA5;
+  margin-top: 5px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.crm-contact-timeline li[data-event-kind="debt"] > span {
+  background: #CC9048;
+  border-color: #f0e3cd;
+}
+.crm-contact-timeline li[data-event-kind="payment"] > span {
+  background: #238f8b;
+  border-color: #c7e7e5;
+}
+.crm-contact-timeline li > div {
+  min-width: 0;
+  flex: 1;
+}
+.crm-contact-timeline header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.crm-contact-timeline strong {
+  font-size: 13px;
+  color: #0B2E57;
+}
+.crm-contact-timeline time {
+  font-size: 10px;
+  color: #8294a8;
+}
+.crm-contact-timeline p {
+  font-size: 13px;
+  color: #5E7086;
+  line-height: 1.9;
+  margin: 6px 0 3px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.crm-contact-timeline small {
+  font-size: 10px;
+  color: #8294a8;
+}
+.crm-contact-debts {
+  border-top: 1px solid #D7E7F7;
+  margin-top: 24px;
+}
+.crm-contact-debt-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin: 15px 0;
+}
+.crm-contact-debt-totals > div {
+  background: #f5f9fe;
+  border: 1px solid #e2edf8;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.crm-contact-debt-totals strong {
+  font-size: 12px;
+  color: #004AA5;
+}
+.crm-contact-debt-totals span {
+  font-size: 11px;
+  color: #5E7086;
+}
+.crm-contact-debt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #edf2f8;
+  padding: 15px 0;
+}
+.crm-contact-debt > div {
+  flex: 1;
+  min-width: 120px;
+}
+.crm-contact-debt strong {
+  display: block;
+  font-size: 14px;
+}
+.crm-contact-debt small {
+  display: block;
+  font-size: 10px;
+  color: #8294a8;
+  margin-top: 5px;
+}
+.crm-contact-debt p {
+  font-size: 12px;
+  color: #5E7086;
+  margin-top: 6px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.crm-contact-debt b {
+  font-size: 13px;
+}
+.crm-paid-badge {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  background: #e9f7f3;
+  color: #238f8b;
+  padding: 5px 8px;
+  border-radius: 7px;
+  font-size: 11px;
+}
+.crm-book-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 55px 25px;
+  color: #8294a8;
+  min-height: 200px;
+}
+.crm-book-empty h3 {
+  font-size: 20px;
+  color: #31557b;
+  font-weight: 700;
+}
+.crm-book-empty p {
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 440px;
+}
+.crm-book-empty.small {
+  min-height: 130px;
+  padding: 25px;
+}
+.crm-profile-reminder {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #e8d7b9;
+  border-radius: 12px;
+  background: #fffbf4;
+  margin-top: 12px;
+  min-width: 0;
+}
+.crm-profile-reminder > svg {
+  color: #CC9048;
+  flex-shrink: 0;
+}
+.crm-profile-reminder > span {
+  flex: 1;
+  min-width: 0;
+}
+.crm-profile-reminder strong {
+  font-size: 12px;
+  display: block;
+  overflow-wrap: anywhere;
+}
+.crm-profile-reminder small {
+  font-size: 10px;
+  color: #8294a8;
+  display: block;
+  margin-top: 4px;
+}
+.crm-contact-reminders {
+  background: #fff;
+  border: 1px solid #D7E7F7;
+  border-radius: 18px;
+  padding: 20px;
+  margin: 18px 0;
+  color: #0B2E57;
+}
+.crm-contact-reminders h3 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+.crm-contact-reminders h3 > span {
+  display: grid;
+  place-items: center;
+  min-width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  background: #eaf4ff;
+  color: #004AA5;
+  font-size: 12px;
+  margin-inline-start: auto;
+}
+.crm-contact-reminders > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-bottom: 1px solid #edf2f8;
+}
+.crm-contact-reminders > div:last-child {
+  border-bottom: 0;
+}
+.crm-contact-reminders > div.is-due {
+  border-inline-start: 3px solid #CC9048;
+  padding-inline-start: 12px;
+}
+.crm-contact-reminders > div > button:first-child {
+  flex: 1;
+  text-align: start;
+  min-width: 120px;
+}
+.crm-contact-reminders strong {
+  display: block;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.crm-contact-reminders small {
+  display: block;
+  font-size: 11px;
+  margin-top: 5px;
+  color: #8294a8;
+  line-height: 1.7;
+}
+.crm-book-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10100;
+  background: #0B2E5799;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.crm-book-dialog {
+  width: min(100%, 600px);
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+  background: #fff;
+  color: #0B2E57;
+  border-radius: 20px;
+  box-shadow: 0 25px 80px #001b3d40;
+  font-family: "Bahij", "Plus Jakarta Sans", sans-serif;
+}
+.crm-book-dialog > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  background: #0B2E57;
+  border-bottom: 3px solid #CC9048;
+  padding: 20px 24px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.crm-book-dialog h2 {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.crm-book-dialog > header button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #ffffff15;
+  color: #fff;
+  flex-shrink: 0;
+}
+.crm-book-form {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.crm-book-form > label,
+.crm-book-form-row > label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #31557b;
+}
+.crm-book-form input,
+.crm-book-form select,
+.crm-book-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d1e0f0;
+  border-radius: 10px;
+  background: #f8fbff;
+  color: #0B2E57;
+  font-size: 14px;
+  outline: none;
+  min-width: 0;
+}
+.crm-book-form textarea {
+  resize: vertical;
+  min-height: 85px;
+  line-height: 1.8;
+}
+.crm-book-form input:focus,
+.crm-book-form select:focus,
+.crm-book-form textarea:focus {
+  border-color: #004AA5;
+  box-shadow: 0 0 0 3px #004AA515;
+}
+.crm-book-form-row {
+  display: flex;
+  gap: 14px;
+}
+.crm-book-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  border-top: 1px solid #D7E7F7;
+  padding-top: 18px;
+  margin-top: 5px;
+}
+.crm-book-payment-balance {
+  padding: 16px;
+  background: #eaf4ff;
+  border-radius: 12px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.crm-book-payment-balance strong {
+  font-size: 21px;
+  color: #004AA5;
+}
+.crm-book-dialog [role="alert"] {
+  color: #963c1b;
+  font-size: 13px;
+}
+.crm-debt-source-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 22px 0;
+}
+.crm-debt-source-tabs button {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 13px 18px;
+  background: #fff;
+  border: 1px solid #D7E7F7;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #5E7086;
+  cursor: pointer;
+}
+.crm-debt-source-tabs button[aria-pressed="true"] {
+  background: #0B2E57;
+  border-color: #0B2E57;
+  color: #fff;
+  box-shadow: 0 4px 12px #0B2E5716;
+}
+.crm-debt-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.crm-debt-summary article {
+  background: linear-gradient(140deg, #fff, #eff6fd);
+  border: 1px solid #D7E7F7;
+  border-radius: 16px;
+  padding: 20px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.crm-debt-summary article > span {
+  font-size: 12px;
+  color: #CC9048;
+  font-weight: 700;
+}
+.crm-debt-summary strong {
+  font-size: 24px;
+  line-height: 1.5;
+  color: #004AA5;
+  overflow-wrap: anywhere;
+}
+.crm-debt-summary small {
+  font-size: 11px;
+  color: #5E7086;
+  line-height: 1.6;
+}
+.crm-debt-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.crm-debt-filters > label {
+  flex: 1;
+  min-width: 200px;
+}
+.crm-debt-filters > select {
+  max-width: 100%;
+  font-size: 12px;
+  padding: 12px;
+  border: 1px solid #D7E7F7;
+  background: #fff;
+  border-radius: 10px;
+}
+.crm-debt-table-scroll {
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid #D7E7F7;
+  border-radius: 18px;
+}
+.crm-debt-table {
+  width: 100%;
+  min-width: 840px;
+  border-collapse: collapse;
+  text-align: start;
+}
+.crm-debt-table th {
+  background: #f4f8fe;
+  text-align: start;
+  font-size: 11px;
+  color: #5E7086;
+  padding: 16px;
+  border-bottom: 1px solid #D7E7F7;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.crm-debt-table td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf2f8;
+  font-size: 13px;
+  color: #31557b;
+}
+.crm-debt-table tr:last-child td {
+  border-bottom: 0;
+}
+.crm-debt-table td:first-child {
+  max-width: 300px;
+  min-width: 200px;
+}
+.crm-debt-table td:first-child strong {
+  display: block;
+  font-size: 15px;
+  color: #0B2E57;
+}
+.crm-debt-table td:first-child small {
+  display: block;
+  font-size: 10px;
+  color: #8294a8;
+  margin-top: 5px;
+}
+.crm-debt-table td:first-child p {
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+.crm-debt-source {
+  display: inline-block;
+  border-radius: 7px;
+  padding: 5px 8px;
+  font-size: 10px;
+  line-height: 1.7;
+  background: #eaf4ff;
+  color: #004AA5;
+}
+.crm-debt-source.manual {
+  background: #fcf3e3;
+  color: #94671f;
+}
+.crm-balance-due {
+  color: #a35729;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.crm-balance-paid {
+  color: #238f8b;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.crm-debt-advanced {
+  padding: 18px;
+  border: 1px solid #D7E7F7;
+  border-radius: 14px;
+  margin-top: 22px;
+  background: #fff;
+}
+.crm-debt-advanced > summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: #5E7086;
+}
+.crm-debt-advanced[open] > summary {
+  margin-bottom: 20px;
+}
+.crm-book-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.crm-contact-workspace button:focus-visible,
+.crm-debt-workspace button:focus-visible,
+.crm-book-dialog button:focus-visible,
+.crm-contact-reminders button:focus-visible {
+  outline: 3px solid #CC9048;
+  outline-offset: 3px;
+}
+@media (max-width: 1250px) {
+  .crm-contact-layout {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 15px;
+  }
+  .crm-contact-profile {
+    padding: 20px;
+  }
+  .crm-contact-profile-header > .crm-book-actions {
+    width: 100%;
+    margin: 0;
+  }
+  .crm-debt-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .crm-debt-summary strong {
+    font-size: 23px;
+  }
+}
+@media (max-width: 800px) {
+  .crm-contact-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .crm-contact-list {
+    max-height: 290px;
+  }
+  .crm-contact-profile {
+    padding: 20px;
+  }
+  .crm-contact-metrics {
+    gap: 8px;
+  }
+  .crm-contact-metrics > div {
+    padding: 12px;
+  }
+  .crm-contact-metrics strong {
+    font-size: 23px;
+  }
+  .crm-contact-metrics span {
+    font-size: 10px;
+  }
+  .crm-contact-notes {
+    grid-template-columns: 1fr;
+  }
+  .crm-book-heading h2 {
+    font-size: 25px;
+  }
+  .crm-book-heading > .crm-book-actions {
+    width: 100%;
+  }
+  .crm-book-heading > .crm-book-actions .ws-primary-btn {
+    flex: 1;
+  }
+  .crm-book-heading p {
+    font-size: 13px;
+  }
+  .crm-customer-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+  .crm-customer-tabs button {
+    flex: 1;
+    font-size: 12px;
+  }
+  .crm-debt-source-tabs {
+    gap: 7px;
+  }
+  .crm-debt-source-tabs button {
+    flex: 1;
+    justify-content: center;
+    font-size: 12px;
+    padding: 12px;
+  }
+  .crm-debt-source-tabs button svg {
+    flex-shrink: 0;
+  }
+  .crm-debt-filters > select {
+    flex: 1;
+  }
+  .crm-contact-directory {
+    padding: 14px;
+  }
+  .crm-contact-profile-header h3 {
+    font-size: 22px;
+  }
+  .crm-contact-section-heading h4 {
+    font-size: 14px;
+  }
+  .crm-bank-share > button {
+    font-size: 12px;
+  }
+  .crm-contact-links {
+    gap: 12px;
+  }
+  .crm-contact-reminders {
+    padding: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .crm-book-overlay {
+    padding: 10px;
+  }
+  .crm-book-dialog {
+    max-height: calc(100dvh - 20px);
+    border-radius: 16px;
+  }
+  .crm-book-dialog > header {
+    padding: 17px 18px;
+  }
+  .crm-book-dialog h2 {
+    font-size: 19px;
+  }
+  .crm-book-form {
+    padding: 18px;
+    gap: 14px;
+  }
+  .crm-book-form-row {
+    flex-direction: column;
+  }
+  .crm-book-form input,
+  .crm-book-form select,
+  .crm-book-form textarea {
+    font-size: 16px;
+  }
+  .crm-contact-debt-totals {
+    grid-template-columns: 1fr;
+  }
+  .crm-debt-summary article {
+    padding: 15px;
+  }
+  .crm-debt-summary strong {
+    font-size: 20px;
+  }
+  .crm-book-payment-balance {
+    flex-wrap: wrap;
+  }
+  .crm-contact-profile {
+    padding: 17px;
+  }
+  .crm-contact-profile-header {
+    gap: 11px;
+  }
+  .crm-contact-avatar.large {
+    width: 50px;
+    height: 50px;
+  }
+  .crm-contact-profile-header h3 {
+    font-size: 21px;
+  }
+  .crm-contact-profile-header > .crm-book-actions button {
+    flex: 1;
+    justify-content: center;
+  }
+  .crm-book-heading > .crm-book-actions .ws-secondary-btn {
+    font-size: 11px;
+  }
+  .crm-debt-source-tabs {
+    flex-direction: column;
+  }
+  .crm-debt-source-tabs button {
+    justify-content: start;
+  }
+  .crm-contact-section-heading > .crm-book-actions {
+    width: 100%;
+  }
+  .crm-contact-section-heading > .crm-book-actions > button {
+    flex: 1;
+    justify-content: center;
+  }
+  .crm-debt-filters > select {
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .crm-book-hint {
+    font-size: 11px;
+  }
+  .crm-profile-reminder {
+    flex-wrap: wrap;
+  }
+  .crm-contact-reminders > div > button.ws-secondary-btn {
+    font-size: 11px;
+  }
+  .crm-contact-notes article {
+    padding: 13px;
+  }
+}
+
+/* Contact profiles share the blue, white and gold workspace identity. */
+.crm-contact-profile {
+  background: #f4f8fd;
+  border-color: #e0e9f4;
+  padding: clamp(14px, 2vw, 26px);
+  border-radius: 28px;
+}
+.crm-contact-profile-header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 14px;
+  padding: 30px 20px 24px;
+  border: 1px solid #D7E7F7;
+  border-radius: 24px;
+  background: radial-gradient(ellipse at top, #e3efff, #fff 75%);
+}
+.crm-contact-profile-header .crm-contact-avatar.large {
+  width: 116px;
+  height: 116px;
+  flex: 0 0 116px;
+  border: 5px solid #fff;
+  outline: 1px solid #E3C88F;
+  box-shadow: 0 10px 28px #0B2E5712;
+}
+.crm-contact-profile-header h3 {
+  margin: 2px 0 10px;
+  font-size: clamp(22px, 2vw, 30px);
+  color: #0B2E57;
+}
+.crm-contact-profile-header .crm-star-picker { justify-content: center; margin-bottom: 12px; }
+.crm-contact-profile-header > .crm-book-actions {
+  margin: 6px 0 0;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+.crm-contact-profile-header > .crm-book-actions button {
+  border-radius: 50px;
+  min-height: 44px;
+  padding: 10px 18px;
+}
+.crm-contact-details {
+  margin-block: 18px;
+  border-radius: 24px;
+  padding: clamp(16px, 2vw, 24px);
+  border-color: #e0e9f4;
+}
+.crm-contact-details h4 { font-size: 17px; margin-bottom: 16px; }
+.crm-contact-details .crm-contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 0 18px;
+  margin-bottom: 18px;
+}
+.crm-contact-links a, .crm-contact-location {
+  min-width: 0;
+  padding: 14px;
+  border-radius: 14px;
+  background: #f5f8fc;
+  color: #23466e;
+  font-size: 14px;
+}
+.crm-contact-links a:hover { background: #e7f0fc; color: #004AA5; }
+.crm-contact-links a bdi { overflow-wrap: anywhere; min-width: 0; }
+.crm-contact-metrics { gap: 12px; }
+.crm-contact-metrics > div {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+.crm-contact-metrics > div:first-child { background: #004AA5; border-color: #004AA5; }
+.crm-contact-metrics > div:first-child strong { color: #fff; }
+.crm-contact-metrics > div:first-child span { color: #e8f2ff; }
+.crm-contact-metrics strong { font-size: 30px; }
+.crm-contact-directory { border-radius: 24px; padding: 18px; }
+.crm-contact-list > button { border-radius: 16px; padding: 14px 10px; margin-block: 6px; }
+.crm-contact-list > button.selected { background: #eaf2ff; border-color: #bbd2f1; }
+.crm-contact-list .crm-contact-avatar { width: 46px; height: 46px; flex-shrink: 0; }
+.crm-contact-profile button:focus-visible, .crm-contact-profile a:focus-visible {
+  outline: 3px solid #CC9048;
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .crm-contact-details .crm-contact-links { grid-template-columns: minmax(0, 1fr); }
+  .crm-contact-metrics > div { padding: 14px 10px; }
+  .crm-contact-metrics strong { font-size: 24px; }
+  .crm-contact-profile-header > .crm-book-actions button { flex: 1 1 140px; }
+}
+.crm-followup-agenda{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}.crm-followup-agenda>div,.crm-followup-agenda>button{border:1px solid #D7E7F7;background:white;border-radius:20px;padding:20px;text-align:start;display:flex;flex-direction:column;gap:8px}.crm-followup-agenda h3{color:#0B2E57;font-size:20px}.crm-followup-agenda a{color:#004AA5}.crm-followup-agenda time{font-size:12px}.crm-followup-agenda>button:hover{border-color:#CC9048}
+.crm-directory-filters{display:grid;gap:12px;padding-block:16px}.crm-directory-filters label{display:grid;gap:6px;font-size:12px;color:#5E7086}.crm-directory-filters select{width:100%;min-height:42px;border:1px solid #D7E7F7;border-radius:12px;padding:8px;background:#f8fbff;color:#0B2E57}.crm-directory-filters small{color:#5E7086}

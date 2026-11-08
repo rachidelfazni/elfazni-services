@@ -1,0 +1,508 @@
+@import "tailwindcss";
+
+/* Official Bahij TheSansArabic Font Family from ELFAZNI SERVICES Website */
+@font-face {
+  font-family: "Bahij TheSansArabic";
+  src: url("/admin/crm/assets/fonts/Bahij-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij TheSansArabic";
+  src: url("/admin/crm/assets/fonts/Bahij-Plain.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij TheSansArabic";
+  src: url("/admin/crm/assets/fonts/Bahij-SemiBold.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij TheSansArabic";
+  src: url("/admin/crm/assets/fonts/Bahij-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij TheSansArabic";
+  src: url("/admin/crm/assets/fonts/Bahij-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij TheSansArabic";
+  src: url("/admin/crm/assets/fonts/Bahij-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij TheSansArabic";
+  src: url("/admin/crm/assets/fonts/Bahij-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Alias "Bahij" to the exact same font files for full compatibility with website CSS */
+@font-face {
+  font-family: "Bahij";
+  src: url("/admin/crm/assets/fonts/Bahij-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij";
+  src: url("/admin/crm/assets/fonts/Bahij-Plain.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij";
+  src: url("/admin/crm/assets/fonts/Bahij-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij";
+  src: url("/admin/crm/assets/fonts/Bahij-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij";
+  src: url("/admin/crm/assets/fonts/Bahij-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij";
+  src: url("/admin/crm/assets/fonts/Bahij-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Bahij TheSansArabic", "Bahij", "Poppins", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+  /* ============================================================
+     ELFAZNI SERVICES — CANONICAL BRAND TOKENS (V5)
+     Shared with the public website so Admin + CRM stay identical.
+     ============================================================ */
+  --color-brand-blue: #004AA5;
+  --color-brand-deep: #10345B;
+  --color-brand-bright: #2A83D5;
+  --color-brand-mist: #EAF4FF;
+  --color-brand-gold: #CC9048;
+  --color-brand-gold-text: #81521C;
+  --color-brand-gold-dark: #81521C;
+  --color-brand-gold-light: #F3DFC1;
+  --color-brand-ink: #102D4D;
+  --color-brand-muted: #5E7086;
+  --color-brand-border: #DCE6F2;
+  --color-brand-ivory: #F7F9FC;
+
+  --color-blue-50: #EAF4FF;
+  --color-blue-100: #DCE6F2;
+  --color-blue-200: #B9D5F6;
+  --color-blue-300: #89B7EF;
+  --color-blue-400: #4E93DF;
+  --color-blue-500: #2A83D5;
+  --color-blue-600: #004AA5;
+  --color-blue-700: #003B84;
+  --color-blue-800: #10345B;
+  --color-blue-900: #0B2E57;
+  --color-blue-950: #071F38;
+
+  --color-indigo-50: #EAF4FF;
+  --color-indigo-100: #DCE6F2;
+  --color-indigo-200: #BFD9F2;
+  --color-indigo-300: #89B7EF;
+  --color-indigo-400: #4E93DF;
+  --color-indigo-500: #2A83D5;
+  --color-indigo-600: #004AA5;
+  --color-indigo-700: #003B84;
+  --color-indigo-800: #10345B;
+  --color-indigo-900: #0B2E57;
+  --color-indigo-950: #071F38;
+
+  --color-slate-50: #F8FAFD;
+  --color-slate-100: #EFF5FC;
+  --color-slate-200: #DCE6F2;
+  --color-slate-300: #C4D6E8;
+  --color-slate-400: #8CA0B7;
+  --color-slate-500: #5E7086;
+  --color-slate-600: #4C5D74;
+  --color-slate-700: #374A61;
+  --color-slate-800: #1E324C;
+  --color-slate-900: #0B2E57;
+  --color-slate-950: #081A2E;
+
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+}
+
+:root {
+  /* Official ELFAZNI SERVICES Brand Tokens (ELFAZNI_SERVICES_BRAND_COLORS.md) */
+  --brand-navy: #0B2E57;
+  --brand-navy-support: #10345B;
+  --brand-blue: #004AA5;
+  --brand-cyan: #2A83D5;
+  --brand-gold: #CC9048;
+  --brand-gold-text: #81521C;
+  --brand-gold-dark: #81521C;
+  --brand-gold-light: #F3DFC1;
+  --brand-mist: #EAF4FF;
+  --brand-ivory: #F7F9FC;
+  --surface: #FFFFFF;
+  --surface-page: #F7F9FC;
+  --surface-card: #FFFFFF;
+  --border-subtle: #DCE6F2;
+  --text-primary: #102D4D;
+  --text-muted: #5E7086;
+  --radius-control: 10px;
+  --radius-card: 16px;
+
+  /* Official Live Website Tokens */
+  --blue: #004AA5;
+  --blue-deep: #10345B;
+  --blue-bright: #2A83D5;
+  --blue-soft: #EAF4FF;
+  --gold: #CC9048;
+  --gold-dark: #81521C;
+  --gold-light: #F3DFC1;
+  --ink: #102D4D;
+  --muted: #5E7086;
+  --line: #DCE6F2;
+  --white: #FFFFFF;
+  --shadow: 0 20px 45px rgba(16, 43, 78, 0.10);
+}
+
+@layer base {
+  html,
+  body,
+  button,
+  input,
+  select,
+  textarea {
+    font-family: "Bahij TheSansArabic", "Bahij", "Poppins", system-ui, -apple-system, sans-serif !important;
+  }
+
+  body {
+    background-color: var(--brand-ivory);
+    color: var(--text-primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-blue);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 10mm 12mm 14mm 12mm;
+
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font-family: "Bahij TheSansArabic", "Poppins", sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #0B2E57;
+  }
+
+  @bottom-left {
+    content: "ELFAZNI SERVICES — الفزني سيرفيسز";
+    font-family: "Bahij TheSansArabic", "Poppins", sans-serif;
+    font-size: 8.5pt;
+    color: #5E7086;
+  }
+}
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 1. Force standalone A4 flow starting on Page 1 (remove all flex/min-height/margin offsets) */
+  html,
+  body,
+  #root,
+  #root > div,
+  .crm-app-shell,
+  .crm-main-wrapper,
+  .crm-main-container {
+    background: #ffffff !important;
+    color: #0B2E57 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    position: static !important;
+    display: block !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  /* 2. Remove all non-essential UI elements (sidebars, top navigation, buttons, drawers, toasts, footers) */
+  .crm-sidebar,
+  .crm-topbar,
+  .no-print,
+  button,
+  button.no-print,
+  nav,
+  aside,
+  .undo-toast,
+  [role="navigation"],
+  footer:not(.print-document-footer) {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  thead.print-only {
+    display: table-header-group !important;
+  }
+
+  tfoot.print-only {
+    display: table-footer-group !important;
+  }
+
+  /* 3. When PrintPreviewModal is active, isolate the printable A4 portal on Page 1 */
+  body.printing-active-document > #root > div > *:not(.print-document-portal),
+  body.printing-active-document .crm-app-shell > *:not(.print-document-portal) {
+    display: none !important;
+  }
+
+  .print-document-portal {
+    position: static !important;
+    inset: auto !important;
+    z-index: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    break-before: avoid-page !important;
+    page-break-before: avoid !important;
+  }
+
+  /* 4. Standalone A4 sheet container rules */
+  .invoice-page {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .invoice-page:first-of-type {
+    break-before: avoid-page !important;
+    page-break-before: avoid !important;
+  }
+
+  .invoice-page + .invoice-page {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  /* 5. Master Print Table for repeating Corporate Header & Page X of Y Footer on every page */
+  .print-master-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .print-repeating-header {
+    display: table-header-group !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .print-master-body {
+    display: table-row-group !important;
+  }
+
+  .print-repeating-footer {
+    display: table-footer-group !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 6. Data Tables: Repeat column headers and prevent row splitting across pages */
+  .invoice-table-wrapper {
+    overflow: visible !important;
+    border-radius: 8px !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .invoice-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .invoice-table thead {
+    display: table-header-group !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .invoice-table tbody {
+    display: table-row-group !important;
+  }
+
+  .invoice-table tfoot {
+    display: table-footer-group !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .invoice-table tr,
+  .invoice-table td,
+  .invoice-table th,
+  tr.print-row,
+  .print-break-inside-avoid,
+  .invoice-summary {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
+
+
+
+
+/* Workspace layout: keep controls readable without changing document styles. */
+@media screen {
+  .crm-main-wrapper { min-width: 0; }
+  .crm-topbar-inner > :first-child { flex: 1 1 180px; }
+  .crm-topbar-actions { margin-inline-start: auto; }
+  .crm-dashboard > :first-child { border-radius: 16px; }
+  .crm-financial-metrics > div {
+    border-radius: 16px;
+    background: #fff;
+    border-color: var(--border-subtle);
+    box-shadow: 0 2px 6px rgb(16 43 78 / 3%);
+  }
+  .crm-operational-metrics > div { border-radius: 14px; }
+  .crm-institution-panel { overflow: clip; }
+  .crm-institution-panel summary::-webkit-details-marker { display: none; }
+  .crm-institution-panel[open] > summary { border-bottom: 1px solid var(--border-subtle); }
+  .crm-disclosure-chevron { transition: transform 180ms ease; }
+  .crm-institution-panel[open] > summary .crm-disclosure-chevron { transform: rotate(180deg); }
+  @media (min-width: 768px) and (max-width: 1535px) {
+    .crm-global-search { order: 3; flex-basis: 100%; max-width: none; }
+  }
+  @media (max-width: 767px) {
+    .crm-topbar-inner > :first-child { flex-basis: 100%; }
+    .crm-topbar-actions { width: 100%; margin-inline-start: 0; justify-content: space-between; }
+    .crm-operational-metrics { gap: 10px; }
+    .crm-operational-metrics > div { padding: 12px; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crm-app-shell *, .crm-app-shell *::before, .crm-app-shell *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

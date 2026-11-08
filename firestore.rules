@@ -1,0 +1,114 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Global Primitives
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Validation Blueprint: SiteSyncDocument
+    function isValidSiteSync(data) {
+      return data.keys().hasAll(['updatedAt', 'instanceId', 'payloadJson']) &&
+             data.keys().hasOnly(['updatedAt', 'instanceId', 'payloadJson']) &&
+             data.updatedAt is string && data.updatedAt.size() <= 64 &&
+             data.instanceId is string && data.instanceId.size() <= 128 &&
+             data.payloadJson is string && data.payloadJson.size() <= 950000;
+    }
+
+    // Validation Blueprint: VisitorBeaconEvent
+    function isValidVisitorEvent(data) {
+      return data.keys().hasAll(['visitorId', 'device', 'browser', 'country', 'page', 'createdAt']) &&
+             data.keys().hasOnly(['visitorId', 'device', 'browser', 'country', 'flag', 'city', 'page', 'action', 'durationSec', 'screenW', 'maxTouchPoints', 'createdAt']) &&
+             data.visitorId is string && data.visitorId.size() >= 1 && data.visitorId.size() <= 128 &&
+             data.device is string && data.device.size() <= 120 &&
+             data.browser is string && data.browser.size() <= 120 &&
+             data.country is string && data.country.size() <= 120 &&
+             data.page is string && data.page.size() <= 300 &&
+             data.createdAt is string && data.createdAt.size() <= 64 &&
+             (!('flag' in data) || (data.flag is string && data.flag.size() <= 32)) &&
+             (!('city' in data) || (data.city is string && data.city.size() <= 120)) &&
+             (!('action' in data) || (data.action is string && data.action.size() <= 300)) &&
+             (!('durationSec' in data) || (data.durationSec is number && data.durationSec >= 0 && data.durationSec <= 86400)) &&
+             (!('screenW' in data) || (data.screenW is number && data.screenW >= 0 && data.screenW <= 10000)) &&
+             (!('maxTouchPoints' in data) || (data.maxTouchPoints is number && data.maxTouchPoints >= 0 && data.maxTouchPoints <= 50));
+    }
+
+    // Validation Blueprint: TicketDocument
+    function isValidTicket(data) {
+      return data.keys().hasAll(['id', 'ticketNumber', 'name', 'phone', 'message', 'status', 'createdAt']) &&
+             data.keys().hasOnly(['id', 'ticketNumber', 'name', 'phone', 'email', 'serviceRequested', 'subject', 'message', 'status', 'source', 'country', 'repliesJson', 'createdAt', 'updatedAt']) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.ticketNumber is string && data.ticketNumber.size() <= 64 &&
+             data.name is string && data.name.size() >= 1 && data.name.size() <= 200 &&
+             data.phone is string && data.phone.size() >= 1 && data.phone.size() <= 80 &&
+             data.message is string && data.message.size() <= 5000 &&
+             data.status is string && data.status in ['new', 'read', 'in_progress', 'resolved', 'archived'] &&
+             data.createdAt is string && data.createdAt.size() <= 64 &&
+             (!('email' in data) || (data.email is string && data.email.size() <= 200)) &&
+             (!('serviceRequested' in data) || (data.serviceRequested is string && data.serviceRequested.size() <= 200)) &&
+             (!('subject' in data) || (data.subject is string && data.subject.size() <= 300)) &&
+             (!('source' in data) || (data.source is string && data.source.size() <= 200)) &&
+             (!('country' in data) || (data.country is string && data.country.size() <= 120)) &&
+             (!('repliesJson' in data) || (data.repliesJson is string && data.repliesJson.size() <= 100000)) &&
+             (!('updatedAt' in data) || (data.updatedAt is string && data.updatedAt.size() <= 64));
+    }
+
+    // Validation Blueprint: LiveChatDocument
+    function isValidChatMsg(data) {
+      return data.keys().hasAll(['id', 'sessionId', 'sender', 'senderName', 'text', 'createdAt']) &&
+             data.keys().hasOnly(['id', 'sessionId', 'visitorId', 'sender', 'senderName', 'visitorPhone', 'visitorCountry', 'device', 'text', 'createdAt']) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.sessionId is string && data.sessionId.size() <= 128 &&
+             data.sender is string && data.sender in ['admin', 'visitor'] &&
+             data.senderName is string && data.senderName.size() <= 200 &&
+             data.text is string && data.text.size() <= 4000 &&
+             data.createdAt is string && data.createdAt.size() <= 64 &&
+             (!('visitorId' in data) || (data.visitorId is string && data.visitorId.size() <= 128)) &&
+             (!('visitorPhone' in data) || (data.visitorPhone is string && data.visitorPhone.size() <= 80)) &&
+             (!('visitorCountry' in data) || (data.visitorCountry is string && data.visitorCountry.size() <= 120)) &&
+             (!('device' in data) || (data.device is string && data.device.size() <= 120));
+    }
+
+    // Connection test path
+    match /test/{docId} {
+      allow get: if isValidId(docId);
+    }
+
+    // Unified Site Sync (shared between Express backend instances and Admin dashboard)
+    match /site_sync/{docId} {
+      allow get: if isValidId(docId);
+      allow list: if resource.data.instanceId is string;
+      allow create, update: if isValidId(docId) && isValidSiteSync(incoming());
+    }
+
+    // Visitor Telemetry & Mobile Beacons
+    match /visitor_events/{eventId} {
+      allow get: if isValidId(eventId);
+      allow list: if resource.data.visitorId is string;
+      allow create, update: if isValidId(eventId) && isValidVisitorEvent(incoming());
+    }
+
+    // Tickets & Public Ticket Lookup
+    match /tickets/{ticketId} {
+      allow get: if isValidId(ticketId);
+      allow list: if resource.data.ticketNumber is string;
+      allow create, update: if isValidId(ticketId) && isValidTicket(incoming());
+    }
+
+    // Live Chat Messages
+    match /live_chat_messages/{messageId} {
+      allow get: if isValidId(messageId);
+      allow list: if resource.data.sessionId is string;
+      allow create, update: if isValidId(messageId) && isValidChatMsg(incoming());
+    }
+  }
+}

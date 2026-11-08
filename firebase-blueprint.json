@@ -1,0 +1,213 @@
+{
+  "entities": {
+    "SiteSyncDocument": {
+      "title": "SiteSyncDocument",
+      "description": "Unified cloud state synchronization document for cross-instance real-time persistence of analytics, messages, live chat, blog posts, services, and SEO settings.",
+      "type": "object",
+      "properties": {
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last state sync",
+          "maxLength": 64
+        },
+        "instanceId": {
+          "type": "string",
+          "description": "Identifier of the server or client instance that wrote the update",
+          "maxLength": 128
+        },
+        "payloadJson": {
+          "type": "string",
+          "description": "Serialized shared state payload",
+          "maxLength": 950000
+        }
+      },
+      "required": ["updatedAt", "instanceId", "payloadJson"]
+    },
+    "VisitorBeaconEvent": {
+      "title": "VisitorBeaconEvent",
+      "description": "Real-time mobile and desktop visitor telemetry and session duration record.",
+      "type": "object",
+      "properties": {
+        "visitorId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "device": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "browser": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "flag": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "page": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "action": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "durationSec": {
+          "type": "number"
+        },
+        "screenW": {
+          "type": "number"
+        },
+        "maxTouchPoints": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 64
+        }
+      },
+      "required": ["visitorId", "device", "browser", "country", "page", "createdAt"]
+    },
+    "TicketDocument": {
+      "title": "TicketDocument",
+      "description": "Omnichannel contact message and support ticket synced across mobile and admin dashboard.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "ticketNumber": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "serviceRequested": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "subject": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 5000
+        },
+        "status": {
+          "type": "string",
+          "enum": ["new", "read", "in_progress", "resolved", "archived"],
+          "maxLength": 32
+        },
+        "source": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "repliesJson": {
+          "type": "string",
+          "maxLength": 100000
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "maxLength": 64
+        }
+      },
+      "required": ["id", "ticketNumber", "name", "phone", "message", "status", "createdAt"]
+    },
+    "LiveChatDocument": {
+      "title": "LiveChatDocument",
+      "description": "Real-time live chat message synced between mobile visitors and admin dashboard.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "sessionId": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "visitorId": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "sender": {
+          "type": "string",
+          "enum": ["admin", "visitor"],
+          "maxLength": 32
+        },
+        "senderName": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "visitorPhone": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "visitorCountry": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "device": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 64
+        }
+      },
+      "required": ["id", "sessionId", "sender", "senderName", "text", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/site_sync/{docId}": {
+      "schema": "SiteSyncDocument",
+      "description": "Stores unified state snapshots synchronized across preview and production containers."
+    },
+    "/visitor_events/{eventId}": {
+      "schema": "VisitorBeaconEvent",
+      "description": "Stores real-time visitor hits, heartbeats, and mobile pagehide beacon events."
+    },
+    "/tickets/{ticketId}": {
+      "schema": "TicketDocument",
+      "description": "Stores customer support tickets and replies for instant cross-device lookup."
+    },
+    "/live_chat_messages/{messageId}": {
+      "schema": "LiveChatDocument",
+      "description": "Stores instant live chat messages between mobile visitors and the general manager."
+    }
+  }
+}

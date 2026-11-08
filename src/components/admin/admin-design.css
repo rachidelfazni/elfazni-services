@@ -1,0 +1,309 @@
+/* =====================================================================
+   ELFAZNI SERVICES — Admin / CRM entry (login) + admin workspace helpers
+   APPROVED identity (Blue-Gold Kit, classic edition): deep-blue page with
+   fine concentric arcs, white split card — soft-blue panel with the
+   official 3D objects + login form.
+   ===================================================================== */
+
+.admin-entry {
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding: clamp(16px, 4vw, 56px);
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 0% 112%, rgba(42, 131, 213, 0.16) 0%, transparent 52%),
+    #012247;
+  color: #0B2E57;
+}
+
+/* Fine concentric arcs radiating from the corner (signature of the family) */
+.admin-entry::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-radial-gradient(
+      circle at 4% 114%,
+      transparent 0 64px,
+      rgba(255, 255, 255, 0.055) 64px 65.5px,
+      transparent 65.5px 132px
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.admin-entry-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  width: min(100%, 1080px);
+  overflow: hidden;
+  border-radius: 30px;
+  background: white;
+  box-shadow: 0 40px 110px -30px rgba(0, 15, 35, 0.65);
+}
+
+.admin-entry--split-left .admin-entry-shell {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+.admin-entry--split-left .admin-entry-brand {
+  order: 2;
+}
+.admin-entry--split-left .admin-entry-form {
+  order: 1;
+}
+.admin-entry--centered .admin-entry-shell {
+  grid-template-columns: 1fr;
+  max-width: 520px;
+}
+.admin-entry--centered .admin-entry-brand {
+  display: none;
+}
+
+/* ------------------------- 3D brand panel & layers ----------------------------- */
+
+.theme-visual-panel,
+.admin-entry-brand {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 640px;
+}
+
+.theme-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.theme-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.theme-illustration {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.theme-content {
+  position: relative;
+  z-index: 4;
+}
+
+.theme-logo {
+  position: relative;
+  z-index: 5;
+}
+
+.admin-entry-scrim {
+  display: none !important;
+}
+
+.admin-entry-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.admin-entry-photo-overlay {
+  position: relative;
+  z-index: 4;
+  padding: clamp(22px, 3vw, 36px);
+  text-align: start;
+}
+
+.admin-entry-photo-kicker {
+  margin: 0 0 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.admin-entry-photo-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 2.9vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.admin-entry-photo-note {
+  margin: 10px 0 0;
+  max-width: 30ch;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+/* ------------------------------- form -------------------------------- */
+
+.admin-entry-form {
+  align-self: center;
+  min-width: 0;
+  padding: clamp(28px, 4.6vw, 52px);
+}
+
+.admin-entry-logo {
+  width: 210px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 26px;
+}
+
+.admin-entry-heading {
+  margin-bottom: 22px;
+}
+
+.admin-entry-kicker {
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #CC9048;
+  text-align: start;
+}
+
+.admin-entry-display {
+  margin: 0 0 8px;
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+  font-weight: 900;
+  line-height: 1.3;
+  color: #0B2E57;
+}
+
+.admin-entry-description {
+  margin: 0;
+  max-width: 36ch;
+  color: #5E7086;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.admin-entry-heading h1 {
+  margin: 0 0 5px;
+  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  line-height: 1.25;
+  color: #0B2E57;
+}
+
+.admin-entry-heading p { color: #52657e; font-size: .92rem; }
+.admin-entry-label { display: block; margin-bottom: 6px; font-size: .88rem; font-weight: 700; }
+
+.admin-entry-field {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 46px 10px 14px;
+  border: 1px solid #cbd8e8;
+  border-radius: 10px;
+  background: #f8fafc;
+  font-size: 1rem;
+}
+
+.admin-entry-field:focus,
+.admin-entry-field:focus-visible {
+  outline: none;
+  border-color: #2A83D5;
+  box-shadow: 0 0 0 3px rgba(42,131,213, 0.18);
+  background: #fff;
+}
+
+.admin-entry-field-icon,
+.admin-entry-toggle {
+  position: absolute;
+  top: 50%;
+  right: 9px;
+  transform: translateY(-50%);
+  color: #52657e;
+}
+
+.admin-entry-field-icon { right: 16px; width: 18px; height: 18px; pointer-events: none; }
+.admin-entry-toggle { display: grid; place-items: center; width: 34px; height: 36px; border-radius: 8px; }
+.admin-entry-toggle:hover { background: #eaf4ff; }
+
+.admin-entry-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  width: 100%;
+  border-radius: 12px;
+  background: #004AA5;
+  color: white;
+  font-weight: 800;
+  box-shadow: 0 10px 26px -12px rgba(18, 85, 154, 0.55);
+  transition: background 0.15s;
+}
+
+.admin-entry-submit:hover { background: #2A83D5; }
+.admin-entry-submit:disabled { opacity: .65; }
+.admin-entry :focus-visible,
+.admin-workspace-link:focus-visible { outline: 2px solid #2A83D5; outline-offset: 3px; }
+
+/* --------------------------- mobile behavior -------------------------- */
+
+@media (max-width: 880px) {
+  .admin-entry-shell { grid-template-columns: minmax(0, 1fr); max-width: 480px; border-radius: 22px; }
+  .admin-entry-brand { min-height: 250px !important; padding: 22px 24px !important; }
+  .admin-entry-brand .theme-illustration {
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding: 16px 20px !important;
+  }
+  .admin-entry-brand .theme-illustration img {
+    max-height: 135px !important;
+    max-width: 44% !important;
+  }
+  .admin-entry-brand .theme-content {
+    max-width: 56%;
+  }
+  .admin-entry-photo-title { font-size: 1.35rem; }
+  .admin-entry-photo-note { display: none; }
+  .admin-entry-form { padding: 26px 22px 30px; }
+  .admin-entry-logo { width: 175px; margin-bottom: 18px; }
+  .admin-workspace-links { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------------- workspace intro + links (AdminLayout) --------------- */
+
+.admin-workspace-intro { margin-bottom: 24px; padding: clamp(16px, 3vw, 30px); border-radius: 18px; }
+.admin-workspace-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+.admin-workspace-heading img { flex: none; width: clamp(75px, 9vw, 115px); height: auto; }
+.admin-workspace-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.admin-workspace-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f4f8fe;
+  color: #0B2E57;
+  text-align: start;
+  font-size: .875rem;
+  font-weight: 700;
+}
+.admin-workspace-link:hover { background: #dcecff; }
+.admin-workspace-link strong { min-width: 29px; padding: 3px 5px; border-radius: 7px; background: #d9e9fb; text-align: center; }
+
+.admin-workspace-intro {
+  border: 1px solid #D7E7F7;
+  border-block-start: 3px solid #E3C88F;
+  background: linear-gradient(130deg, #eaf4ff, #fff 62%);
+  color: #0B2E57;
+  box-shadow: 0 6px 24px #0B2E570a;
+}
+
+.admin-workspace-intro .admin-entry-kicker { color: #825a1d; }

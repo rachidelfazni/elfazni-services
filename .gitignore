@@ -1,0 +1,11 @@
+node_modules/
+dist/
+crm/dist/
+.env
+.env.*
+!.env.example
+crmsecrets/
+data/db.json.backup
+*.log
+.DS_Store
+__pycache__/

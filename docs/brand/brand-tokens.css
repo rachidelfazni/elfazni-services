@@ -1,0 +1,41 @@
+@font-face{font-family:"Bahij TheSansArabic";src:url("../assets/fonts/Bahij-Light.ttf") format("truetype");font-weight:300;font-display:swap}
+@font-face{font-family:"Bahij TheSansArabic";src:url("../assets/fonts/Bahij-Plain.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Bahij TheSansArabic";src:url("../assets/fonts/Bahij-SemiBold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Bahij TheSansArabic";src:url("../assets/fonts/Bahij-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+@font-face{font-family:"Bahij TheSansArabic";src:url("../assets/fonts/Bahij-Black.ttf") format("truetype");font-weight:900;font-display:swap}
+
+:root{
+  --elfazni-white:#fff;
+  --elfazni-blue:#004aa5;
+  --elfazni-gold:#cc9048;
+  --elfazni-gold-text:#81521c;
+  --elfazni-blue-support:#2a83d5;
+  --elfazni-navy-support:#10345b;
+  --elfazni-ink:#102d4d;
+  --elfazni-soft-blue:#eaf4ff;
+  --elfazni-line:#dce6f2;
+  --elfazni-off-white:#f7f9fc;
+  --elfazni-logo-blue:#004aa5;
+  --elfazni-logo-gold:#cc9048;
+  --elfazni-logo-blue-background:#01336f;
+  --elfazni-font:"Bahij TheSansArabic",Tahoma,Arial,sans-serif;
+  --elfazni-card-radius:22px;
+  --elfazni-button-radius:14px;
+  --elfazni-shadow:0 16px 40px rgb(0 74 165 / 12%);
+}
+
+html[lang="ar"]{direction:rtl}
+body{margin:0;color:var(--elfazni-ink);background:var(--elfazni-white);font-family:var(--elfazni-font);line-height:1.8}
+:focus-visible{outline:3px solid var(--elfazni-gold);outline-offset:4px}
+.elfazni-container{width:min(calc(100% - 32px),1280px);margin-inline:auto}
+.elfazni-card{background:#fff;border:1px solid var(--elfazni-line);border-radius:var(--elfazni-card-radius);box-shadow:var(--elfazni-shadow)}
+.elfazni-button{min-height:44px;padding:10px 22px;border:0;border-radius:var(--elfazni-button-radius);color:#fff;background:var(--elfazni-blue);font:700 1rem/1.4 var(--elfazni-font);transition:background-color 220ms ease,transform 220ms ease}
+.elfazni-button:hover{background:var(--elfazni-blue-support)}
+.elfazni-logo{display:block;max-width:100%;height:auto;object-fit:contain}
+.elfazni-logo--header{width:clamp(150px,18vw,220px)}
+.elfazni-logo--vertical{width:clamp(110px,14vw,180px)}
+.elfazni-logo-surface{display:grid;place-items:center;padding:24px;border-radius:22px}
+.elfazni-logo-surface--white{background:#fff}
+.elfazni-logo-surface--blue{background:var(--elfazni-logo-blue-background)}
+.elfazni-logo-surface--gold{background:var(--elfazni-logo-gold)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

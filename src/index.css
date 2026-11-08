@@ -1,0 +1,656 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Bahij_TheSansArabic", "Bahij", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif;
+  --font-arabic: "Bahij_TheSansArabic", "Bahij", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif;
+
+  /* ============================================================
+     ELFAZNI SERVICES — OFFICIAL BRAND TOKENS (Logo Extracted)
+     Source: ELFAZNI_SERVICES_BRAND_COLORS.md
+     White dominant · Primary Blue #004AA5 · Official Gold #CC9048 ·
+     Supporting Navy #10345B · Bahij TheSansArabic.
+     ============================================================ */
+  --color-brand-blue: #004AA5;
+  --color-brand-deep: #10345B;
+  --color-brand-bright: #2A83D5;
+  --color-brand-mist: #EAF4FF;
+  --color-brand-gold: #CC9048;
+  --color-brand-gold-text: #81521C;
+  --color-brand-gold-dark: #81521C;
+  --color-brand-gold-light: #F3DFC1;
+  --color-brand-ink: #102D4D;
+  --color-brand-muted: #5E7086;
+  --color-brand-border: #DCE6F2;
+  --color-brand-ivory: #F7F9FC;
+
+  /* Remap Tailwind's blue scale to the brand family with #004AA5 primary */
+  --color-blue-50: #EAF4FF;
+  --color-blue-100: #DCE6F2;
+  --color-blue-200: #BFD9F2;
+  --color-blue-300: #89B7EF;
+  --color-blue-400: #4E9BE3;
+  --color-blue-500: #2A83D5;
+  --color-blue-600: #004AA5;
+  --color-blue-700: #003B84;
+  --color-blue-800: #10345B;
+  --color-blue-900: #0B2E57;
+  --color-blue-950: #071F38;
+
+  /* Indigo was used for stray accents in Admin/CRM — fold it into
+     the same official blue family instead of a violet secondary. */
+  --color-indigo-50: #EAF4FF;
+  --color-indigo-100: #DCE6F2;
+  --color-indigo-200: #BFD9F2;
+  --color-indigo-300: #89B7EF;
+  --color-indigo-400: #4E9BE3;
+  --color-indigo-500: #2A83D5;
+  --color-indigo-600: #004AA5;
+  --color-indigo-700: #003B84;
+  --color-indigo-800: #10345B;
+  --color-indigo-900: #0B2E57;
+  --color-indigo-950: #071F38;
+
+  /* Warm the neutral scale to the brand's cobalt ink family. */
+  --color-slate-50: #F8FAFC;
+  --color-slate-100: #EFF5FC;
+  --color-slate-200: #D7E7F7;
+  --color-slate-300: #C2D5E9;
+  --color-slate-400: #8CA0B7;
+  --color-slate-500: #5E7086;
+  --color-slate-600: #4B5C73;
+  --color-slate-700: #384A61;
+  --color-slate-800: #1E3149;
+  --color-slate-900: #0B2E57;
+  --color-slate-950: #07203C;
+
+  /* Unified radii + elevation for cards, controls and dialogs. */
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+}
+
+/* Bahij_TheSansArabic & Bahij TheSansArabic-SemiBold Font Family Declarations */
+@font-face {
+  font-family: "Bahij TheSansArabic-SemiBold";
+  src:
+    local("Bahij TheSansArabic-SemiBold"),
+    local("Bahij_TheSansArabic-SemiBold"),
+    url("/assets/Bahij-SemiBold.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij TheSansArabic-bold";
+  src:
+    local("Bahij TheSansArabic-SemiBold"),
+    local("Bahij_TheSansArabic-SemiBold"),
+    url("/assets/Bahij-SemiBold.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij TheSansArabic-Bold";
+  src:
+    local("Bahij TheSansArabic-SemiBold"),
+    local("Bahij_TheSansArabic-SemiBold"),
+    url("/assets/Bahij-SemiBold.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij_TheSansArabic";
+  src:
+    local("Bahij TheSansArabic-ExtraLight"),
+    local("Bahij_TheSansArabic-ExtraLight"),
+    url("/assets/Bahij-Light.ttf") format("truetype");
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij";
+  src:
+    local("Bahij TheSansArabic-ExtraLight"),
+    local("Bahij_TheSansArabic-ExtraLight"),
+    url("/assets/Bahij-Light.ttf") format("truetype");
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij_TheSansArabic";
+  src: url("/assets/Bahij-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij";
+  src: url("/assets/Bahij-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij_TheSansArabic";
+  src: url("/assets/Bahij-Plain.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij";
+  src: url("/assets/Bahij-Plain.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij_TheSansArabic";
+  src: url("/assets/Bahij-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij";
+  src: url("/assets/Bahij-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij_TheSansArabic";
+  src: url("/assets/Bahij-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij";
+  src: url("/assets/Bahij-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij_TheSansArabic";
+  src: url("/assets/Bahij-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij";
+  src: url("/assets/Bahij-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bahij_TheSansArabic";
+  src: url("/assets/Bahij-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bahij";
+  src: url("/assets/Bahij-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+}
+
+:root {
+  /* Official Brand Variables (ELFAZNI_SERVICES_BRAND_COLORS.md) */
+  --brand-blue: #004AA5;
+  --brand-gold: #CC9048;
+  --brand-white: #FFFFFF;
+  --brand-navy-support: #10345B;
+  --brand-navy-deep: #0B2E57;
+  --brand-gold-text-on-light: #81521C;
+  --surface-page: #F7F9FC;
+  --surface-card: #FFFFFF;
+  --text-primary: #102D4D;
+  --border-subtle: #DCE6F2;
+
+  --blue: #004AA5;
+  --blue-deep: #10345B;
+  --blue-bright: #2A83D5;
+  --blue-soft: #EAF4FF;
+  --gold: #CC9048;
+  --gold-dark: #81521C;
+  --gold-light: #F3DFC1;
+  --white: #FFFFFF;
+  --ink: #102D4D;
+  --muted: #5E7086;
+  --line: #DCE6F2;
+  --ivory: #F7F9FC;
+  --surface-apple: #EAF4FF;
+  --font-sans: "Bahij_TheSansArabic", "Bahij", "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif;
+
+  /* Unified, responsive typographic scale (V5) */
+  --fs-display: clamp(38px, 4.5vw, 68px);
+  --fs-h2: clamp(26px, 2.6vw, 42px);
+  --fs-h3: clamp(20px, 1.7vw, 28px);
+  --fs-body: 16px;
+  --fs-small: 13px;
+}
+
+/* Primary brand display heading: H1 38–68px, weight 900 (V5) */
+.elfazni-display {
+  font-size: var(--fs-display);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+/* Explicit font family across all elements, form controls, and pseudo elements */
+*,
+*::before,
+*::after {
+  font-family: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Bahij_TheSansArabic", "Bahij", "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: inherit;
+  color: #0B2E57;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Arabic language font rules */
+html[lang="ar"] .font-sans {
+  font-family: "Bahij_TheSansArabic", "Bahij", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif !important;
+}
+
+/* Golden second-line headings: Bahij TheSansArabic-SemiBold (weight 600) */
+html[lang="ar"] .font-bahij-bold,
+html[lang="ar"] .font-bahij-semibold,
+html[lang="ar"] .font-bahij-extralight,
+html[lang="ar"] h1 span.text-\[\#CC9048\],
+html[lang="ar"] h2 span.text-\[\#CC9048\],
+html[lang="ar"] h2 span.text-\[\#E3C88F\] {
+  font-family: "Bahij TheSansArabic-SemiBold", "Bahij_TheSansArabic", "Bahij", sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Turkish, English, and French language font rules: full Latin-Extended glyph harmony */
+html:not([lang="ar"]),
+html:not([lang="ar"]) body,
+html:not([lang="ar"]) button,
+html:not([lang="ar"]) input,
+html:not([lang="ar"]) optgroup,
+html:not([lang="ar"]) select,
+html:not([lang="ar"]) textarea,
+html:not([lang="ar"]) .font-sans {
+  font-family: "Bahij_TheSansArabic", "Bahij", "Plus Jakarta Sans", system-ui, sans-serif !important;
+}
+
+html:not([lang="ar"]) .font-bahij-bold,
+html:not([lang="ar"]) .font-bahij-semibold,
+html:not([lang="ar"]) .font-bahij-extralight,
+html:not([lang="ar"]) h1 span.text-\[\#CC9048\],
+html:not([lang="ar"]) h2 span.text-\[\#CC9048\],
+html:not([lang="ar"]) h2 span.text-\[\#E3C88F\] {
+  font-family: "Bahij_TheSansArabic", "Bahij", "Plus Jakarta Sans", system-ui, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Balanced Typography Scale for h1 to h4 across all responsive breakpoints + Compact Line-Height */
+:root {
+  --heading-scale: 1.1;
+}
+
+h1 {
+  font-size: calc(2rem * var(--heading-scale));
+  --tw-leading: 1.22 !important;
+  line-height: 1.22 !important;
+}
+
+h2 {
+  font-size: calc(1.55rem * var(--heading-scale));
+  --tw-leading: 1.25 !important;
+  line-height: 1.25 !important;
+}
+
+h3 {
+  font-size: calc(1.15rem * var(--heading-scale));
+  --tw-leading: 1.28 !important;
+  line-height: 1.28 !important;
+}
+
+h4 {
+  font-size: calc(1rem * var(--heading-scale));
+  --tw-leading: 1.3 !important;
+  line-height: 1.3 !important;
+}
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: calc(2.4rem * var(--heading-scale));
+  }
+  h2 {
+    font-size: calc(1.85rem * var(--heading-scale));
+  }
+  h3 {
+    font-size: calc(1.25rem * var(--heading-scale));
+  }
+  h4 {
+    font-size: calc(1.05rem * var(--heading-scale));
+  }
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: calc(2.7rem * var(--heading-scale));
+  }
+  h2 {
+    font-size: calc(2.05rem * var(--heading-scale));
+  }
+  h3 {
+    font-size: calc(1.35rem * var(--heading-scale));
+  }
+  h4 {
+    font-size: calc(1.1rem * var(--heading-scale));
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: calc(3rem * var(--heading-scale));
+  }
+  h2 {
+    font-size: calc(2.25rem * var(--heading-scale));
+  }
+  h3 {
+    font-size: calc(1.4rem * var(--heading-scale));
+  }
+  h4 {
+    font-size: calc(1.15rem * var(--heading-scale));
+  }
+}
+
+p,
+li {
+  --tw-leading: 1.42 !important;
+  line-height: 1.42 !important;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Compact leading utilities to eliminate excessive line spacing */
+.leading-tight {
+  line-height: 1.18 !important;
+}
+
+.leading-snug {
+  line-height: 1.25 !important;
+}
+
+.leading-normal {
+  line-height: 1.38 !important;
+}
+
+.leading-relaxed {
+  line-height: 1.45 !important;
+}
+
+/* Apple-style smooth transitions */
+.transition-apple {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 240ms;
+}
+
+/* IntersectionObserver Fade-in with slight vertical slide for main sections */
+.reveal-section {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.78s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.78s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 45s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee:focus-within,
+.animate-marquee-reverse:hover,
+.animate-marquee-reverse:focus-within {
+  animation-play-state: paused;
+}
+
+/* Gradient fade mask for smooth marquee edges */
+.mask-marquee-edges {
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none !important;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #C4D6E8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8CA0B7;
+}
+
+/* Subtle Success & Confirmation Animations */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes success-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes success-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@keyframes success-check {
+  0% {
+    stroke-dashoffset: 32;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes success-slide-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-success-pop {
+  animation: success-pop 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-success-ring {
+  animation: success-ring 1.25s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.animate-success-check {
+  stroke-dasharray: 32;
+  stroke-dashoffset: 32;
+  animation: success-check 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.16s forwards;
+}
+
+.animate-success-slide-up {
+  animation: success-slide-up 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+
+/* ===== Workspace portal — animated entry family ===== */
+@keyframes wp-rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes wp-fade{from{opacity:0}to{opacity:1}}
+@keyframes wp-breathe{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes wp-drift-a{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,40px) scale(1.15)}}
+@keyframes wp-drift-b{from{transform:translate(0,0) scale(1)}to{transform:translate(-70px,-50px) scale(1.12)}}
+@keyframes wp-drift-c{from{transform:translate(0,0)}to{transform:translate(-40px,60px)}}
+@keyframes wp-pulse{0%{box-shadow:0 0 0 0 rgba(143,227,176,.5)}70%{box-shadow:0 0 0 9px rgba(143,227,176,0)}100%{box-shadow:0 0 0 0 rgba(143,227,176,0)}}
+@keyframes wp-shimmer{from{background-position:220% 0}to{background-position:-220% 0}}
+@keyframes wp-sweep{0%{transform:skewX(-14deg) translateX(0);opacity:0}15%{opacity:1}100%{transform:skewX(-14deg) translateX(460%);opacity:0}}
+
+.workspace-portal{position:relative;isolation:isolate;overflow:hidden;min-height:100dvh;display:grid;place-items:center;align-content:center;gap:18px;padding:clamp(18px,4vw,48px) clamp(16px,4vw,48px) clamp(22px,3vw,34px);background:radial-gradient(circle at 88% -10%,rgba(42,131,213,.22) 0%,transparent 55%),#012247;color:#0B2E57;font-family:Bahij_TheSansArabic,sans-serif}
+.workspace-portal::before{content:"";position:absolute;inset:0;z-index:0;background:repeating-radial-gradient(circle at 4% 116%,transparent 0 64px,rgba(255,255,255,.05) 64px 65.5px,transparent 65.5px 132px);transform-origin:4% 116%;animation:wp-breathe 18s ease-in-out infinite alternate;pointer-events:none}
+.wp-orbs{position:absolute;inset:0;z-index:0;pointer-events:none}
+.wp-orbs i{position:absolute;display:block;border-radius:50%;filter:blur(64px);opacity:.8}
+.wp-orbs i:nth-child(1){width:430px;height:430px;top:-120px;left:16%;background:rgba(42,131,213,.35);animation:wp-drift-a 22s ease-in-out infinite alternate}
+.wp-orbs i:nth-child(2){width:520px;height:520px;bottom:-180px;right:10%;background:rgba(166,123,48,.16);animation:wp-drift-b 28s ease-in-out infinite alternate}
+.wp-orbs i:nth-child(3){width:300px;height:300px;top:34%;right:38%;background:rgba(18,85,154,.5);animation:wp-drift-c 32s ease-in-out infinite alternate}
+
+.workspace-portal header{position:relative;z-index:1;width:min(100%,1120px);display:flex;justify-content:space-between;align-items:center;gap:16px;animation:wp-fade .8s .15s both}
+.wp-brandmark{display:inline-block}
+.wp-brandmark img{display:block;width:180px;height:auto;filter:drop-shadow(0 12px 26px rgba(0,8,24,.5));transition:transform .2s,filter .2s}
+.wp-brandmark:hover img{transform:translateY(-2px);filter:drop-shadow(0 16px 30px rgba(230,189,103,.28))}
+.wp-chip{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#b9d5f6;font-size:.78rem;font-weight:800;white-space:nowrap}
+.wp-chip-dot{width:8px;height:8px;border-radius:50%;background:#8fe3b0;animation:wp-pulse 2.4s ease-out infinite}
+
+.wp-card{position:relative;z-index:1;overflow:hidden;width:min(100%,1120px);background:#fff;border-radius:30px;border-top:3px solid #E3C88F;box-shadow:0 44px 120px -30px rgba(0,12,32,.66);padding:clamp(28px,4.6vw,54px);text-align:center;animation:wp-rise .85s .25s cubic-bezier(.22,.75,.25,1) both}
+.wp-card::after{content:"";position:absolute;top:-45%;bottom:-45%;left:-45%;width:32%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-14deg);pointer-events:none;animation:wp-sweep 1.6s .7s cubic-bezier(.45,0,.2,1) both}
+
+.workspace-portal h1{font-size:clamp(1.7rem,3.2vw,2.6rem);line-height:1.4;margin:10px 0 8px;font-weight:900;color:#0B2E57}
+.wp-accent{background:linear-gradient(115deg,#0B2E57 10%,#004AA5 45%,#2A83D5 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.workspace-portal .wp-card > p{color:#5E7086;line-height:1.9;max-width:46ch;margin:0 auto;font-size:.98rem}
+.portal-eyebrow{display:block;font-size:.72rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;background:linear-gradient(90deg,#CC9048,#E3C88F,#CC9048,#E3C88F,#CC9048);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:wp-shimmer 5.5s linear infinite}
+
+.portal-apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:36px}
+.portal-apps a{position:relative;display:block;background:#f7faff;border:1px solid #D7E7F7;padding:26px 22px 22px;border-radius:18px;box-shadow:0 12px 35px #0B2E5708;text-align:start;animation:wp-rise .7s cubic-bezier(.22,.75,.25,1) both;transition:transform .18s,border-color .18s,box-shadow .18s}
+.portal-apps a:nth-child(1){animation-delay:.45s}
+.portal-apps a:nth-child(2){animation-delay:.57s}
+.portal-apps a:nth-child(3){animation-delay:.69s}
+.portal-apps a:hover{transform:translateY(-5px);border-color:#E3C88F;box-shadow:0 24px 44px -20px rgba(18,85,154,.45)}
+.portal-apps h2{font-size:1.06rem;font-weight:900;margin:16px 0 8px;color:#0B2E57}
+.portal-apps a p{color:#5E7086;font-size:.85rem;line-height:1.7;margin:0 0 6px;display:block}
+.portal-app-icon{display:inline-flex;padding:13px;border-radius:14px;background:linear-gradient(150deg,#E3C88F,#CC9048);color:#0B2E57;box-shadow:0 10px 22px -10px rgba(166,123,48,.55);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.portal-apps a:hover .portal-app-icon{transform:scale(1.08) rotate(-4deg)}
+.portal-app-arrow{display:block;color:#0B2E57;opacity:.4;transition:transform .2s,opacity .2s}
+.portal-apps a:hover .portal-app-arrow{transform:translate(-4px,-4px);opacity:1}
+.workspace-portal footer{position:relative;z-index:1;text-align:center;color:rgba(185,213,246,.72);font-size:.72rem;font-weight:700;animation:wp-fade 1s .8s both}
+.content-studio{padding:24px;border:1px solid #D7E7F7;background:#fff;border-radius:24px;display:grid;gap:16px}.content-studio h2{font-size:24px;color:#0B2E57}.content-studio label{display:grid;gap:8px;flex:1;min-width:0}.content-studio input,.content-studio textarea,.content-studio select{border:1px solid #cdddef;padding:12px;border-radius:12px;width:100%;background:#f8fbff}.studio-section{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #eaf0f8}.content-studio button{padding:10px 18px;background:#004AA5;color:white;border-radius:12px}.content-studio button:disabled{opacity:.4}
+@media(max-width:700px){
+  .portal-apps{grid-template-columns:1fr;gap:10px}
+  .wp-card{padding:24px 18px 28px;border-radius:24px}
+  .portal-apps a{padding:18px}
+  .wp-brandmark img{width:138px}
+  .wp-orbs i:nth-child(3){display:none}
+  .studio-section{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion: reduce){
+  .workspace-portal *,.workspace-portal *::before,.workspace-portal *::after{animation:none!important;transition:none!important}
+}
+
+/* أورفان آخر صف في شبكات 3 أعمدة: توسيط البطاقة اليتيمة ( خدمات / مقالات ) */
+@media (min-width: 1024px) {
+  .services-immersive-grid > :last-child:nth-child(3n + 1),
+  .blog-modern-grid > :last-child:nth-child(3n + 1),
+  .workspace-portal .portal-apps > :last-child:nth-child(3n + 1) {
+    grid-column: 2 / 3;
+  }
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.studio-kicker{font-size:12px;letter-spacing:2px;color:#CC9048}.studio-tabs{display:flex;flex-wrap:wrap;gap:8px;padding:6px;border-radius:16px;background:#f0f5fc}.content-studio .studio-tabs button{background:transparent;color:#5E7086;flex:1;min-width:140px}.content-studio .studio-tabs button[aria-pressed=true]{background:white;color:#004AA5;box-shadow:0 3px 10px #0B2E570a}.studio-fields{display:grid;gap:18px}.studio-order{color:#CC9048;font-size:22px}.studio-faq{display:grid;gap:14px;padding:20px;background:#f8fbff;border-radius:18px;border:1px solid #D7E7F7}.studio-save{position:sticky;bottom:12px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:#fff;padding:16px;border:1px solid #D7E7F7;border-radius:16px;box-shadow:0 6px 24px #0B2E5712;z-index:2}.studio-save span{margin-inline-end:auto}
+#hero{background:radial-gradient(ellipse at 10% 20%,#eaf4ff 0,transparent 55%),linear-gradient(#f6faff,#fff)}#hero h1{font-size:clamp(38px,4.5vw,68px);line-height:1.2}#hero p{line-height:1.8}
+#services,#guides,#work,#faq,#how-it-works,#about,#contact-form{scroll-margin-top:100px}main>section h2{line-height:1.35}
+a:focus-visible,button:focus-visible{outline:3px solid #CC9048;outline-offset:4px}

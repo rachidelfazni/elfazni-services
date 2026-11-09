@@ -396,9 +396,12 @@ export const Hero: React.FC<HeroProps> = ({
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                   src="/assets/phone-services-transparent.webp"
-                  alt=""
+                  alt="ELFAZNI SERVICES"
+                  width={480}
+                  height={540}
                   className="w-full max-h-[540px] object-contain drop-shadow-[0_24px_48px_rgba(18,85,154,0.14)] cursor-pointer"
                   fetchPriority="high"
+                  decoding="async"
                 />
               </button>
 

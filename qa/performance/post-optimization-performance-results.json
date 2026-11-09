@@ -1,0 +1,743 @@
+{
+  "timestamp": "2026-11-09T21:22:01.231Z",
+  "environment": "Optimized (Lazy Video, Splitted Vendor Chunks, Non-blocking Fonts, Hero Preload, Static Caching)",
+  "homepageDesktop": {
+    "url": "http://127.0.0.1:8085/",
+    "pageLoadDurationMs": 3350,
+    "ttfbMs": 5,
+    "fcpMs": 404,
+    "lcpMs": 612,
+    "lcpDetails": {
+      "startTime": 612,
+      "renderTime": 612,
+      "loadTime": 306.5999999642372,
+      "size": 544119,
+      "element": "IMG.w-full max-h-[540px] object-co",
+      "url": "http://127.0.0.1:8085/assets/phone-services-transparent.webp"
+    },
+    "cls": 0.001,
+    "longTasksCount": 3,
+    "longTasksTotalMs": 431,
+    "requestsCount": 53,
+    "requestsByType": {
+      "document": 1,
+      "image": 11,
+      "script": 18,
+      "stylesheet": 3,
+      "eventsource": 1,
+      "font": 9,
+      "fetch": 9,
+      "other": 1
+    },
+    "totalTransferredMB": 4.06,
+    "memoryMB": 8.77,
+    "topRequests": [
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      },
+      {
+        "url": "/assets/slides/10-all-services.webp",
+        "type": "image",
+        "sizeKB": 208
+      },
+      {
+        "url": "/assets/aistudio/consular-v4_c4b5767c.webp",
+        "type": "image",
+        "sizeKB": 194
+      }
+    ]
+  },
+  "homepageMobile": {
+    "url": "http://127.0.0.1:8085/",
+    "pageLoadDurationMs": 3017,
+    "ttfbMs": 1,
+    "fcpMs": 256,
+    "lcpMs": 388,
+    "lcpDetails": {
+      "startTime": 388,
+      "renderTime": 388,
+      "loadTime": 0,
+      "size": 24528,
+      "element": "P.text-lg sm:text-xl lg:text-[1.",
+      "url": null
+    },
+    "cls": 0,
+    "longTasksCount": 1,
+    "longTasksTotalMs": 192,
+    "requestsCount": 48,
+    "requestsByType": {
+      "document": 1,
+      "image": 8,
+      "script": 18,
+      "stylesheet": 3,
+      "font": 9,
+      "eventsource": 1,
+      "fetch": 8
+    },
+    "totalTransferredMB": 0.02,
+    "memoryMB": 7.58,
+    "topRequests": [
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      },
+      {
+        "url": "/assets/slides/10-all-services.webp",
+        "type": "image",
+        "sizeKB": 208
+      },
+      {
+        "url": "/assets/slides/02-consular.webp",
+        "type": "image",
+        "sizeKB": 161
+      }
+    ]
+  },
+  "homepageFast4G": {
+    "url": "http://127.0.0.1:8085/",
+    "pageLoadDurationMs": 3595,
+    "ttfbMs": 1,
+    "fcpMs": 308,
+    "lcpMs": 796,
+    "lcpDetails": {
+      "startTime": 796,
+      "renderTime": 796,
+      "loadTime": 213.5999999642372,
+      "size": 562205,
+      "element": "IMG.w-full max-h-[540px] object-co",
+      "url": "http://127.0.0.1:8085/assets/phone-services-transparent.webp"
+    },
+    "cls": 0.023,
+    "longTasksCount": 1,
+    "longTasksTotalMs": 81,
+    "requestsCount": 51,
+    "requestsByType": {
+      "document": 1,
+      "image": 11,
+      "stylesheet": 3,
+      "script": 18,
+      "font": 9,
+      "eventsource": 1,
+      "fetch": 8
+    },
+    "totalTransferredMB": 0.02,
+    "memoryMB": 9.01,
+    "topRequests": [
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      },
+      {
+        "url": "/assets/slides/10-all-services.webp",
+        "type": "image",
+        "sizeKB": 208
+      },
+      {
+        "url": "/assets/aistudio/consular-v4_c4b5767c.webp",
+        "type": "image",
+        "sizeKB": 194
+      }
+    ]
+  },
+  "adminLogin": {
+    "url": "http://127.0.0.1:8085/portal/login",
+    "pageLoadDurationMs": 3010,
+    "ttfbMs": 1,
+    "fcpMs": 188,
+    "lcpMs": 476,
+    "lcpDetails": {
+      "startTime": 476,
+      "renderTime": 476,
+      "loadTime": 341.80000001192093,
+      "size": 235980,
+      "element": "IMG.select-none w-auto h-auto max-",
+      "url": "http://127.0.0.1:8085/assets/brand/3d/02-consular-documents-transparent.png"
+    },
+    "cls": 0.001,
+    "longTasksCount": 1,
+    "longTasksTotalMs": 144,
+    "requestsCount": 24,
+    "requestsByType": {
+      "document": 1,
+      "image": 4,
+      "stylesheet": 4,
+      "script": 7,
+      "font": 5,
+      "eventsource": 1,
+      "fetch": 2
+    },
+    "totalTransferredMB": 1.9,
+    "memoryMB": 4,
+    "topRequests": [
+      {
+        "url": "/assets/brand/3d/02-consular-documents-transparent.png",
+        "type": "image",
+        "sizeKB": 1888
+      },
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      },
+      {
+        "url": "/assets/phone-services-transparent.webp",
+        "type": "image",
+        "sizeKB": 155
+      }
+    ]
+  },
+  "crmLogin": {
+    "url": "http://127.0.0.1:8085/portal/login?next=crm",
+    "pageLoadDurationMs": 3006,
+    "ttfbMs": 1,
+    "fcpMs": 196,
+    "lcpMs": 532,
+    "lcpDetails": {
+      "startTime": 532,
+      "renderTime": 532,
+      "loadTime": 488.9000000357628,
+      "size": 366169,
+      "element": "IMG.select-none w-auto h-auto max-",
+      "url": "http://127.0.0.1:8085/uploads/custom-test-photo-theme-1794231713124-87766.jpg"
+    },
+    "cls": 0.026,
+    "longTasksCount": 1,
+    "longTasksTotalMs": 144,
+    "requestsCount": 25,
+    "requestsByType": {
+      "document": 1,
+      "image": 5,
+      "stylesheet": 4,
+      "script": 7,
+      "font": 5,
+      "eventsource": 1,
+      "fetch": 2
+    },
+    "totalTransferredMB": 2.49,
+    "memoryMB": 4.01,
+    "topRequests": [
+      {
+        "url": "/assets/brand/3d/04-hotels-residency-transparent.png",
+        "type": "image",
+        "sizeKB": 1605
+      },
+      {
+        "url": "/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+        "type": "image",
+        "sizeKB": 921
+      },
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      }
+    ]
+  },
+  "adminPortal": {
+    "url": "http://127.0.0.1:8085/portal",
+    "pageLoadDurationMs": 3504,
+    "ttfbMs": 4,
+    "fcpMs": 264,
+    "lcpMs": 740,
+    "lcpDetails": {
+      "startTime": 740,
+      "renderTime": 740,
+      "loadTime": 591.8000000119209,
+      "size": 235980,
+      "element": "IMG.select-none w-auto h-auto max-",
+      "url": "http://127.0.0.1:8085/assets/brand/3d/02-consular-documents-transparent.png"
+    },
+    "cls": 0.001,
+    "longTasksCount": 1,
+    "longTasksTotalMs": 198,
+    "requestsCount": 45,
+    "requestsByType": {
+      "document": 1,
+      "image": 6,
+      "stylesheet": 5,
+      "script": 11,
+      "font": 5,
+      "eventsource": 1,
+      "fetch": 16
+    },
+    "totalTransferredMB": 0.32,
+    "memoryMB": 5.07,
+    "topRequests": [
+      {
+        "url": "/assets/brand/3d/02-consular-documents-transparent.png",
+        "type": "image",
+        "sizeKB": 1888
+      },
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      },
+      {
+        "url": "/assets/AdminAnalytics-YjLfEA4j.js",
+        "type": "script",
+        "sizeKB": 203
+      }
+    ]
+  },
+  "themeManager": {
+    "url": "http://127.0.0.1:8085/portal?section=theme",
+    "pageLoadDurationMs": 3014,
+    "ttfbMs": 1,
+    "fcpMs": 176,
+    "lcpMs": 480,
+    "lcpDetails": {
+      "startTime": 480,
+      "renderTime": 480,
+      "loadTime": 343.2999999523163,
+      "size": 235980,
+      "element": "IMG.select-none w-auto h-auto max-",
+      "url": "http://127.0.0.1:8085/assets/brand/3d/02-consular-documents-transparent.png"
+    },
+    "cls": 0.001,
+    "longTasksCount": 1,
+    "longTasksTotalMs": 130,
+    "requestsCount": 33,
+    "requestsByType": {
+      "document": 1,
+      "image": 5,
+      "stylesheet": 5,
+      "script": 10,
+      "font": 5,
+      "eventsource": 1,
+      "fetch": 6
+    },
+    "totalTransferredMB": 0.26,
+    "memoryMB": 4.67,
+    "topRequests": [
+      {
+        "url": "/assets/brand/3d/02-consular-documents-transparent.png",
+        "type": "image",
+        "sizeKB": 1888
+      },
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      },
+      {
+        "url": "/assets/AdminThemeManager--av5EG3k.js",
+        "type": "script",
+        "sizeKB": 229
+      }
+    ]
+  },
+  "crmDashboard": {
+    "url": "http://127.0.0.1:8085/admin/crm/",
+    "pageLoadDurationMs": 3014,
+    "ttfbMs": 1,
+    "fcpMs": 180,
+    "lcpMs": 368,
+    "lcpDetails": {
+      "startTime": 368,
+      "renderTime": 368,
+      "loadTime": 326.10000002384186,
+      "size": 366169,
+      "element": "IMG.select-none w-auto h-auto max-",
+      "url": "http://127.0.0.1:8085/uploads/custom-test-photo-theme-1794231713124-87766.jpg"
+    },
+    "cls": 0.026,
+    "longTasksCount": 1,
+    "longTasksTotalMs": 125,
+    "requestsCount": 26,
+    "requestsByType": {
+      "document": 2,
+      "image": 5,
+      "stylesheet": 4,
+      "script": 7,
+      "font": 5,
+      "eventsource": 1,
+      "fetch": 2
+    },
+    "totalTransferredMB": 0.01,
+    "memoryMB": 4.07,
+    "topRequests": [
+      {
+        "url": "/assets/brand/3d/04-hotels-residency-transparent.png",
+        "type": "image",
+        "sizeKB": 1605
+      },
+      {
+        "url": "/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+        "type": "image",
+        "sizeKB": 921
+      },
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      }
+    ]
+  },
+  "crmCalendar": {
+    "url": "http://127.0.0.1:8085/admin/crm/?tool=calendar",
+    "pageLoadDurationMs": 3013,
+    "ttfbMs": 1,
+    "fcpMs": 184,
+    "lcpMs": 372,
+    "lcpDetails": {
+      "startTime": 372,
+      "renderTime": 372,
+      "loadTime": 328.30000001192093,
+      "size": 366169,
+      "element": "IMG.select-none w-auto h-auto max-",
+      "url": "http://127.0.0.1:8085/uploads/custom-test-photo-theme-1794231713124-87766.jpg"
+    },
+    "cls": 0.026,
+    "longTasksCount": 1,
+    "longTasksTotalMs": 135,
+    "requestsCount": 26,
+    "requestsByType": {
+      "document": 2,
+      "image": 5,
+      "stylesheet": 4,
+      "script": 7,
+      "font": 5,
+      "eventsource": 1,
+      "fetch": 2
+    },
+    "totalTransferredMB": 0.01,
+    "memoryMB": 4.06,
+    "topRequests": [
+      {
+        "url": "/assets/brand/3d/04-hotels-residency-transparent.png",
+        "type": "image",
+        "sizeKB": 1605
+      },
+      {
+        "url": "/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+        "type": "image",
+        "sizeKB": 921
+      },
+      {
+        "url": "/assets/index-B_mawUsK.js",
+        "type": "script",
+        "sizeKB": 529
+      },
+      {
+        "url": "/assets/Bahij-Black.ttf",
+        "type": "font",
+        "sizeKB": 300
+      },
+      {
+        "url": "/assets/Bahij-Plain.ttf",
+        "type": "font",
+        "sizeKB": 299
+      },
+      {
+        "url": "/assets/Bahij-Bold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-SemiBold.ttf",
+        "type": "font",
+        "sizeKB": 298
+      },
+      {
+        "url": "/assets/Bahij-ExtraBold.ttf",
+        "type": "font",
+        "sizeKB": 297
+      },
+      {
+        "url": "/assets/index-oVEMGmK4.css",
+        "type": "stylesheet",
+        "sizeKB": 268
+      },
+      {
+        "url": "/assets/vendor-react-CcgUYHZU.js",
+        "type": "script",
+        "sizeKB": 239
+      }
+    ]
+  }
+}

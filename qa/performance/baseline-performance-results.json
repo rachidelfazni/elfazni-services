@@ -1,0 +1,1008 @@
+{
+  "homepageDesktop": {
+    "url": "http://127.0.0.1:8080/",
+    "httpStatus": 200,
+    "isMobile": false,
+    "loadDurationMs": 2017,
+    "ttfbMs": 11,
+    "fcpMs": 700,
+    "lcpMs": 1400,
+    "lcpElement": "img.w-full",
+    "lcpUrl": "http://127.0.0.1:8080/assets/phone-services-transparent.webp",
+    "cls": 0.0013,
+    "longTasks": 4,
+    "longTaskDurationMs": 293,
+    "totalRequests": 97,
+    "totalTransferredBytes": 15424502,
+    "totalTransferredMB": 14.71,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 279
+      },
+      "Script": {
+        "count": 62,
+        "bytes": 19678
+      },
+      "Font": {
+        "count": 11,
+        "bytes": 2484
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 498
+      },
+      "Image": {
+        "count": 10,
+        "bytes": 2636
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Fetch": {
+        "count": 8,
+        "bytes": 2587
+      },
+      "Other": {
+        "count": 1,
+        "bytes": 292
+      },
+      "Media": {
+        "count": 1,
+        "bytes": 373
+      }
+    },
+    "topRequests": [
+      {
+        "url": "...gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBHMdazTgWw.woff2",
+        "type": "Font",
+        "sizeKB": 1,
+        "mime": "font/woff2"
+      },
+      {
+        "url": "...:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700;900&display=swap",
+        "type": "Stylesheet",
+        "sizeKB": 0,
+        "mime": "text/css"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/videos/ELFAZNI_SERVICES_BRANDED.mp4",
+        "type": "Media",
+        "sizeKB": 0,
+        "mime": "video/mp4"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-Plain.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-SemiBold.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-Black.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-ExtraBold.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-Bold.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/node_modules/.vite/deps/react-dom_client.js?v=6fb5af95",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/node_modules/.vite/deps/lucide-react.js?v=6fb5af95",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      }
+    ],
+    "memoryMB": 37.38
+  },
+  "homepageMobile": {
+    "url": "http://127.0.0.1:8080/",
+    "httpStatus": 304,
+    "isMobile": true,
+    "loadDurationMs": 1351,
+    "ttfbMs": 4,
+    "fcpMs": 328,
+    "lcpMs": 624,
+    "lcpElement": "p.text-lg",
+    "lcpUrl": "",
+    "cls": 0,
+    "longTasks": 3,
+    "longTaskDurationMs": 242,
+    "totalRequests": 91,
+    "totalTransferredBytes": 29995,
+    "totalTransferredMB": 0.03,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 172
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 0
+      },
+      "Script": {
+        "count": 62,
+        "bytes": 10908
+      },
+      "Font": {
+        "count": 9,
+        "bytes": 1010
+      },
+      "Image": {
+        "count": 7,
+        "bytes": 900
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Fetch": {
+        "count": 8,
+        "bytes": 2587
+      },
+      "Media": {
+        "count": 1,
+        "bytes": 150
+      }
+    },
+    "topRequests": [
+      {
+        "url": "http://127.0.0.1:8080/api/settings?_t=1794258308469",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/services?_t=1794258308469",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/seo?_t=1794258308469",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/theme/published/website?t=1794258308483",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/chat/status?_t=1794258308467",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/chat/status?_t=1794258308469",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/analytics/visit",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "...chat/sessions?visitorId=vis_5e484f56462cb3fe89336be516d51dc3&_t=1794258308468",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "...0.0.1:8080/api/realtime/stream?visitorId=vis_5e484f56462cb3fe89336be516d51dc3",
+        "type": "EventSource",
+        "sizeKB": 0,
+        "mime": "text/event-stream"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/main.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      }
+    ],
+    "memoryMB": 37.41
+  },
+  "homepageMobile4G": {
+    "url": "http://127.0.0.1:8080/",
+    "httpStatus": 304,
+    "isMobile": true,
+    "loadDurationMs": 3686,
+    "ttfbMs": 4,
+    "fcpMs": 1676,
+    "lcpMs": 1800,
+    "lcpElement": "img.w-full",
+    "lcpUrl": "http://127.0.0.1:8080/assets/phone-services-transparent.webp",
+    "cls": 0.1609,
+    "longTasks": 2,
+    "longTaskDurationMs": 152,
+    "totalRequests": 91,
+    "totalTransferredBytes": 29993,
+    "totalTransferredMB": 0.03,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 172
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 0
+      },
+      "Script": {
+        "count": 62,
+        "bytes": 10908
+      },
+      "Font": {
+        "count": 9,
+        "bytes": 1010
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Image": {
+        "count": 7,
+        "bytes": 900
+      },
+      "Fetch": {
+        "count": 8,
+        "bytes": 2587
+      },
+      "Media": {
+        "count": 1,
+        "bytes": 150
+      }
+    },
+    "topRequests": [
+      {
+        "url": "http://127.0.0.1:8080/api/settings?_t=1794258313352",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/services?_t=1794258313352",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/seo?_t=1794258313352",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/theme/published/website?t=1794258313363",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/chat/status?_t=1794258313350",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/chat/status?_t=1794258313352",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/analytics/visit",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "...chat/sessions?visitorId=vis_5e484f56462cb3fe89336be516d51dc3&_t=1794258313351",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "...0.0.1:8080/api/realtime/stream?visitorId=vis_5e484f56462cb3fe89336be516d51dc3",
+        "type": "EventSource",
+        "sizeKB": 0,
+        "mime": "text/event-stream"
+      },
+      {
+        "url": "http://127.0.0.1:8080/@vite/client",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      }
+    ],
+    "memoryMB": 35.17
+  },
+  "adminLogin": {
+    "url": "http://127.0.0.1:8080/portal/login",
+    "httpStatus": 200,
+    "isMobile": false,
+    "loadDurationMs": 1238,
+    "ttfbMs": 4,
+    "fcpMs": 228,
+    "lcpMs": 624,
+    "lcpElement": "img.select-none",
+    "lcpUrl": "http://127.0.0.1:8080/assets/brand/3d/02-consular-documents-transparent.png",
+    "cls": 0.0007,
+    "longTasks": 1,
+    "longTaskDurationMs": 57,
+    "totalRequests": 61,
+    "totalTransferredBytes": 2109018,
+    "totalTransferredMB": 2.01,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 279
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 0
+      },
+      "Script": {
+        "count": 47,
+        "bytes": 8216
+      },
+      "Font": {
+        "count": 5,
+        "bytes": 1010
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Fetch": {
+        "count": 2,
+        "bytes": 656
+      },
+      "Image": {
+        "count": 3,
+        "bytes": 594
+      }
+    },
+    "topRequests": [
+      {
+        "url": "http://127.0.0.1:8080/api/auth/me?_t=1794258317944",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/theme/published/admin_login?t=1794258318272",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/components/admin/AdminLogin.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/components/common/ThemeVisualPanel.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/components/admin/admin-design.css",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/brand/3d/02-consular-documents-transparent.png",
+        "type": "Image",
+        "sizeKB": 0,
+        "mime": "image/png"
+      },
+      {
+        "url": "http://127.0.0.1:8080/portal/login",
+        "type": "Document",
+        "sizeKB": 0,
+        "mime": "text/html"
+      },
+      {
+        "url": "...0.0.1:8080/api/realtime/stream?visitorId=vis_5e484f56462cb3fe89336be516d51dc3",
+        "type": "EventSource",
+        "sizeKB": 0,
+        "mime": "text/event-stream"
+      },
+      {
+        "url": "http://127.0.0.1:8080/@vite/client",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-Plain.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      }
+    ],
+    "memoryMB": 27.23
+  },
+  "crmLogin": {
+    "url": "http://127.0.0.1:8080/portal/login?next=crm",
+    "httpStatus": 200,
+    "isMobile": false,
+    "loadDurationMs": 1212,
+    "ttfbMs": 3,
+    "fcpMs": 204,
+    "lcpMs": 572,
+    "lcpElement": "img.select-none",
+    "lcpUrl": "http://127.0.0.1:8080/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+    "cls": 0.0257,
+    "longTasks": 2,
+    "longTaskDurationMs": 130,
+    "totalRequests": 62,
+    "totalTransferredBytes": 2618196,
+    "totalTransferredMB": 2.5,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 279
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 0
+      },
+      "Script": {
+        "count": 47,
+        "bytes": 7878
+      },
+      "Font": {
+        "count": 5,
+        "bytes": 1010
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Fetch": {
+        "count": 2,
+        "bytes": 656
+      },
+      "Image": {
+        "count": 4,
+        "bytes": 901
+      }
+    },
+    "topRequests": [
+      {
+        "url": "http://127.0.0.1:8080/api/auth/me?_t=1794258321374",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/theme/published/crm_login?t=1794258321657",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+        "type": "Image",
+        "sizeKB": 0,
+        "mime": "image/jpeg"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/brand/3d/04-hotels-residency-transparent.png",
+        "type": "Image",
+        "sizeKB": 0,
+        "mime": "image/png"
+      },
+      {
+        "url": "http://127.0.0.1:8080/portal/login?next=crm",
+        "type": "Document",
+        "sizeKB": 0,
+        "mime": "text/html"
+      },
+      {
+        "url": "...0.0.1:8080/api/realtime/stream?visitorId=vis_5e484f56462cb3fe89336be516d51dc3",
+        "type": "EventSource",
+        "sizeKB": 0,
+        "mime": "text/event-stream"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/main.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/@vite/client",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-SemiBold.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-Plain.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      }
+    ],
+    "memoryMB": 27.2
+  },
+  "adminPortal": {
+    "url": "http://127.0.0.1:8080/portal",
+    "httpStatus": 200,
+    "isMobile": false,
+    "loadDurationMs": 1254,
+    "ttfbMs": 3,
+    "fcpMs": 200,
+    "lcpMs": 536,
+    "lcpElement": "img.select-none",
+    "lcpUrl": "http://127.0.0.1:8080/assets/brand/3d/02-consular-documents-transparent.png",
+    "cls": 0.0007,
+    "longTasks": 2,
+    "longTaskDurationMs": 125,
+    "totalRequests": 99,
+    "totalTransferredBytes": 4087830,
+    "totalTransferredMB": 3.9,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 279
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 0
+      },
+      "Script": {
+        "count": 81,
+        "bytes": 18611
+      },
+      "Font": {
+        "count": 5,
+        "bytes": 1010
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Fetch": {
+        "count": 6,
+        "bytes": 1951
+      },
+      "Image": {
+        "count": 3,
+        "bytes": 450
+      }
+    },
+    "topRequests": [
+      {
+        "url": "http://127.0.0.1:8080/api/auth/me?_t=1794258324897",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/settings?_t=1794258324895",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/services?_t=1794258324896",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/seo?_t=1794258324896",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/theme/published/admin_login?t=1794258325182",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/chat/status?_t=1794258324896",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/components/admin/AdminLayout.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/components/admin/AdminUsers.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/components/admin/AdminAnalytics.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/components/admin/AdminMailbox.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      }
+    ],
+    "memoryMB": 33.71
+  },
+  "themeManager": {
+    "url": "http://127.0.0.1:8080/portal?section=theme",
+    "httpStatus": 200,
+    "isMobile": false,
+    "loadDurationMs": 1219,
+    "ttfbMs": 3,
+    "fcpMs": 200,
+    "lcpMs": 540,
+    "lcpElement": "img.select-none",
+    "lcpUrl": "http://127.0.0.1:8080/assets/brand/3d/02-consular-documents-transparent.png",
+    "cls": 0.0007,
+    "longTasks": 2,
+    "longTaskDurationMs": 120,
+    "totalRequests": 99,
+    "totalTransferredBytes": 48734,
+    "totalTransferredMB": 0.05,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 279
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 0
+      },
+      "Script": {
+        "count": 81,
+        "bytes": 14746
+      },
+      "Font": {
+        "count": 5,
+        "bytes": 1010
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Fetch": {
+        "count": 6,
+        "bytes": 1951
+      },
+      "Image": {
+        "count": 3,
+        "bytes": 450
+      }
+    },
+    "topRequests": [
+      {
+        "url": "http://127.0.0.1:8080/api/auth/me?_t=1794258328386",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/settings?_t=1794258328385",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/services?_t=1794258328385",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/seo?_t=1794258328386",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/theme/published/admin_login?t=1794258328677",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/chat/status?_t=1794258328386",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/portal?section=theme",
+        "type": "Document",
+        "sizeKB": 0,
+        "mime": "text/html"
+      },
+      {
+        "url": "...0.0.1:8080/api/realtime/stream?visitorId=vis_5e484f56462cb3fe89336be516d51dc3",
+        "type": "EventSource",
+        "sizeKB": 0,
+        "mime": "text/event-stream"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/main.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/@vite/client",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      }
+    ],
+    "memoryMB": 33.85
+  },
+  "crmDashboard": {
+    "url": "http://127.0.0.1:8080/admin/crm/",
+    "httpStatus": 304,
+    "isMobile": false,
+    "loadDurationMs": 1248,
+    "ttfbMs": 5,
+    "fcpMs": 236,
+    "lcpMs": 648,
+    "lcpElement": "img.select-none",
+    "lcpUrl": "http://127.0.0.1:8080/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+    "cls": 0.0258,
+    "longTasks": 1,
+    "longTaskDurationMs": 59,
+    "totalRequests": 62,
+    "totalTransferredBytes": 16365,
+    "totalTransferredMB": 0.02,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 172
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 0
+      },
+      "Script": {
+        "count": 47,
+        "bytes": 7878
+      },
+      "Font": {
+        "count": 5,
+        "bytes": 1010
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Fetch": {
+        "count": 2,
+        "bytes": 656
+      },
+      "Image": {
+        "count": 4,
+        "bytes": 717
+      }
+    },
+    "topRequests": [
+      {
+        "url": "http://127.0.0.1:8080/api/auth/me?_t=1794258331890",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/theme/published/crm_login?t=1794258332220",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+        "type": "Image",
+        "sizeKB": 0,
+        "mime": "image/jpeg"
+      },
+      {
+        "url": "...0.0.1:8080/api/realtime/stream?visitorId=vis_5e484f56462cb3fe89336be516d51dc3",
+        "type": "EventSource",
+        "sizeKB": 0,
+        "mime": "text/event-stream"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/main.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/@vite/client",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-Plain.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-SemiBold.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/node_modules/vite/dist/client/env.mjs",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/App.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      }
+    ],
+    "memoryMB": 27.03
+  },
+  "crmCalendar": {
+    "url": "http://127.0.0.1:8080/admin/crm/?tool=calendar",
+    "httpStatus": 304,
+    "isMobile": false,
+    "loadDurationMs": 1202,
+    "ttfbMs": 3,
+    "fcpMs": 188,
+    "lcpMs": 572,
+    "lcpElement": "img.select-none",
+    "lcpUrl": "http://127.0.0.1:8080/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+    "cls": 0.0257,
+    "longTasks": 2,
+    "longTaskDurationMs": 113,
+    "totalRequests": 62,
+    "totalTransferredBytes": 16365,
+    "totalTransferredMB": 0.02,
+    "byType": {
+      "Document": {
+        "count": 1,
+        "bytes": 172
+      },
+      "Stylesheet": {
+        "count": 2,
+        "bytes": 0
+      },
+      "Script": {
+        "count": 47,
+        "bytes": 7878
+      },
+      "Font": {
+        "count": 5,
+        "bytes": 1010
+      },
+      "EventSource": {
+        "count": 1,
+        "bytes": 226
+      },
+      "Fetch": {
+        "count": 2,
+        "bytes": 656
+      },
+      "Image": {
+        "count": 4,
+        "bytes": 717
+      }
+    },
+    "topRequests": [
+      {
+        "url": "http://127.0.0.1:8080/api/auth/me?_t=1794258335482",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/api/theme/published/crm_login?t=1794258335780",
+        "type": "Fetch",
+        "sizeKB": 0,
+        "mime": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:8080/uploads/custom-test-photo-theme-1794231713124-87766.jpg",
+        "type": "Image",
+        "sizeKB": 0,
+        "mime": "image/jpeg"
+      },
+      {
+        "url": "...0.0.1:8080/api/realtime/stream?visitorId=vis_5e484f56462cb3fe89336be516d51dc3",
+        "type": "EventSource",
+        "sizeKB": 0,
+        "mime": "text/event-stream"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/main.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/@vite/client",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-SemiBold.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/assets/Bahij-Plain.ttf",
+        "type": "Font",
+        "sizeKB": 0,
+        "mime": "font/ttf"
+      },
+      {
+        "url": "http://127.0.0.1:8080/src/App.tsx",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:8080/node_modules/vite/dist/client/env.mjs",
+        "type": "Script",
+        "sizeKB": 0,
+        "mime": "text/javascript"
+      }
+    ],
+    "memoryMB": 27.27
+  }
+}

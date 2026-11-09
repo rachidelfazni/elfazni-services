@@ -1,0 +1,31 @@
+{
+  "testA": {
+    "label": "Test A: Video ENABLED",
+    "withVideo": true,
+    "loadDurationMs": 1597,
+    "fcpMs": 552,
+    "lcpMs": 1172,
+    "ttfbMs": 9,
+    "longTasks": 3,
+    "longTaskDurationMs": 224,
+    "totalRequests": 97,
+    "totalTransferredMB": 14.71,
+    "videoTransferredMB": 0,
+    "screenshotPath": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/performance/video-enabled/homepage-video-enabled.png"
+  },
+  "testB": {
+    "label": "Test B: Video DISABLED",
+    "withVideo": false,
+    "loadDurationMs": 1566,
+    "fcpMs": 544,
+    "lcpMs": 1156,
+    "ttfbMs": 3,
+    "longTasks": 2,
+    "longTaskDurationMs": 138,
+    "totalRequests": 96,
+    "totalTransferredMB": 14.71,
+    "videoTransferredMB": 0,
+    "screenshotPath": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/performance/video-disabled/homepage-video-disabled.png"
+  },
+  "timestamp": "2026-11-09T21:06:58.063Z"
+}

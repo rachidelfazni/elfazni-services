@@ -108,8 +108,13 @@ ${urls
     res.send(xml);
   });
 
-  // Static serving for uploaded files
-  app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+  // Static serving for uploaded files with 30-day client cache
+  app.use(
+    '/uploads',
+    express.static(path.join(__dirname, 'public', 'uploads'), {
+      maxAge: '30d',
+    })
+  );
 
   const crmDist = path.join(__dirname, 'crm', 'dist');
   app.use(['/crm', '/portal/crm', '/admin/crm'], (req, res, next) => {
@@ -155,7 +160,18 @@ ${urls
     });
   });
   app.use(['/crm/api', '/portal/crm/api', '/admin/crm/api'], crmRouter);
-  app.use(['/crm', '/portal/crm', '/admin/crm'], express.static(crmDist));
+  app.use(
+    ['/crm', '/portal/crm', '/admin/crm'],
+    express.static(crmDist, {
+      maxAge: '1y',
+      immutable: true,
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.html')) {
+          res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        }
+      },
+    })
+  );
   app.get(['/crm', '/crm/*', '/portal/crm', '/portal/crm/*', '/admin/crm', '/admin/crm/*'], (_req, res) => {
     const indexPath = path.join(crmDist, 'index.html');
     if (fs.existsSync(indexPath)) {
@@ -186,9 +202,19 @@ ${urls
     app.use(vite.middlewares);
     console.log(`[DEV] Vite middlewares attached in dev mode`);
   } else {
-    // Production mode: Serve built dist
+    // Production mode: Serve built dist with 1-year immutable cache on hashed assets
     const distPath = path.join(__dirname, 'dist');
-    app.use(express.static(distPath));
+    app.use(
+      express.static(distPath, {
+        maxAge: '1y',
+        immutable: true,
+        setHeaders: (res, filePath) => {
+          if (filePath.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+          }
+        },
+      })
+    );
     app.get('*', (req, res) => {
       if (req.path.startsWith('/api')) {
         return res.status(404).json({ error: 'Endpoint not found' });

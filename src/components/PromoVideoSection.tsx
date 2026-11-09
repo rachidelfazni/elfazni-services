@@ -25,23 +25,55 @@ interface PromoVideoSectionProps {
 export const PromoVideoSection: React.FC<PromoVideoSectionProps> = ({ onOpenStartModal }) => {
   const { t, language, isRtl } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
+  const [hasInteracted, setHasInteracted] = useState<boolean>(false);
 
-  // Auto-play immediately on mount and continuous loop
+  // Lazy play only when in viewport and on desktop; pause when scrolled out of view
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {
-        // Fallback if browser policy blocks initial autoplay
-        setIsPlaying(false);
-      });
-    }
-  }, []);
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || ('ontouchstart' in window && window.innerWidth < 1024));
+    const target = containerRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (!videoRef.current) return;
+
+        if (entry.isIntersecting) {
+          // On mobile, keep paused with poster until user interacts to save cellular bandwidth
+          if (!isMobile && !hasInteracted) {
+            videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {
+              setIsPlaying(false);
+            });
+          }
+        } else {
+          // Scrolled out of view: pause video to free CPU and GPU decoding
+          if (!videoRef.current.paused) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+          }
+        }
+      },
+      {
+        root: null,
+        threshold: 0.25,
+        rootMargin: '100px',
+      }
+    );
+
+    observer.observe(target);
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasInteracted]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
+    setHasInteracted(true);
     if (isPlaying) {
       videoRef.current.pause();
       setIsPlaying(false);
@@ -87,6 +119,7 @@ export const PromoVideoSection: React.FC<PromoVideoSectionProps> = ({ onOpenStar
   return (
     <section
       id="promo-video"
+      ref={containerRef}
       className="py-14 sm:py-18 bg-gradient-to-b from-[#FFFFFF] via-[#F4F8FC] to-[#FFFFFF] relative overflow-hidden"
     >
       {/* Decorative Brand Ambient Glows */}
@@ -141,8 +174,9 @@ export const PromoVideoSection: React.FC<PromoVideoSectionProps> = ({ onOpenStar
                 <video
                   ref={videoRef}
                   src="/assets/videos/ELFAZNI_SERVICES_BRANDED.mp4"
+                  poster="/assets/slides/10-all-services.webp"
+                  preload="none"
                   className="w-full h-full object-cover"
-                  autoPlay
                   playsInline
                   muted={isMuted}
                   loop

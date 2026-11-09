@@ -39,7 +39,10 @@ import { ActiveTab } from "../../types";
 import { BRAND_CONFIG } from "../../config/brandConfig";
 import { BankDetailsShare } from "../common/BankDetailsShare";
 import { showAllSections } from "../common/VisibilitySection";
-import { CalendarWorkspace, type ToolsTab } from "../tools/CalendarWorkspace";
+import type { ToolsTab } from "../tools/CalendarWorkspace";
+const CalendarWorkspace = React.lazy(() =>
+  import("../tools/CalendarWorkspace").then((m) => ({ default: m.CalendarWorkspace }))
+);
 import { ResizeHandle } from "./resizable/ResizeHandle";
 
 interface Props {
@@ -824,11 +827,15 @@ export const WorkspaceNavbar: React.FC<Props> = (props) => {
         </div>
       )}
       {/* Scheduler-style personal workspace: Calendar + Notebook + Tasks + Bookings */}
-      <CalendarWorkspace
-        open={workspace.open}
-        initialTab={workspace.tab}
-        onClose={() => setWorkspace((w) => ({ ...w, open: false }))}
-      />
+      {workspace.open && (
+        <React.Suspense fallback={null}>
+          <CalendarWorkspace
+            open={workspace.open}
+            initialTab={workspace.tab}
+            onClose={() => setWorkspace((w) => ({ ...w, open: false }))}
+          />
+        </React.Suspense>
+      )}
     </>
   );
 };

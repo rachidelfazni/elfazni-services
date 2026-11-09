@@ -1,4 +1,3 @@
-import { AdminUsers } from './AdminUsers';
 import './admin-design.css';
 import React, { useState, useEffect } from 'react';
 import {
@@ -53,16 +52,19 @@ import {
   ChatStatus,
 } from '../../services/api';
 import { useLanguage } from '../../context/LanguageContext';
-import { AdminAnalytics } from './AdminAnalytics';
-import { AdminLiveChat } from './AdminLiveChat';
-import { AdminMailbox } from './AdminMailbox';
-import { AdminSiteEditor } from './AdminSiteEditor';
-import { AdminServicesEditor } from './AdminServicesEditor';
-import { AdminProfileSettings } from './AdminProfileSettings';
-import { AdminSeoManager } from './AdminSeoManager';
-import { BlogPostAnalyticsWidget } from './BlogPostAnalyticsWidget';
-import { AdminBlogCms, BlogCmsSubTab } from './blog/AdminBlogCms';
-import { AdminThemeManager, ThemeSubTab } from './theme/AdminThemeManager';
+import type { BlogCmsSubTab } from './blog/AdminBlogCms';
+import type { ThemeSubTab } from './theme/AdminThemeManager';
+
+const AdminUsers = React.lazy(() => import('./AdminUsers').then((m) => ({ default: m.AdminUsers })));
+const AdminAnalytics = React.lazy(() => import('./AdminAnalytics').then((m) => ({ default: m.AdminAnalytics })));
+const AdminLiveChat = React.lazy(() => import('./AdminLiveChat').then((m) => ({ default: m.AdminLiveChat })));
+const AdminMailbox = React.lazy(() => import('./AdminMailbox').then((m) => ({ default: m.AdminMailbox })));
+const AdminSiteEditor = React.lazy(() => import('./AdminSiteEditor').then((m) => ({ default: m.AdminSiteEditor })));
+const AdminServicesEditor = React.lazy(() => import('./AdminServicesEditor').then((m) => ({ default: m.AdminServicesEditor })));
+const AdminProfileSettings = React.lazy(() => import('./AdminProfileSettings').then((m) => ({ default: m.AdminProfileSettings })));
+const AdminSeoManager = React.lazy(() => import('./AdminSeoManager').then((m) => ({ default: m.AdminSeoManager })));
+const AdminBlogCms = React.lazy(() => import('./blog/AdminBlogCms').then((m) => ({ default: m.AdminBlogCms })));
+const AdminThemeManager = React.lazy(() => import('./theme/AdminThemeManager').then((m) => ({ default: m.AdminThemeManager })));
 import { realtime } from '../../services/realtime';
 import { BrandLogo } from '../common/BrandLogo';
 
@@ -964,83 +966,92 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
 
         {/* Main Stage View */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-          {/* TAB 1: OVERVIEW & ANALYTICS */}
-          {visibleTab === 'overview' && (
-            <>
-              {isOwner && <section className="admin-workspace-intro" aria-labelledby="workspace-heading">
-                <div className="admin-workspace-heading">
-                  <div>
-                    <p className="admin-entry-kicker">الفزني للخدمات</p>
-                    <h1 id="workspace-heading" className="admin-workspace-title">مساحة العمل</h1>
-                    <p className="text-sm text-[#52657E]">راجع الرسائل والطلبات وانتقل إلى نظام الحجوزات.</p>
+          <React.Suspense
+            fallback={
+              <div className="flex flex-col items-center justify-center min-h-[300px] text-slate-400 gap-3">
+                <RefreshCw className="w-6 h-6 animate-spin text-[#004AA5]" />
+                <span className="text-xs font-semibold">جاري تحميل القسم…</span>
+              </div>
+            }
+          >
+            {/* TAB 1: OVERVIEW & ANALYTICS */}
+            {visibleTab === 'overview' && (
+              <>
+                {isOwner && <section className="admin-workspace-intro" aria-labelledby="workspace-heading">
+                  <div className="admin-workspace-heading">
+                    <div>
+                      <p className="admin-entry-kicker">الفزني للخدمات</p>
+                      <h1 id="workspace-heading" className="admin-workspace-title">مساحة العمل</h1>
+                      <p className="text-sm text-[#52657E]">راجع الرسائل والطلبات وانتقل إلى نظام الحجوزات.</p>
+                    </div>
+                    <BrandLogo background="white" orientation="vertical" size={105} className="h-26 sm:h-28 w-auto drop-shadow-sm" />
                   </div>
-                  <BrandLogo background="white" orientation="vertical" size={105} className="h-26 sm:h-28 w-auto drop-shadow-sm" />
-                </div>
-                <div className="admin-workspace-links">
-                  <button type="button" onClick={() => setActiveTab('chat')} className="admin-workspace-link">
-                    <MessageSquare aria-hidden="true" size={19} /><span>رسائل الدردشة غير المقروءة</span><strong>{unreadChatCount}</strong>
-                  </button>
-                  <button type="button" onClick={() => setActiveTab('mailbox')} className="admin-workspace-link">
-                    <Mail aria-hidden="true" size={19} /><span>تذاكر البريد الجديدة</span><strong>{unreadMailCount}</strong>
-                  </button>
-                  {hasCrmAccess && (
-                    <a href="/crm" className="admin-workspace-link admin-workspace-crm">
-                      <Briefcase aria-hidden="true" size={19} /><span>الدخول إلى نظام CRM</span><span aria-hidden="true">↗</span>
-                    </a>
-                  )}
-                </div>
-              </section>}
-              <AdminAnalytics />
-            </>
-          )}
+                  <div className="admin-workspace-links">
+                    <button type="button" onClick={() => setActiveTab('chat')} className="admin-workspace-link">
+                      <MessageSquare aria-hidden="true" size={19} /><span>رسائل الدردشة غير المقروءة</span><strong>{unreadChatCount}</strong>
+                    </button>
+                    <button type="button" onClick={() => setActiveTab('mailbox')} className="admin-workspace-link">
+                      <Mail aria-hidden="true" size={19} /><span>تذاكر البريد الجديدة</span><strong>{unreadMailCount}</strong>
+                    </button>
+                    {hasCrmAccess && (
+                      <a href="/crm" className="admin-workspace-link admin-workspace-crm">
+                        <Briefcase aria-hidden="true" size={19} /><span>الدخول إلى نظام CRM</span><span aria-hidden="true">↗</span>
+                      </a>
+                    )}
+                  </div>
+                </section>}
+                <AdminAnalytics />
+              </>
+            )}
 
-          {/* TAB 2: LIVE CHAT */}
-          {visibleTab === 'chat' && <AdminLiveChat />}
+            {/* TAB 2: LIVE CHAT */}
+            {visibleTab === 'chat' && <AdminLiveChat />}
 
-          {/* TAB 3: MAILBOX */}
-          {visibleTab === 'mailbox' && <AdminMailbox />}
+            {/* TAB 3: MAILBOX */}
+            {visibleTab === 'mailbox' && <AdminMailbox />}
 
-          {/* TAB 4: SITE UI VISUAL EDITOR */}
-          {visibleTab === 'site_editor' && <AdminSiteEditor />}
+            {/* TAB 4: SITE UI VISUAL EDITOR */}
+            {visibleTab === 'site_editor' && <AdminSiteEditor />}
 
-          {/* TAB 4B: SEO & META MANAGEMENT */}
-          {visibleTab === 'seo' && <AdminSeoManager />}
+            {/* TAB 4B: SEO & META MANAGEMENT */}
+            {visibleTab === 'seo' && <AdminSeoManager />}
 
-          {/* TAB 5: SECTIONS & SERVICES CRUD */}
-          {visibleTab === 'services' && <AdminServicesEditor />}
+            {/* TAB 5: SECTIONS & SERVICES CRUD */}
+            {visibleTab === 'services' && <AdminServicesEditor />}
 
-          {/* TAB 6, 7, 8: COMPLETE BLOG CMS & WORD-LIKE VISUAL EDITOR */}
-          {(visibleTab === 'posts' || visibleTab === 'categories' || visibleTab === 'media') && (
-            <AdminBlogCms
-              initialSubTab={
-                visibleTab === 'categories'
-                  ? 'categories_tags'
-                  : visibleTab === 'media'
-                  ? 'media_library'
-                  : blogSubTab
-              }
-              posts={posts}
-              categories={categories}
-              media={media}
-              onPostsChange={setPosts}
-              onCategoriesChange={setCategories}
-              onMediaChange={setMedia}
-              onNavigatePublic={onNavigate}
-              showFeedback={showFeedback}
-            />
-          )}
+            {/* TAB 6, 7, 8: COMPLETE BLOG CMS & WORD-LIKE VISUAL EDITOR */}
+            {(visibleTab === 'posts' || visibleTab === 'categories' || visibleTab === 'media') && (
+              <AdminBlogCms
+                initialSubTab={
+                  visibleTab === 'categories'
+                    ? 'categories_tags'
+                    : visibleTab === 'media'
+                    ? 'media_library'
+                    : blogSubTab
+                }
+                posts={posts}
+                categories={categories}
+                media={media}
+                onPostsChange={setPosts}
+                onCategoriesChange={setCategories}
+                onMediaChange={setMedia}
+                onNavigatePublic={onNavigate}
+                showFeedback={showFeedback}
+              />
+            )}
 
-          {/* TAB 8B: ADVANCED THEME, BRANDING & APPEARANCE SYSTEM */}
-          {visibleTab === 'theme' && (
-            <AdminThemeManager
-              initialSubTab={themeSubTab}
-              onNavigatePublic={onNavigate}
-            />
-          )}
+            {/* TAB 8B: ADVANCED THEME, BRANDING & APPEARANCE SYSTEM */}
+            {visibleTab === 'theme' && (
+              <AdminThemeManager
+                initialSubTab={themeSubTab}
+                onNavigatePublic={onNavigate}
+              />
+            )}
 
-          {/* TAB 9: SETTINGS & BACKUP */}
-          {visibleTab === 'users' && <AdminUsers />}
-          {visibleTab === 'settings' && <AdminProfileSettings />}
+            {/* TAB 9: SETTINGS & BACKUP */}
+            {visibleTab === 'users' && <AdminUsers />}
+            {visibleTab === 'settings' && <AdminProfileSettings />}
+          </React.Suspense>
         </main>
       </div>
 

@@ -9,3 +9,6 @@ data/db.json.backup
 *.log
 .DS_Store
 __pycache__/
+
+*.zip
+

@@ -1,0 +1,313 @@
+{
+  "timestamp": "2026-11-09T20:09:47.918Z",
+  "tests": {
+    "TEST_M1_MAP_PALETTE": {
+      "name": "World Geo-Analytics Map Color Palette",
+      "passed": true,
+      "details": {
+        "hasSvg": true,
+        "hasOceanColor": true,
+        "oceanFill": "#08294B",
+        "hasTurkey": true,
+        "hasMorocco": true
+      }
+    },
+    "TEST_M2_INTERACTIVITY": {
+      "name": "Country Hover and Selection Details",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_M3_ZOOM_PAN": {
+      "name": "Map Zoom and Pan Navigation",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_M4_FILTERS": {
+      "name": "Country Search and Period Selector",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_L1_CALENDAR_LOAD": {
+      "name": "Calendar Workspace Dialog & Month View Loaded",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_A_CREATE_EVENT": {
+      "name": "Create Event with Date/Time/Category/Reminders",
+      "passed": true,
+      "details": {
+        "id": "cal_1794255001324_7nnc",
+        "title": "موعد قنصلي — تأشيرة شنغن فرنسا تجريبية"
+      }
+    },
+    "TEST_B_EDIT_AND_PERSIST": {
+      "name": "Edit Event Details & Verify Persistence after Reload",
+      "passed": true,
+      "details": {
+        "success": true,
+        "event": {
+          "id": "cal_1794255001324_7nnc",
+          "userId": "elfazni.admin",
+          "title": "موعد قنصلي مؤكد — تأشيرة فرنسا (مُحدّث)",
+          "kind": "cns",
+          "date": "2026-11-09",
+          "time": "10:30",
+          "endTime": "11:30",
+          "durationMin": 60,
+          "allDay": false,
+          "description": "تم تحديث الوثائق وإرفاق شهادة العمل والتأمين الدولي.",
+          "location": "القنصلية العامة لفرنسا — مصلحة التأشيرات",
+          "color": "#CC9048",
+          "participants": [],
+          "status": "scheduled",
+          "linkedCustomerId": "cust_test_001",
+          "linkedCustomerName": "كريم التازي",
+          "linkedCustomerPhone": "+212661234567",
+          "linkedServiceType": "فيزا سياحية فرنسا",
+          "linkedTransactionRef": "CNS-2026-FR-042",
+          "linkedStatus": "قيد المتابعة",
+          "nextFollowUpDate": "2026-11-09",
+          "reminderMinutesBefore": 60,
+          "reminderStatus": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T20:10:01.324Z",
+          "updatedAt": "2026-11-09T20:10:05.404Z"
+        }
+      }
+    },
+    "TEST_C_QUICK_RESCHEDULE": {
+      "name": "Quick Reschedule with Timestamped Audit History",
+      "passed": true,
+      "details": {
+        "historyCount": 1,
+        "historyItem": {
+          "id": "facadf8e-d089-4b76-afdf-b819cc50a1dc",
+          "previousDate": "2026-11-09",
+          "previousTime": "10:30",
+          "previousEndTime": "11:30",
+          "newDate": "2026-11-10",
+          "newTime": "14:00",
+          "newEndTime": "15:00",
+          "rescheduledBy": "المدير العام",
+          "rescheduledAt": "2026-11-09T20:10:08.177Z",
+          "note": "تمت إعادة الجدولة بطلب رسمي من العميل لتزامن مع سفره."
+        }
+      }
+    },
+    "TEST_D_REMINDER_UPDATE": {
+      "name": "Reminder Recalculated and Linked to Event",
+      "passed": true,
+      "details": {
+        "count": 1,
+        "reminder": {
+          "id": "rem_1794255001324_u8wj",
+          "userId": "elfazni.admin",
+          "title": "تنبيه: موعد قنصلي مؤكد — تأشيرة فرنسا (مُحدّث)",
+          "entityType": "event",
+          "entityId": "cal_1794255001324_7nnc",
+          "linkedEventId": "cal_1794255001324_7nnc",
+          "targetDateTime": "2026-11-10T10:00:00.000Z",
+          "status": "pending",
+          "channel": "crm",
+          "linkedCustomerName": "كريم التازي",
+          "createdAt": "2026-11-09T20:10:01.324Z",
+          "updatedAt": "2026-11-09T20:10:08.177Z"
+        }
+      }
+    },
+    "TEST_E_SNOOZE_REMINDER": {
+      "name": "Snooze Reminder 15 Minutes without Duplication",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_F_COMPLETE_REMINDER": {
+      "name": "Mark Reminder Complete and Dim Visual Indicators",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_G_CRM_INTEGRATION": {
+      "name": "CRM Customer & Transaction Linkage in Calendar Drawer",
+      "passed": true,
+      "details": {
+        "hasCustomer": true,
+        "hasRef": true,
+        "hasSection": true
+      }
+    },
+    "TEST_H_DRAG_AND_DROP": {
+      "name": "Interactive Drag & Drop Rescheduling",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_I_RECURRING_EVENTS": {
+      "name": "Recurring Event Creation with Recurrence Badge",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_L2_ALL_VIEWS": {
+      "name": "Calendar Month, Week, Day, and Agenda Views Rendered",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_J_DELETE_CLEANUP": {
+      "name": "Delete Event and Cancel Associated Reminders",
+      "passed": true,
+      "details": {
+        "eventDeleted": true,
+        "reminderCancelled": true
+      }
+    },
+    "TEST_K_PERMISSIONS": {
+      "name": "Permission Verification on Productivity Endpoints",
+      "passed": true,
+      "details": {}
+    },
+    "TEST_RESPONSIVE_VIEWPORTS": {
+      "name": "Responsive Layout Across 5 Viewports",
+      "passed": true,
+      "details": {
+        "viewportsTested": [
+          "desktop-1920",
+          "laptop-1440",
+          "tablet-landscape-1024",
+          "tablet-portrait-768",
+          "mobile-390"
+        ]
+      }
+    }
+  },
+  "screenshots": [
+    {
+      "filename": "01-geo-world-map-default.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/01-geo-world-map-default.png",
+      "description": "World Geo-Analytics Map default rendering with brand palette"
+    },
+    {
+      "filename": "02-geo-country-hover-tooltip.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/02-geo-country-hover-tooltip.png",
+      "description": "Country hover tooltip showing visitor metrics"
+    },
+    {
+      "filename": "03-geo-country-selected.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/03-geo-country-selected.png",
+      "description": "Country selection detail card with active visitor stats"
+    },
+    {
+      "filename": "04-geo-zoom-pan.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/04-geo-zoom-pan.png",
+      "description": "Map zoomed in 1.4x with smooth SVG pan navigation"
+    },
+    {
+      "filename": "05-geo-search-filter.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/05-geo-search-filter.png",
+      "description": "Country search filter highlighting Morocco"
+    },
+    {
+      "filename": "06-geo-period-selector.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/06-geo-period-selector.png",
+      "description": "Reporting period selector updated to 30 days"
+    },
+    {
+      "filename": "07-calendar-month-view.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/07-calendar-month-view.png",
+      "description": "Modern Calendar Month View in CRM Workspace"
+    },
+    {
+      "filename": "09-calendar-event-created-cell.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/09-calendar-event-created-cell.png",
+      "description": "Created consular appointment visible on calendar grid"
+    },
+    {
+      "filename": "10-calendar-event-details-panel.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/10-calendar-event-details-panel.png",
+      "description": "Event Details Drawer open with all metadata & actions"
+    },
+    {
+      "filename": "12-calendar-event-edited-persisted.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/12-calendar-event-edited-persisted.png",
+      "description": "Edited event verified and persisted after full page reload"
+    },
+    {
+      "filename": "14-calendar-reschedule-audit-trail.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/14-calendar-reschedule-audit-trail.png",
+      "description": "Quick Reschedule audit trail displaying previous date, new date, note, and actor"
+    },
+    {
+      "filename": "15-calendar-smart-reminder-snoozed.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/15-calendar-smart-reminder-snoozed.png",
+      "description": "Smart reminder snoozed 15 minutes with snoozedUntil timestamp"
+    },
+    {
+      "filename": "16-calendar-smart-reminder-completed.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/16-calendar-smart-reminder-completed.png",
+      "description": "Smart reminder marked complete and archived"
+    },
+    {
+      "filename": "17-calendar-crm-followup-file.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/17-calendar-crm-followup-file.png",
+      "description": "Follow-up File Section showing customer, transaction code, and quick action buttons"
+    },
+    {
+      "filename": "18-calendar-drag-and-drop-rescheduled.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/18-calendar-drag-and-drop-rescheduled.png",
+      "description": "Event rescheduled via interactive Drag & Drop to new date"
+    },
+    {
+      "filename": "19-calendar-recurring-event.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/19-calendar-recurring-event.png",
+      "description": "Recurring weekly team meeting displaying recurrence badge"
+    },
+    {
+      "filename": "21-calendar-week-view.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/21-calendar-week-view.png",
+      "description": "Modern Calendar Week View Layout"
+    },
+    {
+      "filename": "22-calendar-day-view.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/22-calendar-day-view.png",
+      "description": "Modern Calendar Day View with Hour Timeline"
+    },
+    {
+      "filename": "23-calendar-agenda-view.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/23-calendar-agenda-view.png",
+      "description": "Modern Calendar Agenda View List"
+    },
+    {
+      "filename": "20-calendar-overflow-popover.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/20-calendar-overflow-popover.png",
+      "description": "Calendar Month View overflow popover for busy days"
+    },
+    {
+      "filename": "24-calendar-event-deleted.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/24-calendar-event-deleted.png",
+      "description": "Event deleted cleanly and associated reminder cancelled"
+    },
+    {
+      "filename": "25-viewport-desktop-1920.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/25-viewport-desktop-1920.png",
+      "description": "Responsive Calendar Viewport: Desktop Large (1920x1080)"
+    },
+    {
+      "filename": "26-viewport-laptop-1440.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/26-viewport-laptop-1440.png",
+      "description": "Responsive Calendar Viewport: Laptop Standard (1440x900)"
+    },
+    {
+      "filename": "27-viewport-tablet-landscape-1024.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/27-viewport-tablet-landscape-1024.png",
+      "description": "Responsive Calendar Viewport: Tablet Landscape (1024x768)"
+    },
+    {
+      "filename": "28-viewport-tablet-portrait-768.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/28-viewport-tablet-portrait-768.png",
+      "description": "Responsive Calendar Viewport: Tablet Portrait (768x1024)"
+    },
+    {
+      "filename": "29-viewport-mobile-390.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/calendar-geo-screenshots/29-viewport-mobile-390.png",
+      "description": "Responsive Calendar Viewport: Mobile Viewport (390x844 iPhone 14 Pro)"
+    }
+  ]
+}

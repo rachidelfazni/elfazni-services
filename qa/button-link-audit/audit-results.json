@@ -1,0 +1,1477 @@
+{
+  "totalChecked": 233,
+  "internalButtonsAndLinks": 226,
+  "externalLinksFound": [
+    {
+      "page": "Homepage",
+      "type": "a",
+      "href": "https://wa.me/905522677851",
+      "text": "رقم الواتساب المعتمد\n+90 552 267 78 51",
+      "tag": "<a href=\"https://wa.me/905522677851\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"flex items-center gap-4 p-3.5 rounded-2xl bg-white/10 hover:bg-w"
+    },
+    {
+      "page": "Homepage",
+      "type": "a",
+      "href": "https://instagram.com/alfazni.services",
+      "text": "Instagram",
+      "tag": "<a href=\"https://instagram.com/alfazni.services\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 px-3 py-2 rounded-xl "
+    },
+    {
+      "page": "Homepage",
+      "type": "a",
+      "href": "https://facebook.com/alfazni.services",
+      "text": "Facebook",
+      "tag": "<a href=\"https://facebook.com/alfazni.services\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 px-3 py-2 rounded-xl b"
+    },
+    {
+      "page": "Homepage",
+      "type": "a",
+      "href": "https://wa.me/905522677851?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20ELFAZNI%20SERVICES",
+      "text": "تواصل عبر واتساب",
+      "tag": "<a href=\"https://wa.me/905522677851?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20ELFAZNI%20SERVICES\" target=\"_blank\" rel=\"noopener noreferrer\" aria-lab"
+    },
+    {
+      "page": "Blog Index",
+      "type": "a",
+      "href": "https://instagram.com/alfazni.services",
+      "text": "Instagram",
+      "tag": "<a href=\"https://instagram.com/alfazni.services\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 px-3 py-2 rounded-xl "
+    },
+    {
+      "page": "Blog Index",
+      "type": "a",
+      "href": "https://facebook.com/alfazni.services",
+      "text": "Facebook",
+      "tag": "<a href=\"https://facebook.com/alfazni.services\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 px-3 py-2 rounded-xl b"
+    },
+    {
+      "page": "Blog Index",
+      "type": "a",
+      "href": "https://wa.me/905522677851?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20ELFAZNI%20SERVICES",
+      "text": "تواصل عبر واتساب",
+      "tag": "<a href=\"https://wa.me/905522677851?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20ELFAZNI%20SERVICES\" target=\"_blank\" rel=\"noopener noreferrer\" aria-lab"
+    }
+  ],
+  "chatgptLinksFound": [],
+  "pagesAudited": [
+    {
+      "name": "Homepage",
+      "url": "http://127.0.0.1:8080/",
+      "totalElements": 164,
+      "items": [
+        {
+          "type": "a",
+          "href": "/",
+          "text": "ELFAZNI SERVICES",
+          "tag": "<a href=\"/\" class=\"flex items-center group transition-transform shrink-0 cursor-pointer\" aria-label=\"ELFAZNI SERVICES\"><img alt=\"ELFAZNI SERVICES — ال"
+        },
+        {
+          "type": "a",
+          "href": "/",
+          "text": "الرئيسية",
+          "tag": "<a href=\"/\" aria-current=\"page\" class=\"whitespace-nowrap py-2 transition-colors text-[#0B2E57]\">الرئيسية</a>"
+        },
+        {
+          "type": "a",
+          "href": "#services",
+          "text": "",
+          "tag": "<a href=\"#services\" class=\"whitespace-nowrap rounded-lg px-3 py-2 hover:bg-[#EAF4FF] focus-visible:bg-[#EAF4FF]\">الخدمات</a>"
+        },
+        {
+          "type": "a",
+          "href": "#consular-checklist",
+          "text": "",
+          "tag": "<a href=\"#consular-checklist\" class=\"whitespace-nowrap rounded-lg px-3 py-2 hover:bg-[#EAF4FF] focus-visible:bg-[#EAF4FF]\">مواعيد القنصلية</a>"
+        },
+        {
+          "type": "a",
+          "href": "#airlines",
+          "text": "",
+          "tag": "<a href=\"#airlines\" class=\"whitespace-nowrap rounded-lg px-3 py-2 hover:bg-[#EAF4FF] focus-visible:bg-[#EAF4FF]\">حجوزات الطيران</a>"
+        },
+        {
+          "type": "a",
+          "href": "#airport-transfer",
+          "text": "",
+          "tag": "<a href=\"#airport-transfer\" class=\"whitespace-nowrap rounded-lg px-3 py-2 hover:bg-[#EAF4FF] focus-visible:bg-[#EAF4FF]\">التوصيل للمطار</a>"
+        },
+        {
+          "type": "a",
+          "href": "/blog",
+          "text": "المدونة",
+          "tag": "<a href=\"/blog\" class=\"whitespace-nowrap py-2 hover:text-[#004AA5]\">المدونة</a>"
+        },
+        {
+          "type": "a",
+          "href": "#about",
+          "text": "من نحن",
+          "tag": "<a href=\"#about\" class=\"whitespace-nowrap py-2 hover:text-[#004AA5]\">من نحن</a>"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "تواصل معنا",
+          "tag": "<a href=\"#contact-form\" class=\"whitespace-nowrap py-2 hover:text-[#004AA5]\">تواصل معنا</a>"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "تواصل معنا",
+          "tag": "<a href=\"#contact-form\" class=\"hidden sm:inline-flex items-center gap-2 px-4.5 py-2.5 rounded-full bg-[#004AA5] hover:bg-[#2A83D5] text-white text-xs "
+        },
+        {
+          "type": "a",
+          "href": "#services",
+          "text": "استكشف الخدمات\n↓",
+          "tag": "<a href=\"#services\" class=\"w-full sm:w-auto px-7 py-4 rounded-full bg-[#FFFFFF] hover:bg-[#EAF4FF] text-[#0B2E57] border border-[#D7E7F7] font-bold te"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "تواصل واستفسار فوري",
+          "tag": "<a href=\"#contact-form\" class=\"flex-1 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black transition flex items-cente"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "هل لديك سؤال حول الخطوات؟ تواصل معنا مباشرة\n↓",
+          "tag": "<a href=\"#contact-form\" class=\"inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-[#FFFFFF] border border-[#D7E7F7] hover:border-[#2A83D5] sha"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "تواصل مباشرة مع رشيد الفزني",
+          "tag": "<a href=\"#contact-form\" class=\"inline-flex items-center justify-center gap-2.5 bg-[#004AA5] hover:bg-[#0B2E57] text-white font-black px-7 py-4 rounded"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "هل لديك سؤال آخر؟ تواصل معنا وسنجيبك فوراً",
+          "tag": "<a href=\"#contact-form\" class=\"inline-flex items-center gap-2 text-sm sm:text-base font-extrabold text-[#004AA5] hover:text-[#2A83D5] transition-color"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "استفسر مباشرة عبر واتساب",
+          "tag": "<a href=\"#contact-form\" class=\"shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-"
+        },
+        {
+          "type": "a",
+          "href": "https://wa.me/905522677851",
+          "text": "رقم الواتساب المعتمد\n+90 552 267 78 51",
+          "tag": "<a href=\"https://wa.me/905522677851\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"flex items-center gap-4 p-3.5 rounded-2xl bg-white/10 hover:bg-w"
+        },
+        {
+          "type": "a",
+          "href": "mailto:contact@elfazniservices.com",
+          "text": "البريد الإلكتروني الرسمي\ncontact@elfazniservices.com",
+          "tag": "<a href=\"mailto:contact@elfazniservices.com\" class=\"flex items-center gap-4 p-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 tra"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "ابدأ طلبك وتواصل معنا الآن",
+          "tag": "<a href=\"#contact-form\" class=\"w-full sm:w-auto flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37"
+        },
+        {
+          "type": "a",
+          "href": "tel:+905522677851",
+          "text": "+90 552 267 78 51",
+          "tag": "<a href=\"tel:+905522677851\" class=\"w-full sm:w-auto flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/15 text-white text-base font-b"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "إرسال طلبك واستفسارك عبر الموقع",
+          "tag": "<a href=\"#contact-form\" class=\"inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37]"
+        },
+        {
+          "type": "a",
+          "href": "tel:+905522677851",
+          "text": "+90 552 267 78 51",
+          "tag": "<a href=\"tel:+905522677851\" class=\"inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold te"
+        },
+        {
+          "type": "a",
+          "href": "#top",
+          "text": "ELFAZNI SERVICES",
+          "tag": "<a href=\"#top\" class=\"inline-block\" aria-label=\"ELFAZNI SERVICES\"><img alt=\"ELFAZNI SERVICES — الفزني سيرفيسز\" class=\"inline-block w-auto max-w-full s"
+        },
+        {
+          "type": "a",
+          "href": "#top",
+          "text": "الرئيسية",
+          "tag": "<a href=\"#top\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "/blog",
+          "text": "المدونة والمقالات",
+          "tag": "<a href=\"/blog\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://www"
+        },
+        {
+          "type": "a",
+          "href": "#services",
+          "text": "الخدمات المتكاملة",
+          "tag": "<a href=\"#services\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http:/"
+        },
+        {
+          "type": "a",
+          "href": "#consular-checklist",
+          "text": "مواعيد القنصلية",
+          "tag": "<a href=\"#consular-checklist\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xml"
+        },
+        {
+          "type": "a",
+          "href": "#airlines",
+          "text": "حجوزات الطيران",
+          "tag": "<a href=\"#airlines\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http:/"
+        },
+        {
+          "type": "a",
+          "href": "#airport-transfer",
+          "text": "توصيل المطار VIP",
+          "tag": "<a href=\"#airport-transfer\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns"
+        },
+        {
+          "type": "a",
+          "href": "#guides",
+          "text": "دليل الجالية المغربية",
+          "tag": "<a href=\"#guides\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://w"
+        },
+        {
+          "type": "a",
+          "href": "#about",
+          "text": "من نحن والمؤسس",
+          "tag": "<a href=\"#about\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://ww"
+        },
+        {
+          "type": "a",
+          "href": "#faq",
+          "text": "الأسئلة الشائعة",
+          "tag": "<a href=\"#faq\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "/hub",
+          "text": "بوابة الخدمات الموحدة (HUB)",
+          "tag": "<a href=\"/hub\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "/admin",
+          "text": "لوحة التحكم (Admin)",
+          "tag": "<a href=\"/admin\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://ww"
+        },
+        {
+          "type": "a",
+          "href": "#consular-checklist",
+          "text": "شهادة أهلية الزواج في تركيا",
+          "tag": "<a href=\"#consular-checklist\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "#consular-checklist",
+          "text": "مواعيد القنصلية بإسطنبول وأنقرة",
+          "tag": "<a href=\"#consular-checklist\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "#airlines",
+          "text": "حجز الطيران والفنادق",
+          "tag": "<a href=\"#airlines\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www.w3.org/200"
+        },
+        {
+          "type": "a",
+          "href": "#services",
+          "text": "الترجمة المحلفة وتصديق الأبوستيل",
+          "tag": "<a href=\"#services\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www.w3.org/200"
+        },
+        {
+          "type": "a",
+          "href": "#services",
+          "text": "تجديد الإقامات ومتابعة الهجرة",
+          "tag": "<a href=\"#services\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www.w3.org/200"
+        },
+        {
+          "type": "a",
+          "href": "#airport-transfer",
+          "text": "سيارات التوصيل والاستقبال VIP",
+          "tag": "<a href=\"#airport-transfer\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www.w3"
+        },
+        {
+          "type": "a",
+          "href": "#consular-checklist",
+          "text": "توكيلات رسمية وجوازات السفر",
+          "tag": "<a href=\"#consular-checklist\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "خدمة العملاء والاستفسارات\n+90 552 267 78 51",
+          "tag": "<a href=\"#contact-form\" class=\"flex items-center justify-center sm:justify-start gap-3 p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800/90 border bord"
+        },
+        {
+          "type": "a",
+          "href": "mailto:contact@elfazniservices.com",
+          "text": "Email\ncontact@elfazniservices.com",
+          "tag": "<a href=\"mailto:contact@elfazniservices.com\" class=\"flex items-center justify-center sm:justify-start gap-3 p-2.5 rounded-xl bg-slate-900 hover:bg-sla"
+        },
+        {
+          "type": "a",
+          "href": "https://instagram.com/alfazni.services",
+          "text": "Instagram",
+          "tag": "<a href=\"https://instagram.com/alfazni.services\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 px-3 py-2 rounded-xl "
+        },
+        {
+          "type": "a",
+          "href": "https://facebook.com/alfazni.services",
+          "text": "Facebook",
+          "tag": "<a href=\"https://facebook.com/alfazni.services\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 px-3 py-2 rounded-xl b"
+        },
+        {
+          "type": "a",
+          "href": "https://wa.me/905522677851?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20ELFAZNI%20SERVICES",
+          "text": "تواصل عبر واتساب",
+          "tag": "<a href=\"https://wa.me/905522677851?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20ELFAZNI%20SERVICES\" target=\"_blank\" rel=\"noopener noreferrer\" aria-lab"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ع",
+          "tag": "<button type=\"button\" class=\"px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer bg-[#FFFFFF] text-[#0B2E57] shadow-xs font-black\" tit"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "TR",
+          "tag": "<button type=\"button\" class=\"px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer text-[#5E7086] hover:text-[#0B2E57]\" title=\"TR\">TR</b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "EN",
+          "tag": "<button type=\"button\" class=\"px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer text-[#5E7086] hover:text-[#0B2E57]\" title=\"EN\">EN</b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "FR",
+          "tag": "<button type=\"button\" class=\"px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer text-[#5E7086] hover:text-[#0B2E57]\" title=\"FR\">FR</b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "فتح القائمة",
+          "tag": "<button type=\"button\" class=\"lg:hidden p-2 rounded-full text-slate-700 hover:text-[#004AA5] hover:bg-black/[0.04] focus:outline-none transition-colors"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ابدأ طلبك",
+          "tag": "<button type=\"button\" class=\"w-full sm:w-auto px-8 py-4 rounded-full bg-[#004AA5] hover:bg-[#2A83D5] text-white font-bold text-base sm:text-lg shadow-"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "مواعيد القنصلية",
+          "tag": "<button role=\"tab\" aria-selected=\"true\" class=\"flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl text-xs sm:text-[13px] font-bold transition-all "
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "حجوزات الطيران",
+          "tag": "<button role=\"tab\" aria-selected=\"false\" class=\"flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl text-xs sm:text-[13px] font-bold transition-all"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "توصيل مطار VIP",
+          "tag": "<button role=\"tab\" aria-selected=\"false\" class=\"flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl text-xs sm:text-[13px] font-bold transition-all"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ترجمة محلفة",
+          "tag": "<button role=\"tab\" aria-selected=\"false\" class=\"flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl text-xs sm:text-[13px] font-bold transition-all"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "تجديد الإقامة",
+          "tag": "<button role=\"tab\" aria-selected=\"false\" class=\"flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl text-xs sm:text-[13px] font-bold transition-all"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب هذه الخدمة",
+          "tag": "<button type=\"button\" class=\"px-6 py-3.5 rounded-full bg-[#004AA5] hover:bg-[#2A83D5] text-white text-sm font-bold shadow-xs active:scale-[0.98] trans"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ابدأ طلبك",
+          "tag": "<button type=\"button\" aria-label=\"ابدأ طلبك\" class=\"relative z-10 flex w-full justify-center rounded-2xl focus-visible:outline-2 focus-visible:outline"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "جميع الخدمات",
+          "tag": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" class=\"relative py-2.5 px-4 sm:px-5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold whit"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "مواعيد قنصلية",
+          "tag": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" class=\"relative py-2.5 px-4 sm:px-5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold whi"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "حجوزات وسفر",
+          "tag": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" class=\"relative py-2.5 px-4 sm:px-5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold whi"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إقامة وترجمة",
+          "tag": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" class=\"relative py-2.5 px-4 sm:px-5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold whi"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "مواعيد القنصلية المغربية",
+          "tag": "<button type=\"button\" aria-label=\"مواعيد القنصلية المغربية\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختر نوع الموعد",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm sm:text-base flex items-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "حجوزات تذاكر الطيران",
+          "tag": "<button type=\"button\" aria-label=\"حجوزات تذاكر الطيران\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-whi"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختر رحلتك",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm sm:text-base flex items-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "حجوزات الفنادق والشقق",
+          "tag": "<button type=\"button\" aria-label=\"حجوزات الفنادق والشقق\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-wh"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اطلب الخدمة",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm sm:text-base flex items-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "توصيل واستقبال مطار VIP",
+          "tag": "<button type=\"button\" aria-label=\"توصيل واستقبال مطار VIP\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "احجز توصيل المطار VIP",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm sm:text-base flex items-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ترجمة محلفة ونوتير",
+          "tag": "<button type=\"button\" aria-label=\"ترجمة محلفة ونوتير\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اطلب الخدمة",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm sm:text-base flex items-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "معاملات وتجديد الإقامة",
+          "tag": "<button type=\"button\" aria-label=\"معاملات وتجديد الإقامة\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-w"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اطلب الخدمة",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm sm:text-base flex items-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إرشاد واستشارات الجالية",
+          "tag": "<button type=\"button\" aria-label=\"إرشاد واستشارات الجالية\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اطلب الخدمة",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm sm:text-base flex items-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "شهادة أهلية الزواج (لإتمام الزواج في تركيا)\nالأكثر طلباً",
+          "tag": "<button type=\"button\" class=\"py-3 px-4 sm:px-5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 curs"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "الوكالات الخاصة العادية (وتنبيه الوكالة العقارية)\nخدمات الوك",
+          "tag": "<button type=\"button\" class=\"py-3 px-4 sm:px-5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 curs"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "تجديد أو إصدار جواز السفر\nوثائق رسمية",
+          "tag": "<button type=\"button\" class=\"py-3 px-4 sm:px-5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 curs"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "تسجيل المواليد في الحالة المدنية المغربية\nحالة مدنية",
+          "tag": "<button type=\"button\" class=\"py-3 px-4 sm:px-5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 curs"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إرسال الطلب عبر الموقع",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-4 rounded-full bg-[#0B2E57] hover:bg-[#004AA5] text-white font-bold text-xs sm:text-sm flex items-center"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إرسال عبر واتساب",
+          "tag": "<button type=\"button\" class=\"w-full py-3.5 px-4 rounded-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold text-xs sm:text-sm flex items-center"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "حجوزات الطيران",
+          "tag": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" class=\"!w-auto shrink-0 whitespace-nowrap justify-center px-4 sm:px-7 py-2.5 sm:py-3 rounded-ful"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "حجز الفنادق",
+          "tag": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" class=\"!w-auto shrink-0 whitespace-nowrap justify-center px-4 sm:px-7 py-2.5 sm:py-3 rounded-fu"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "توصيل المطار\nVIP",
+          "tag": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" class=\"!w-auto shrink-0 whitespace-nowrap justify-center px-4 sm:px-7 py-2.5 sm:py-3 rounded-fu"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "تبديل المطارات",
+          "tag": "<button type=\"button\" class=\"!w-auto inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#eaf4ff] hover:bg-[#D7E7F7] text-[#0B2E57] text-xs fo"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "مسح",
+          "tag": "<button type=\"button\" class=\"w-4 h-4 rounded-full bg-slate-800 hover:bg-slate-950 text-white flex items-center justify-center transition-colors cursor"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "مسح",
+          "tag": "<button type=\"button\" class=\"w-4 h-4 rounded-full bg-slate-800 hover:bg-slate-950 text-white flex items-center justify-center transition-colors cursor"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إضافة عودة",
+          "tag": "<button type=\"button\" class=\"w-full h-[60px] rounded-xl border border-dashed border-slate-300 hover:border-[#004AA5] hover:bg-[#eaf4ff]/40 px-3.5 py-2"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "المسافرون، الدرجة\n1 مسافر / سياحية",
+          "tag": "<button type=\"button\" class=\"w-full h-[60px] rounded-xl border border-slate-300 hover:border-[#004AA5]/60 px-3.5 py-2 bg-white text-start flex flex-co"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إرسال الطلب عبر الموقع",
+          "tag": "<button type=\"button\" class=\"w-full lg:w-auto h-[60px] px-4 rounded-xl bg-gradient-to-r from-[#0B2E57] to-[#004AA5] hover:from-[#004AA5] hover:to-[#2A"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إرسال عبر واتساب",
+          "tag": "<button type=\"button\" class=\"w-full lg:w-auto h-[60px] px-4 rounded-xl text-white font-black text-xs sm:text-sm whitespace-nowrap shadow-sm hover:shad"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "خيارات متقدمة وتحديد شركة طيران مفضلة",
+          "tag": "<button type=\"button\" class=\"text-[#004AA5] hover:text-[#0B2E57] font-bold underline underline-offset-4 cursor-pointer\">خيارات متقدمة وتحديد شركة طيرا"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إيقاف مؤقت",
+          "tag": "<button type=\"button\" class=\"inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs cursor-pointer t"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب واستكشاف الخدمة",
+          "tag": "<button type=\"button\" class=\"inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37] h"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 1",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-6 h-2 bg-[#CC9048]\" aria-label=\"اختيار التصميم 1\"></button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 2",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 3",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 4",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 5",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 6",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 7",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 8",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 9",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختيار التصميم 10",
+          "tag": "<button type=\"button\" class=\"transition-all duration-300 rounded-full cursor-pointer w-2 h-2 bg-white/40 hover:bg-white/70\" aria-label=\"اختيار التصميم"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "التصميم السابق",
+          "tag": "<button type=\"button\" class=\"w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-a"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "تشغيل",
+          "tag": "<button type=\"button\" class=\"w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-a"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "التصميم التالي",
+          "tag": "<button type=\"button\" class=\"w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-a"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "انقر لسماع الصوت 🔊",
+          "tag": "<button type=\"button\" class=\"absolute top-3 end-3 px-3 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5 shadow-lg backdrop-b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "",
+          "tag": "<button type=\"button\" class=\"p-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-white transition backdrop-blur-xs cursor-pointer\" title=\"إيقاف مؤقت\">"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "",
+          "tag": "<button type=\"button\" class=\"p-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-white transition backdrop-blur-xs cursor-pointer\" title=\"تشغيل الصوت\""
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "",
+          "tag": "<button type=\"button\" class=\"p-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-white transition backdrop-blur-xs cursor-pointer\" title=\"شاشة كاملة\">"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب خدمة الآن",
+          "tag": "<button type=\"button\" class=\"flex-1 px-4 py-2.5 rounded-xl bg-[#004AA5] hover:bg-[#003882] text-white text-xs font-black transition flex items-center "
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "السابق",
+          "tag": "<button type=\"button\" class=\"w-11 h-11 rounded-2xl border border-[#D7E7F7] hover:border-[#004AA5] hover:bg-[#eaf4ff] text-[#0B2E57] hover:text-[#004AA"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "التالي",
+          "tag": "<button type=\"button\" class=\"w-11 h-11 rounded-2xl border border-[#D7E7F7] hover:border-[#004AA5] hover:bg-[#eaf4ff] text-[#0B2E57] hover:text-[#004AA"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "معلومات مهمة قبل حجز رحلتك",
+          "tag": "<button type=\"button\" aria-label=\"معلومات مهمة قبل حجز رحلتك\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border bord"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اقرأ الدليل",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm flex items-center justify-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "أوراق الوكالات وجواز السفر",
+          "tag": "<button type=\"button\" aria-label=\"أوراق الوكالات وجواز السفر\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border bord"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اقرأ الدليل",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm flex items-center justify-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "أوراق أهلية الزواج والمواعيد",
+          "tag": "<button type=\"button\" aria-label=\"أوراق أهلية الزواج والمواعيد\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border bo"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اقرأ الدليل",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm flex items-center justify-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "خطّط لزيارتك إلى تركيا",
+          "tag": "<button type=\"button\" aria-label=\"خطّط لزيارتك إلى تركيا\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-w"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اقرأ الدليل",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm flex items-center justify-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "معلومات عامة حول الإقامة في تركيا",
+          "tag": "<button type=\"button\" aria-label=\"معلومات عامة حول الإقامة في تركيا\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md bord"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اقرأ الدليل",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm flex items-center justify-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "متى تحتاج إلى ترجمة محلفة؟",
+          "tag": "<button type=\"button\" aria-label=\"متى تحتاج إلى ترجمة محلفة؟\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border bord"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اقرأ الدليل",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm flex items-center justify-ce"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" aria-label=\"عرض وتفاصيل\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 tex"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب هذه الخدمة عبر واتساب",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-xs sm:text-sm flex items-center"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" class=\"w-full mt-2.5 text-center text-xs font-semibold text-white/80 hover:text-white underline underline-offset-4 transition-co"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" aria-label=\"عرض وتفاصيل\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 tex"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب هذه الخدمة عبر واتساب",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-xs sm:text-sm flex items-center"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" class=\"w-full mt-2.5 text-center text-xs font-semibold text-white/80 hover:text-white underline underline-offset-4 transition-co"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" aria-label=\"عرض وتفاصيل\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 tex"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب هذه الخدمة عبر واتساب",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-xs sm:text-sm flex items-center"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" class=\"w-full mt-2.5 text-center text-xs font-semibold text-white/80 hover:text-white underline underline-offset-4 transition-co"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" aria-label=\"عرض وتفاصيل\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 tex"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب هذه الخدمة عبر واتساب",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-xs sm:text-sm flex items-center"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" class=\"w-full mt-2.5 text-center text-xs font-semibold text-white/80 hover:text-white underline underline-offset-4 transition-co"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" aria-label=\"عرض وتفاصيل\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 tex"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب هذه الخدمة عبر واتساب",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-xs sm:text-sm flex items-center"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" class=\"w-full mt-2.5 text-center text-xs font-semibold text-white/80 hover:text-white underline underline-offset-4 transition-co"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" aria-label=\"عرض وتفاصيل\" class=\"w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 tex"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طلب هذه الخدمة عبر واتساب",
+          "tag": "<button type=\"button\" class=\"w-full py-3 px-4 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-xs sm:text-sm flex items-center"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "عرض وتفاصيل",
+          "tag": "<button type=\"button\" class=\"w-full mt-2.5 text-center text-xs font-semibold text-white/80 hover:text-white underline underline-offset-4 transition-co"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ما هي الأوراق المطلوبة لاستخراج شهادة أهلية الزواج؟",
+          "tag": "<button type=\"button\" class=\"w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 hover:bg-[#eaf4ff]/60 transition-colors cursor-point"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "هل تتوفر الوكالة العقارية في القنصلية وما أوراق الوكالة الخا",
+          "tag": "<button type=\"button\" class=\"w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 hover:bg-[#eaf4ff]/60 transition-colors cursor-point"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "كيف أبدأ طلب الخدمة؟",
+          "tag": "<button type=\"button\" class=\"w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 hover:bg-[#eaf4ff]/60 transition-colors cursor-point"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "هل يمكن إتمام المعاملات عن بُعد؟",
+          "tag": "<button type=\"button\" class=\"w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 hover:bg-[#eaf4ff]/60 transition-colors cursor-point"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "كيف يتم الدفع مقابل الخدمات؟",
+          "tag": "<button type=\"button\" class=\"w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 hover:bg-[#eaf4ff]/60 transition-colors cursor-point"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "هل تقدمون خدمة التوصيل إلى المطار؟",
+          "tag": "<button type=\"button\" class=\"w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 hover:bg-[#eaf4ff]/60 transition-colors cursor-point"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ما الفرق بين خدمات السفارة في أنقرة والقنصلية في إسطنبول؟",
+          "tag": "<button type=\"button\" class=\"w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 hover:bg-[#eaf4ff]/60 transition-colors cursor-point"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "📩 مراسلة داخل الموقع (تذكرة)",
+          "tag": "<button type=\"button\" class=\"flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all bg-[#004AA5] text"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "🟢 واتساب الفوري",
+          "tag": "<button type=\"button\" class=\"flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-600 ho"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "📧 إرسال بالبريد",
+          "tag": "<button type=\"button\" class=\"flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-600 ho"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "اختر ملف من جهازك",
+          "tag": "<button type=\"button\" class=\"px-3 py-1 rounded-lg bg-white border border-slate-300 hover:bg-slate-100 text-xs font-bold text-slate-700 transition-colo"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إرسال الرسالة إلى إدارة الموقع (صندوق البريد)",
+          "tag": "<button type=\"submit\" class=\"w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#004AA5] to-[#0B2E57] hover:from-[#053d82] hover:to-[#00224b] text-w"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "العودة للأعلى",
+          "tag": "<button type=\"button\" class=\"inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white bor"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "فتح المحادثة الفورية",
+          "tag": "<button aria-label=\"فتح المحادثة الفورية\" class=\"relative w-14 h-14 rounded-full text-white shadow-xl flex items-center justify-center hover:scale-105"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "قنصلية",
+          "tag": "<button type=\"button\" class=\"flex-1 py-2 px-1.5 rounded-xl flex flex-col items-center justify-center gap-1 text-slate-700 hover:text-[#004AA5] hover:b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طيران",
+          "tag": "<button type=\"button\" class=\"flex-1 py-2 px-1.5 rounded-xl flex flex-col items-center justify-center gap-1 text-slate-700 hover:text-[#004AA5] hover:b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "محادثة",
+          "tag": "<button type=\"button\" aria-label=\"محادثة\" class=\"relative flex-[1.25] py-2.5 px-2.5 rounded-xl flex items-center justify-center gap-1.5 active:scale-9"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "واتساب",
+          "tag": "<button type=\"button\" class=\"flex-[1.25] py-2.5 px-2.5 rounded-xl bg-gradient-to-r from-[#25d366] to-[#128c7e] text-white flex items-center justify-ce"
+        }
+      ]
+    },
+    {
+      "name": "Blog Index",
+      "url": "http://127.0.0.1:8080/blog",
+      "totalElements": 60,
+      "items": [
+        {
+          "type": "a",
+          "href": "/",
+          "text": "ELFAZNI SERVICES",
+          "tag": "<a href=\"/\" class=\"flex items-center group transition-transform shrink-0 cursor-pointer\" aria-label=\"ELFAZNI SERVICES\"><img alt=\"ELFAZNI SERVICES — ال"
+        },
+        {
+          "type": "a",
+          "href": "/",
+          "text": "الرئيسية",
+          "tag": "<a href=\"/\" class=\"whitespace-nowrap py-2 transition-colors hover:text-[#004AA5]\">الرئيسية</a>"
+        },
+        {
+          "type": "a",
+          "href": "/#services",
+          "text": "",
+          "tag": "<a href=\"/#services\" class=\"whitespace-nowrap rounded-lg px-3 py-2 hover:bg-[#EAF4FF] focus-visible:bg-[#EAF4FF]\">الخدمات</a>"
+        },
+        {
+          "type": "a",
+          "href": "/#consular-checklist",
+          "text": "",
+          "tag": "<a href=\"/#consular-checklist\" class=\"whitespace-nowrap rounded-lg px-3 py-2 hover:bg-[#EAF4FF] focus-visible:bg-[#EAF4FF]\">مواعيد القنصلية</a>"
+        },
+        {
+          "type": "a",
+          "href": "/#airlines",
+          "text": "",
+          "tag": "<a href=\"/#airlines\" class=\"whitespace-nowrap rounded-lg px-3 py-2 hover:bg-[#EAF4FF] focus-visible:bg-[#EAF4FF]\">حجوزات الطيران</a>"
+        },
+        {
+          "type": "a",
+          "href": "/#airport-transfer",
+          "text": "",
+          "tag": "<a href=\"/#airport-transfer\" class=\"whitespace-nowrap rounded-lg px-3 py-2 hover:bg-[#EAF4FF] focus-visible:bg-[#EAF4FF]\">التوصيل للمطار</a>"
+        },
+        {
+          "type": "a",
+          "href": "/blog",
+          "text": "المدونة",
+          "tag": "<a href=\"/blog\" class=\"whitespace-nowrap py-2 hover:text-[#004AA5]\">المدونة</a>"
+        },
+        {
+          "type": "a",
+          "href": "/#about",
+          "text": "من نحن",
+          "tag": "<a href=\"/#about\" class=\"whitespace-nowrap py-2 hover:text-[#004AA5]\">من نحن</a>"
+        },
+        {
+          "type": "a",
+          "href": "/#contact-form",
+          "text": "تواصل معنا",
+          "tag": "<a href=\"/#contact-form\" class=\"whitespace-nowrap py-2 hover:text-[#004AA5]\">تواصل معنا</a>"
+        },
+        {
+          "type": "a",
+          "href": "/#contact-form",
+          "text": "تواصل معنا",
+          "tag": "<a href=\"/#contact-form\" class=\"hidden sm:inline-flex items-center gap-2 px-4.5 py-2.5 rounded-full bg-[#004AA5] hover:bg-[#2A83D5] text-white text-xs"
+        },
+        {
+          "type": "a",
+          "href": "/#contact-form",
+          "text": "تواصل واستفسر الآن",
+          "tag": "<a href=\"/#contact-form\" class=\"shrink-0 inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:f"
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "إرسال طلبك واستفسارك عبر الموقع",
+          "tag": "<a href=\"#contact-form\" class=\"inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37]"
+        },
+        {
+          "type": "a",
+          "href": "tel:+905522677851",
+          "text": "+90 552 267 78 51",
+          "tag": "<a href=\"tel:+905522677851\" class=\"inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold te"
+        },
+        {
+          "type": "a",
+          "href": "#top",
+          "text": "ELFAZNI SERVICES",
+          "tag": "<a href=\"#top\" class=\"inline-block\" aria-label=\"ELFAZNI SERVICES\"><img alt=\"ELFAZNI SERVICES — الفزني سيرفيسز\" class=\"inline-block w-auto max-w-full s"
+        },
+        {
+          "type": "a",
+          "href": "/#top",
+          "text": "الرئيسية",
+          "tag": "<a href=\"/#top\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://www"
+        },
+        {
+          "type": "a",
+          "href": "/blog",
+          "text": "المدونة والمقالات",
+          "tag": "<a href=\"/blog\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://www"
+        },
+        {
+          "type": "a",
+          "href": "/#services",
+          "text": "الخدمات المتكاملة",
+          "tag": "<a href=\"/#services\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http:"
+        },
+        {
+          "type": "a",
+          "href": "/#consular-checklist",
+          "text": "مواعيد القنصلية",
+          "tag": "<a href=\"/#consular-checklist\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xm"
+        },
+        {
+          "type": "a",
+          "href": "/#airlines",
+          "text": "حجوزات الطيران",
+          "tag": "<a href=\"/#airlines\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http:"
+        },
+        {
+          "type": "a",
+          "href": "/#airport-transfer",
+          "text": "توصيل المطار VIP",
+          "tag": "<a href=\"/#airport-transfer\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmln"
+        },
+        {
+          "type": "a",
+          "href": "/#guides",
+          "text": "دليل الجالية المغربية",
+          "tag": "<a href=\"/#guides\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://"
+        },
+        {
+          "type": "a",
+          "href": "/#about",
+          "text": "من نحن والمؤسس",
+          "tag": "<a href=\"/#about\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://w"
+        },
+        {
+          "type": "a",
+          "href": "/#faq",
+          "text": "الأسئلة الشائعة",
+          "tag": "<a href=\"/#faq\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://www"
+        },
+        {
+          "type": "a",
+          "href": "/hub",
+          "text": "بوابة الخدمات الموحدة (HUB)",
+          "tag": "<a href=\"/hub\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "/admin",
+          "text": "لوحة التحكم (Admin)",
+          "tag": "<a href=\"/admin\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer\"><svg xmlns=\"http://ww"
+        },
+        {
+          "type": "a",
+          "href": "#consular-checklist",
+          "text": "شهادة أهلية الزواج في تركيا",
+          "tag": "<a href=\"#consular-checklist\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "#consular-checklist",
+          "text": "مواعيد القنصلية بإسطنبول وأنقرة",
+          "tag": "<a href=\"#consular-checklist\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "#airlines",
+          "text": "حجز الطيران والفنادق",
+          "tag": "<a href=\"#airlines\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www.w3.org/200"
+        },
+        {
+          "type": "a",
+          "href": "#services",
+          "text": "الترجمة المحلفة وتصديق الأبوستيل",
+          "tag": "<a href=\"#services\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www.w3.org/200"
+        },
+        {
+          "type": "a",
+          "href": "#services",
+          "text": "تجديد الإقامات ومتابعة الهجرة",
+          "tag": "<a href=\"#services\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www.w3.org/200"
+        },
+        {
+          "type": "a",
+          "href": "#airport-transfer",
+          "text": "سيارات التوصيل والاستقبال VIP",
+          "tag": "<a href=\"#airport-transfer\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www.w3"
+        },
+        {
+          "type": "a",
+          "href": "#consular-checklist",
+          "text": "توكيلات رسمية وجوازات السفر",
+          "tag": "<a href=\"#consular-checklist\" class=\"group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors\"><svg xmlns=\"http://www."
+        },
+        {
+          "type": "a",
+          "href": "#contact-form",
+          "text": "خدمة العملاء والاستفسارات\n+90 552 267 78 51",
+          "tag": "<a href=\"#contact-form\" class=\"flex items-center justify-center sm:justify-start gap-3 p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800/90 border bord"
+        },
+        {
+          "type": "a",
+          "href": "mailto:contact@elfazniservices.com",
+          "text": "Email\ncontact@elfazniservices.com",
+          "tag": "<a href=\"mailto:contact@elfazniservices.com\" class=\"flex items-center justify-center sm:justify-start gap-3 p-2.5 rounded-xl bg-slate-900 hover:bg-sla"
+        },
+        {
+          "type": "a",
+          "href": "https://instagram.com/alfazni.services",
+          "text": "Instagram",
+          "tag": "<a href=\"https://instagram.com/alfazni.services\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 px-3 py-2 rounded-xl "
+        },
+        {
+          "type": "a",
+          "href": "https://facebook.com/alfazni.services",
+          "text": "Facebook",
+          "tag": "<a href=\"https://facebook.com/alfazni.services\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 px-3 py-2 rounded-xl b"
+        },
+        {
+          "type": "a",
+          "href": "https://wa.me/905522677851?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20ELFAZNI%20SERVICES",
+          "text": "تواصل عبر واتساب",
+          "tag": "<a href=\"https://wa.me/905522677851?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20ELFAZNI%20SERVICES\" target=\"_blank\" rel=\"noopener noreferrer\" aria-lab"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ع",
+          "tag": "<button type=\"button\" class=\"px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer bg-[#FFFFFF] text-[#0B2E57] shadow-xs font-black\" tit"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "TR",
+          "tag": "<button type=\"button\" class=\"px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer text-[#5E7086] hover:text-[#0B2E57]\" title=\"TR\">TR</b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "EN",
+          "tag": "<button type=\"button\" class=\"px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer text-[#5E7086] hover:text-[#0B2E57]\" title=\"EN\">EN</b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "FR",
+          "tag": "<button type=\"button\" class=\"px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer text-[#5E7086] hover:text-[#0B2E57]\" title=\"FR\">FR</b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "فتح القائمة",
+          "tag": "<button type=\"button\" class=\"lg:hidden p-2 rounded-full text-slate-700 hover:text-[#004AA5] hover:bg-black/[0.04] focus:outline-none transition-colors"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "الرئيسية",
+          "tag": "<button class=\"hover:text-white transition-colors cursor-pointer flex items-center gap-1\">الرئيسية</button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "بحث",
+          "tag": "<button type=\"submit\" aria-label=\"بحث\" class=\"absolute end-2 p-2.5 rounded-xl bg-[#004AA5] text-white hover:bg-[#0B2E57] transition-colors cursor-poin"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "جميع المواضيع (5)",
+          "tag": "<button class=\"px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-all cursor-pointer bg-[#004AA5] text-white shadow-md shadow-[#004"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "المواعيد القنصلية\n2",
+          "tag": "<button class=\"px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 bg-white text-slate-"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "الإقامات والتأشيرات\n1",
+          "tag": "<button class=\"px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 bg-white text-slate-"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "الزواج والأوراق المدنية\n1",
+          "tag": "<button class=\"px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 bg-white text-slate-"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "السفر والطيران\n1",
+          "tag": "<button class=\"px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 bg-white text-slate-"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "إرشادات الجالية\n0",
+          "tag": "<button class=\"px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 bg-white text-slate-"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "كل اللغات",
+          "tag": "<button type=\"button\" class=\"px-3 py-1.5 rounded-lg transition-colors cursor-pointer bg-[#0B2E57] text-white\">كل اللغات</button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "العربية",
+          "tag": "<button type=\"button\" class=\"px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-slate-600 hover:bg-slate-100\">العربية</button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "EN",
+          "tag": "<button type=\"button\" class=\"px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-slate-600 hover:bg-slate-100\">EN</button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "FR",
+          "tag": "<button type=\"button\" class=\"px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-slate-600 hover:bg-slate-100\">FR</button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "العودة للأعلى",
+          "tag": "<button type=\"button\" class=\"inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white bor"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "فتح المحادثة الفورية",
+          "tag": "<button aria-label=\"فتح المحادثة الفورية\" class=\"relative w-14 h-14 rounded-full text-white shadow-xl flex items-center justify-center hover:scale-105"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "قنصلية",
+          "tag": "<button type=\"button\" class=\"flex-1 py-2 px-1.5 rounded-xl flex flex-col items-center justify-center gap-1 text-slate-700 hover:text-[#004AA5] hover:b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "طيران",
+          "tag": "<button type=\"button\" class=\"flex-1 py-2 px-1.5 rounded-xl flex flex-col items-center justify-center gap-1 text-slate-700 hover:text-[#004AA5] hover:b"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "محادثة",
+          "tag": "<button type=\"button\" aria-label=\"محادثة\" class=\"relative flex-[1.25] py-2.5 px-2.5 rounded-xl flex items-center justify-center gap-1.5 active:scale-9"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "واتساب",
+          "tag": "<button type=\"button\" class=\"flex-[1.25] py-2.5 px-2.5 rounded-xl bg-gradient-to-r from-[#25d366] to-[#128c7e] text-white flex items-center justify-ce"
+        }
+      ]
+    },
+    {
+      "name": "Services Hub",
+      "url": "http://127.0.0.1:8080/hub",
+      "totalElements": 9,
+      "items": [
+        {
+          "type": "a",
+          "href": "#hub-tiles",
+          "text": "تخطَّ إلى بطاقات الدخول",
+          "tag": "<a href=\"#hub-tiles\" class=\"sr-only focus:not-sr-only focus:absolute focus:top-3 focus:end-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-xl focus:b"
+        },
+        {
+          "type": "a",
+          "href": "/",
+          "text": "الموقع الإلكتروني\nاستكشف خدمات السفر والمواعيد القنصلية والم",
+          "tag": "<a href=\"/\" class=\"hub-entry-tile\" style=\"background-color: rgb(255, 255, 255); border-color: rgb(220, 230, 242);\"><span class=\"hub-entry-tile-icon\" a"
+        },
+        {
+          "type": "a",
+          "href": "/admin/login?next=crm",
+          "text": "نظام إدارة العملاء\nتابع العملاء والمعاملات والفواتير والمهام",
+          "tag": "<a href=\"/admin/login?next=crm\" class=\"hub-entry-tile is-featured\"><span class=\"hub-entry-tile-icon is-featured\" aria-hidden=\"true\"><svg xmlns=\"http:/"
+        },
+        {
+          "type": "a",
+          "href": "/admin/login",
+          "text": "لوحة التحكم\nأدر محتوى الموقع والخدمات والمقالات والمستخدمين ",
+          "tag": "<a href=\"/admin/login\" class=\"hub-entry-tile\" style=\"background-color: rgb(255, 255, 255); border-color: rgb(220, 230, 242);\"><span class=\"hub-entry-t"
+        },
+        {
+          "type": "a",
+          "href": "/",
+          "text": "العودة إلى الموقع",
+          "tag": "<a href=\"/\" class=\"hub-entry-back\" style=\"color: rgb(0, 74, 165);\">العودة إلى الموقع<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"15\" height=\"15\" vie"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "ع",
+          "tag": "<button type=\"button\" aria-pressed=\"true\" title=\"AR\" class=\"hub-entry-lang is-active\">ع</button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "EN",
+          "tag": "<button type=\"button\" aria-pressed=\"false\" title=\"EN\" class=\"hub-entry-lang\">EN</button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "FR",
+          "tag": "<button type=\"button\" aria-pressed=\"false\" title=\"FR\" class=\"hub-entry-lang\">FR</button>"
+        },
+        {
+          "type": "button",
+          "href": "",
+          "text": "TR",
+          "tag": "<button type=\"button\" aria-pressed=\"false\" title=\"TR\" class=\"hub-entry-lang\">TR</button>"
+        }
+      ]
+    }
+  ]
+}

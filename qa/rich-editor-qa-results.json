@@ -1,0 +1,74 @@
+[
+  {
+    "test": "Notes Workspace Navigation",
+    "passed": true,
+    "details": "Notes Workspace loaded with 3 resizable panels",
+    "screenshot": "qa/screenshots/rich-notes/01-notes-workspace-overview.png"
+  },
+  {
+    "test": "Toolbar: Font Family Selector (Bahij, Cairo, Tajawal, Inter)",
+    "passed": true,
+    "details": "",
+    "screenshot": ""
+  },
+  {
+    "test": "Toolbar: Font Size Controls (10-72px, A+, A-)",
+    "passed": true,
+    "details": "",
+    "screenshot": ""
+  },
+  {
+    "test": "Toolbar: Inline Formatting (Bold, Italic, Underline)",
+    "passed": true,
+    "details": "",
+    "screenshot": ""
+  },
+  {
+    "test": "Toolbar: Alignment & Direction Controls",
+    "passed": true,
+    "details": "",
+    "screenshot": ""
+  },
+  {
+    "test": "Toolbar: Rich Inserts (Table, Code, Checklist, Callouts)",
+    "passed": true,
+    "details": "",
+    "screenshot": ""
+  },
+  {
+    "test": "Toolbar: Export Dropdown (PDF, Word, HTML, Markdown)",
+    "passed": true,
+    "details": "",
+    "screenshot": ""
+  },
+  {
+    "test": "Document A: Arabic Official Document",
+    "passed": true,
+    "details": "Rendered Arabic typography and official layout",
+    "screenshot": "qa/screenshots/rich-notes/02-document-a-arabic-official.png"
+  },
+  {
+    "test": "Document B: English Technical Document",
+    "passed": true,
+    "details": "LTR technical architecture with syntax highlighted code block",
+    "screenshot": "qa/screenshots/rich-notes/03-document-b-english-technical.png"
+  },
+  {
+    "test": "Document C: Mixed RTL/LTR Contract",
+    "passed": true,
+    "details": "Mixed bilingual contract with tabular data",
+    "screenshot": "qa/screenshots/rich-notes/04-document-c-mixed-contract.png"
+  },
+  {
+    "test": "Document D: Multi-page Document (>2,500 words)",
+    "passed": true,
+    "details": "Rendered 35 chapters with zero layout clipping and smooth vertical scrolling",
+    "screenshot": "qa/screenshots/rich-notes/05-document-d-multipage-long.png"
+  },
+  {
+    "test": "Document E: Rich Media & Interactive Elements",
+    "passed": true,
+    "details": "Checklists, callouts, code block, and links verified",
+    "screenshot": "qa/screenshots/rich-notes/06-document-e-rich-media.png"
+  }
+]

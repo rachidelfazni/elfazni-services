@@ -399,7 +399,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode; initial: LoadedC
   }), [contactBook, consulateAppointments, flightBookings, invoices, documentSettings, exchangeRates, systemLists]);
   const persistence = useCrmPersistence(snapshot, initial);
 
-  const [activeTab, setActiveTab] = useState<ActiveTab>("dashboard");
+  const [activeTab, setActiveTab] = useState<ActiveTab>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const tab = params.get("tab");
+        if (tab && ["dashboard", "customers", "consulate", "flights", "debts", "accounting", "invoices", "tools"].includes(tab)) {
+          return tab as ActiveTab;
+        }
+      } catch {}
+    }
+    return "dashboard";
+  });
   const [selectedYear, setSelectedYear] = useState<number>(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.YEAR);
     return saved ? parseInt(saved, 10) : 2026;

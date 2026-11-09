@@ -14,13 +14,22 @@ import {
   User,
   MapPin,
   Edit2,
+  Phone,
+  Mail,
+  Send,
+  Loader2,
+  Copy,
+  CheckCircle2,
+  Lock,
+  Info,
+  AlertCircle,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSiteSettings } from '../context/SiteSettingsContext';
 import { SITE_CONTACT } from '../data/content';
 import { WhatsAppLogo } from './WhatsAppLogo';
 import { AnimatedSuccessBadge } from './SuccessFeedback';
-import { api } from '../services/api';
+import { api, ServiceTag } from '../services/api';
 import { tracker } from '../services/tracker';
 
 interface StartRequestModalProps {
@@ -42,6 +51,23 @@ interface ServiceOption {
   icon: React.ReactNode;
   category: string;
 }
+
+const COUNTRY_CALLING_CODES = [
+  { code: '+90', label: 'تركيا (+90)', flag: '🇹🇷' },
+  { code: '+212', label: 'المغرب (+212)', flag: '🇲🇦' },
+  { code: '+33', label: 'فرنسا (+33)', flag: '🇫🇷' },
+  { code: '+49', label: 'ألمانيا (+49)', flag: '🇩🇪' },
+  { code: '+971', label: 'الإمارات (+971)', flag: '🇦🇪' },
+  { code: '+966', label: 'السعودية (+966)', flag: '🇸🇦' },
+  { code: '+34', label: 'إسبانيا (+34)', flag: '🇪🇸' },
+  { code: '+44', label: 'بريطانيا (+44)', flag: '🇬🇧' },
+  { code: '+1', label: 'أمريكا/كندا (+1)', flag: '🇺🇸' },
+  { code: '+974', label: 'قطر (+974)', flag: '🇶🇦' },
+  { code: '+965', label: 'الكويت (+965)', flag: '🇰🇼' },
+  { code: '+31', label: 'هولندا (+31)', flag: '🇳🇱' },
+  { code: '+32', label: 'بلجيكا (+32)', flag: '🇧🇪' },
+  { code: '+39', label: 'إيطاليا (+39)', flag: '🇮🇹' },
+];
 
 const SERVICES_OPTIONS: ServiceOption[] = [
   {
@@ -136,10 +162,26 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
   // Form State
   const [selectedServiceId, setSelectedServiceId] = useState<string>(initialServiceId);
   const [fullName, setFullName] = useState('');
+  const [countryCode, setCountryCode] = useState('+90');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [city, setCity] = useState('إسطنبول');
   const [notes, setNotes] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Consent-based auto-save state (unchecked by default)
+  const [consentAutoSave, setConsentAutoSave] = useState(false);
+  const [draftSaved, setDraftSaved] = useState(false);
+  const [isSavingDraft, setIsSavingDraft] = useState(false);
+
+  // Submission state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [referenceCode, setReferenceCode] = useState<string>('');
+  const [submissionMethod, setSubmissionMethod] = useState<'website' | 'whatsapp'>('website');
+  const [copiedRef, setCopiedRef] = useState(false);
+
+  // Stable client-generated draft ID across wizard lifecycle
+  const draftIdRef = useRef<string>(crypto.randomUUID());
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Sync initial service
@@ -160,10 +202,19 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
+      draftIdRef.current = crypto.randomUUID();
     } else {
       document.body.style.overflow = '';
       setCurrentStep(1);
       setErrorMsg('');
+      setConsentAutoSave(false);
+      setDraftSaved(false);
+      setReferenceCode('');
+      setFullName('');
+      setPhone('');
+      setEmail('');
+      setCity('إسطنبول');
+      setNotes('');
     }
 
     return () => {
@@ -177,12 +228,17 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
     if (options.some((option) => option.id === entry.key)) continue;
     options.push({
       ...SERVICES_OPTIONS[SERVICES_OPTIONS.length - 1],
-      id: entry.key, titleAr: entry.title, titleTr: entry.title, titleEn: entry.title, titleFr: entry.title,
-      descAr: entry.description, descTr: entry.description, descEn: entry.description, descFr: entry.description,
+      id: entry.key,
+      titleAr: entry.title,
+      titleTr: entry.title,
+      titleEn: entry.title,
+      titleFr: entry.title,
+      descAr: entry.description,
+      descTr: entry.description,
+      descEn: entry.description,
+      descFr: entry.description,
     });
   }
-
-  if (!isOpen) return null;
 
   const selectedService = options.find((s) => s.id === selectedServiceId) || options[0];
 
@@ -200,60 +256,210 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
     return srv.descAr;
   };
 
+  const getServiceTag = (srvId: string): ServiceTag => {
+    const map: Record<string, ServiceTag> = {
+      flights: 'FLIGHT',
+      airport: 'TRANSFER',
+      consular: 'CONSULAR',
+      residency: 'CONSULAR',
+      translation: 'GENERAL',
+      other: 'GENERAL',
+    };
+    return map[srvId] || 'GENERAL';
+  };
+
+  // Automated Consent-Based Auto-Save effect:
+  // ONLY fires when user explicitly checked the consent box AND has typed name + (phone or email)
+  useEffect(() => {
+    if (!consentAutoSave) {
+      setDraftSaved(false);
+      return;
+    }
+
+    const cleanDigits = phone.replace(/\D/g, '');
+    const hasValidPhone = cleanDigits.length >= 7;
+    const hasValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+    if (fullName.trim().length < 2 || (!hasValidPhone && !hasValidEmail)) {
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      try {
+        setIsSavingDraft(true);
+        const fullPhone = cleanDigits ? `${countryCode} ${cleanDigits}` : '';
+        const res = await api.saveRequestDraft({
+          draftId: draftIdRef.current,
+          consent: true,
+          name: fullName.trim(),
+          phone: fullPhone,
+          whatsappPhone: fullPhone,
+          email: email.trim() || undefined,
+          serviceTag: getServiceTag(selectedServiceId),
+          serviceRequested: selectedService.titleAr,
+          city: city.trim() || 'إسطنبول',
+          notes: notes.trim(),
+          source: 'معالج طلب الخدمة بالموقع (حفظ تلقائي بموافقة صريحة)',
+        });
+        if (res.reference) {
+          setReferenceCode(res.reference);
+        }
+        setDraftSaved(true);
+      } catch (err) {
+        console.warn('Consent-based auto-save notice: draft could not be saved', err);
+      } finally {
+        setIsSavingDraft(false);
+      }
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, [consentAutoSave, fullName, phone, countryCode, email, city, notes, selectedServiceId]);
+
+  if (!isOpen) return null;
+
   const handleNextFromStep1 = () => {
     setErrorMsg('');
     setCurrentStep(2);
   };
 
   const handleNextFromStep2 = () => {
-    if (!fullName.trim()) {
-      setErrorMsg(t('يرجى إدخال اسمك الكريم للمتابعة'));
+    setErrorMsg('');
+    if (!fullName.trim() || fullName.trim().length < 2) {
+      setErrorMsg(t('يرجى إدخال اسمك الكامل للمتابعة'));
       return;
     }
-    setErrorMsg('');
+
+    const cleanDigits = phone.replace(/\D/g, '');
+    const hasPhone = cleanDigits.length > 0;
+    const hasEmail = email.trim().length > 0;
+
+    if (!hasPhone && !hasEmail) {
+      setErrorMsg(t('يرجى إدخال رقم الهاتف أو البريد الإلكتروني للتواصل'));
+      return;
+    }
+
+    if (hasPhone && cleanDigits.length < 7) {
+      setErrorMsg(t('يرجى التأكد من كتابة رقم هاتف صالح (7 أرقام على الأقل)'));
+      return;
+    }
+
+    if (hasEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setErrorMsg(t('يرجى إدخال عنوان بريد إلكتروني صالح'));
+      return;
+    }
+
     setCurrentStep(3);
   };
 
+  const cleanDigits = phone.replace(/\D/g, '');
+  const fullPhone = cleanDigits ? `${countryCode} ${cleanDigits}` : '';
+
+  // METHOD B: Direct Website Submission
+  const handleWebsiteSubmit = async () => {
+    setErrorMsg('');
+    setIsSubmitting(true);
+    try {
+      const visitorId = tracker.getVisitorId();
+      const { device, browser } = tracker.detectDevice();
+      const { country, flag } = tracker.detectGeoLocation();
+
+      const res = await api.submitServiceRequest({
+        draftId: draftIdRef.current,
+        name: fullName.trim(),
+        phone: fullPhone || 'عبر البريد',
+        whatsappPhone: fullPhone || undefined,
+        email: email.trim() || undefined,
+        serviceTag: getServiceTag(selectedServiceId),
+        serviceRequested: selectedService.titleAr,
+        subject: `طلب خدمة: ${selectedService.titleAr} (${selectedService.titleEn})`,
+        message: `المدينة: ${city.trim() || 'إسطنبول'}\n${notes.trim() || 'طلب موعد ومتابعة عبر المعالج السريع'}`,
+        country: `${country} ${flag}`,
+        source: `معالج الموقع (${device})`,
+        payloadJson: {
+          submissionChannel: 'website_form',
+          serviceName: selectedService.titleAr,
+          serviceCategory: selectedService.category,
+          city: city.trim() || 'إسطنبول',
+          notes: notes.trim(),
+          browser,
+          visitorId,
+        },
+      });
+
+      setReferenceCode(res.reference || res.ticketNumber);
+      setSubmissionMethod('website');
+      setCurrentStep(4);
+    } catch (err: any) {
+      console.error('Failed to submit request via website:', err);
+      setErrorMsg(err.message || t('حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مجدداً أو استخدام واتساب'));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // METHOD A: WhatsApp Handoff
   const handleSendToWhatsApp = async () => {
-    const lines = [
-      '👋 *مرحباً ELFAZNI SERVICES*',
-      'أود طلب الخدمة التالية عبر الموقع الإلكتروني:',
-      '--------------------------------',
-      `📌 *نوع الخدمة:* ${selectedService.titleAr} (${selectedService.titleEn})`,
-      `👤 *الاسم:* ${fullName.trim()}`,
-      `📍 *المدينة في تركيا:* ${city.trim() || 'إسطنبول'}`,
-      notes.trim() ? `📝 *تفاصيل الطلب:* ${notes.trim()}` : null,
-      '--------------------------------',
-      'يرجى إفادتي بالخطوات والمواعيد والتكلفة المتاحة. شكراً لكم!',
-    ]
-      .filter(Boolean)
-      .join('\n');
+    setErrorMsg('');
+    setIsSubmitting(true);
+    try {
+      const waRef = referenceCode || `REQ-${draftIdRef.current.slice(0, 6).toUpperCase()}`;
 
-    const visitorId = tracker.getVisitorId();
-    const { device, browser, screenW, maxTouchPoints } = tracker.detectDevice();
-    const { country, flag } = tracker.detectGeoLocation();
+      const lines = [
+        '👋 *مرحباً ELFAZNI SERVICES*',
+        `أود متابعة طلبي برقم مرجع: *${waRef}*`,
+        '--------------------------------',
+        `📌 *نوع الخدمة:* ${selectedService.titleAr} (${selectedService.titleEn})`,
+        `👤 *الاسم:* ${fullName.trim()}`,
+        fullPhone ? `📱 *رقم الهاتف:* ${fullPhone}` : null,
+        email.trim() ? `✉️ *البريد:* ${email.trim()}` : null,
+        `📍 *المدينة في تركيا:* ${city.trim() || 'إسطنبول'}`,
+        notes.trim() ? `📝 *تفاصيل الطلب:* ${notes.trim()}` : null,
+        '--------------------------------',
+        'يرجى إفادتي بالخطوات والمواعيد والتكلفة المتاحة. شكراً لكم!',
+      ]
+        .filter(Boolean)
+        .join('\n');
 
-    await api.submitMailboxMessage({
-      name: fullName.trim(),
-      phone: 'عبر واتساب',
-      serviceRequested: selectedService.titleAr,
-      subject: `طلب خدمة: ${selectedService.titleAr}`,
-      message: `المدينة: ${city.trim() || 'إسطنبول'}\n${notes.trim() || 'طلب تواصل وموعد عبر المعالج السريع'}`,
-      country: `${country} ${flag}`,
-      flag,
-      city: city.trim() || 'إسطنبول',
-      device,
-      browser,
-      visitorId,
-      screenW,
-      maxTouchPoints,
-      source: 'معالج طلب الخدمة بالموقع',
-    }).catch(() => {});
+      // Record inquiry handoff without claiming message was sent
+      api.submitServiceRequest({
+        draftId: draftIdRef.current,
+        name: fullName.trim(),
+        phone: fullPhone || 'عبر واتساب',
+        whatsappPhone: fullPhone || undefined,
+        email: email.trim() || undefined,
+        serviceTag: getServiceTag(selectedServiceId),
+        serviceRequested: selectedService.titleAr,
+        subject: `متابعة واتساب: ${selectedService.titleAr}`,
+        message: `المدينة: ${city.trim() || 'إسطنبول'}\n${notes.trim() || 'طلب تواصل ومتابعة عبر واتساب'}`,
+        source: 'معالج الموقع (تحويل واتساب)',
+        payloadJson: {
+          submissionChannel: 'whatsapp_handoff',
+          serviceName: selectedService.titleAr,
+          city: city.trim() || 'إسطنبول',
+          notes: notes.trim(),
+        },
+      }).catch(() => {});
 
-    const waRaw = settings.whatsappRaw || SITE_CONTACT.whatsappRaw;
-    const url = `https://wa.me/${waRaw}?text=${encodeURIComponent(lines)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-    setCurrentStep(4);
+      const waRaw = settings.whatsappRaw || SITE_CONTACT.whatsappRaw;
+      const url = `https://wa.me/${waRaw}?text=${encodeURIComponent(lines)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+
+      setReferenceCode(waRef);
+      setSubmissionMethod('whatsapp');
+      setCurrentStep(4);
+    } catch (err: any) {
+      console.error('Failed to open WhatsApp handoff:', err);
+      setErrorMsg(t('تعذر تجهيز رسالة واتساب، يرجى المحاولة ثانية'));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const copyRefToClipboard = () => {
+    if (!referenceCode) return;
+    navigator.clipboard.writeText(referenceCode);
+    setCopiedRef(true);
+    setTimeout(() => setCopiedRef(false), 2500);
   };
 
   return (
@@ -273,7 +479,7 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
         <div className="p-6 sm:p-7 border-b border-black/[0.06] bg-slate-50/50 flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
-              <span>{t('طلب خدمة')}</span>
+              <span>{t('معالج طلب الخدمة')}</span>
               <span aria-hidden="true">·</span>
               <span className="text-[#004AA5]">
                 {language === 'ar' ? `الخطوة ${currentStep} من 4` : `Step ${currentStep} of 4`}
@@ -281,9 +487,9 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
             </div>
             <h2 id="start-request-title" className="text-xl sm:text-2xl font-black text-[#0B2E57] tracking-tight">
               {currentStep === 1 && t('اختر الخدمة المطلوبة')}
-              {currentStep === 2 && t('معلومات التواصل الأولية')}
+              {currentStep === 2 && t('معلومات التواصل والمتابعة')}
               {currentStep === 3 && t('مراجعة وتأكيد الطلب')}
-              {currentStep === 4 && t('تم تجهيز طلبك')}
+              {currentStep === 4 && (submissionMethod === 'website' ? t('تم استلام طلبكم بنجاح') : t('تم تجهيز رسالة واتساب'))}
             </h2>
           </div>
 
@@ -299,17 +505,18 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
 
         {/* Progress indicator */}
         <div className="grid grid-cols-4 h-1 bg-slate-100">
-          <div className={`h-full transition-all duration-300 ${currentStep >= 1 ? 'bg-[#0B2E57]' : 'bg-transparent'}`} />
-          <div className={`h-full transition-all duration-300 ${currentStep >= 2 ? 'bg-[#0B2E57]' : 'bg-transparent'}`} />
-          <div className={`h-full transition-all duration-300 ${currentStep >= 3 ? 'bg-[#0B2E57]' : 'bg-transparent'}`} />
+          <div className={`h-full transition-all duration-300 ${currentStep >= 1 ? 'bg-[#004AA5]' : 'bg-transparent'}`} />
+          <div className={`h-full transition-all duration-300 ${currentStep >= 2 ? 'bg-[#004AA5]' : 'bg-transparent'}`} />
+          <div className={`h-full transition-all duration-300 ${currentStep >= 3 ? 'bg-[#004AA5]' : 'bg-transparent'}`} />
           <div className={`h-full transition-all duration-300 ${currentStep >= 4 ? 'bg-emerald-500' : 'bg-transparent'}`} />
         </div>
 
         {/* Modal Body */}
         <div className="p-6 sm:p-7">
           {errorMsg && (
-            <div className="mb-4 p-3 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold">
-              {errorMsg}
+            <div className="mb-4 p-3 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{errorMsg}</span>
             </div>
           )}
 
@@ -330,7 +537,7 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                       onClick={() => setSelectedServiceId(srv.id)}
                       className={`text-start p-4 rounded-2xl border transition-all cursor-pointer relative flex flex-col justify-between ${
                         isSelected
-                          ? 'border-[#0B2E57] bg-blue-50/40 ring-1 ring-[#0B2E57]'
+                          ? 'border-[#004AA5] bg-blue-50/50 ring-1 ring-[#004AA5]'
                           : 'border-black/[0.06] hover:border-black/[0.16] bg-white hover:bg-slate-50/60'
                       }`}
                     >
@@ -339,7 +546,7 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                           {srv.icon}
                         </div>
                         {isSelected && (
-                          <span className="w-5 h-5 rounded-full bg-[#0B2E57] text-white flex items-center justify-center">
+                          <span className="w-5 h-5 rounded-full bg-[#004AA5] text-white flex items-center justify-center">
                             <Check className="w-3 h-3 stroke-[3]" />
                           </span>
                         )}
@@ -361,7 +568,7 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                 <button
                   type="button"
                   onClick={handleNextFromStep1}
-                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#0B2E57] hover:bg-[#004AA5] text-white font-bold text-sm shadow-xs active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full sm:w-auto px-7 py-3 rounded-full bg-[#004AA5] hover:bg-[#0B2E57] text-white font-bold text-sm shadow-xs active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>{t('المتابعة')}</span>
                   {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
@@ -370,7 +577,7 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
             </div>
           )}
 
-          {/* STEP 2: Minimal Info */}
+          {/* STEP 2: Contact Information & Consent-Based Auto-Save */}
           {currentStep === 2 && (
             <div className="space-y-4">
               <div className="p-3.5 rounded-2xl bg-blue-50/50 border border-blue-100 flex items-center gap-3">
@@ -394,6 +601,7 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                 </button>
               </div>
 
+              {/* Full Name */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
                   <User className="w-3.5 h-3.5 text-slate-400" />
@@ -403,12 +611,57 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  placeholder={language === 'ar' ? 'مثال: محمد العلمي' : 'e.g. Mohammed Alami'}
-                  className="w-full px-4 py-3 rounded-2xl border border-black/[0.1] focus:border-[#0B2E57] focus:ring-2 focus:ring-[#0B2E57]/10 text-sm font-semibold outline-none transition-all"
+                  placeholder={language === 'ar' ? 'مثال: رشيد الفزني' : 'e.g. Rachid Elfazni'}
+                  className="w-full px-4 py-3 rounded-2xl border border-black/[0.1] focus:border-[#004AA5] focus:ring-2 focus:ring-[#004AA5]/10 text-sm font-semibold outline-none transition-all"
                   autoFocus
                 />
               </div>
 
+              {/* International Phone with Country Code Selector */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-slate-400" />
+                  <span>{t('رقم الهاتف المرتبط بواتساب')}</span>
+                </label>
+                <div className="flex gap-2" dir="ltr">
+                  <select
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
+                    className="w-36 px-2.5 py-3 rounded-2xl border border-black/[0.1] bg-slate-50 text-xs font-bold text-slate-800 outline-none focus:border-[#004AA5] cursor-pointer"
+                  >
+                    {COUNTRY_CALLING_CODES.map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.flag} {c.code}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="552 267 7851"
+                    className="flex-1 px-4 py-3 rounded-2xl border border-black/[0.1] focus:border-[#004AA5] focus:ring-2 focus:ring-[#004AA5]/10 text-sm font-semibold outline-none transition-all font-mono"
+                  />
+                </div>
+              </div>
+
+              {/* Email Address */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-slate-400" />
+                  <span>{t('البريد الإلكتروني')}</span>
+                </label>
+                <input
+                  type="email"
+                  dir="ltr"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@example.com"
+                  className="w-full px-4 py-3 rounded-2xl border border-black/[0.1] focus:border-[#004AA5] focus:ring-2 focus:ring-[#004AA5]/10 text-sm font-semibold outline-none transition-all text-start"
+                />
+              </div>
+
+              {/* City / Location */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-slate-400" />
@@ -419,22 +672,61 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   placeholder="إسطنبول (الفاتح، باشاك شهير، كاديكوي...) أو مطار IST/SAW"
-                  className="w-full px-4 py-3 rounded-2xl border border-black/[0.1] focus:border-[#0B2E57] focus:ring-2 focus:ring-[#0B2E57]/10 text-sm font-semibold outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-2xl border border-black/[0.1] focus:border-[#004AA5] focus:ring-2 focus:ring-[#004AA5]/10 text-sm font-semibold outline-none transition-all"
                 />
               </div>
 
+              {/* Notes */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5 text-slate-400" />
-                  <span>{t('ملاحظات أو تواريخ مفضلة (اختياري)')}</span>
+                  <span>{t('تفاصيل الطلب أو التواريخ المفضلة (اختياري)')}</span>
                 </label>
                 <textarea
-                  rows={3}
+                  rows={2}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder={t('اكتب أي تفاصيل إضافية: تاريخ السفر، نوع الوثيقة، عدد الأفراد...')}
-                  className="w-full px-4 py-3 rounded-2xl border border-black/[0.1] focus:border-[#0B2E57] focus:ring-2 focus:ring-[#0B2E57]/10 text-sm font-medium outline-none transition-all resize-none"
+                  className="w-full px-4 py-2.5 rounded-2xl border border-black/[0.1] focus:border-[#004AA5] focus:ring-2 focus:ring-[#004AA5]/10 text-sm font-medium outline-none transition-all resize-none"
                 />
+              </div>
+
+              {/* TRANSPARENT, CONSENT-BASED AUTOSAVE BOX */}
+              <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-2">
+                <div className="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
+                  <Info className="w-4 h-4 text-[#004AA5] shrink-0 mt-0.5" />
+                  <span>
+                    {t('يمكننا حفظ معلومات التواصل التي أدخلتها لمتابعة استفسارك، حتى إذا غادرت الصفحة قبل إرسال الطلب.')}
+                  </span>
+                </div>
+
+                <label className="flex items-start gap-2.5 cursor-pointer pt-1">
+                  <input
+                    type="checkbox"
+                    checked={consentAutoSave}
+                    onChange={(e) => setConsentAutoSave(e.target.checked)}
+                    className="mt-0.5 w-4 h-4 text-[#004AA5] rounded border-slate-300 focus:ring-[#004AA5] cursor-pointer"
+                  />
+                  <span className="text-xs font-bold text-slate-800 leading-snug">
+                    {t('أوافق على حفظ بيانات التواصل الخاصة بي لغرض متابعة هذا الاستفسار.')}
+                  </span>
+                </label>
+
+                {consentAutoSave && (
+                  <div className="text-[11px] font-semibold text-emerald-700 flex items-center gap-1.5 pt-1">
+                    {isSavingDraft ? (
+                      <>
+                        <Loader2 className="w-3 h-3 animate-spin text-emerald-600" />
+                        <span>{t('جارٍ حفظ مسودة التواصل بأمان...')}</span>
+                      </>
+                    ) : draftSaved ? (
+                      <>
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>{t('تم حفظ بيانات التواصل لمتابعة استفسارك في حال غادرت الصفحة')}</span>
+                      </>
+                    ) : null}
+                  </div>
+                )}
               </div>
 
               <div className="pt-3 flex items-center justify-between gap-3">
@@ -449,7 +741,7 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                 <button
                   type="button"
                   onClick={handleNextFromStep2}
-                  className="px-6 py-3 rounded-full bg-[#0B2E57] hover:bg-[#004AA5] text-white font-bold text-sm shadow-xs active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
+                  className="px-7 py-3 rounded-full bg-[#004AA5] hover:bg-[#0B2E57] text-white font-bold text-sm shadow-xs active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
                 >
                   <span>{t('مراجعة الطلب')}</span>
                   {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
@@ -458,14 +750,14 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
             </div>
           )}
 
-          {/* STEP 3: Review */}
+          {/* STEP 3: Review and DUAL ACTIONS (Equal prominence) */}
           {currentStep === 3 && (
             <div className="space-y-4">
               <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                {t('راجع تفاصيل طلبك قبل الانتقال إلى واتساب للتأكيد والمتابعة المباشرة:')}
+                {t('راجع تفاصيل طلبك واختر طريقة المتابعة الأنسب لك:')}
               </p>
 
-              <div className="p-5 rounded-2xl bg-slate-50 border border-black/[0.06] space-y-3.5 text-xs">
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-black/[0.06] space-y-3 text-xs">
                 <div className="flex items-center justify-between py-1 border-b border-black/[0.04]">
                   <span className="text-slate-400 font-semibold">{t('الخدمة:')}</span>
                   <span className="font-bold text-[#0B2E57] text-sm">{getServiceTitle(selectedService)}</span>
@@ -475,6 +767,20 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                   <span className="text-slate-400 font-semibold">{t('الاسم:')}</span>
                   <span className="font-bold text-slate-800">{fullName}</span>
                 </div>
+
+                {fullPhone && (
+                  <div className="flex items-center justify-between py-1 border-b border-black/[0.04]">
+                    <span className="text-slate-400 font-semibold">{t('الهاتف / واتساب:')}</span>
+                    <span className="font-bold text-slate-800 font-mono" dir="ltr">{fullPhone}</span>
+                  </div>
+                )}
+
+                {email && (
+                  <div className="flex items-center justify-between py-1 border-b border-black/[0.04]">
+                    <span className="text-slate-400 font-semibold">{t('البريد الإلكتروني:')}</span>
+                    <span className="font-bold text-slate-800 font-mono" dir="ltr">{email}</span>
+                  </div>
+                )}
 
                 <div className="flex items-center justify-between py-1 border-b border-black/[0.04]">
                   <span className="text-slate-400 font-semibold">{t('الموقع / المدينة:')}</span>
@@ -491,72 +797,127 @@ export const StartRequestModal: React.FC<StartRequestModalProps> = ({
                 )}
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex items-center gap-2.5 text-xs text-emerald-800 font-semibold">
-                <WhatsAppLogo className="w-5 h-5" />
-                <span>{t('سيتم فتح تطبيق واتساب برسالة منسقة وجاهزة للإرسال فوراً.')}</span>
+              {/* DUAL ACTION BUTTONS (Method B + Method A with equal visual weight) */}
+              <div className="pt-2 space-y-3">
+                <div className="text-xs font-bold text-slate-700 text-center mb-1">
+                  {t('اختر وسيلة تأكيد الطلب:')}
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  {/* Button 1: Website Submission */}
+                  <button
+                    type="button"
+                    disabled={isSubmitting}
+                    onClick={handleWebsiteSubmit}
+                    className="flex-1 py-3.5 px-4 rounded-2xl bg-[#004AA5] hover:bg-[#0B2E57] text-white font-bold text-sm shadow-sm hover:shadow active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Send className="w-4 h-4 text-[#E3C88F] rotate-180" />
+                    )}
+                    <span>{t('إرسال الطلب عبر الموقع')}</span>
+                  </button>
+
+                  {/* Button 2: WhatsApp Handoff */}
+                  <button
+                    type="button"
+                    disabled={isSubmitting}
+                    onClick={handleSendToWhatsApp}
+                    className="flex-1 py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm hover:shadow active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  >
+                    <WhatsAppLogo className="w-4 h-4" />
+                    <span>{t('المتابعة عبر واتساب')}</span>
+                  </button>
+                </div>
               </div>
 
-              <div className="pt-3 flex items-center justify-between gap-3">
+              <div className="pt-2 flex justify-start">
                 <button
                   type="button"
                   onClick={() => setCurrentStep(2)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-slate-600 hover:text-slate-900 text-xs font-bold transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-slate-600 hover:text-slate-900 text-xs font-bold transition-colors cursor-pointer"
                 >
                   <Edit2 className="w-3.5 h-3.5" />
-                  <span>{t('تعديل')}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleSendToWhatsApp}
-                  className="px-7 py-3.5 rounded-full bg-[#0B2E57] hover:bg-[#004AA5] text-white font-bold text-sm shadow-md active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
-                >
-                  <WhatsAppLogo className="w-5 h-5" />
-                  <span>{t('متابعة عبر واتساب')}</span>
+                  <span>{t('تعديل البيانات')}</span>
                 </button>
               </div>
             </div>
           )}
 
-          {/* STEP 4: Success / Ready */}
+          {/* STEP 4: Success / Confirmation */}
           {currentStep === 4 && (
-            <div className="text-center py-6 space-y-4 animate-success-slide-up" role="status" aria-live="polite">
+            <div className="text-center py-5 space-y-4 animate-success-slide-up" role="status" aria-live="polite">
               <div className="flex justify-center pb-1">
                 <AnimatedSuccessBadge size="lg" />
               </div>
 
               <div className="space-y-1.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#004AA5] text-xs font-bold">
                   <span>{getServiceTitle(selectedService)}</span>
                   <span aria-hidden="true">·</span>
                   <span>{city || 'إسطنبول'}</span>
-                </span>
-                <h3 className="text-xl font-black text-[#0B2E57]">
-                  {t('تم فتح المحادثة على واتساب!')}
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-black text-[#0B2E57]">
+                  {submissionMethod === 'website'
+                    ? t('تم استلام طلبكم بنجاح!')
+                    : t('تم تجهيز طلبكم للمتابعة عبر واتساب')}
                 </h3>
               </div>
 
-              <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                {t('إذا لم يُفتح واتساب تلقائياً، يمكنك الضغط على الزر أدناه لإرسال الرسالة مباشرة إلى الرقم:')}{' '}
-                <span className="font-bold font-mono text-[#0B2E57]" dir="ltr">
-                  {SITE_CONTACT.phoneDisplay}
-                </span>
+              {/* Reference Code Card */}
+              {referenceCode && (
+                <div className="max-w-xs mx-auto p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    {t('رقم مرجع الطلب الخاص بك')}
+                  </div>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="font-mono font-black text-lg text-[#0B2E57]" dir="ltr">
+                      {referenceCode}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={copyRefToClipboard}
+                      className="p-1 text-slate-400 hover:text-[#004AA5] rounded transition-colors cursor-pointer"
+                      title={t('نسخ رقم المرجع')}
+                    >
+                      {copiedRef ? (
+                        <Check className="w-4 h-4 text-emerald-600" />
+                      ) : (
+                        <Copy className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                {submissionMethod === 'website'
+                  ? t('تم تسجيل طلبكم في نظامنا وسيقوم فريق العمل بالتواصل معكم عبر الهاتف أو البريد الإلكتروني لتأكيد المواعيد والخطوات.')
+                  : t('إذا فُتح تطبيق واتساب، يرجى الضغط على زر الإرسال لتصلنا رسالتك. يمكنك أيضاً الضغط على الزر أدناه لإعادة فتح المحادثة.')}
               </p>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <button
-                  type="button"
-                  onClick={handleSendToWhatsApp}
-                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#0B2E57] hover:bg-[#004AA5] text-white font-bold text-sm shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <WhatsAppLogo className="w-5 h-5" />
-                  <span>{t('إعادة فتح واتساب')}</span>
-                </button>
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
+                {submissionMethod === 'whatsapp' && (
+                  <button
+                    type="button"
+                    onClick={handleSendToWhatsApp}
+                    className="w-full sm:w-auto px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <WhatsAppLogo className="w-4 h-4" />
+                    <span>{t('إعادة فتح واتساب')}</span>
+                  </button>
+                )}
 
                 <button
                   type="button"
-                  onClick={() => setCurrentStep(1)}
-                  className="w-full sm:w-auto px-5 py-3 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-sm transition-colors cursor-pointer"
+                  onClick={() => {
+                    setCurrentStep(1);
+                    setReferenceCode('');
+                    draftIdRef.current = crypto.randomUUID();
+                  }}
+                  className="w-full sm:w-auto px-5 py-3 rounded-full bg-blue-50 hover:bg-blue-100 text-[#004AA5] font-bold text-sm transition-colors cursor-pointer"
                 >
                   {t('طلب خدمة أخرى')}
                 </button>

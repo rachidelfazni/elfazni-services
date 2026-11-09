@@ -3,6 +3,7 @@ export const homepageSections = {
   'consular-checklist': 'دليل المعاملات القنصلية',
   airlines: 'الحجوزات والسفر',
   'service-slides': 'معرض الخدمات',
+  'promo-video': 'الفيديو التعريفي',
   guides: 'الأدلة',
   'how-it-works': 'كيف نساعدك',
   work: 'أعمالنا',

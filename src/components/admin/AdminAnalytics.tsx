@@ -33,6 +33,7 @@ import {
 import { api, AnalyticsState, TodoItem } from '../../services/api';
 import { BlogPostAnalyticsWidget } from './BlogPostAnalyticsWidget';
 import { realtime } from '../../services/realtime';
+import { WorldGeoMap } from './analytics/WorldGeoMap';
 
 // ---------------------------------------------------------------------------
 // Date helpers for the dashboard calendar (local time, no UTC drift)
@@ -773,131 +774,13 @@ export const AdminAnalytics: React.FC = () => {
         </div>
       </div>
 
-      {/* Row 2: Interactive World Map & Top Countries */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* World Map Box */}
-        <div className="lg:col-span-7 bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-            <div className="flex items-center gap-2">
-              <Globe2 className="w-5 h-5 text-blue-600" />
-              <h3 className="font-bold text-slate-800 text-sm sm:text-base">
-                خريطة التوزيع الجغرافي للزوار (World Geo-Analytics)
-              </h3>
-            </div>
-            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg">
-              <button
-                onClick={() => setMapZoom((z) => Math.min(z + 0.25, 2.5))}
-                className="p-1 text-slate-600 hover:text-blue-600 hover:bg-white rounded transition-colors"
-                title="تكبير الخريطة"
-              >
-                <ZoomIn className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setMapZoom((z) => Math.max(z - 0.25, 0.75))}
-                className="p-1 text-slate-600 hover:text-blue-600 hover:bg-white rounded transition-colors"
-                title="تصغير الخريطة"
-              >
-                <ZoomOut className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setMapZoom(1)}
-                className="p-1 text-slate-600 hover:text-blue-600 hover:bg-white rounded transition-colors"
-                title="إعادة ضبط"
-              >
-                <RotateCcw className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* SVG Map Container */}
-          <div className="relative h-[320px] bg-slate-900 rounded-xl overflow-hidden flex items-center justify-center p-2 border border-slate-800">
-            <div
-              className="w-full h-full transition-transform duration-300 flex items-center justify-center relative"
-              style={{ transform: `scale(${mapZoom})` }}
-            >
-              {/* Authentic World Vector Map */}
-              <img
-                src="/assets/aistudio/world_d364c888.svg"
-                alt="World Geo Map"
-                className="absolute inset-0 w-full h-full object-contain opacity-25 invert contrast-125 brightness-150 pointer-events-none"
-              />
-
-              <svg viewBox="0 0 1000 500" className="relative w-full h-full max-h-[300px]">
-                {/* Dynamic Visitor Pins based on genuine tracked countries */}
-                {countries.map((c) => {
-                  const pos = geoCoords[c.code] || { cx: 500, cy: 160 };
-                  return (
-                    <g key={c.code} className="cursor-pointer">
-                      <circle cx={pos.cx} cy={pos.cy} r="14" fill="#004AA5" opacity="0.3" className="animate-ping" />
-                      <circle cx={pos.cx} cy={pos.cy} r="6" fill="#2A83D5" />
-                      <text x={pos.cx + 12} y={pos.cy + 4} fill="#F8FAFC" fontSize="11" fontWeight="bold">
-                        {c.flag} {c.name} ({c.percentage}%)
-                      </text>
-                    </g>
-                  );
-                })}
-
-                {countries.length === 0 && (
-                  <text x="500" y="250" fill="#8CA0B7" fontSize="13" textAnchor="middle" fontWeight="bold">
-                    🌐 في انتظار دخول الزوار لتسجيل الإحداثيات الجغرافية المباشرة
-                  </text>
-                )}
-              </svg>
-            </div>
-
-            <div className="absolute bottom-2 left-2 bg-slate-950/80 px-3 py-1 rounded text-[11px] text-slate-300 border border-slate-800">
-              🟢 رصد جغرافي حقيقي ومباشر
-            </div>
-          </div>
-        </div>
-
-        {/* Top Countries Progress Bars */}
-        <div className="lg:col-span-5 bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex flex-col justify-between">
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-            <h3 className="font-bold text-slate-800 text-sm sm:text-base flex items-center gap-2">
-              <span>الدول الأكثر زيارة وتفاعلاً</span>
-            </h3>
-            <span className="text-xs text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded-full">
-              {countries.length} دول مسجلة
-            </span>
-          </div>
-
-          <div className="space-y-3.5 flex-1 overflow-y-auto max-h-[320px] pr-1">
-            {countries.length === 0 ? (
-              <div className="h-full flex flex-col items-center justify-center p-6 text-center text-slate-400 text-xs">
-                <Globe2 className="w-8 h-8 text-slate-300 mb-2 stroke-1" />
-                <p className="font-bold text-slate-600">لا توجد زيارات مسجلة حتى الآن</p>
-                <p className="text-[11px] text-slate-400 mt-1">
-                  ستظهر الدول والمدن التي يدخل منها الزوار هنا تلقائياً بنسبتها الحقيقية.
-                </p>
-              </div>
-            ) : (
-              countries.map((c) => (
-                <div key={c.code} className="space-y-1">
-                  <div className="flex items-center justify-between text-xs font-semibold text-slate-700">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">{c.flag}</span>
-                      <span>{c.name}</span>
-                      {c.city && <span className="text-[10px] text-slate-400 font-normal">({c.city})</span>}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-slate-500 font-normal">{c.visits.toLocaleString()} زيارة</span>
-                      <span className="font-bold text-blue-700">{c.percentage}%</span>
-                    </div>
-                  </div>
-
-                  <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                    <div
-                      className="bg-gradient-to-r from-blue-600 to-indigo-600 h-2 rounded-full transition-all duration-500"
-                      style={{ width: `${Math.max(c.percentage, 4)}%` }}
-                    />
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      </div>
+      {/* Row 2: Interactive World Map & Geo-Analytics */}
+      <WorldGeoMap
+        countries={countries}
+        activeVisitors={kpis.activeVisitors}
+        totalVisits={kpis.totalVisits}
+        onRefresh={loadAnalytics}
+      />
 
       {/* Row 3: Area Spline Chart & Donut Chart */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">

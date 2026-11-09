@@ -234,12 +234,9 @@ export const DisclaimerSection: React.FC = () => {
           </div>
 
           <a
-            href={whatsappDisclaimerUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#25D366]/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            href="#contact-form"
+            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37] hover:to-[#CC9048] text-slate-950 text-xs sm:text-sm font-black shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
-            <MessageCircle className="w-4 h-4 fill-current" />
             <span>{bottomButtonText}</span>
             {isRtl ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
           </a>

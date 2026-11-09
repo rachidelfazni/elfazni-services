@@ -36,6 +36,8 @@ import {
   SubtaskItem,
   TaskAttachment,
 } from '../../services/productivityService';
+import { ResizeHandle } from '../workspace/resizable/ResizeHandle';
+import { clampPanelSize } from '../workspace/resizable/layoutPreferences';
 
 interface ModernTaskManagerProps {
   initialTasks?: TaskItem[];
@@ -135,6 +137,35 @@ export const ModernTaskManager: React.FC<ModernTaskManagerProps> = ({
   const [priorityFilter, setPriorityFilter] = useState<TaskPriority | 'all'>('all');
   const [assigneeFilter, setAssigneeFilter] = useState<string>('all');
   const [activeTaskId, setActiveTaskId] = useState<string | null>(null);
+
+  // Resizable Active Task Drawer State
+  const [drawerWidth, setDrawerWidth] = useState<number>(() => {
+    if (typeof window === 'undefined') return 384;
+    try {
+      const saved = localStorage.getItem('elfazni_task_drawer_width');
+      const num = saved ? parseInt(saved, 10) : 384;
+      return isNaN(num) ? 384 : clampPanelSize(num, 280, 600);
+    } catch {
+      return 384;
+    }
+  });
+
+  const handleDrawerResize = (delta: number) => {
+    setDrawerWidth((prev) => {
+      const next = clampPanelSize(prev - delta, 280, 600);
+      try {
+        localStorage.setItem('elfazni_task_drawer_width', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleResetDrawerWidth = () => {
+    setDrawerWidth(384);
+    try {
+      localStorage.setItem('elfazni_task_drawer_width', '384');
+    } catch {}
+  };
 
   // Quick Add State
   const [quickTitle, setQuickTitle] = useState('');
@@ -787,7 +818,25 @@ export const ModernTaskManager: React.FC<ModernTaskManagerProps> = ({
 
         {/* Right Drawer / Detail Panel for Active Task */}
         {activeTask && (
-          <div className="w-full sm:w-96 border-s border-[#D7E7F7] bg-white flex flex-col h-full shadow-lg z-10 shrink-0">
+          <>
+            {/* Desktop Resizable Separator Handle */}
+            <div className="hidden sm:block shrink-0 h-full">
+              <ResizeHandle
+                id="task-details-drawer"
+                direction="horizontal"
+                isRtl={lang === 'ar'}
+                onResize={handleDrawerResize}
+                onReset={handleResetDrawerWidth}
+                currentSize={drawerWidth}
+                minSize={280}
+                maxSize={600}
+                ariaLabel="فاصل تغيير حجم لوحة تفاصيل المهمة"
+              />
+            </div>
+            <div
+              style={{ width: drawerWidth }}
+              className="w-full sm:w-auto border-s border-[#D7E7F7] bg-white flex flex-col h-full shadow-lg z-10 shrink-0 transition-[width] duration-75 select-none"
+            >
             {/* Drawer Header */}
             <div className="p-4 border-b border-[#D7E7F7] flex items-center justify-between bg-[#F8FAFC]">
               <div className="flex items-center gap-2">
@@ -1146,7 +1195,8 @@ export const ModernTaskManager: React.FC<ModernTaskManagerProps> = ({
               </button>
             </div>
           </div>
-        )}
+        </>
+      )}
       </div>
     </div>
   );

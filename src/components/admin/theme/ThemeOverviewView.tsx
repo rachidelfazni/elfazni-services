@@ -56,17 +56,17 @@ export const ThemeOverviewView: React.FC<ThemeOverviewViewProps> = ({
     },
     {
       id: 'admin_login',
-      title: 'مظهر تسجيل دخول الإدارة (Admin Login)',
+      title: 'مظهر تسجيل دخول الإدارة (Portal Login)',
       desc: 'شاشة تسجيل الدخول الآمنة الخاصة بإدارة ومحرري موقع الفزني للخدمات.',
       icon: Lock,
-      route: '/admin/login',
+      route: '/portal/login',
     },
     {
       id: 'crm_login',
       title: 'مظهر تسجيل دخول CRM (CRM Login)',
       desc: 'شاشة تسجيل الدخول المستقلة الخاصة بموظفي وعمليات نظام إدارة العملاء.',
       icon: Users,
-      route: '/admin/login?next=crm',
+      route: '/portal/login?next=crm',
     },
   ];
 

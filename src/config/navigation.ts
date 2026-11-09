@@ -16,12 +16,12 @@ export const APP_ROUTES = {
   },
   hub: '/hub',
   admin: {
-    dashboard: '/admin',
-    login: '/admin/login',
+    dashboard: '/portal',
+    login: '/portal/login',
   },
   crm: {
-    dashboard: '/admin/crm',
-    login: '/admin/login?next=crm',
+    dashboard: '/crm',
+    login: '/portal/login?next=crm',
   },
   auth: {
     logout: '/api/auth/logout',
@@ -54,16 +54,16 @@ export const APP_DESTINATIONS: Record<string, AppDestination> = {
   },
   crm: {
     id: 'crm',
-    nameAr: 'نظام CRM',
-    nameEn: 'CRM System',
-    nameFr: 'Système CRM',
-    path: APP_ROUTES.crm.login,
+    nameAr: 'نظام إدارة العملاء (CRM)',
+    nameEn: 'CRM Workspace',
+    nameFr: 'Espace CRM',
+    path: APP_ROUTES.crm.dashboard,
   },
   admin: {
     id: 'admin',
-    nameAr: 'لوحة التحكم (Admin)',
-    nameEn: 'Admin Panel',
-    nameFr: "Panneau d'Administration",
+    nameAr: 'بوابة الإدارة والتحكم',
+    nameEn: 'Control Portal',
+    nameFr: 'Portail de Contrôle',
     path: APP_ROUTES.admin.dashboard,
   },
 };

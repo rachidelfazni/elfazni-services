@@ -143,11 +143,19 @@ export const AirlineLogoMarquee: React.FC<AirlineLogoMarqueeProps> = ({
         className="flex shrink-0 gap-3.5 py-1"
         aria-hidden={isFirst ? undefined : true}
       >
-        {items.map((airline) => {
-          const isAirFrance = airline.logo.includes('air-france') || airline.name.includes('Air France') || airline.name.includes('الفرنسية');
+        {items.filter((a) => !a.hidden && a.slug !== 'air-france').map((airline) => {
+          const isAirFrance = airline.slug === 'air-france' || airline.logo.includes('air-france') || airline.name.includes('Air France') || airline.name.includes('الفرنسية');
+          const cfg = airline.config;
+          
+          // Optical scaling and custom dimensions per airline configuration
+          const customScale = cfg?.scale ?? (isAirFrance ? 2.1 : 1.05);
+          const customMaxWidth = cfg?.maxWidth ?? (compact ? (isAirFrance ? '135px' : '105px') : (isAirFrance ? '150px' : '110px'));
+          const customMaxHeight = cfg?.maxHeight ?? (compact ? '34px' : '38px');
+          const alignment = cfg?.alignment ?? 'center';
+
           const imgClass = isAirFrance
             ? compact
-              ? 'max-h-10 max-w-[130px] scale-[1.32] w-auto h-auto object-contain transition-transform duration-200 group-hover:scale-[1.38]'
+              ? 'max-h-10 max-w-[130px] scale-[1.38] w-auto h-auto object-contain transition-transform duration-200 group-hover:scale-[1.45]'
               : 'max-h-11 max-w-[140px] scale-[1.38] w-auto h-auto object-contain transition-transform duration-200 group-hover:scale-[1.45]'
             : compact
             ? 'max-h-8 max-w-[105px] w-auto h-auto object-contain transition-transform duration-200 group-hover:scale-105'
@@ -170,11 +178,20 @@ export const AirlineLogoMarquee: React.FC<AirlineLogoMarqueeProps> = ({
                   ? 'h-9 w-full flex items-center justify-center overflow-hidden'
                   : 'h-10 w-full flex items-center justify-center overflow-hidden'
               }
+              style={{
+                justifyContent: alignment === 'left' ? 'flex-start' : alignment === 'right' ? 'flex-end' : 'center',
+              }}
             >
               <img
                 src={airline.logo}
                 alt={isFirst ? airline.name : ''}
                 className={imgClass}
+                style={{
+                  maxWidth: typeof customMaxWidth === 'number' ? `${customMaxWidth}px` : customMaxWidth,
+                  maxHeight: typeof customMaxHeight === 'number' ? `${customMaxHeight}px` : customMaxHeight,
+                  transform: `scale(${customScale})`,
+                  transformOrigin: alignment === 'left' ? 'left center' : alignment === 'right' ? 'right center' : 'center center',
+                }}
                 loading="lazy"
                 onError={(e) => {
                   // Graceful fallback: hide broken image and show the airline name as text.

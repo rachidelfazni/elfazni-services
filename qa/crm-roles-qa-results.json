@@ -1,0 +1,122 @@
+[
+  {
+    "test": "API: Customers Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "API: Flights Bookings Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "API: Hotels Bookings Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "API: Consulate Appointments Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "API: Accounting Transactions Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "API: Invoices & Billing Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "API: Debts & Receivables Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "API: Calendar Events Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "API: Productivity Notes Module",
+    "passed": true,
+    "details": "Status: 200",
+    "screenshot": ""
+  },
+  {
+    "test": "RBAC Access: Super Admin: Has unrestricted access",
+    "passed": true,
+    "details": "Response: 401",
+    "screenshot": ""
+  },
+  {
+    "test": "RBAC Access: Flight Agent: Access to flights, restricted from accounting",
+    "passed": true,
+    "details": "Response: 401",
+    "screenshot": ""
+  },
+  {
+    "test": "RBAC Access: Hotel Agent: Access to hotels, restricted from consulate",
+    "passed": true,
+    "details": "Response: 401",
+    "screenshot": ""
+  },
+  {
+    "test": "RBAC Access: Consular Agent: Access to consulate appointments",
+    "passed": true,
+    "details": "Response: 401",
+    "screenshot": ""
+  },
+  {
+    "test": "RBAC Access: Accountant: Access to transactions, debts & invoices",
+    "passed": true,
+    "details": "Response: 401",
+    "screenshot": ""
+  },
+  {
+    "test": "RBAC Enforcement: Read-Only User: Write operations blocked (403)",
+    "passed": true,
+    "details": "Response: 401",
+    "screenshot": ""
+  },
+  {
+    "test": "CRM UI: Customers Module",
+    "passed": true,
+    "details": "Loaded customers table and filters",
+    "screenshot": "qa/screenshots/crm-modules/01-crm-customers.png"
+  },
+  {
+    "test": "CRM UI: Flights Module",
+    "passed": true,
+    "details": "Loaded flight bookings board",
+    "screenshot": "qa/screenshots/crm-modules/02-crm-flights.png"
+  },
+  {
+    "test": "CRM UI: Consulate Module",
+    "passed": true,
+    "details": "Loaded consulate appointments pipeline",
+    "screenshot": "qa/screenshots/crm-modules/03-crm-consulate.png"
+  },
+  {
+    "test": "CRM UI: Calendar Module",
+    "passed": true,
+    "details": "Loaded dynamic scheduling calendar",
+    "screenshot": "qa/screenshots/crm-modules/04-crm-calendar.png"
+  },
+  {
+    "test": "CRM UI: Debts & Financials Module",
+    "passed": true,
+    "details": "Loaded debts workspace and ledgers",
+    "screenshot": "qa/screenshots/crm-modules/05-crm-debts-accounting.png"
+  }
+]

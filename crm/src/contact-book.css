@@ -92,8 +92,8 @@
 }
 .crm-contact-layout {
   display: grid;
-  grid-template-columns: 310px minmax(0, 1fr);
-  gap: 20px;
+  grid-template-columns: var(--crm-contact-dir-width, 310px) 10px minmax(0, 1fr);
+  gap: 12px;
   align-items: start;
   margin-top: 20px;
 }
@@ -879,8 +879,8 @@
 }
 @media (max-width: 1250px) {
   .crm-contact-layout {
-    grid-template-columns: 260px minmax(0, 1fr);
-    gap: 15px;
+    grid-template-columns: var(--crm-contact-dir-width, 280px) 10px minmax(0, 1fr);
+    gap: 12px;
   }
   .crm-contact-profile {
     padding: 20px;

@@ -90,14 +90,14 @@ const crmNavbarContent = fs.readFileSync(path.join(__dirname, 'crm', 'src', 'com
 assert(crmNavbarContent.includes('BrandLogo'), 'CRM Navbar uses BrandLogo');
 assert(crmNavbarContent.includes('href="/"'), 'CRM Navbar has link to public website');
 assert(crmNavbarContent.includes('href="/hub"'), 'CRM Navbar has link to HUB');
-assert(crmNavbarContent.includes('href="/admin"'), 'CRM Navbar has link to Admin Panel');
+assert(crmNavbarContent.includes('href="/portal"'), 'CRM Navbar has link to Management Portal (/portal)');
 assert(crmNavbarContent.includes('logout'), 'CRM Navbar maintains distinct Logout action');
 
 const hubPageContent = fs.readFileSync(path.join(__dirname, 'src', 'components', 'hub', 'HubPage.tsx'), 'utf8');
 assert(hubPageContent.includes('BrandLogo'), 'HubPage uses BrandLogo');
 assert(hubPageContent.includes("website: '/'"), 'HubPage links to website');
-assert(hubPageContent.includes("crm: '/admin/crm'"), 'HubPage links to CRM');
-assert(hubPageContent.includes("admin: '/admin'"), 'HubPage links to Admin');
+assert(hubPageContent.includes("crm: '/crm'"), 'HubPage links to CRM');
+assert(hubPageContent.includes("admin: '/portal'"), 'HubPage links to Portal');
 
 console.log('\n=== SUITE 4: Authentication Redesign & Zero Hardcoded Credentials ===');
 const adminLoginContent = fs.readFileSync(path.join(__dirname, 'src', 'components', 'admin', 'AdminLogin.tsx'), 'utf8');
@@ -161,7 +161,7 @@ assert(adminLayoutSrc.includes('size={105}'), 'AdminLayout has enlarged overview
 const crmNavbarSrc = fs.readFileSync(path.join(__dirname, 'crm', 'src', 'components', 'Navbar.tsx'), 'utf8');
 assert(crmNavbarSrc.includes('size="md"') && crmNavbarSrc.includes('h-9 sm:h-10'), 'CRM Navbar has enlarged sidebar BrandLogo (size="md", h-9/h-10)');
 assert(crmNavbarSrc.includes('الانتقال إلى الواجهات'), 'CRM Navbar has dedicated Interface Transition button ("الانتقال إلى الواجهات")');
-assert(crmNavbarSrc.includes('href="/admin"') && crmNavbarSrc.includes('href="/"') && crmNavbarSrc.includes('href="/hub"'), 'CRM Navbar has all external portal targets (/admin, /, /hub)');
+assert(crmNavbarSrc.includes('href="/portal"') && crmNavbarSrc.includes('href="/"') && crmNavbarSrc.includes('href="/hub"'), 'CRM Navbar has all external portal targets (/portal, /, /hub)');
 
 const crmBankSrc = fs.readFileSync(path.join(__dirname, 'crm', 'src', 'components', 'common', 'TangibleShowcaseFooter.tsx'), 'utf8');
 assert(crmBankSrc.includes('studio-smart-card'), 'TangibleShowcaseFooter has studio-smart-card smart card container');

@@ -257,12 +257,105 @@ export interface InterfaceThemeConfig {
   primaryButtonRadius?: string;
   appliedPresetId?: string;
   appliedPresetName?: string;
+  cardRadius?: string;
+  headingShadow?: boolean;
   texts: Record<string, Record<string, string>>;
   portalCards?: PortalCard[];
   customCss?: string;
+
+  // 3 Independent Visual Zones
+  outerBackground?: OuterBackgroundConfig;
+  menuPanel?: MenuPanelConfig;
+  sidePanel?: SidePanelConfig;
+
   updatedAt: string;
   updatedBy: string;
   version: number;
+}
+
+export interface OuterBackgroundOverlay {
+  enabled: boolean;
+  type?: 'linear' | 'radial';
+  startColor: string;
+  middleColor?: string;
+  endColor: string;
+  direction?: string;
+  opacity: number;
+  stops?: number[];
+}
+
+export interface OuterBackgroundConfig {
+  type: 'solid' | 'linear_gradient' | 'radial_gradient' | 'image' | 'transparent';
+  color?: string;
+  image?: string;
+  assetId?: string;
+  scale?: number;
+  fit?: 'cover' | 'contain' | 'original' | 'custom';
+  positionX?: string | number;
+  positionY?: string | number;
+  customX?: number;
+  customY?: number;
+  brightness?: number;
+  contrast?: number;
+  saturation?: number;
+  blur?: number;
+  opacity?: number;
+  overlay?: OuterBackgroundOverlay;
+}
+
+export interface MenuPanelConfig {
+  bgColor?: string;
+  bgImage?: string;
+  backgroundAssetId?: string;
+  opacity?: number;
+  borderColor?: string;
+  borderRadius?: string;
+  shadowIntensity?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  headingColor?: string;
+  descriptionColor?: string;
+  kickerColor?: string;
+  buttonBg?: string;
+  buttonTextColor?: string;
+  buttonBorderColor?: string;
+  logoSize?: 'sm' | 'md' | 'lg' | 'xl';
+  logoVariant?: InterfaceThemeConfig['logoVariant'];
+  padding?: string;
+  width?: string;
+  alignment?: 'start' | 'center' | 'end';
+}
+
+export interface SidePanelConfig {
+  bgType?: 'solid' | 'gradient' | 'image' | 'transparent';
+  bgColor?: string;
+  bgImage?: string;
+  backgroundAssetId?: string;
+  bgGradient?: GradientConfig;
+  foregroundImage?: string;
+  foregroundAssetId?: string;
+  illustrationScale?: number;
+  illustrationWidth?: string;
+  illustrationHeight?: string;
+  illustrationCustomX?: number;
+  illustrationCustomY?: number;
+  illustrationOpacity?: number;
+  illustrationRotation?: number;
+  illustrationAlignment?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'custom';
+  illustrationFit?: 'contain' | 'cover' | 'original' | 'custom';
+  logoVariant?: string;
+  logoWidth?: number;
+  logoPosition?: 'start' | 'center' | 'end';
+  logoOpacity?: number;
+  spacing?: string;
+  headingAr?: string;
+  headingEn?: string;
+  descriptionAr?: string;
+  descriptionEn?: string;
+  headingColor?: string;
+  descriptionColor?: string;
+  fontFamily?: string;
+  fontSize?: string;
+  fontWeight?: string;
+  textAlign?: 'start' | 'center' | 'end';
 }
 
 export interface ThemePreset {
@@ -388,25 +481,81 @@ export const themeService = {
   },
 
   /**
-   * Applies CSS variables onto document root element.
+   * Applies CSS variables onto document root element and ensures typography is loaded.
    */
   applyCssVariables(colors?: Partial<ThemeColors>, typography?: Partial<ThemeTypography>) {
     if (typeof document === 'undefined') return;
     const root = document.documentElement;
 
     if (colors) {
-      if (colors.primary) root.style.setProperty('--brand-blue', colors.primary);
-      if (colors.gold) root.style.setProperty('--brand-gold', colors.gold);
-      if (colors.goldTextOnWhite) root.style.setProperty('--brand-gold-text-on-light', colors.goldTextOnWhite);
-      if (colors.surface) root.style.setProperty('--surface-card', colors.surface);
-      if (colors.background) root.style.setProperty('--surface-page', colors.background);
-      if (colors.text) root.style.setProperty('--text-primary', colors.text);
-      if (colors.border) root.style.setProperty('--border-subtle', colors.border);
-      if (colors.navySupport) root.style.setProperty('--brand-navy-support', colors.navySupport);
+      if (colors.primary) {
+        root.style.setProperty('--brand-blue', colors.primary);
+        root.style.setProperty('--color-brand-blue', colors.primary);
+        root.style.setProperty('--color-blue-600', colors.primary);
+      }
+      if (colors.secondary) {
+        root.style.setProperty('--color-brand-deep', colors.secondary);
+        root.style.setProperty('--color-blue-800', colors.secondary);
+        root.style.setProperty('--color-blue-900', colors.secondary);
+      }
+      if (colors.gold) {
+        root.style.setProperty('--brand-gold', colors.gold);
+        root.style.setProperty('--color-brand-gold', colors.gold);
+      }
+      if (colors.goldTextOnWhite) {
+        root.style.setProperty('--brand-gold-text-on-light', colors.goldTextOnWhite);
+        root.style.setProperty('--color-brand-gold-text', colors.goldTextOnWhite);
+      }
+      if (colors.surface) {
+        root.style.setProperty('--surface-card', colors.surface);
+        root.style.setProperty('--color-brand-ivory', colors.surface);
+      }
+      if (colors.background) {
+        root.style.setProperty('--surface-page', colors.background);
+      }
+      if (colors.text) {
+        root.style.setProperty('--text-primary', colors.text);
+        root.style.setProperty('--color-brand-ink', colors.text);
+      }
+      if (colors.mutedText) {
+        root.style.setProperty('--color-brand-muted', colors.mutedText);
+      }
+      if (colors.border) {
+        root.style.setProperty('--border-subtle', colors.border);
+        root.style.setProperty('--color-brand-border', colors.border);
+      }
+      if (colors.navySupport) {
+        root.style.setProperty('--brand-navy-support', colors.navySupport);
+      }
     }
 
     if (typography) {
-      if (typography.fontFamily) root.style.setProperty('--font-family-base', typography.fontFamily);
+      if (typography.fontFamily) {
+        root.style.setProperty('--font-family-base', typography.fontFamily);
+        root.style.setProperty('--font-sans', typography.fontFamily);
+        root.style.setProperty('--font-arabic', typography.fontFamily);
+      }
+      if (typography.headingFontFamily) {
+        root.style.setProperty('--font-heading', typography.headingFontFamily);
+      }
+      if (typography.baseFontSize) {
+        root.style.setProperty('--font-size-base', typography.baseFontSize);
+      }
+      if (typography.lineHeight) {
+        root.style.setProperty('--line-height-base', typography.lineHeight);
+      }
+      if (typography.letterSpacing) {
+        root.style.setProperty('--letter-spacing-base', typography.letterSpacing);
+      }
+    }
+
+    // Ensure Google Fonts for Arabic & Latin fonts are injected into document head if missing
+    if (!document.getElementById('elfazni-google-fonts')) {
+      const link = document.createElement('link');
+      link.id = 'elfazni-google-fonts';
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Roboto:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700;900&display=swap';
+      document.head.appendChild(link);
     }
   },
 

@@ -21,6 +21,7 @@ export const CRMDialog: React.FC<{
       ?.querySelector<HTMLElement>("input,select,textarea,button")
       ?.focus();
     const key = (e: KeyboardEvent) => {
+      if (e.defaultPrevented) return;
       if (e.key === "Escape") close.current();
       if (e.key === "Tab") {
         const all = Array.from(

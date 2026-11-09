@@ -199,6 +199,7 @@ export type ServiceTag = 'FLIGHT' | 'HOTEL' | 'TRANSFER' | 'CONSULAR' | 'GENERAL
 export type FollowUpStatus =
   | 'NEW'
   | 'FOLLOW_UP_REQUIRED'
+  | 'INCOMPLETE_CONSENTED'
   | 'IN_PROGRESS'
   | 'WAITING_CUSTOMER'
   | 'RESOLVED'
@@ -230,6 +231,9 @@ export interface ContactMessage {
   id: string;
   ticketNumber: string;
   reference?: string;
+  draftId?: string;
+  isConsentedDraft?: boolean;
+  crmContactId?: string;
   name: string;
   phone: string;
   whatsappPhone?: string;
@@ -818,6 +822,38 @@ export const api = {
     });
   },
 
+  async saveRequestDraft(data: {
+    draftId: string;
+    consent: boolean;
+    name: string;
+    phone?: string;
+    whatsappPhone?: string;
+    email?: string;
+    serviceTag?: ServiceTag;
+    serviceRequested?: string;
+    city?: string;
+    notes?: string;
+    country?: string;
+    source?: string;
+  }): Promise<{
+    success: boolean;
+    draftId: string;
+    reference: string;
+    message: string;
+    request?: ContactMessage;
+  }> {
+    return this.request<{
+      success: boolean;
+      draftId: string;
+      reference: string;
+      message: string;
+      request?: ContactMessage;
+    }>('/public/requests/draft', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
   async submitServiceRequest(data: {
     name: string;
     phone: string;
@@ -830,6 +866,7 @@ export const api = {
     payloadJson?: Record<string, any>;
     source?: string;
     country?: string;
+    draftId?: string;
   }): Promise<{
     success: boolean;
     reference: string;
@@ -849,6 +886,30 @@ export const api = {
       method: 'POST',
       body: JSON.stringify(data),
     });
+  },
+
+  async convertMailboxMessageToCrm(
+    id: string
+  ): Promise<{ success: boolean; contactId: string; message: string }> {
+    return this.request<{ success: boolean; contactId: string; message: string }>(
+      `/api/mailbox/${id}/convert-to-crm`,
+      {
+        method: 'POST',
+      }
+    );
+  },
+
+  async createTaskFromMailboxMessage(
+    id: string,
+    task?: { title?: string; dueDate?: string }
+  ): Promise<{ success: boolean; taskId: string; message: string }> {
+    return this.request<{ success: boolean; taskId: string; message: string }>(
+      `/api/mailbox/${id}/create-task`,
+      {
+        method: 'POST',
+        body: JSON.stringify(task || {}),
+      }
+    );
   },
 
   async submitOfflineMessage(data: {

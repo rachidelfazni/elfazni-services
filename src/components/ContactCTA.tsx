@@ -1,16 +1,11 @@
 import React from 'react';
-import { PhoneCall } from 'lucide-react';
+import { PhoneCall, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSiteSettings } from '../context/SiteSettingsContext';
-import { WhatsAppLogo } from './WhatsAppLogo';
 
 export const ContactCTA: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { t, language, isRtl } = useLanguage();
   const { settings } = useSiteSettings();
-
-  const whatsappUrl = `https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(
-    'مرحباً ELFAZNI SERVICES، أود بدء معاملتي والاستفسار عن الخطوات المطلوبة.'
-  )}`;
 
   return (
     <section className="py-16 md:py-20 bg-[#0B2E57] relative overflow-hidden">
@@ -58,13 +53,11 @@ export const ContactCTA: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5">
             <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white text-base font-black px-8 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer"
+              href="#contact-form"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37] hover:to-[#CC9048] text-slate-950 text-base font-black px-8 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer"
             >
-              <WhatsAppLogo className="w-5 h-5" />
-              <span>{t('تواصل الآن عبر واتساب')}</span>
+              <span>{t('ابدأ طلبك وتواصل معنا الآن')}</span>
+              {isRtl ? <ArrowLeft className="w-5 h-5" /> : <ArrowRight className="w-5 h-5" />}
             </a>
 
             <a

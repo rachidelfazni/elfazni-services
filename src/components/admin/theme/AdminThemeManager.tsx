@@ -98,7 +98,7 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
 
   // Media picker modal state
   const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
-  const [mediaPickerTarget, setMediaPickerTarget] = useState<'illustration' | 'background' | 'logo'>('illustration');
+  const [mediaPickerTarget, setMediaPickerTarget] = useState<'illustration' | 'background' | 'side_panel_bg' | 'logo'>('illustration');
 
   // Save as Custom Preset modal inside Visual Editor
   const [savePresetModalOpen, setSavePresetModalOpen] = useState(false);
@@ -199,7 +199,24 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
         ...updates,
         colors: { ...(prev.colors || {}), ...(updates.colors || {}) },
         typography: { ...(prev.typography || {}), ...(updates.typography || {}) },
-        texts: { ...(prev.texts || {}), ...(updates.texts || {}) },
+        texts: (() => {
+          const merged = { ...(prev.texts || {}) };
+          if (updates.texts) {
+            for (const [k, v] of Object.entries(updates.texts)) {
+              merged[k] = { ...(merged[k] || {}), ...v };
+            }
+          }
+          return merged;
+        })(),
+        outerBackground: updates.outerBackground !== undefined
+          ? { ...(prev.outerBackground || {}), ...updates.outerBackground }
+          : prev.outerBackground,
+        menuPanel: updates.menuPanel !== undefined
+          ? { ...(prev.menuPanel || {}), ...updates.menuPanel }
+          : prev.menuPanel,
+        sidePanel: updates.sidePanel !== undefined
+          ? { ...(prev.sidePanel || {}), ...updates.sidePanel }
+          : prev.sidePanel,
       };
     });
     setIsModified(true);
@@ -318,7 +335,9 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
     }
   };
 
-  const openMediaPickerFor = (targetType: 'illustration' | 'background' | 'logo' = 'illustration') => {
+  const openMediaPickerFor = (
+    targetType: 'illustration' | 'background' | 'side_panel_bg' | 'logo' = 'illustration'
+  ) => {
     setMediaPickerTarget(targetType);
     setMediaPickerOpen(true);
   };
@@ -611,21 +630,79 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
               onAssetsChange={(assets) => setThemeData({ ...themeData, assets })}
               selectedAssetUrl={
                 mediaPickerTarget === 'background'
-                  ? workingDraft?.backgroundImage
+                  ? (selectedTarget === 'portal' ? (workingDraft?.outerBackground?.image || workingDraft?.backgroundImage) : workingDraft?.backgroundImage)
+                  : mediaPickerTarget === 'side_panel_bg'
+                  ? workingDraft?.sidePanel?.bgImage
                   : mediaPickerTarget === 'logo'
                   ? workingDraft?.customLogoUrl
-                  : workingDraft?.illustrationUrl
+                  : (workingDraft?.sidePanel?.foregroundImage || workingDraft?.illustrationUrl)
               }
               onAssetSelect={(asset) => {
-                if (mediaPickerTarget === 'logo' || selectedElementKey?.includes('logo')) {
-                  handleDraftUpdate({ customLogoUrl: asset.url, logoVariant: 'custom' });
-                } else if (mediaPickerTarget === 'background' || selectedElementKey?.includes('background')) {
-                  handleDraftUpdate({ backgroundImage: asset.url });
+                const isLogo = mediaPickerTarget === 'logo' || selectedElementKey?.includes('logo');
+                const isSideBg = mediaPickerTarget === 'side_panel_bg' || selectedElementKey === 'side_panel_bg';
+                const isBackground =
+                  mediaPickerTarget === 'background' ||
+                  selectedElementKey?.includes('background') ||
+                  selectedElementKey === 'outer_background';
+
+                if (isLogo) {
+                  handleDraftUpdate({
+                    customLogoUrl: asset.url,
+                    logoVariant: 'custom',
+                    ...(selectedTarget === 'portal' && workingDraft?.menuPanel
+                      ? {
+                          menuPanel: {
+                            ...workingDraft.menuPanel,
+                            logoVariant: 'custom',
+                          },
+                        }
+                      : {}),
+                  });
+                } else if (isSideBg && selectedTarget === 'portal') {
+                  handleDraftUpdate({
+                    sidePanel: {
+                      ...(workingDraft?.sidePanel || {}),
+                      bgImage: asset.url,
+                      bgType: 'image',
+                    },
+                  });
+                } else if (isBackground) {
+                  if (selectedTarget === 'portal') {
+                    handleDraftUpdate({
+                      outerBackground: {
+                        ...(workingDraft?.outerBackground || {}),
+                        image: asset.url,
+                        type: 'image',
+                      },
+                      backgroundImage: asset.url,
+                    });
+                  } else {
+                    handleDraftUpdate({
+                      backgroundImage: asset.url,
+                      ...(workingDraft?.sidePanel
+                        ? {
+                            sidePanel: {
+                              ...workingDraft.sidePanel,
+                              bgImage: asset.url,
+                              bgType: 'image',
+                            },
+                          }
+                        : {}),
+                    });
+                  }
                 } else {
-                  handleDraftUpdate({ illustrationUrl: asset.url });
+                  // Illustration / Floating graphic / Any custom photo or image
+                  handleDraftUpdate({
+                    illustrationUrl: asset.url,
+                    decorativeIllustration: asset.url,
+                    sidePanel: {
+                      ...(workingDraft?.sidePanel || {}),
+                      foregroundImage: asset.url,
+                    },
+                  });
                 }
                 setMediaPickerOpen(false);
-                showFeedback(`تم اختيار الصورة [${asset.originalName}] بنجاح`);
+                showFeedback(`تم تطبيق الصورة [${asset.originalName}] بنجاح`);
               }}
               isPickerMode
             />

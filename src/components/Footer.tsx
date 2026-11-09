@@ -30,8 +30,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     { href: '#guides', label: t('دليل الجالية المغربية') },
     { href: '#about', label: t('من نحن والمؤسس') },
     { href: '#faq', label: t('الأسئلة الشائعة') },
-    { href: '/hub', label: t('بوابة الخدمات الموحدة (HUB)') || 'بوابة HUB', isRoute: true },
-    { href: '/admin', label: t('لوحة التحكم (Admin)'), isRoute: true },
+    { href: '#contact-form', label: t('تواصل معنا') },
   ];
 
   const popularServices = [
@@ -71,15 +70,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
             <a
-              href={`https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(
-                'مرحباً ELFAZNI SERVICES، أود الاستفسار عن خدماتكم.'
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-950/40 hover:shadow-emerald-900/60 active:scale-[0.98] transition-all cursor-pointer"
+              href="#contact-form"
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37] hover:to-[#CC9048] text-slate-950 font-black text-sm shadow-lg active:scale-[0.98] transition-all cursor-pointer"
             >
-              <WhatsAppLogo className="w-5 h-5" />
-              <span>{t('بدء محادثة واتساب')}</span>
+              <span>{t('إرسال طلبك واستفسارك عبر الموقع')}</span>
+              <ArrowIcon className="w-4 h-4" />
             </a>
 
             <a
@@ -177,18 +172,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             
             <div className="space-y-3 text-sm">
               <a
-                href={`https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(
-                  'مرحباً ELFAZNI SERVICES، أود الاستفسار عن خدماتكم.'
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center sm:justify-start gap-3 p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800/90 border border-slate-800 text-slate-300 hover:text-white transition-all group"
+                href="#contact-form"
+                className="flex items-center justify-center sm:justify-start gap-3 p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800/90 border border-slate-800 text-slate-300 hover:text-white transition-all group cursor-pointer"
               >
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0 group-hover:bg-blue-500/20">
                   <MessageCircle className="w-4 h-4" />
                 </div>
                 <div className="text-start">
-                  <div className="text-xs text-slate-400 font-medium">WhatsApp Direct</div>
+                  <div className="text-xs text-slate-400 font-medium">خدمة العملاء والاستفسارات</div>
                   <div className="font-semibold text-slate-200 tabular-nums" dir="ltr">{settings.phone}</div>
                 </div>
               </a>

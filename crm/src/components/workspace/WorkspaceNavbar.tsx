@@ -61,9 +61,18 @@ export const WorkspaceNavbar: React.FC<Props> = (props) => {
     [search, setSearch] = useState(false),
     [query, setQuery] = useState(""),
     [menu, setMenu] = useState<"add" | "settings" | "print" | null>(null);
-  const [workspace, setWorkspace] = useState<{ open: boolean; tab: ToolsTab }>({
-    open: false,
-    tab: "calendar",
+  const [workspace, setWorkspace] = useState<{ open: boolean; tab: ToolsTab }>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const tool = params.get("tool");
+        if (tool === "notes" || tool === "notebook") return { open: true, tab: "notebook" };
+        if (tool === "calendar") return { open: true, tab: "calendar" };
+        if (tool === "tasks" || tool === "task") return { open: true, tab: "tasks" };
+        if (tool === "booking") return { open: true, tab: "booking" };
+      } catch {}
+    }
+    return { open: false, tab: "calendar" };
   });
   const openWorkspace = (tab: ToolsTab) => setWorkspace({ open: true, tab });
   const searchRef = useRef<HTMLInputElement>(null);
@@ -552,13 +561,13 @@ export const WorkspaceNavbar: React.FC<Props> = (props) => {
                   <CalendarDays />
                   {l("التقويم والمهام", "Calendar & tasks", "Calendrier et tâches")}
                 </button>
-                <a href="/admin">
+                <a href="/portal">
                   <Building2 />
                   <span className="ws-dropdown-spread">
                     {l(
-                      "لوحة إدارة الموقع",
-                      "Website admin panel",
-                      "Panneau d'administration",
+                      "بوابة إدارة الموقع",
+                      "Website management portal",
+                      "Portail de gestion du site",
                     )}
                     <ExternalLink size={13} />
                   </span>

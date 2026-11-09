@@ -15,9 +15,21 @@ export interface ServiceItem {
   badge?: string;
 }
 
+export interface AirlineLogoCustomConfig {
+  scale?: number;
+  scaleMobile?: number;
+  maxWidth?: number | string;
+  maxHeight?: number | string;
+  alignment?: 'center' | 'left' | 'right';
+  padding?: string;
+}
+
 export interface AirlineItem {
   name: string;
   logo: string;
+  slug?: string;
+  hidden?: boolean;
+  config?: AirlineLogoCustomConfig;
 }
 
 export interface FAQItem {
@@ -211,24 +223,80 @@ export const SERVICES_LIST: ServiceItem[] = [
   },
 ];
 
+export const AIRLINE_CUSTOM_CONFIG: Record<string, AirlineLogoCustomConfig> = {
+  'air-france': {
+    scale: 2.1,
+    scaleMobile: 1.85,
+    maxWidth: '150px',
+    maxHeight: '40px',
+    alignment: 'center',
+  },
+  'royal-air-maroc': {
+    scale: 1.1,
+    scaleMobile: 1.05,
+    maxWidth: '120px',
+    maxHeight: '36px',
+    alignment: 'center',
+  },
+  'turkish-airlines': {
+    scale: 1.12,
+    scaleMobile: 1.05,
+    maxWidth: '120px',
+    maxHeight: '36px',
+    alignment: 'center',
+  },
+  'emirates': {
+    scale: 1.05,
+    maxWidth: '110px',
+    maxHeight: '36px',
+    alignment: 'center',
+  },
+  'egyptair': {
+    scale: 1.0,
+    maxWidth: '105px',
+    maxHeight: '36px',
+    alignment: 'center',
+  },
+  'qatar-airways': {
+    scale: 1.08,
+    maxWidth: '115px',
+    maxHeight: '36px',
+    alignment: 'center',
+  },
+  'saudia': {
+    scale: 1.05,
+    maxWidth: '110px',
+    maxHeight: '36px',
+    alignment: 'center',
+  },
+  'pegasus': {
+    scale: 1.05,
+    maxWidth: '110px',
+    maxHeight: '36px',
+    alignment: 'center',
+  },
+};
+
 export const AIRLINES_LIST: AirlineItem[] = [
-  { name: 'Royal Air Maroc', logo: '/assets/airlines/royal-air-maroc.svg' },
-  { name: 'Turkish Airlines', logo: '/assets/airlines/turkish-airlines.svg' },
-  { name: 'Emirates', logo: '/assets/airlines/emirates.svg' },
-  { name: 'Qatar Airways', logo: '/assets/airlines/qatar-airways.svg' },
-  { name: 'Saudia', logo: '/assets/airlines/saudia.svg' },
-  { name: 'Pegasus', logo: '/assets/airlines/pegasus.svg' },
-  { name: 'AJet', logo: '/assets/airlines/ajet.svg' },
-  { name: 'Air Arabia', logo: '/assets/aistudio/Air_Arabia-Logo.wine__1__ee5bad57.svg' },
-  { name: 'Flydubai', logo: '/assets/airlines/flydubai.svg' },
-  { name: 'Kuwait Airways', logo: '/assets/airlines/kuwait-airways.svg' },
-  { name: 'Middle East Airlines', logo: '/assets/airlines/middle-east-airlines.svg' },
-  { name: 'Flyadeal', logo: '/assets/airlines/flyadeal.svg' },
-  { name: 'EgyptAir', logo: '/assets/airlines/egyptair.svg' },
-  { name: 'Air France', logo: '/assets/airlines/air-france.svg' },
-  { name: 'KLM', logo: '/assets/airlines/klm.svg' },
-  { name: 'Qantas', logo: '/assets/airlines/qantas.svg' },
+  { name: 'Royal Air Maroc', slug: 'royal-air-maroc', logo: '/assets/airlines/royal-air-maroc.svg', config: AIRLINE_CUSTOM_CONFIG['royal-air-maroc'] },
+  { name: 'Turkish Airlines', slug: 'turkish-airlines', logo: '/assets/airlines/turkish-airlines.svg', config: AIRLINE_CUSTOM_CONFIG['turkish-airlines'] },
+  { name: 'Emirates', slug: 'emirates', logo: '/assets/airlines/emirates.svg', config: AIRLINE_CUSTOM_CONFIG['emirates'] },
+  { name: 'Qatar Airways', slug: 'qatar-airways', logo: '/assets/airlines/qatar-airways.svg', config: AIRLINE_CUSTOM_CONFIG['qatar-airways'] },
+  { name: 'Saudia', slug: 'saudia', logo: '/assets/airlines/saudia.svg', config: AIRLINE_CUSTOM_CONFIG['saudia'] },
+  { name: 'Pegasus', slug: 'pegasus', logo: '/assets/airlines/pegasus.svg', config: AIRLINE_CUSTOM_CONFIG['pegasus'] },
+  { name: 'AJet', slug: 'ajet', logo: '/assets/airlines/ajet.svg' },
+  { name: 'Air Arabia', slug: 'air-arabia', logo: '/assets/aistudio/Air_Arabia-Logo.wine__1__ee5bad57.svg' },
+  { name: 'Flydubai', slug: 'flydubai', logo: '/assets/airlines/flydubai.svg' },
+  { name: 'Kuwait Airways', slug: 'kuwait-airways', logo: '/assets/airlines/kuwait-airways.svg' },
+  { name: 'Middle East Airlines', slug: 'middle-east-airlines', logo: '/assets/airlines/middle-east-airlines.svg' },
+  { name: 'Flyadeal', slug: 'flyadeal', logo: '/assets/airlines/flyadeal.svg' },
+  { name: 'EgyptAir', slug: 'egyptair', logo: '/assets/airlines/egyptair.svg', config: AIRLINE_CUSTOM_CONFIG['egyptair'] },
+  { name: 'Air France', slug: 'air-france', logo: '/assets/airlines/air-france.svg', hidden: true, config: AIRLINE_CUSTOM_CONFIG['air-france'] },
+  { name: 'KLM', slug: 'klm', logo: '/assets/airlines/klm.svg' },
+  { name: 'Qantas', slug: 'qantas', logo: '/assets/airlines/qantas.svg' },
 ];
+
+export const ACTIVE_AIRLINES_LIST = AIRLINES_LIST.filter((a) => !a.hidden && a.slug !== 'air-france');
 
 export const WORK_GALLERY = [
   {

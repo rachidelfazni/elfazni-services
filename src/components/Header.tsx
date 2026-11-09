@@ -199,15 +199,10 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
             {/* Primary Action Button */}
             <a
-              href={`https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(
-                'مرحباً ELFAZNI SERVICES، أود الاستفسار عن خدماتكم.'
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={hrefFor('#contact-form')}
               className="hidden sm:inline-flex items-center gap-2 px-4.5 py-2.5 rounded-full bg-[#004AA5] hover:bg-[#2A83D5] text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-sm active:scale-[0.98] transition-all duration-200 cursor-pointer whitespace-nowrap"
             >
-              <WhatsAppLogo className="w-5 h-5" />
-              <span>{t('تواصل عبر واتساب')}</span>
+              <span>{t('تواصل معنا')}</span>
             </a>
 
             {/* Mobile Hamburger Button */}
@@ -247,42 +242,15 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 </a>
               );
             })}
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onNavigate) onNavigate('/hub');
-              }}
-              className="py-3.5 text-start text-sm font-bold text-[#CC9048] hover:text-[#0B2E57] transition-colors cursor-pointer flex items-center gap-2"
-            >
-              <span>🌐</span>
-              <span>{t('بوابة الخدمات الموحدة (HUB)') || 'بوابة HUB'}</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onNavigate) onNavigate('/admin');
-              }}
-              className="py-3.5 text-start text-sm font-bold text-[#004AA5] hover:text-[#0B2E57] transition-colors cursor-pointer flex items-center gap-2"
-            >
-              <span>🔐</span>
-              <span>{t('لوحة التحكم الإدارية (Admin)')}</span>
-            </button>
           </nav>
 
           <div className="pt-2 flex flex-col gap-3">
             <a
-              href={`https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(
-                'مرحباً ELFAZNI SERVICES، أود الاستفسار عن خدماتكم.'
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={hrefFor('#contact-form')}
               onClick={() => setMobileMenuOpen(false)}
               className="w-full py-3.5 px-4 rounded-full bg-[#0B2E57] hover:bg-[#004AA5] text-white font-bold text-center flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] transition-all cursor-pointer"
             >
-              <WhatsAppLogo className="w-5 h-5" />
-              <span>{t('تواصل عبر واتساب')}</span>
+              <span>{t('تواصل معنا')}</span>
             </a>
             <div className="text-center text-xs text-slate-500 font-medium">
               {settings.phone} · {settings.addressAr}

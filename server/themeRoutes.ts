@@ -195,13 +195,52 @@ themeRouter.put('/draft/:target', requireThemePermission('theme.edit'), (req: Re
     const db = readThemes();
     const existing = db.drafts[target] || db.published[target];
 
+    const mergedColors = { ...(existing?.colors || {}) };
+    if (updates.colors) {
+      for (const [k, v] of Object.entries(updates.colors)) {
+        if (v === null || v === '' || v === undefined) {
+          delete (mergedColors as any)[k];
+        } else {
+          (mergedColors as any)[k] = v;
+        }
+      }
+    }
+
+    const mergedTypography = { ...(existing?.typography || {}) };
+    if (updates.typography) {
+      for (const [k, v] of Object.entries(updates.typography)) {
+        if (v === null || v === '' || v === undefined) {
+          delete (mergedTypography as any)[k];
+        } else {
+          (mergedTypography as any)[k] = v;
+        }
+      }
+    }
+
     const updatedConfig: InterfaceThemeConfig = {
       ...existing,
       ...updates,
       target,
-      colors: { ...(existing?.colors || {}), ...(updates.colors || {}) },
-      typography: { ...(existing?.typography || {}), ...(updates.typography || {}) },
-      texts: { ...(existing?.texts || {}), ...(updates.texts || {}) },
+      colors: mergedColors,
+      typography: mergedTypography,
+      texts: (() => {
+        const merged: Record<string, Record<string, string>> = { ...(existing?.texts || {}) };
+        if (updates.texts) {
+          for (const [k, v] of Object.entries(updates.texts)) {
+            merged[k] = { ...(merged[k] || {}), ...v };
+          }
+        }
+        return merged;
+      })(),
+      outerBackground: updates.outerBackground !== undefined
+        ? { ...(existing?.outerBackground || {}), ...updates.outerBackground }
+        : existing?.outerBackground,
+      menuPanel: updates.menuPanel !== undefined
+        ? { ...(existing?.menuPanel || {}), ...updates.menuPanel }
+        : existing?.menuPanel,
+      sidePanel: updates.sidePanel !== undefined
+        ? { ...(existing?.sidePanel || {}), ...updates.sidePanel }
+        : existing?.sidePanel,
       updatedAt: new Date().toISOString(),
       updatedBy: user.username || user.displayName || 'admin',
     };
@@ -272,6 +311,17 @@ themeRouter.post('/publish/:target', requireThemePermission('theme.publish'), (r
       db.globalBrand.typography = { ...db.globalBrand.typography, ...((publishedConfig.typography || {}) as any) };
       db.globalBrand.updatedAt = now;
       db.globalBrand.updatedBy = user.username;
+
+      // Automatically touch child interfaces that inherit from global
+      const childTargets: InterfaceTarget[] = ['website', 'portal', 'admin_login', 'crm_login'];
+      for (const ct of childTargets) {
+        if (db.drafts[ct]?.inheritBrandColors !== false) {
+          db.drafts[ct].updatedAt = now;
+        }
+        if (db.published[ct]?.inheritBrandColors !== false) {
+          db.published[ct].updatedAt = now;
+        }
+      }
     }
 
     const versionSnapshot: ThemeVersion = {
@@ -310,57 +360,56 @@ themeRouter.post('/publish/:target', requireThemePermission('theme.publish'), (r
 });
 
 /**
- * POST /api/theme/restore/:target/:versionId
- * Restores a previous snapshot version to published and draft.
+ * POST /api/theme/reset-property/:target
+ * Resets a single property key back to inherited value from global brand.
  */
-themeRouter.post(
-  '/restore/:target/:versionId',
-  requireThemePermission('theme.restore'),
-  (req: Request, res: Response) => {
-    try {
-      const { target, versionId } = req.params;
-      const user = (req as any).user;
+themeRouter.post('/reset-property/:target', requireThemePermission('theme.edit'), (req: Request, res: Response) => {
+  try {
+    const target = req.params.target as InterfaceTarget;
+    const { property } = req.body;
+    const user = (req as any).user;
 
-      const db = readThemes();
-      const version = db.versions.find((v) => v.id === versionId && v.target === target);
-
-      if (!version) {
-        return res.status(404).json({ success: false, message: 'لم يتم العثور على النسخة المحددة في الأرشيف' });
-      }
-
-      const now = new Date().toISOString();
-      const restoredConfig: InterfaceThemeConfig = {
-        ...version.snapshot,
-        updatedAt: now,
-        updatedBy: user.username,
-      };
-
-      db.published[target as InterfaceTarget] = restoredConfig;
-      db.drafts[target as InterfaceTarget] = JSON.parse(JSON.stringify(restoredConfig));
-
-      const log: ThemeAuditLog = {
-        id: `log_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-        action: 'RESTORE',
-        target: target as InterfaceTarget,
-        actorUsername: user.username,
-        timestamp: now,
-        details: `تمت استعادة النسخة #${version.versionNumber} (${version.changeSummary})`,
-      };
-      db.auditLogs.push(log);
-
-      writeThemes(db);
-
-      res.json({
-        success: true,
-        message: `تمت استعادة النسخة #${version.versionNumber} بنجاح`,
-        theme: restoredConfig,
-        effectiveTheme: resolveEffectiveTheme(target as InterfaceTarget, false),
-      });
-    } catch (err: any) {
-      res.status(500).json({ success: false, message: err.message });
+    const db = readThemes();
+    const draft = db.drafts[target];
+    if (!draft) {
+      return res.status(404).json({ success: false, message: 'الواجهة المحددة غير موجودة' });
     }
+
+    if (property.startsWith('colors.')) {
+      const colorKey = property.replace('colors.', '');
+      if (draft.colors) {
+        delete (draft.colors as any)[colorKey];
+      }
+    } else if (property.startsWith('typography.')) {
+      const typoKey = property.replace('typography.', '');
+      if (draft.typography) {
+        delete (draft.typography as any)[typoKey];
+      }
+    } else if (property === 'outerBackground') {
+      draft.outerBackground = undefined;
+    } else if (property === 'menuPanel') {
+      draft.menuPanel = undefined;
+    } else if (property === 'sidePanel') {
+      draft.sidePanel = undefined;
+    } else {
+      delete (draft as any)[property];
+    }
+
+    draft.updatedAt = new Date().toISOString();
+    draft.updatedBy = user.username || 'admin';
+
+    writeThemes(db);
+
+    res.json({
+      success: true,
+      message: `تمت استعادة خاصية [${property}] من الهوية العامة بنجاح`,
+      draft,
+      effectiveTheme: resolveEffectiveTheme(target, true),
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
   }
-);
+});
 
 /**
  * Helper to apply a preset's complete visual properties onto an InterfaceThemeConfig
@@ -387,7 +436,6 @@ function applyPresetToInterfaceConfig(
   if (preset.backgroundColor !== undefined) updated.backgroundColor = preset.backgroundColor;
   if (preset.backgroundImage !== undefined) updated.backgroundImage = preset.backgroundImage;
   if (preset.gradient) updated.gradient = JSON.parse(JSON.stringify(preset.gradient));
-  if (preset.illustrationUrl) updated.illustrationUrl = preset.illustrationUrl;
   if (preset.illustrationScale !== undefined) updated.illustrationScale = preset.illustrationScale;
   if (preset.illustrationPosition) updated.illustrationPosition = preset.illustrationPosition;
   if (preset.illustrationVerticalPosition) updated.illustrationVerticalPosition = preset.illustrationVerticalPosition;
@@ -405,6 +453,30 @@ function applyPresetToInterfaceConfig(
   if (preset.inputTextColor) updated.inputTextColor = preset.inputTextColor;
   if (preset.primaryButtonBg) updated.primaryButtonBg = preset.primaryButtonBg;
   if (preset.primaryButtonTextColor) updated.primaryButtonTextColor = preset.primaryButtonTextColor;
+
+  if (preset.outerBackground) updated.outerBackground = JSON.parse(JSON.stringify(preset.outerBackground));
+  if (preset.menuPanel) {
+    updated.menuPanel = JSON.parse(JSON.stringify(preset.menuPanel));
+    if (cfg.target !== 'portal') {
+      updated.menuPanel.width = '480px';
+    }
+  }
+  if (preset.sidePanel) {
+    const spCopy = JSON.parse(JSON.stringify(preset.sidePanel));
+    if (cfg.target === 'admin_login') {
+      spCopy.foregroundImage = '/assets/brand/3d/02-consular-documents-transparent.png';
+      spCopy.headingAr = 'الفزني سيرفيسز';
+      spCopy.headingEn = 'ELFAZNI SERVICES';
+      spCopy.descriptionAr = 'مدونة، خدمات، ولوحة إدارة محتوى الموقع.';
+    } else if (cfg.target === 'crm_login') {
+      spCopy.foregroundImage = '/assets/brand/3d/04-hotels-residency-transparent.png';
+      spCopy.headingAr = 'الفزني CRM';
+      spCopy.headingEn = 'ELFAZNI CRM';
+      spCopy.descriptionAr = 'نظام إدارة العملاء والمعاملات والحجوزات والمالية.';
+    }
+    updated.sidePanel = spCopy;
+    updated.illustrationUrl = spCopy.foregroundImage;
+  }
 
   return updated;
 }

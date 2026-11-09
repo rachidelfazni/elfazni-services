@@ -313,10 +313,11 @@ export const UnifiedBookingsSection: React.FC<UnifiedBookingsSectionProps> = ({
     setHotelSubmitted(true);
   };
 
-  // Divide airlines into 2 balanced rows for the dual-row marquee
-  const midPoint = Math.ceil(AIRLINES_LIST.length / 2);
-  const row1 = AIRLINES_LIST.slice(0, midPoint);
-  const row2 = AIRLINES_LIST.slice(midPoint);
+  // Divide active airlines into 2 balanced rows for the dual-row marquee
+  const visibleAirlines = AIRLINES_LIST.filter((a) => !a.hidden && a.slug !== 'air-france');
+  const midPoint = Math.ceil(visibleAirlines.length / 2);
+  const row1 = visibleAirlines.slice(0, midPoint);
+  const row2 = visibleAirlines.slice(midPoint);
 
   return (
     <section

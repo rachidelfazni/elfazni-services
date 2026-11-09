@@ -144,6 +144,91 @@ export function generateGradientCss(g?: GradientConfig): string {
   return `linear-gradient(${dir}, ${stopsStr})`;
 }
 
+export interface OuterBackgroundOverlay {
+  enabled: boolean;
+  type?: 'linear' | 'radial';
+  startColor: string;
+  middleColor?: string;
+  endColor: string;
+  direction?: string;
+  opacity: number; // 0 - 100
+  stops?: number[];
+}
+
+export interface OuterBackgroundConfig {
+  type: 'solid' | 'linear_gradient' | 'radial_gradient' | 'image' | 'transparent';
+  color?: string;
+  image?: string;
+  assetId?: string;
+  scale?: number; // 0 - 400%
+  fit?: 'cover' | 'contain' | 'original' | 'custom';
+  positionX?: string | number;
+  positionY?: string | number;
+  customX?: number;
+  customY?: number;
+  brightness?: number; // 0 - 200%
+  contrast?: number; // 0 - 200%
+  saturation?: number; // 0 - 200%
+  blur?: number; // 0 - 40px
+  opacity?: number; // 0 - 100%
+  overlay?: OuterBackgroundOverlay;
+}
+
+export interface MenuPanelConfig {
+  bgColor?: string;
+  bgImage?: string;
+  backgroundAssetId?: string;
+  opacity?: number; // 0 - 100%
+  borderColor?: string;
+  borderRadius?: string;
+  shadowIntensity?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  headingColor?: string;
+  descriptionColor?: string;
+  kickerColor?: string;
+  buttonBg?: string;
+  buttonTextColor?: string;
+  buttonBorderColor?: string;
+  logoSize?: 'sm' | 'md' | 'lg' | 'xl';
+  logoVariant?: InterfaceThemeConfig['logoVariant'];
+  padding?: string;
+  width?: string;
+  alignment?: 'start' | 'center' | 'end';
+}
+
+export interface SidePanelConfig {
+  bgType?: 'solid' | 'gradient' | 'image' | 'transparent';
+  bgColor?: string;
+  bgImage?: string;
+  backgroundAssetId?: string;
+  bgGradient?: GradientConfig;
+  foregroundImage?: string; // Floating transparent illustration
+  foregroundAssetId?: string;
+  illustrationScale?: number; // 0 - 400%
+  illustrationWidth?: string;
+  illustrationHeight?: string;
+  illustrationCustomX?: number;
+  illustrationCustomY?: number;
+  illustrationOpacity?: number; // 0 - 100%
+  illustrationRotation?: number; // -180 to 180 deg
+  illustrationAlignment?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'custom';
+  illustrationFit?: 'contain' | 'cover' | 'original' | 'custom';
+  logoVariant?: string;
+  logoWidth?: number;
+  logoPosition?: 'start' | 'center' | 'end';
+  logoOpacity?: number;
+  spacing?: string;
+  headingAr?: string;
+  headingEn?: string;
+  descriptionAr?: string;
+  descriptionEn?: string;
+  headingColor?: string;
+  descriptionColor?: string;
+  fontFamily?: string;
+  fontSize?: string;
+  fontWeight?: string;
+  textAlign?: 'start' | 'center' | 'end';
+}
+
 export interface InterfaceThemeConfig {
   target: InterfaceTarget;
   name: string;
@@ -235,6 +320,12 @@ export interface InterfaceThemeConfig {
   texts: Record<string, Record<string, string>>;
   portalCards?: PortalCard[];
   customCss?: string;
+
+  // 3 Independent Visual Zones (Zone A, Zone B, Zone C)
+  outerBackground?: OuterBackgroundConfig;
+  menuPanel?: MenuPanelConfig;
+  sidePanel?: SidePanelConfig;
+
   updatedAt: string;
   updatedBy: string;
   version: number;
@@ -261,6 +352,11 @@ export interface ThemePreset {
   illustrationLogoVariant?: string;
   kickerColor?: string;
   titleColor?: string;
+
+  // 3 Independent Visual Zones for Presets
+  outerBackground?: OuterBackgroundConfig;
+  menuPanel?: MenuPanelConfig;
+  sidePanel?: SidePanelConfig;
   noteColor?: string;
   formBg?: string;
   formTextColor?: string;
@@ -416,8 +512,8 @@ function createInitialDatabase(): ThemesDatabase {
     illustrationLogoVariant: 'horizontal-on-blue',
     colors: {},
     typography: {},
-    illustrationUrl: '/assets/brand/3d/07-hero-flight-appointment-transparent.png',
-    decorativeIllustration: '/assets/brand/3d/07-hero-flight-appointment-transparent.png',
+    illustrationUrl: '/assets/brand/3d/01-master-service-hero-transparent.png',
+    decorativeIllustration: '/assets/brand/3d/01-master-service-hero-transparent.png',
     illustrationPosition: 'center',
     illustrationVerticalPosition: 'center',
     illustrationScale: 100,
@@ -425,12 +521,73 @@ function createInitialDatabase(): ThemesDatabase {
     illustrationFit: 'contain',
     illustrationBgGradient: 'radial-gradient(ellipse at top right, #004AA5 0%, #0B2E57 55%, #071629 100%)',
     backgroundColor: '#071629',
-    backgroundImage: '/assets/brand/3d/01-master-service-hero-transparent.png',
+    backgroundImage: '',
     backgroundOpacity: 35,
     backgroundBlur: 0,
     backgroundBrightness: 100,
     gradient: DEFAULT_GRADIENT,
     layers: DEFAULT_LAYERS,
+    outerBackground: {
+      type: 'radial_gradient',
+      color: '#071629',
+      image: '',
+      scale: 100,
+      fit: 'cover',
+      overlay: {
+        startColor: '#012247',
+        middleColor: '#004AA5',
+        endColor: '#071629',
+        direction: 'to bottom',
+        opacity: 85,
+      },
+    },
+    menuPanel: {
+      bgColor: '#FFFFFF',
+      bgImage: '',
+      opacity: 100,
+      borderColor: '#E2E8F0',
+      borderRadius: '30px',
+      shadowIntensity: 'xl',
+      headingColor: '#0B2E57',
+      descriptionColor: '#5E7086',
+      kickerColor: '#CC9048',
+      buttonBg: '#F8FAFC',
+      buttonTextColor: '#0B2E57',
+      buttonBorderColor: '#D7E7F7',
+      logoSize: 'md',
+      logoVariant: 'horizontal-on-white',
+      width: '520px',
+      alignment: 'center',
+    },
+    sidePanel: {
+      bgType: 'gradient',
+      bgColor: '#004AA5',
+      bgGradient: {
+        enabled: true,
+        type: 'radial',
+        direction: 'to top',
+        angle: 135,
+        opacity: 0.95,
+        stops: [
+          { position: 0, color: '#004AA5', opacity: 0.95 },
+          { position: 55, color: '#0B2E57', opacity: 0.95 },
+          { position: 100, color: '#071629', opacity: 0.98 },
+        ],
+      },
+      foregroundImage: '/assets/brand/3d/01-master-service-hero-transparent.png',
+      illustrationScale: 100,
+      illustrationOpacity: 100,
+      illustrationRotation: 0,
+      illustrationCustomX: 0,
+      illustrationCustomY: 0,
+      illustrationFit: 'contain',
+      headingAr: 'بوابة الفزني سيرفيسز',
+      headingEn: 'ELFAZNI SERVICES HUB',
+      descriptionAr: 'خدمات السفر والمعاملات في تركيا',
+      headingColor: '#FFFFFF',
+      descriptionColor: '#E2E8F0',
+      logoVariant: 'horizontal-on-blue',
+    },
     kickerColor: '#CC9048',
     titleColor: '#FFFFFF',
     noteColor: '#E2E8F0',
@@ -508,7 +665,7 @@ function createInitialDatabase(): ThemesDatabase {
         subtitle: { ar: 'CRM', en: 'CRM', fr: 'CRM' },
         description: { ar: 'تابع العملاء والمعاملات والفواتير والمهام اليومية.', en: 'Follow clients, transactions, invoices and daily tasks.', fr: 'Suivez clients, transactions, factures et tâches.' },
         icon: 'Users',
-        destination: '/admin/crm',
+        destination: '/crm',
         visible: true,
         featured: true,
         order: 2,
@@ -522,7 +679,7 @@ function createInitialDatabase(): ThemesDatabase {
         subtitle: { ar: 'Admin Panel', en: 'Admin Panel', fr: 'Administration' },
         description: { ar: 'أدر محتوى الموقع والخدمات والمقالات والمستخدمين والهوية.', en: 'Manage site content, services, blog and users.', fr: 'Gérez contenu, services, blog et utilisateurs.' },
         icon: 'Settings',
-        destination: '/admin',
+        destination: '/portal',
         visible: true,
         order: 3,
         cardBg: '#F8FAFC',
@@ -553,6 +710,67 @@ function createInitialDatabase(): ThemesDatabase {
     illustrationBgGradient: 'radial-gradient(circle at center, #0B2E57 0%, #071629 100%)',
     colors: {},
     typography: {},
+    outerBackground: {
+      type: 'radial_gradient',
+      color: '#012247',
+      image: '',
+      scale: 100,
+      fit: 'cover',
+      overlay: {
+        startColor: '#0B2E57',
+        middleColor: '#012247',
+        endColor: '#000E20',
+        direction: 'to bottom',
+        opacity: 85,
+      },
+    },
+    menuPanel: {
+      bgColor: '#FFFFFF',
+      bgImage: '',
+      opacity: 100,
+      borderColor: '#E2E8F0',
+      borderRadius: '28px',
+      shadowIntensity: 'xl',
+      headingColor: '#0B2E57',
+      descriptionColor: '#5E7086',
+      kickerColor: '#CC9048',
+      buttonBg: '#004AA5',
+      buttonTextColor: '#FFFFFF',
+      buttonBorderColor: '#004AA5',
+      logoSize: 'md',
+      logoVariant: 'horizontal-on-white',
+      width: '480px',
+      alignment: 'center',
+    },
+    sidePanel: {
+      bgType: 'gradient',
+      bgColor: '#0B2E57',
+      bgGradient: {
+        enabled: true,
+        type: 'radial',
+        direction: 'to top',
+        angle: 135,
+        opacity: 0.95,
+        stops: [
+          { position: 0, color: '#004AA5', opacity: 0.95 },
+          { position: 55, color: '#0B2E57', opacity: 0.95 },
+          { position: 100, color: '#071629', opacity: 0.98 },
+        ],
+      },
+      foregroundImage: '/assets/brand/3d/02-consular-documents-transparent.png',
+      illustrationScale: 100,
+      illustrationOpacity: 100,
+      illustrationRotation: 0,
+      illustrationCustomX: 0,
+      illustrationCustomY: 0,
+      illustrationFit: 'contain',
+      headingAr: 'الفزني سيرفيسز',
+      headingEn: 'ELFAZNI SERVICES',
+      descriptionAr: 'مدونة، خدمات، ولوحة إدارة محتوى الموقع.',
+      headingColor: '#FFFFFF',
+      descriptionColor: '#E2E8F0',
+      logoVariant: 'horizontal-on-blue',
+    },
     formWidth: '480px',
     formBg: '#FFFFFF',
     formTextColor: '#0B2E57',
@@ -624,6 +842,67 @@ function createInitialDatabase(): ThemesDatabase {
     illustrationBgGradient: 'radial-gradient(ellipse at top right, #004AA5 0%, #0B2E57 55%, #071629 100%)',
     colors: {},
     typography: {},
+    outerBackground: {
+      type: 'radial_gradient',
+      color: '#071629',
+      image: '',
+      scale: 100,
+      fit: 'cover',
+      overlay: {
+        startColor: '#004AA5',
+        middleColor: '#0B2E57',
+        endColor: '#071629',
+        direction: 'to bottom',
+        opacity: 85,
+      },
+    },
+    menuPanel: {
+      bgColor: '#FFFFFF',
+      bgImage: '',
+      opacity: 100,
+      borderColor: '#E2E8F0',
+      borderRadius: '28px',
+      shadowIntensity: 'xl',
+      headingColor: '#0B2E57',
+      descriptionColor: '#5E7086',
+      kickerColor: '#CC9048',
+      buttonBg: '#004AA5',
+      buttonTextColor: '#FFFFFF',
+      buttonBorderColor: '#004AA5',
+      logoSize: 'md',
+      logoVariant: 'horizontal-on-white',
+      width: '480px',
+      alignment: 'center',
+    },
+    sidePanel: {
+      bgType: 'gradient',
+      bgColor: '#004AA5',
+      bgGradient: {
+        enabled: true,
+        type: 'radial',
+        direction: 'to top',
+        angle: 135,
+        opacity: 0.95,
+        stops: [
+          { position: 0, color: '#004AA5', opacity: 0.95 },
+          { position: 55, color: '#0B2E57', opacity: 0.95 },
+          { position: 100, color: '#071629', opacity: 0.98 },
+        ],
+      },
+      foregroundImage: '/assets/brand/3d/04-hotels-residency-transparent.png',
+      illustrationScale: 100,
+      illustrationOpacity: 100,
+      illustrationRotation: 0,
+      illustrationCustomX: 0,
+      illustrationCustomY: 0,
+      illustrationFit: 'contain',
+      headingAr: 'الفزني CRM',
+      headingEn: 'ELFAZNI CRM',
+      descriptionAr: 'نظام إدارة العملاء والمعاملات والحجوزات والمالية.',
+      headingColor: '#FFFFFF',
+      descriptionColor: '#E2E8F0',
+      logoVariant: 'horizontal-on-blue',
+    },
     formWidth: '480px',
     formBg: '#FFFFFF',
     formTextColor: '#0B2E57',
@@ -818,6 +1097,66 @@ export function getDefaultSystemPresets(now = new Date().toISOString()): ThemePr
       inputTextColor: '#0B2E57',
       primaryButtonBg: '#004AA5',
       primaryButtonTextColor: '#FFFFFF',
+      outerBackground: {
+        type: 'radial_gradient',
+        color: '#071629',
+        image: '',
+        scale: 100,
+        fit: 'cover',
+        overlay: {
+          startColor: '#012247',
+          middleColor: '#004AA5',
+          endColor: '#071629',
+          direction: 'to bottom',
+          opacity: 85,
+        },
+      },
+      menuPanel: {
+        bgColor: '#FFFFFF',
+        bgImage: '',
+        opacity: 100,
+        borderColor: '#E2E8F0',
+        borderRadius: '30px',
+        shadowIntensity: 'xl',
+        headingColor: '#0B2E57',
+        descriptionColor: '#5E7086',
+        kickerColor: '#CC9048',
+        buttonBg: '#F8FAFC',
+        buttonTextColor: '#0B2E57',
+        buttonBorderColor: '#D7E7F7',
+        logoSize: 'md',
+        logoVariant: 'horizontal-on-white',
+        width: '520px',
+      },
+      sidePanel: {
+        bgType: 'gradient',
+        bgColor: '#004AA5',
+        bgGradient: {
+          enabled: true,
+          type: 'radial',
+          direction: 'to top',
+          angle: 135,
+          opacity: 0.95,
+          stops: [
+            { position: 0, color: '#004AA5', opacity: 0.95 },
+            { position: 55, color: '#0B2E57', opacity: 0.95 },
+            { position: 100, color: '#071629', opacity: 0.98 },
+          ],
+        },
+        foregroundImage: '/assets/brand/3d/01-master-service-hero-transparent.png',
+        illustrationScale: 100,
+        illustrationOpacity: 100,
+        illustrationRotation: 0,
+        illustrationCustomX: 0,
+        illustrationCustomY: 0,
+        illustrationFit: 'contain',
+        headingAr: 'بوابة الفزني سيرفيسز',
+        headingEn: 'ELFAZNI SERVICES HUB',
+        descriptionAr: 'خدمات السفر والمعاملات في تركيا',
+        headingColor: '#FFFFFF',
+        descriptionColor: '#E2E8F0',
+        logoVariant: 'horizontal-on-blue',
+      },
       isSystem: true,
       createdAt: now,
     },
@@ -865,6 +1204,65 @@ export function getDefaultSystemPresets(now = new Date().toISOString()): ThemePr
       inputTextColor: '#0B2E57',
       primaryButtonBg: '#0B2E57',
       primaryButtonTextColor: '#FFFFFF',
+      outerBackground: {
+        type: 'radial_gradient',
+        color: '#051020',
+        image: '',
+        scale: 100,
+        fit: 'cover',
+        overlay: {
+          startColor: '#10345B',
+          middleColor: '#0B2E57',
+          endColor: '#040D1A',
+          direction: 'to bottom',
+          opacity: 92,
+        },
+      },
+      menuPanel: {
+        bgColor: '#FFFFFF',
+        opacity: 100,
+        borderColor: '#C5D9F2',
+        borderRadius: '30px',
+        shadowIntensity: '2xl',
+        headingColor: '#0B2E57',
+        descriptionColor: '#475569',
+        kickerColor: '#CC9048',
+        buttonBg: '#F4F8FD',
+        buttonTextColor: '#0B2E57',
+        buttonBorderColor: '#BBD2EE',
+        logoSize: 'md',
+        logoVariant: 'horizontal-on-white',
+        width: '520px',
+      },
+      sidePanel: {
+        bgType: 'gradient',
+        bgColor: '#0B2E57',
+        bgGradient: {
+          enabled: true,
+          type: 'radial',
+          direction: 'to top',
+          angle: 135,
+          opacity: 0.95,
+          stops: [
+            { position: 0, color: '#CC9048', opacity: 0.6 },
+            { position: 40, color: '#0B2E57', opacity: 0.95 },
+            { position: 100, color: '#040D1A', opacity: 0.98 },
+          ],
+        },
+        foregroundImage: '/assets/brand/3d/04-hotels-residency-transparent.png',
+        illustrationScale: 105,
+        illustrationOpacity: 100,
+        illustrationRotation: 0,
+        illustrationCustomX: 0,
+        illustrationCustomY: 0,
+        illustrationFit: 'contain',
+        headingAr: 'بوابة الفزني سيرفيسز',
+        headingEn: 'ELFAZNI SERVICES HUB',
+        descriptionAr: 'منظومة الأعمال والخدمات المؤسسية المتكاملة',
+        headingColor: '#FFFFFF',
+        descriptionColor: '#CBD5E1',
+        logoVariant: 'horizontal-on-blue',
+      },
       isSystem: true,
       createdAt: now,
     },
@@ -913,6 +1311,63 @@ export function getDefaultSystemPresets(now = new Date().toISOString()): ThemePr
       inputTextColor: '#0F172A',
       primaryButtonBg: '#0055CC',
       primaryButtonTextColor: '#FFFFFF',
+      outerBackground: {
+        type: 'linear_gradient',
+        color: '#F8FAFC',
+        image: '',
+        scale: 100,
+        fit: 'cover',
+        overlay: {
+          startColor: '#DBEAFE',
+          middleColor: '#EFF6FF',
+          endColor: '#FFFFFF',
+          direction: 'to bottom',
+          opacity: 90,
+        },
+      },
+      menuPanel: {
+        bgColor: '#FFFFFF',
+        opacity: 100,
+        borderColor: '#E2E8F0',
+        borderRadius: '24px',
+        shadowIntensity: 'lg',
+        headingColor: '#0F172A',
+        descriptionColor: '#475569',
+        kickerColor: '#0055CC',
+        buttonBg: '#F8FAFC',
+        buttonTextColor: '#0F172A',
+        buttonBorderColor: '#CBD5E1',
+        logoSize: 'md',
+        logoVariant: 'horizontal-on-white',
+        width: '500px',
+      },
+      sidePanel: {
+        bgType: 'gradient',
+        bgColor: '#E0F2FE',
+        bgGradient: {
+          enabled: true,
+          type: 'linear',
+          direction: 'to bottom',
+          angle: 180,
+          opacity: 0.9,
+          stops: [
+            { position: 0, color: '#BAE6FD', opacity: 0.95 },
+            { position: 100, color: '#E0F2FE', opacity: 0.95 },
+          ],
+        },
+        foregroundImage: '/assets/brand/3d/02-consular-documents-transparent.png',
+        illustrationScale: 95,
+        illustrationOpacity: 100,
+        illustrationRotation: 0,
+        illustrationCustomX: 0,
+        illustrationCustomY: 0,
+        illustrationFit: 'contain',
+        headingAr: 'بوابة الفزني سيرفيسز',
+        descriptionAr: 'بوابة الخدمات الحديثة والمبسطة',
+        headingColor: '#0B2E57',
+        descriptionColor: '#334155',
+        logoVariant: 'horizontal-on-white',
+      },
       isSystem: true,
       createdAt: now,
     },
@@ -959,6 +1414,65 @@ export function getDefaultSystemPresets(now = new Date().toISOString()): ThemePr
       inputTextColor: '#0B2E57',
       primaryButtonBg: '#CC9048',
       primaryButtonTextColor: '#FFFFFF',
+      outerBackground: {
+        type: 'radial_gradient',
+        color: '#2A1B0A',
+        image: '',
+        scale: 100,
+        fit: 'cover',
+        overlay: {
+          startColor: '#81521C',
+          middleColor: '#3D240E',
+          endColor: '#1A0E04',
+          direction: 'to bottom',
+          opacity: 92,
+        },
+      },
+      menuPanel: {
+        bgColor: '#FFFDF9',
+        opacity: 100,
+        borderColor: '#EAD7BD',
+        borderRadius: '30px',
+        shadowIntensity: 'xl',
+        headingColor: '#0B2E57',
+        descriptionColor: '#785C38',
+        kickerColor: '#81521C',
+        buttonBg: '#FDF8F0',
+        buttonTextColor: '#0B2E57',
+        buttonBorderColor: '#E6CFAF',
+        logoSize: 'md',
+        logoVariant: 'horizontal-on-white',
+        width: '520px',
+      },
+      sidePanel: {
+        bgType: 'gradient',
+        bgColor: '#81521C',
+        bgGradient: {
+          enabled: true,
+          type: 'linear',
+          direction: 'to top',
+          angle: 135,
+          opacity: 0.95,
+          stops: [
+            { position: 0, color: '#CC9048', opacity: 0.95 },
+            { position: 50, color: '#81521C', opacity: 0.95 },
+            { position: 100, color: '#1F1306', opacity: 0.98 },
+          ],
+        },
+        foregroundImage: '/assets/brand/3d/01-master-service-hero-transparent.png',
+        illustrationScale: 100,
+        illustrationOpacity: 100,
+        illustrationRotation: 0,
+        illustrationCustomX: 0,
+        illustrationCustomY: 0,
+        illustrationFit: 'contain',
+        headingAr: 'بوابة الفزني سيرفيسز',
+        headingEn: 'ELFAZNI SERVICES HUB',
+        descriptionAr: 'خدمات النخبة والضيافة الرفيعة في تركيا',
+        headingColor: '#FFFFFF',
+        descriptionColor: '#FEF3C7',
+        logoVariant: 'horizontal-on-blue',
+      },
       isSystem: true,
       createdAt: now,
     },
@@ -1006,6 +1520,65 @@ export function getDefaultSystemPresets(now = new Date().toISOString()): ThemePr
       inputTextColor: '#F8FAFC',
       primaryButtonBg: '#CC9048',
       primaryButtonTextColor: '#0F172A',
+      outerBackground: {
+        type: 'radial_gradient',
+        color: '#020617',
+        image: '',
+        scale: 100,
+        fit: 'cover',
+        overlay: {
+          startColor: '#1E293B',
+          middleColor: '#0F172A',
+          endColor: '#020617',
+          direction: 'to bottom',
+          opacity: 95,
+        },
+      },
+      menuPanel: {
+        bgColor: '#0F172A',
+        opacity: 100,
+        borderColor: '#334155',
+        borderRadius: '30px',
+        shadowIntensity: '2xl',
+        headingColor: '#F8FAFC',
+        descriptionColor: '#94A3B8',
+        kickerColor: '#CC9048',
+        buttonBg: '#1E293B',
+        buttonTextColor: '#F8FAFC',
+        buttonBorderColor: '#334155',
+        logoSize: 'md',
+        logoVariant: 'horizontal-on-blue',
+        width: '520px',
+      },
+      sidePanel: {
+        bgType: 'gradient',
+        bgColor: '#0F172A',
+        bgGradient: {
+          enabled: true,
+          type: 'radial',
+          direction: 'to top',
+          angle: 135,
+          opacity: 0.95,
+          stops: [
+            { position: 0, color: '#CC9048', opacity: 0.7 },
+            { position: 45, color: '#0F172A', opacity: 0.95 },
+            { position: 100, color: '#020617', opacity: 0.98 },
+          ],
+        },
+        foregroundImage: '/assets/brand/3d/01-master-service-hero-transparent.png',
+        illustrationScale: 100,
+        illustrationOpacity: 100,
+        illustrationRotation: 0,
+        illustrationCustomX: 0,
+        illustrationCustomY: 0,
+        illustrationFit: 'contain',
+        headingAr: 'بوابة الفزني سيرفيسز',
+        headingEn: 'ELFAZNI SERVICES HUB',
+        descriptionAr: 'منظومة الإدارة والتنفيذ المتطورة',
+        headingColor: '#F8FAFC',
+        descriptionColor: '#94A3B8',
+        logoVariant: 'horizontal-on-blue',
+      },
       isSystem: true,
       createdAt: now,
     },
@@ -1250,8 +1823,29 @@ function normalizeDatabase(db: ThemesDatabase): ThemesDatabase {
     if (idx === -1) {
       db.presets.push(sp);
       dirty = true;
-    } else if (!db.presets[idx].gradient || !db.presets[idx].formBg) {
-      db.presets[idx] = { ...sp, ...db.presets[idx], gradient: sp.gradient, backgroundColor: sp.backgroundColor, kickerColor: sp.kickerColor, titleColor: sp.titleColor, noteColor: sp.noteColor, formBg: sp.formBg, formTextColor: sp.formTextColor, formMutedColor: sp.formMutedColor, inputBg: sp.inputBg, inputBorder: sp.inputBorder, inputTextColor: sp.inputTextColor, primaryButtonBg: sp.primaryButtonBg, primaryButtonTextColor: sp.primaryButtonTextColor, logoVariant: sp.logoVariant, illustrationLogoVariant: sp.illustrationLogoVariant };
+    } else if (!db.presets[idx].gradient || !db.presets[idx].formBg || !db.presets[idx].outerBackground || !db.presets[idx].sidePanel) {
+      db.presets[idx] = {
+        ...sp,
+        ...db.presets[idx],
+        gradient: sp.gradient,
+        backgroundColor: sp.backgroundColor,
+        kickerColor: sp.kickerColor,
+        titleColor: sp.titleColor,
+        noteColor: sp.noteColor,
+        formBg: sp.formBg,
+        formTextColor: sp.formTextColor,
+        formMutedColor: sp.formMutedColor,
+        inputBg: sp.inputBg,
+        inputBorder: sp.inputBorder,
+        inputTextColor: sp.inputTextColor,
+        primaryButtonBg: sp.primaryButtonBg,
+        primaryButtonTextColor: sp.primaryButtonTextColor,
+        logoVariant: sp.logoVariant,
+        illustrationLogoVariant: sp.illustrationLogoVariant,
+        outerBackground: sp.outerBackground ? JSON.parse(JSON.stringify(sp.outerBackground)) : undefined,
+        menuPanel: sp.menuPanel ? JSON.parse(JSON.stringify(sp.menuPanel)) : undefined,
+        sidePanel: sp.sidePanel ? JSON.parse(JSON.stringify(sp.sidePanel)) : undefined,
+      };
       dirty = true;
     }
   }
@@ -1268,6 +1862,93 @@ function normalizeDatabase(db: ThemesDatabase): ThemesDatabase {
     if (!db.assets.some((a) => a.url === sa.url)) {
       db.assets.push(sa);
       dirty = true;
+    }
+  }
+
+  // Backfill 3 independent zones on visual targets (portal, admin_login, crm_login)
+  const visualTargets: InterfaceTarget[] = ['portal', 'admin_login', 'crm_login'];
+  for (const dict of [db.drafts, db.published]) {
+    if (!dict) continue;
+    for (const t of visualTargets) {
+      const cfg = dict[t];
+      if (!cfg) continue;
+
+      if (!cfg.outerBackground) {
+        cfg.outerBackground = {
+          type: 'radial_gradient',
+          color: t === 'crm_login' ? '#071629' : '#012247',
+          image: '',
+          scale: 100,
+          fit: 'cover',
+          overlay: {
+            startColor: t === 'crm_login' ? '#004AA5' : '#0B2E57',
+            middleColor: t === 'crm_login' ? '#0B2E57' : '#012247',
+            endColor: '#071629',
+            direction: 'to bottom',
+            opacity: 85,
+          },
+        };
+        dirty = true;
+      }
+      if (!cfg.menuPanel) {
+        cfg.menuPanel = {
+          bgColor: cfg.formBg || '#FFFFFF',
+          bgImage: '',
+          opacity: 100,
+          borderColor: '#E2E8F0',
+          borderRadius: cfg.cardRadius || (t === 'portal' ? '30px' : '28px'),
+          shadowIntensity: 'xl',
+          headingColor: cfg.formTextColor || '#0B2E57',
+          descriptionColor: cfg.formMutedColor || '#5E7086',
+          kickerColor: cfg.kickerColor || '#CC9048',
+          buttonBg: cfg.primaryButtonBg || '#004AA5',
+          buttonTextColor: cfg.primaryButtonTextColor || '#FFFFFF',
+          buttonBorderColor: '#004AA5',
+          logoSize: 'md',
+          logoVariant: cfg.logoVariant || 'horizontal-on-white',
+          width: t === 'portal' ? '520px' : '480px',
+          alignment: 'center',
+        };
+        dirty = true;
+      }
+      if (!cfg.sidePanel) {
+        const defaultIllus =
+          t === 'crm_login'
+            ? '/assets/brand/3d/04-hotels-residency-transparent.png'
+            : t === 'portal'
+            ? '/assets/brand/3d/01-master-service-hero-transparent.png'
+            : '/assets/brand/3d/02-consular-documents-transparent.png';
+        cfg.sidePanel = {
+          bgType: 'gradient',
+          bgColor: t === 'crm_login' ? '#004AA5' : '#0B2E57',
+          bgGradient: {
+            enabled: true,
+            type: 'radial',
+            direction: 'to top',
+            angle: 135,
+            opacity: 0.95,
+            stops: [
+              { position: 0, color: t === 'crm_login' ? '#004AA5' : '#0B2E57', opacity: 0.95 },
+              { position: 55, color: '#0B2E57', opacity: 0.95 },
+              { position: 100, color: '#071629', opacity: 0.98 },
+            ],
+          },
+          foregroundImage: cfg.illustrationUrl || defaultIllus,
+          illustrationScale: cfg.illustrationScale ?? 100,
+          illustrationOpacity: cfg.illustrationOpacity ?? 100,
+          illustrationRotation: cfg.illustrationRotation ?? 0,
+          illustrationCustomX: cfg.illustrationCustomX ?? 0,
+          illustrationCustomY: cfg.illustrationCustomY ?? 0,
+          illustrationFit: cfg.illustrationFit || 'contain',
+          headingAr: t === 'crm_login' ? 'الفزني CRM' : t === 'portal' ? 'بوابة الفزني سيرفيسز' : 'الفزني سيرفيسز',
+          headingEn: t === 'crm_login' ? 'ELFAZNI CRM' : t === 'portal' ? 'ELFAZNI SERVICES HUB' : 'ELFAZNI SERVICES',
+          descriptionAr: t === 'crm_login' ? 'نظام إدارة العملاء والمعاملات والحجوزات والمالية.' : t === 'portal' ? 'خدمات السفر والمعاملات في تركيا' : 'مدونة، خدمات، ولوحة إدارة محتوى الموقع.',
+          headingColor: '#FFFFFF',
+          descriptionColor: '#E2E8F0',
+          logoVariant: 'horizontal-on-blue',
+        };
+        dirty = true;
+      }
     }
   }
 
@@ -1387,9 +2068,48 @@ export function resolveEffectiveTheme(target: InterfaceTarget, useDraft = false)
       ? '/assets/brand/3d/04-hotels-residency-transparent.png'
       : target === 'portal'
       ? '/assets/brand/3d/07-hero-flight-appointment-transparent.png'
+      : target === 'website'
+      ? '/assets/brand/3d/01-master-service-hero-transparent.png'
       : '/assets/brand/3d/02-consular-documents-transparent.png';
 
-  const isVisualTarget = target === 'admin_login' || target === 'crm_login' || target === 'portal';
+  const isVisualTarget = target === 'admin_login' || target === 'crm_login' || target === 'portal' || target === 'website';
+
+  const resolvedOuterBackground = config.outerBackground
+    ? {
+        ...config.outerBackground,
+        image:
+          config.outerBackground.type === 'image' && config.outerBackground.image
+            ? normalizeAssetUrl(config.outerBackground.image)
+            : '',
+      }
+    : undefined;
+
+  const resolvedSidePanel = config.sidePanel
+    ? {
+        ...config.sidePanel,
+        foregroundImage:
+          normalizeAssetUrl(config.sidePanel.foregroundImage) ||
+          normalizeAssetUrl(config.illustrationUrl) ||
+          defaultIllus,
+        bgImage:
+          config.sidePanel.bgType === 'image' && config.sidePanel.bgImage
+            ? normalizeAssetUrl(config.sidePanel.bgImage)
+            : '',
+      }
+    : undefined;
+
+  const effectiveIllustrationUrl =
+    resolvedSidePanel?.foregroundImage ||
+    normalizeAssetUrl(config.illustrationUrl) ||
+    (isVisualTarget ? defaultIllus : undefined);
+
+  // Outer Background Image: strictly isolate! Never default to 3D hero image on solid/gradient backgrounds
+  const effectiveBgImage =
+    resolvedOuterBackground?.type === 'image'
+      ? (resolvedOuterBackground.image || '')
+      : (config.outerBackground === undefined && config.backgroundImage
+          ? normalizeAssetUrl(config.backgroundImage)
+          : '');
 
   return {
     ...config,
@@ -1397,13 +2117,15 @@ export function resolveEffectiveTheme(target: InterfaceTarget, useDraft = false)
     typography: effectiveTypography,
     layers: resolvedLayers,
     gradient: resolvedGradient,
-    illustrationUrl: normalizeAssetUrl(config.illustrationUrl) || (isVisualTarget ? defaultIllus : undefined),
-    decorativeIllustration: normalizeAssetUrl(config.decorativeIllustration) || (target === 'portal' ? defaultIllus : undefined),
+    outerBackground: resolvedOuterBackground,
+    sidePanel: resolvedSidePanel,
+    illustrationUrl: effectiveIllustrationUrl,
+    decorativeIllustration: normalizeAssetUrl(config.decorativeIllustration) || (target === 'portal' || target === 'website' ? defaultIllus : undefined),
     kickerColor: config.kickerColor || globalBrand?.kickerColor || (isVisualTarget ? '#CC9048' : undefined),
     titleColor: config.titleColor || globalBrand?.titleColor || (isVisualTarget ? '#FFFFFF' : undefined),
     noteColor: config.noteColor || globalBrand?.noteColor || (isVisualTarget ? '#E2E8F0' : undefined),
     backgroundColor: config.backgroundColor || globalBrand?.backgroundColor || (isVisualTarget ? '#071629' : undefined),
-    backgroundImage: config.backgroundImage !== undefined ? normalizeAssetUrl(config.backgroundImage) : (isVisualTarget ? '/assets/brand/3d/01-master-service-hero-transparent.png' : undefined),
+    backgroundImage: effectiveBgImage,
     formBg: config.formBg || globalBrand?.formBg || effectiveColors.surface || '#FFFFFF',
     formTextColor: config.formTextColor || globalBrand?.formTextColor || effectiveColors.text || '#0B2E57',
     formMutedColor: config.formMutedColor || globalBrand?.formMutedColor || effectiveColors.mutedText || '#5E7086',

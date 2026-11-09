@@ -31,6 +31,7 @@ import { ThemeLayerManager } from './ThemeLayerManager';
 import { ThemeGradientEditor } from './ThemeGradientEditor';
 import { ThemeTypographyColorsEditor } from './ThemeTypographyColorsEditor';
 import { ThemeIllustrationEditor } from './ThemeIllustrationEditor';
+import { ThemePortalZonesEditor } from './ThemePortalZonesEditor';
 
 interface ThemeSettingsSidebarProps {
   target: InterfaceTarget;
@@ -89,7 +90,7 @@ export const ThemeSettingsSidebar: React.FC<ThemeSettingsSidebarProps> = ({
     });
   };
 
-  const isVisualInterface = target === 'admin_login' || target === 'crm_login' || target === 'portal';
+  const isVisualInterface = target !== 'global';
 
   return (
     <aside
@@ -153,10 +154,20 @@ export const ThemeSettingsSidebar: React.FC<ThemeSettingsSidebarProps> = ({
 
       {/* Accordions of Settings */}
       <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
-        {/* ======================================================== */}
-        {/* 1. VISUAL LAYERS MANAGER (Login interfaces)             */}
-        {/* ======================================================== */}
-        {isVisualInterface && (
+        {target === 'portal' || target === 'admin_login' || target === 'crm_login' ? (
+          <ThemePortalZonesEditor
+            config={config}
+            onChangeConfig={onChangeConfig}
+            onOpenMediaPicker={onOpenMediaPicker}
+            selectedElementKey={selectedElementKey}
+            onSelectElement={onSelectElement}
+          />
+        ) : (
+          <>
+            {/* ======================================================== */}
+            {/* 1. VISUAL LAYERS MANAGER (Login interfaces)             */}
+            {/* ======================================================== */}
+            {isVisualInterface && (
           <div className="p-4 space-y-3">
             <button
               type="button"
@@ -494,14 +505,24 @@ export const ThemeSettingsSidebar: React.FC<ThemeSettingsSidebarProps> = ({
 
                 {/* Scale */}
                 <div className="space-y-1 p-2.5 bg-slate-50 rounded-xl border border-slate-200">
-                  <div className="flex justify-between text-xs font-bold text-slate-700">
+                  <div className="flex justify-between items-center text-xs font-bold text-slate-700">
                     <span>حجم وتكبير الشعار (Scale):</span>
-                    <span className="font-mono text-[#004AA5]">{config.logoScale ?? 100}%</span>
+                    <div className="flex items-center gap-1" dir="ltr">
+                      <input
+                        type="number"
+                        min="10"
+                        max="300"
+                        value={config.logoScale ?? 100}
+                        onChange={(e) => onChangeConfig({ logoScale: Math.max(10, Math.min(300, parseInt(e.target.value, 10) || 100)) })}
+                        className="w-14 px-1.5 py-0.5 text-xs font-mono font-bold text-center bg-white border border-slate-300 rounded text-[#004AA5]"
+                      />
+                      <span className="font-mono text-[#004AA5]">%</span>
+                    </div>
                   </div>
                   <input
                     type="range"
-                    min="50"
-                    max="180"
+                    min="10"
+                    max="300"
                     step="5"
                     value={config.logoScale ?? 100}
                     onChange={(e) => onChangeConfig({ logoScale: parseInt(e.target.value, 10) })}
@@ -645,45 +666,116 @@ export const ThemeSettingsSidebar: React.FC<ThemeSettingsSidebarProps> = ({
 
           {activeAccordion === 'typography' && (
             <div className="space-y-3 pt-2">
+              {/* Font Family (Base) */}
               <div className="space-y-1">
-                <label className="text-[11px] font-bold text-slate-600 block">عائلة الخط الأساسي:</label>
+                <label className="text-[11px] font-bold text-slate-600 block">عائلة خط النصوص (Body Font):</label>
                 <select
                   value={config.typography?.fontFamily || OFFICIAL_TYPOGRAPHY.fontFamily}
                   onChange={(e) => updateTypography('fontFamily', e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold"
                 >
-                  <option value="'Bahij TheSansArabic', sans-serif">Bahij TheSansArabic (الخط الرسمي المعتمد)</option>
-                  <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans</option>
-                  <option value="'Cairo', sans-serif">Cairo</option>
-                  <option value="'Tajawal', sans-serif">Tajawal</option>
-                  <option value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">System Sans-Serif</option>
+                  <optgroup label="خطوط عربية متميزة">
+                    <option value="'Bahij TheSansArabic', 'Bahij', sans-serif">Bahij TheSansArabic (الرسمي المعتمد)</option>
+                    <option value="'Cairo', sans-serif">Cairo (القاهرة)</option>
+                    <option value="'Tajawal', sans-serif">Tajawal (تجوال)</option>
+                    <option value="'Noto Sans Arabic', sans-serif">Noto Sans Arabic (نوتو سانس عربي)</option>
+                    <option value="'Amiri', serif">Amiri (الأميري التقليدي)</option>
+                  </optgroup>
+                  <optgroup label="خطوط لاتينية">
+                    <option value="'Inter', sans-serif">Inter (عصري واجهات)</option>
+                    <option value="'Roboto', sans-serif">Roboto</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="'Times New Roman', serif">Times New Roman</option>
+                    <option value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">System Sans-Serif</option>
+                  </optgroup>
                 </select>
               </div>
 
+              {/* Heading Font Family */}
               <div className="space-y-1">
-                <label className="text-[11px] font-bold text-slate-600 block">حجم الخط الأساسي:</label>
+                <label className="text-[11px] font-bold text-slate-600 block">عائلة خط العناوين (Heading Font):</label>
+                <select
+                  value={config.typography?.headingFontFamily || config.typography?.fontFamily || OFFICIAL_TYPOGRAPHY.headingFontFamily}
+                  onChange={(e) => updateTypography('headingFontFamily', e.target.value)}
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold"
+                >
+                  <optgroup label="خطوط عربية متميزة">
+                    <option value="'Bahij TheSansArabic', 'Bahij', sans-serif">Bahij TheSansArabic (الرسمي المعتمد)</option>
+                    <option value="'Cairo', sans-serif">Cairo (القاهرة)</option>
+                    <option value="'Tajawal', sans-serif">Tajawal (تجوال)</option>
+                    <option value="'Noto Sans Arabic', sans-serif">Noto Sans Arabic (نوتو سانس عربي)</option>
+                    <option value="'Amiri', serif">Amiri (الأميري التقليدي)</option>
+                  </optgroup>
+                  <optgroup label="خطوط لاتينية">
+                    <option value="'Inter', sans-serif">Inter (عصري واجهات)</option>
+                    <option value="'Roboto', sans-serif">Roboto</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="'Times New Roman', serif">Times New Roman</option>
+                    <option value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">System Sans-Serif</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              {/* H1 Heading Size */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-slate-600 block">حجم العنوان الرئيسي (H1):</label>
+                <select
+                  value={config.typography?.h1Size || '2.5rem'}
+                  onChange={(e) => updateTypography('h1Size', e.target.value)}
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold"
+                >
+                  <option value="1.75rem">1.75rem (28px - مدمج)</option>
+                  <option value="2rem">2rem (32px - قياسي)</option>
+                  <option value="2.25rem">2.25rem (36px - بارز)</option>
+                  <option value="2.5rem">2.5rem (40px - كبير)</option>
+                  <option value="3rem">3rem (48px - عملاق)</option>
+                </select>
+              </div>
+
+              {/* Base Font Size */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-slate-600 block">حجم الخط الأساسي (Base Size):</label>
                 <select
                   value={config.typography?.baseFontSize || '16px'}
                   onChange={(e) => updateTypography('baseFontSize', e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold"
                 >
                   <option value="14px">14px (مدمج Compact)</option>
                   <option value="15px">15px (متوازن)</option>
                   <option value="16px">16px (قياسي Standard)</option>
-                  <option value="17px">17px (كبير مريح)</option>
+                  <option value="18px">18px (كبير مريح)</option>
                 </select>
               </div>
 
+              {/* Line Height */}
               <div className="space-y-1">
                 <label className="text-[11px] font-bold text-slate-600 block">ارتفاع السطر (Line Height):</label>
                 <select
                   value={config.typography?.lineHeight || '1.6'}
                   onChange={(e) => updateTypography('lineHeight', e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold"
                 >
-                  <option value="1.4">1.4 (ضيق)</option>
+                  <option value="1.3">1.3 (ضيق للعناوين)</option>
+                  <option value="1.4">1.4 (متوسط)</option>
                   <option value="1.6">1.6 (مثالي ومقروء)</option>
                   <option value="1.8">1.8 (مريح وواسع)</option>
+                </select>
+              </div>
+
+              {/* Letter Spacing */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-slate-600 block">تباعد الأحرف (Letter Spacing):</label>
+                <select
+                  value={config.typography?.letterSpacing || '0px'}
+                  onChange={(e) => updateTypography('letterSpacing', e.target.value)}
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold"
+                >
+                  <option value="-0.5px">-0.5px (متقارب قليلاً)</option>
+                  <option value="0px">0px (قياسي طبيعي)</option>
+                  <option value="0.5px">0.5px (متباعد خفيف)</option>
+                  <option value="1px">1px (متباعد بارز)</option>
                 </select>
               </div>
             </div>
@@ -1073,6 +1165,8 @@ export const ThemeSettingsSidebar: React.FC<ThemeSettingsSidebarProps> = ({
               </div>
             )}
           </div>
+        )}
+          </>
         )}
       </div>
 

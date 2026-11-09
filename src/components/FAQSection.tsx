@@ -116,16 +116,13 @@ export const FAQSection: React.FC = () => {
           })}
         </div>
 
-        {/* Bottom Ask on WhatsApp link */}
+        {/* Bottom internal contact link */}
         <div className="mt-12 text-center">
           <a
-            href={whatsappFaqUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact-form"
             className="inline-flex items-center gap-2 text-sm sm:text-base font-extrabold text-[#004AA5] hover:text-[#2A83D5] transition-colors group cursor-pointer"
           >
-            <WhatsAppLogo className="w-5 h-5" />
-            <span>{t('اسألنا عبر واتساب')}</span>
+            <span>{t('هل لديك سؤال آخر؟ تواصل معنا وسنجيبك فوراً')}</span>
             {isRtl ? (
               <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
             ) : (

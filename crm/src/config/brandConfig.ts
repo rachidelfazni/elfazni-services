@@ -1,7 +1,7 @@
 /**
  * ELFAZNI SERVICES — Canonical Brand Configuration
- * Derived from the Brand Reference & Live Site Family:
- * https://elfazni-services-online.uzmanlarltd.chatgpt.site/
+ * Derived from the Brand Reference & Live Site:
+ * https://elfazni.com
  */
 
 const env = (typeof import.meta !== 'undefined' && (import.meta as any).env) || {};
@@ -16,9 +16,9 @@ export const BRAND_CONFIG = {
   founderShort: 'رشيد الفزني',
   
   // Official URLs
-  websiteUrl: env.VITE_WEBSITE_URL || '/',
-  proWebsiteUrl: 'https://elfazni-services-pro.uzmanlarltd.chatgpt.site/',
-  onlineWebsiteUrl: 'https://elfazni-services-online.uzmanlarltd.chatgpt.site/',
+  websiteUrl: env.VITE_WEBSITE_URL || 'https://elfazni.com',
+  proWebsiteUrl: env.VITE_PRO_WEBSITE_URL || 'https://elfazni.com',
+  onlineWebsiteUrl: env.VITE_ONLINE_WEBSITE_URL || 'https://elfazni.com',
   
   // Contacts
   phone: env.VITE_OFFICIAL_PHONE || '+905522677851',

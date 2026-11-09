@@ -11,6 +11,8 @@ import type { Language } from '../../data/translations';
 import { BrandLogo } from '../common/BrandLogo';
 import { themeService, type InterfaceThemeConfig } from '../../services/themeService';
 import { ThemeVisualPanel } from '../common/ThemeVisualPanel';
+import { ResizeHandle } from '../workspace/ResizeHandle';
+import { clampPanelSize } from '../workspace/layoutPreferences';
 import './hub-entry.css';
 
 /**
@@ -174,8 +176,8 @@ const LANG_TABS: Array<{ code: Language; label: string }> = [
 /** Verified destinations from the existing project (server.ts). */
 const DESTINATIONS = {
   website: '/',
-  crm: '/admin/crm',
-  admin: '/admin',
+  crm: '/crm',
+  admin: '/portal',
 } as const;
 
 export const HubPage: React.FC = () => {
@@ -183,6 +185,43 @@ export const HubPage: React.FC = () => {
   const copy = COPY[language] || COPY.ar;
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
   const [theme, setTheme] = useState<InterfaceThemeConfig | null>(null);
+
+  // Resizable Hub Visual Panel State
+  const [hubVisualWidth, setHubVisualWidth] = useState<number>(() => {
+    if (typeof window === 'undefined') return 510;
+    try {
+      const saved = localStorage.getItem('elfazni_hub_visual_width');
+      const num = saved ? parseInt(saved, 10) : 510;
+      return isNaN(num) ? 510 : clampPanelSize(num, 340, 680);
+    } catch {
+      return 510;
+    }
+  });
+
+  const handleHubVisualResize = (delta: number) => {
+    setHubVisualWidth((prev) => {
+      const next = clampPanelSize(prev + delta, 340, 680);
+      try {
+        localStorage.setItem('elfazni_hub_visual_width', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const [isDesktop, setIsDesktop] = useState(() => (typeof window !== 'undefined' ? window.innerWidth >= 940 : true));
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 940);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleResetHubVisual = () => {
+    setHubVisualWidth(510);
+    try {
+      localStorage.setItem('elfazni_hub_visual_width', '510');
+    } catch {}
+  };
 
   useEffect(() => {
     let active = true;
@@ -231,6 +270,19 @@ export const HubPage: React.FC = () => {
     return val[language] || val.ar || fallback;
   };
 
+  const resolveDestination = (dest: string | undefined, cardId: string) => {
+    if (!dest) {
+      return cardId === 'crm' ? DESTINATIONS.crm : cardId === 'admin' ? DESTINATIONS.admin : DESTINATIONS.website;
+    }
+    if (dest.includes('/admin/login?next=crm') || dest === '/admin/crm' || dest === '/crm') {
+      return DESTINATIONS.crm;
+    }
+    if (dest.includes('/admin/login') || dest === '/admin' || dest === '/portal') {
+      return DESTINATIONS.admin;
+    }
+    return dest;
+  };
+
   const portalCards = theme?.portalCards || [];
   const tiles: TileItem[] = portalCards.length > 0
     ? portalCards
@@ -239,7 +291,7 @@ export const HubPage: React.FC = () => {
           const fallback = defaultTiles.find((t) => t.id === c.id) || defaultTiles[0];
           return {
             id: c.id,
-            href: c.destination || (c.id === 'crm' ? DESTINATIONS.crm : c.id === 'admin' ? DESTINATIONS.admin : DESTINATIONS.website),
+            href: resolveDestination(c.destination, c.id),
             Icon: c.id === 'crm' ? Users : c.id === 'admin' ? Settings : Globe,
             title: getLocText(c.title, fallback.title),
             subtitle: getLocText(c.subtitle, fallback.subtitle),
@@ -249,23 +301,95 @@ export const HubPage: React.FC = () => {
         })
     : defaultTiles;
 
-  const heroKicker = getLocText(theme?.texts?.heroKicker, copy.heroKicker);
-  const heroTitle = getLocText(theme?.texts?.heroTitle, copy.heroTitle);
-  const heroDescription = getLocText(theme?.texts?.heroDescription || theme?.texts?.heroSubtitle, copy.heroDescription);
-  const secureNote = getLocText(theme?.texts?.secureNote, copy.secureNote);
-  const returnToSite = getLocText(theme?.texts?.returnToSite, copy.returnToSite);
+  const heroKicker = getLocText(theme?.texts?.heroKicker || theme?.texts?.portal_kicker, copy.heroKicker);
+  const heroTitle = getLocText(theme?.texts?.heroTitle || theme?.texts?.portal_title, copy.heroTitle);
+  const heroDescription = getLocText(theme?.texts?.heroDescription || theme?.texts?.portal_desc || theme?.texts?.heroSubtitle, copy.heroDescription);
+  const secureNote = getLocText(theme?.texts?.secureNote || theme?.texts?.portal_secure_note, copy.secureNote);
+  const returnToSite = getLocText(theme?.texts?.returnToSite || theme?.texts?.portal_return_site, copy.returnToSite);
+
+  const ob = theme?.outerBackground;
+  const mp = theme?.menuPanel;
+  const sp = theme?.sidePanel;
+
+  // Zone A: Main Page Background Resolution
+  const outerBgType = ob?.type || (ob?.image ? 'image' : 'radial_gradient');
+  const outerBgImage = ob?.image || (ob?.type === 'image' ? theme?.backgroundImage : '') || '';
+  const outerBgColor = ob?.color || theme?.backgroundColor || '#012247';
+  const outerOverlay = ob?.overlay;
+
+  const getOuterMainBackgroundStyle = (): React.CSSProperties => {
+    if (outerBgType === 'transparent') {
+      return { backgroundColor: 'transparent' };
+    }
+    if (outerBgType === 'solid') {
+      return { backgroundColor: outerBgColor };
+    }
+    if (outerBgType === 'linear_gradient') {
+      const dir = outerOverlay?.direction || '135deg';
+      const c1 = outerOverlay?.startColor || outerBgColor;
+      const c2 = outerOverlay?.endColor || '#011B38';
+      return { background: `linear-gradient(${dir}, ${c1}, ${c2})` };
+    }
+    if (outerBgType === 'radial_gradient') {
+      const c1 = outerOverlay?.startColor || '#0B2E57';
+      const c2 = outerOverlay?.endColor || outerBgColor || '#011B38';
+      return { background: `radial-gradient(circle at center, ${c1} 0%, ${c2} 70%, #000E20 100%)` };
+    }
+    // outerBgType === 'image'
+    return {
+      backgroundColor: outerBgColor,
+      position: 'relative',
+    };
+  };
 
   return (
     <main
       dir={isRtl ? 'rtl' : 'ltr'}
-      className="hub-entry"
-      style={{
-        backgroundColor: theme?.backgroundColor || '#012247',
-        backgroundImage: theme?.backgroundImage ? `url(${theme.backgroundImage})` : undefined,
-        backgroundSize: theme?.backgroundSize || 'cover',
-        backgroundPosition: theme?.backgroundPosition || 'center',
-      }}
+      className="hub-entry relative min-h-screen flex items-center justify-center p-4 sm:p-8 overflow-hidden select-none"
+      style={getOuterMainBackgroundStyle()}
     >
+      {/* Zone A: Layer 1 - Main Background Image */}
+      {(outerBgType === 'image' || Boolean(outerBgImage)) && outerBgImage && (
+        <div
+          className="absolute inset-0 pointer-events-none overflow-hidden z-0"
+          style={{
+            backgroundImage: `url(${outerBgImage})`,
+            backgroundSize: ob?.fit === 'contain' ? 'contain' : ob?.fit === 'original' ? 'auto' : 'cover',
+            backgroundPosition: `${ob?.positionX ?? 'center'} ${ob?.positionY ?? 'center'}`,
+            backgroundRepeat: 'no-repeat',
+            transform: `translate(${ob?.customX || 0}px, ${ob?.customY || 0}px) scale(${(ob?.scale ?? 100) / 100})`,
+            transformOrigin: 'center center',
+            opacity: (ob?.opacity ?? 100) / 100,
+            filter: `brightness(${ob?.brightness ?? 100}%) contrast(${ob?.contrast ?? 100}%) saturate(${ob?.saturation ?? 100}%) blur(${ob?.blur || 0}px)`,
+          }}
+        />
+      )}
+
+      {/* Zone A: Layer 2 - Gradient Overlay */}
+      {outerOverlay?.enabled && (
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            background:
+              outerOverlay.type === 'radial'
+                ? `radial-gradient(circle at center, ${outerOverlay.startColor} 0%, ${outerOverlay.middleColor ? `${outerOverlay.middleColor} 50%, ` : ''}${outerOverlay.endColor} 100%)`
+                : `linear-gradient(${outerOverlay.direction || '135deg'}, ${outerOverlay.startColor} 0%, ${outerOverlay.middleColor ? `${outerOverlay.middleColor} 50%, ` : ''}${outerOverlay.endColor} 100%)`,
+            opacity: (outerOverlay.opacity ?? 75) / 100,
+          }}
+        />
+      )}
+
+      {/* Zone A: Subtle Geometric Pattern (when not plain transparent) */}
+      {outerBgType !== 'transparent' && (
+        <div
+          className="absolute inset-0 pointer-events-none opacity-25 z-0"
+          style={{
+            backgroundImage:
+              'repeating-radial-gradient(circle at 4% 116%, transparent 0 64px, rgba(255, 255, 255, 0.06) 64px 65.5px, transparent 65.5px 132px)',
+          }}
+        />
+      )}
+
       <a
         href="#hub-tiles"
         className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:end-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-xl focus:bg-white focus:text-[#0B2E57] focus:font-bold focus:shadow-lg"
@@ -273,31 +397,80 @@ export const HubPage: React.FC = () => {
         {language === 'ar' ? 'تخطَّ إلى بطاقات الدخول' : 'Skip to access cards'}
       </a>
 
+      {/* Zone B: Layer 3 - Central HUB Card */}
       <div
-        className="hub-entry-shell"
+        className="hub-entry-shell relative z-10 transition-all"
         style={{
-          backgroundColor: theme?.formBg || '#FFFFFF',
-          borderRadius: theme?.cardRadius || '30px',
+          backgroundColor: mp?.bgColor || theme?.formBg || '#FFFFFF',
+          backgroundImage: mp?.bgImage ? `url(${mp.bgImage})` : undefined,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: (mp?.opacity ?? 100) / 100,
+          borderRadius: mp?.borderRadius || theme?.cardRadius || '30px',
+          borderWidth: mp?.borderColor ? '1px' : undefined,
+          borderStyle: mp?.borderColor ? 'solid' : undefined,
+          borderColor: mp?.borderColor || undefined,
+          boxShadow:
+            mp?.shadowIntensity === 'none'
+              ? 'none'
+              : mp?.shadowIntensity === 'sm'
+              ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              : mp?.shadowIntensity === 'md'
+              ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+              : mp?.shadowIntensity === 'lg'
+              ? '0 20px 25px -5px rgba(0, 0, 0, 0.15)'
+              : mp?.shadowIntensity === '2xl'
+              ? '0 35px 60px -15px rgba(0, 0, 0, 0.4)'
+              : '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          width: 'min(100%, 1240px)',
+          maxWidth: '1240px',
         }}
       >
-        {/* Photographic panel with 5 independent visual layers */}
-        <ThemeVisualPanel
-          config={
-            theme ||
-            ({
-              target: 'portal',
-              illustrationUrl: '/assets/brand/3d/07-hero-flight-appointment-transparent.png',
-              illustrationScale: 100,
-              backgroundColor: '#012247',
-            } as any)
-          }
-          language={language}
-          minHeight="660px"
-          className="hub-entry-photo"
-        />
+        {/* Zone C: Photographic side panel with 5 independent visual layers */}
+        <div
+          className="hub-entry-photo-wrapper"
+          style={{ width: isDesktop ? hubVisualWidth : '100%' }}
+        >
+          <ThemeVisualPanel
+            config={
+              theme ||
+              ({
+                target: 'portal',
+                illustrationUrl: '/assets/brand/3d/01-master-service-hero-transparent.png',
+                illustrationScale: 100,
+                backgroundColor: '#012247',
+              } as any)
+            }
+            language={language}
+            minHeight={isDesktop ? "660px" : "280px"}
+            className="hub-entry-photo h-full w-full"
+          />
+        </div>
+
+        {/* Desktop Resizable Separator Handle */}
+        <div className="hidden md:flex shrink-0 items-stretch">
+          <ResizeHandle
+            id="hub-portal-split"
+            direction="horizontal"
+            isRtl={isRtl}
+            onResize={handleHubVisualResize}
+            onReset={handleResetHubVisual}
+            currentSize={hubVisualWidth}
+            minSize={340}
+            maxSize={680}
+            ariaLabel="مقبض تغيير حجم الواجهة المرئية للبوابة — Hub portal visual panel separator"
+          />
+        </div>
 
         {/* Content column */}
-        <section className="hub-entry-content" aria-labelledby="hub-title">
+        <section
+          className="hub-entry-content"
+          aria-labelledby="hub-title"
+          style={{
+            maxWidth: mp?.width || undefined,
+            padding: mp?.padding || undefined,
+          }}
+        >
           {/* 4-language switcher (mockup pill) */}
           <div
             className="hub-entry-langs"
@@ -322,25 +495,25 @@ export const HubPage: React.FC = () => {
           </div>
 
           <BrandLogo
-            background="white"
-            orientation="horizontal"
-            size="lg"
+            background={mp?.logoVariant?.includes('blue') ? 'blue' : mp?.logoVariant?.includes('gold') ? 'gold' : 'white'}
+            orientation={mp?.logoVariant?.includes('vertical') ? 'vertical' : 'horizontal'}
+            size={mp?.logoSize || "lg"}
             className="hub-entry-logo"
           />
 
-          <span className="hub-entry-kicker" style={{ color: theme?.kickerColor || '#CC9048' }}>
+          <span className="hub-entry-kicker" style={{ color: theme?.kickerColor || mp?.kickerColor || '#CC9048' }}>
             {heroKicker}
           </span>
           <h1
             id="hub-title"
             className="hub-entry-title"
-            style={{ color: theme?.formTextColor || '#0B2E57' }}
+            style={{ color: theme?.titleColor || mp?.headingColor || theme?.formTextColor || '#0B2E57' }}
           >
             {heroTitle}
           </h1>
           <p
             className="hub-entry-desc"
-            style={{ color: theme?.formMutedColor || '#5E7086' }}
+            style={{ color: theme?.noteColor || mp?.descriptionColor || theme?.formMutedColor || '#5E7086' }}
           >
             {heroDescription}
           </p>
@@ -349,8 +522,8 @@ export const HubPage: React.FC = () => {
           <div id="hub-tiles" className="hub-entry-tiles">
             {tiles.map(({ id, href, Icon, title, subtitle, description, featured }: TileItem) => {
               const cardConfig = portalCards.find((c) => c.id === id);
-              const cardBg = cardConfig?.cardBg;
-              const cardBorder = cardConfig?.borderColor;
+              const cardBg = cardConfig?.cardBg || mp?.buttonBg;
+              const cardBorder = cardConfig?.borderColor || mp?.buttonBorderColor;
               return (
                 <a
                   key={id}
@@ -365,7 +538,7 @@ export const HubPage: React.FC = () => {
                     <Icon size={20} strokeWidth={2.1} />
                   </span>
                   <span className="hub-entry-tile-body">
-                    <strong style={{ color: featured ? '#FFFFFF' : (theme?.formTextColor || '#0B2E57') }}>
+                    <strong style={{ color: featured ? '#FFFFFF' : (mp?.buttonTextColor || theme?.formTextColor || '#0B2E57') }}>
                       {title}
                     </strong>
                     <small style={{ color: featured ? '#D7E7F7' : (theme?.formMutedColor || '#5E7086') }}>

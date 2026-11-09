@@ -565,7 +565,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : null}
 
             <a
-              href="/admin"
+              href="/portal"
               className="flex items-center gap-3 px-3 py-2 text-xs font-bold text-white bg-white/10 hover:bg-[#004AA5] rounded-xl transition shadow-xs group"
               title={l("لوحة إدارة الموقع (Admin Panel)", "Admin Panel", "Panneau d'administration")}
             >
@@ -1129,7 +1129,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <div className="pt-1.5 space-y-1">
                       {/* 1. Admin Panel */}
                       <a
-                        href="/admin"
+                        href="/portal"
                         className="w-full flex items-center justify-between gap-3 p-2.5 hover:bg-[#EAF4FF] rounded-xl transition cursor-pointer group text-start"
                       >
                         <div className="flex items-center gap-2.5">
@@ -1195,7 +1195,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </a>
 
               <a
-                href="/admin"
+                href="/portal"
                 className="px-2.5 py-1 rounded-lg text-[#004AA5] hover:bg-[#eaf4ff] transition-colors flex items-center gap-1 cursor-pointer"
                 title={l("لوحة إدارة الموقع", "Website Admin", "Admin du Site")}
               >
@@ -1374,7 +1374,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                       {/* Jump to the Website Admin panel */}
                       <a
-                        href="/admin"
+                        href="/portal"
                         onClick={() => setAdminMenuOpen(false)}
                         className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#0B2E57] hover:bg-[#eaf4ff] transition cursor-pointer"
                       >
@@ -1506,7 +1506,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </a>
 
               <a
-                href="/admin"
+                href="/portal"
                 className="w-full py-2.5 px-3 rounded-xl bg-white/10 text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-white/20 transition cursor-pointer"
               >
                 <Building2 className="w-4 h-4 text-[#CC9048]" />

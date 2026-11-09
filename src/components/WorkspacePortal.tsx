@@ -4,8 +4,8 @@ import { themeService, type InterfaceThemeConfig } from '../services/themeServic
 import { BrandLogo } from './common/BrandLogo';
 
 const DEFAULT_APPS = [
-  { href: '/admin/crm', title: 'إدارة العملاء', text: 'الحجوزات والمعاملات والمتابعات والديون', Icon: Users, featured: true },
-  { href: '/admin', title: 'إدارة الموقع', text: 'المحتوى والخدمات والمحادثات وفريق العمل', Icon: LayoutDashboard, featured: false },
+  { href: '/crm', title: 'إدارة العملاء', text: 'الحجوزات والمعاملات والمتابعات والديون', Icon: Users, featured: true },
+  { href: '/portal', title: 'إدارة الموقع', text: 'المحتوى والخدمات والمحادثات وفريق العمل', Icon: LayoutDashboard, featured: false },
   { href: '/', title: 'زيارة الموقع', text: 'الخدمات والمعلومات المتاحة للزوار', Icon: Globe, featured: false },
 ];
 
@@ -30,12 +30,25 @@ export function WorkspacePortal() {
     return () => { active = false; };
   }, []);
 
+  const resolveDestination = (dest: string | undefined, cardId: string) => {
+    if (!dest) {
+      return cardId === 'crm' ? '/crm' : cardId === 'admin' ? '/portal' : '/';
+    }
+    if (dest.includes('/admin/login?next=crm') || dest === '/admin/crm' || dest === '/crm') {
+      return '/crm';
+    }
+    if (dest.includes('/admin/login') || dest === '/admin' || dest === '/portal') {
+      return '/portal';
+    }
+    return dest;
+  };
+
   const portalCards = theme?.portalCards || [];
   const apps = portalCards.length > 0
     ? portalCards.filter(c => c.visible !== false).map(c => {
         const Icon = c.id === 'crm' ? Users : c.id === 'admin' ? LayoutDashboard : Globe;
         return {
-          href: c.destination || (c.id === 'crm' ? '/admin/crm' : c.id === 'admin' ? '/admin' : '/'),
+          href: resolveDestination(c.destination, c.id),
           title: c.title?.ar || c.title?.en || '',
           text: c.description?.ar || c.description?.en || '',
           Icon,

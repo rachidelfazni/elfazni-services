@@ -1,9 +1,9 @@
 # ELFAZNI SERVICES — Workspace & Resizable Layout Automated QA Results
 
-Generated: 2026-11-08T13:12:13.791Z  
+Generated: 2026-11-08T13:30:19.848Z  
 Environment: Local Antigravity Development Server (http://localhost:8080/)  
-Total Assertions: **39**  
-Passed: **39**  
+Total Assertions: **52**  
+Passed: **52**  
 Failed: **0**  
 Pass Rate: **100.0%**
 
@@ -65,6 +65,19 @@ This automated test suite validates the architectural transformation of ELFAZNI 
 | `THEME-02` | Theme Manager | ✅ PASS | `true` | `true` | Renders ResizeHandle separating ThemeSettingsSidebar from ThemeLivePreview |
 | `THEME-03` | Theme Manager | ✅ PASS | `true` | `true` | ThemeSettingsSidebar accepts dynamic sidebarWidth and onResetWidth props |
 | `THEME-04` | Theme Manager | ✅ PASS | `true` | `true` | Persists theme sidebar width in localStorage (elfazni_theme_sidebar_width) |
+| `CALENDAR-01` | Calendar Workspace | ✅ PASS | `true` | `true` | ModernCalendar manages dynamic sidebarWidth (180-420px) |
+| `CALENDAR-02` | Calendar Workspace | ✅ PASS | `true` | `true` | Renders ResizeHandle separating sources sidebar from calendar grid |
+| `CALENDAR-03` | Calendar Workspace | ✅ PASS | `true` | `true` | Supports double-click layout reset to default 256px |
+| `CALENDAR-04` | Calendar Workspace | ✅ PASS | `true` | `true` | Persists calendar sidebar width in localStorage (elfazni_calendar_sidebar_width) |
+| `TASK-01` | Task Manager Workspace | ✅ PASS | `true` | `true` | ModernTaskManager manages dynamic active task drawerWidth (280-600px) |
+| `TASK-02` | Task Manager Workspace | ✅ PASS | `true` | `true` | Renders ResizeHandle separating task board from detail drawer |
+| `TASK-03` | Task Manager Workspace | ✅ PASS | `true` | `true` | Supports double-click layout reset to default 384px |
+| `TASK-04` | Task Manager Workspace | ✅ PASS | `true` | `true` | Persists task drawer width in localStorage (elfazni_task_drawer_width) |
+| `HUB-01` | Hub Portal | ✅ PASS | `true` | `true` | HubPage manages dynamic hubVisualWidth (340-680px) |
+| `HUB-02` | Hub Portal | ✅ PASS | `true` | `true` | Renders ResizeHandle separating 3D visual panel from access tiles |
+| `HUB-03` | Hub Portal | ✅ PASS | `true` | `true` | Supports double-click layout reset to default 510px |
+| `HUB-04` | Hub Portal | ✅ PASS | `true` | `true` | Persists Hub visual panel width in localStorage (elfazni_hub_visual_width) |
+| `HUB-05` | Hub Portal | ✅ PASS | `true` | `true` | hub-entry.css defines .hub-entry-photo-wrapper with flexbox layout support |
 
 ---
 
@@ -92,6 +105,15 @@ This automated test suite validates the architectural transformation of ELFAZNI 
 
 6. **Theme & Appearance Manager (`src/components/admin/theme/AdminThemeManager.tsx`):**
    - Resizable settings sidebar (260–520px, default 340px) alongside live interactive preview.
+
+7. **Calendar Workspace (`crm/src/components/tools/ModernCalendar.tsx`):**
+   - Resizable upcoming events and source filters sidebar (180–420px, default 256px), double-click reset, localStorage persistence.
+
+8. **Task Manager Workspace (`crm/src/components/tools/ModernTaskManager.tsx`):**
+   - Resizable active task details drawer (280–600px, default 384px), double-click reset, localStorage persistence.
+
+9. **Hub Portal Access Front (`src/components/hub/HubPage.tsx` & `hub-entry.css`):**
+   - Resizable 3D visual showcase panel (340–680px, default 510px) with col-resize separator handle, double-click reset, localStorage persistence.
 
 ---
 *Report generated automatically by ELFAZNI SERVICES QA Engine.*

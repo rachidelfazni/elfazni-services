@@ -48,6 +48,8 @@ import {
   ManualDebtPaymentForm,
   useContactFinanceAccess,
 } from "./ContactFinanceForms";
+import { ResizeHandle } from "../workspace/resizable/ResizeHandle";
+import { clampPanelSize } from "../workspace/resizable/layoutPreferences";
 function ContactAvatar({ contact, large = false }: { contact: Pick<CRMContact, "name" | "photo">; large?: boolean }) {
   return <span className={`crm-contact-avatar${large ? ' large' : ''}`}>
     {contact.photo ? <img src={contact.photo} alt="" /> : contact.name.slice(0, 1)}
@@ -112,7 +114,37 @@ export const ContactWorkspace: React.FC = () => {
     { user, canViewAccounting, canEditOperations } = useAuth(),
     finance = useContactFinanceAccess(),
     { l } = useCopy(),
-    { ui } = useUITranslation();
+    { ui, isRTL } = useUITranslation();
+
+  // Resizable Contact Directory State
+  const [directoryWidth, setDirectoryWidth] = useState<number>(() => {
+    if (typeof window === "undefined") return 310;
+    try {
+      const saved = localStorage.getItem("elfazni_crm_contact_directory_width");
+      const num = saved ? parseInt(saved, 10) : 310;
+      return isNaN(num) ? 310 : clampPanelSize(num, 240, 520);
+    } catch {
+      return 310;
+    }
+  });
+
+  const handleDirectoryResize = (delta: number) => {
+    setDirectoryWidth((prev) => {
+      const next = clampPanelSize(prev + delta, 240, 520);
+      try {
+        localStorage.setItem("elfazni_crm_contact_directory_width", String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleResetDirectoryWidth = () => {
+    setDirectoryWidth(310);
+    try {
+      localStorage.setItem("elfazni_crm_contact_directory_width", "310");
+    } catch {}
+  };
+
   const canWrite = canEditOperations || finance,
     privileged = ["super_admin", "admin", "editor", "agent"].includes(
       user?.role || "",
@@ -396,7 +428,14 @@ export const ContactWorkspace: React.FC = () => {
       <section className="crm-followup-agenda"><div><h3>{l("المتابعات القادمة", "Upcoming follow-ups", "Prochains suivis")}</h3><a href="/workspace">{l("مساحة العمل", "Workspace", "Espace de travail")} ↗</a></div>
         {contactBook.reminders.filter(r => !r.completedAt && (!r.debtId || canViewAccounting)).sort((a,b)=>a.dueAt.localeCompare(b.dueAt)).slice(0,6).map(r=><button key={r.id} onClick={()=>setSelectedContactId(r.contactId)}><strong>{contactBook.contacts.find(c=>c.id===r.contactId)?.name}</strong><span>{r.title}</span><time style={{color:new Date(r.dueAt)<new Date()?'#a13232':'#5E7086'}}>{new Date(r.dueAt).toLocaleString()}</time></button>)}
       </section>
-      <div className="crm-contact-layout">
+      <div
+        className="crm-contact-layout"
+        style={
+          {
+            "--crm-contact-dir-width": `${directoryWidth}px`,
+          } as React.CSSProperties
+        }
+      >
         <aside className="crm-contact-directory">
           <div className="crm-contact-search">
             <Search size={17} />
@@ -476,6 +515,23 @@ export const ContactWorkspace: React.FC = () => {
             )}
           </div>
         </aside>
+        <div className="hidden md:block shrink-0 h-full self-stretch">
+          <ResizeHandle
+            id="crm-contact-directory"
+            direction="horizontal"
+            isRtl={isRTL}
+            onResize={handleDirectoryResize}
+            onReset={handleResetDirectoryWidth}
+            currentSize={directoryWidth}
+            minSize={240}
+            maxSize={520}
+            ariaLabel={l(
+              "فاصل تغيير حجم قائمة جهات الاتصال",
+              "Resize contact list panel",
+              "Redimensionner le répertoire des contacts",
+            )}
+          />
+        </div>
         <section className="crm-contact-profile">
           {!selected ? (
             <div className="crm-book-empty">

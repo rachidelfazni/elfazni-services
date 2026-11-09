@@ -47,6 +47,9 @@ export const CalendarWorkspace: React.FC<CalendarWorkspaceProps> = ({
     flightBookings,
     debts,
     setActiveTab,
+    contactBook,
+    setSelectedContactId,
+    invoices,
   } = useApp();
   const { user } = useAuth();
   const { l, language } = useCopy();
@@ -260,9 +263,22 @@ export const CalendarWorkspace: React.FC<CalendarWorkspaceProps> = ({
               flightBookings={flightBookings}
               debts={debts}
               tasks={tasks}
+              contacts={contactBook?.contacts || []}
+              invoices={invoices || []}
               username={username}
               lang={language as any}
               onGotoTab={(t) => gotoTab(t as ActiveTab)}
+              onOpenContact={(contactId) => {
+                setSelectedContactId(contactId);
+                gotoTab("contacts");
+              }}
+              onOpenNote={(noteId) => {
+                setActiveNoteId(noteId);
+                setTab("notebook");
+              }}
+              onOpenTask={(_taskId) => {
+                setTab("tasks");
+              }}
             />
           )}
 

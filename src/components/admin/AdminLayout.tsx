@@ -87,7 +87,15 @@ export type AdminTab =
 
 export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }) => {
   const { isRtl } = useLanguage();
-  const [account, setAccount] = useState<import('../../services/api').User>();
+  const [account, setAccount] = useState<import('../../services/api').User>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('user') || localStorage.getItem('elfazni_auth_user');
+        if (stored) return JSON.parse(stored);
+      } catch {}
+    }
+    return undefined as any;
+  });
   const isOwner = account?.role === 'superadmin';
   const canSupport = isOwner || account?.access === 'support';
   const [recoveryCount, setRecoveryCount] = useState(0);
@@ -99,11 +107,18 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
     const timer = window.setInterval(refresh, 5000);
     return () => window.clearInterval(timer);
   }, [isOwner]);
-  const [activeTab, setActiveTab] = useState<AdminTab>(() =>
-    typeof window !== 'undefined' && window.location.pathname.startsWith('/admin/theme')
-      ? 'theme'
-      : 'overview'
-  );
+  const [activeTab, setActiveTab] = useState<AdminTab>(() => {
+    if (typeof window !== 'undefined') {
+      const section = new URLSearchParams(window.location.search).get('section');
+      if (section && ['overview', 'chat', 'mailbox', 'site_editor', 'theme', 'seo', 'services', 'posts', 'categories', 'media', 'users', 'settings'].includes(section)) {
+        return section as AdminTab;
+      }
+      if (window.location.pathname.startsWith('/admin/theme')) {
+        return 'theme';
+      }
+    }
+    return 'overview';
+  });
   const [blogSubTab, setBlogSubTab] = useState<BlogCmsSubTab>('all_posts');
   const [themeSubTab, setThemeSubTab] = useState<ThemeSubTab>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -498,7 +513,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
     ['crm_manager', 'flight_agent', 'hotel_agent', 'residence_agent', 'accountant', 'support_agent'].includes((account as any)?.role || '');
 
   const crmMenuLink = hasCrmAccess && (
-    <a href="/admin/login?next=crm" className="mt-3 flex items-center gap-3 rounded-xl border border-[#E3C88F] bg-[#FFF9ED] px-3.5 py-3 text-sm font-bold text-[#0B2E57] hover:bg-[#F9ECD2]">
+    <a href="/crm" className="mt-3 flex items-center gap-3 rounded-xl border border-[#E3C88F] bg-[#FFF9ED] px-3.5 py-3 text-sm font-bold text-[#0B2E57] hover:bg-[#F9ECD2]">
       <Briefcase className="h-4 w-4" aria-hidden="true" />
       الدخول إلى نظام CRM
     </a>
@@ -569,7 +584,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
 
               {hasCrmAccess && (
                 <a
-                  href="/admin/login?next=crm"
+                  href="/crm"
                   className="px-2.5 py-1 rounded-lg text-white bg-[#004AA5] hover:bg-[#0B70DD] transition-colors flex items-center gap-1 shadow-xs cursor-pointer"
                   title="فتح نظام إدارة العملاء CRM"
                 >
@@ -847,7 +862,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
                   <Globe2 className="w-4 h-4" />
                 </a>
                 {hasCrmAccess && (
-                  <a href="/admin/login?next=crm" className="p-2 rounded-xl border border-[#E3C88F] bg-[#FFF9ED] text-[#0B2E57]" title="الدخول إلى نظام CRM">
+                  <a href="/crm" className="p-2 rounded-xl border border-[#E3C88F] bg-[#FFF9ED] text-[#0B2E57]" title="الدخول إلى نظام CRM">
                     <Briefcase className="w-4 h-4" />
                   </a>
                 )}
@@ -873,7 +888,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
         </aside>
 
         {/* Resizable Separator Handle */}
-        <div className="hidden lg:block shrink-0 h-full">
+        <div className="hidden lg:flex shrink-0 items-stretch">
           <ResizeHandle
             id="admin-sidebar"
             direction="horizontal"
@@ -969,7 +984,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onNavigate }
                     <Mail aria-hidden="true" size={19} /><span>تذاكر البريد الجديدة</span><strong>{unreadMailCount}</strong>
                   </button>
                   {hasCrmAccess && (
-                    <a href="/admin/login?next=crm" className="admin-workspace-link admin-workspace-crm">
+                    <a href="/crm" className="admin-workspace-link admin-workspace-crm">
                       <Briefcase aria-hidden="true" size={19} /><span>الدخول إلى نظام CRM</span><span aria-hidden="true">↗</span>
                     </a>
                   )}

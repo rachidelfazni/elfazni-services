@@ -40,7 +40,11 @@ export const ResizeHandle: React.FC<ResizeHandleProps> = ({
     e.stopPropagation();
 
     const target = e.currentTarget;
-    target.setPointerCapture(e.pointerId);
+    try {
+      target.setPointerCapture(e.pointerId);
+    } catch {
+      // Ignore if pointer capture fails
+    }
 
     dragStartPosRef.current = isHorizontal ? e.clientX : e.clientY;
     setIsDragging(true);
@@ -48,6 +52,43 @@ export const ResizeHandle: React.FC<ResizeHandleProps> = ({
     if (typeof document !== 'undefined') {
       document.body.classList.add('ws-resizing-active');
     }
+
+    const onWindowPointerMove = (moveEvt: PointerEvent) => {
+      moveEvt.preventDefault();
+      const currentPos = isHorizontal ? moveEvt.clientX : moveEvt.clientY;
+      let delta = currentPos - dragStartPosRef.current;
+
+      if (isHorizontal && isRtl) {
+        delta = -delta;
+      }
+
+      if (delta !== 0) {
+        onResize(delta);
+        dragStartPosRef.current = currentPos;
+      }
+    };
+
+    const onWindowPointerUp = () => {
+      window.removeEventListener('pointermove', onWindowPointerMove);
+      window.removeEventListener('pointerup', onWindowPointerUp);
+      window.removeEventListener('pointercancel', onWindowPointerUp);
+
+      try {
+        target.releasePointerCapture(e.pointerId);
+      } catch {
+        // Ignore if pointer capture was already released
+      }
+
+      setIsDragging(false);
+
+      if (typeof document !== 'undefined') {
+        document.body.classList.remove('ws-resizing-active');
+      }
+    };
+
+    window.addEventListener('pointermove', onWindowPointerMove, { passive: false });
+    window.addEventListener('pointerup', onWindowPointerUp);
+    window.addEventListener('pointercancel', onWindowPointerUp);
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -57,19 +98,14 @@ export const ResizeHandle: React.FC<ResizeHandleProps> = ({
     const currentPos = isHorizontal ? e.clientX : e.clientY;
     let delta = currentPos - dragStartPosRef.current;
 
-    // In horizontal RTL mode, dragging rightwards decreases a left panel's width
     if (isHorizontal && isRtl) {
       delta = -delta;
     }
 
-    if (rafIdRef.current) {
-      cancelAnimationFrame(rafIdRef.current);
-    }
-
-    rafIdRef.current = requestAnimationFrame(() => {
+    if (delta !== 0) {
       onResize(delta);
       dragStartPosRef.current = currentPos;
-    });
+    }
   };
 
   const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -82,11 +118,6 @@ export const ResizeHandle: React.FC<ResizeHandleProps> = ({
     }
 
     setIsDragging(false);
-
-    if (rafIdRef.current) {
-      cancelAnimationFrame(rafIdRef.current);
-      rafIdRef.current = null;
-    }
 
     if (typeof document !== 'undefined') {
       document.body.classList.remove('ws-resizing-active');

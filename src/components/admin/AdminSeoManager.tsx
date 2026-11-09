@@ -110,7 +110,7 @@ export const AdminSeoManager: React.FC = () => {
         ogTitle: `${newPageNameAr.trim()} | ELFAZNI SERVICES`,
         ogDescription: 'خدمات ELFAZNI SERVICES للجالية المغربية في تركيا بإشراف رشيد الفزني.',
         ogImage: '/assets/slides/10-all-services.webp',
-        canonicalUrl: `https://elfazni-services-online.uzmanlarltd.chatgpt.site${cleanPath}`,
+        canonicalUrl: `https://elfazni.com${cleanPath}`,
         robots: 'index, follow',
       });
       if (res.seoPages) setSeoPages(res.seoPages);
@@ -145,7 +145,7 @@ export const AdminSeoManager: React.FC = () => {
         ogTitle: post.seoTitle || post.title,
         ogDescription: post.seoDescription || post.excerpt,
         ogImage: post.coverImage || '/assets/slides/10-all-services.webp',
-        canonicalUrl: `https://elfazni-services-online.uzmanlarltd.chatgpt.site${targetPath}`,
+        canonicalUrl: `https://elfazni.com${targetPath}`,
         robots: 'index, follow',
       });
       if (res.seoPages) setSeoPages(res.seoPages);

@@ -1,0 +1,171 @@
+{
+  "timestamp": "2026-11-09T18:25:38.474Z",
+  "tests": {
+    "testA": {
+      "status": "PASS",
+      "details": "Outer background variations (solid, gradient, image with blur/scale/overlay) verified."
+    },
+    "testB": {
+      "status": "PASS",
+      "details": "Side panel rendered independently from outer backdrop without asset collision."
+    },
+    "testC": {
+      "status": "PASS",
+      "details": "Typography, card radius, border colors, and logo variants verified."
+    },
+    "testD": {
+      "status": "PASS",
+      "details": "All 5 presets (official-elfazni, premium-navy, modern-minimal, elegant-gold, dark-modern) applied cleanly."
+    },
+    "testE": {
+      "status": "PASS",
+      "details": "Draft vs published isolation verified. Settings persist after full page reload."
+    },
+    "testF": {
+      "status": "PASS",
+      "details": "Property reset and global brand inheritance verified."
+    },
+    "testG": {
+      "status": "PASS",
+      "details": "Full bidirectional navigation between HUB, Admin, CRM, and Website verified."
+    }
+  },
+  "screenshots": [
+    {
+      "filename": "test-a1-portal-solid-outer-bg.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-a1-portal-solid-outer-bg.png",
+      "description": "HUB Portal with Solid #071629 Outer Background"
+    },
+    {
+      "filename": "test-a2-portal-radial-gradient-bg.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-a2-portal-radial-gradient-bg.png",
+      "description": "HUB Portal with Radial Gradient Overlay"
+    },
+    {
+      "filename": "test-a3-portal-custom-image-blur-overlay.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-a3-portal-custom-image-blur-overlay.png",
+      "description": "HUB Portal with Custom Image, 4px Blur, and Dark Blue Overlay"
+    },
+    {
+      "filename": "test-a4-admin-login-outer-bg.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-a4-admin-login-outer-bg.png",
+      "description": "Admin Login with Radial Gradient Outer Backdrop"
+    },
+    {
+      "filename": "test-b1-portal-side-panel-customized.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-b1-portal-side-panel-customized.png",
+      "description": "HUB Portal Side Panel with Gold/Blue Gradient and Rotated 3D Object"
+    },
+    {
+      "filename": "test-b2-crm-login-distinct-panel.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-b2-crm-login-distinct-panel.png",
+      "description": "CRM Login showing distinctive 3D Hotels Illustration and Navy theme"
+    },
+    {
+      "filename": "test-c1-portal-card-custom-typography-gold-border.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-c1-portal-card-custom-typography-gold-border.png",
+      "description": "HUB Portal Menu Card with Gold Border and 2XL Shadow"
+    },
+    {
+      "filename": "test-d-preset-official-elfazni.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-d-preset-official-elfazni.png",
+      "description": "Preset Applied: Official ELFAZNI"
+    },
+    {
+      "filename": "test-d-preset-premium-navy.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-d-preset-premium-navy.png",
+      "description": "Preset Applied: Premium Royal Navy"
+    },
+    {
+      "filename": "test-d-preset-modern-minimal.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-d-preset-modern-minimal.png",
+      "description": "Preset Applied: Modern Minimal Light"
+    },
+    {
+      "filename": "test-d-preset-elegant-gold.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-d-preset-elegant-gold.png",
+      "description": "Preset Applied: Elegant Warm Gold"
+    },
+    {
+      "filename": "test-d-preset-dark-modern.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-d-preset-dark-modern.png",
+      "description": "Preset Applied: Executive Dark Mode"
+    },
+    {
+      "filename": "test-e-persistence-reload.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-e-persistence-reload.png",
+      "description": "State Persistence after Full Page Reload"
+    },
+    {
+      "filename": "test-g1-arrived-at-website.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-g1-arrived-at-website.png",
+      "description": "Website Home Page arrived from HUB"
+    },
+    {
+      "filename": "test-g2-crm-login-prompt.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-g2-crm-login-prompt.png",
+      "description": "CRM Login screen arrived from HUB"
+    },
+    {
+      "filename": "test-g3-admin-login-prompt.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-g3-admin-login-prompt.png",
+      "description": "Admin Login screen arrived via Switch link"
+    },
+    {
+      "filename": "test-g4-admin-dashboard.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/test-g4-admin-dashboard.png",
+      "description": "Admin Management Studio (authenticated)"
+    },
+    {
+      "filename": "hub-viewport-desktop-large-1920x1080.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/hub-viewport-desktop-large-1920x1080.png",
+      "description": "HUB Portal on desktop-large (1920x1080)"
+    },
+    {
+      "filename": "hub-viewport-laptop-standard-1440x900.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/hub-viewport-laptop-standard-1440x900.png",
+      "description": "HUB Portal on laptop-standard (1440x900)"
+    },
+    {
+      "filename": "hub-viewport-tablet-landscape-1024x768.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/hub-viewport-tablet-landscape-1024x768.png",
+      "description": "HUB Portal on tablet-landscape (1024x768)"
+    },
+    {
+      "filename": "hub-viewport-tablet-portrait-768x1024.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/hub-viewport-tablet-portrait-768x1024.png",
+      "description": "HUB Portal on tablet-portrait (768x1024)"
+    },
+    {
+      "filename": "hub-viewport-mobile-390x844.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/hub-viewport-mobile-390x844.png",
+      "description": "HUB Portal on mobile (390x844)"
+    },
+    {
+      "filename": "admin-login-viewport-desktop-large-1920x1080.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/admin-login-viewport-desktop-large-1920x1080.png",
+      "description": "Admin Login on desktop-large (1920x1080)"
+    },
+    {
+      "filename": "admin-login-viewport-laptop-standard-1440x900.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/admin-login-viewport-laptop-standard-1440x900.png",
+      "description": "Admin Login on laptop-standard (1440x900)"
+    },
+    {
+      "filename": "admin-login-viewport-tablet-landscape-1024x768.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/admin-login-viewport-tablet-landscape-1024x768.png",
+      "description": "Admin Login on tablet-landscape (1024x768)"
+    },
+    {
+      "filename": "admin-login-viewport-tablet-portrait-768x1024.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/admin-login-viewport-tablet-portrait-768x1024.png",
+      "description": "Admin Login on tablet-portrait (768x1024)"
+    },
+    {
+      "filename": "admin-login-viewport-mobile-390x844.png",
+      "path": "/Users/elfazni/.gemini/antigravity/scratch/ELFAZNI-SERVICES-AI-STUDIO/ELFAZNI-SERVICES/qa/theme-qa-screenshots/admin-login-viewport-mobile-390x844.png",
+      "description": "Admin Login on mobile (390x844)"
+    }
+  ],
+  "overallStatus": "SUCCESS"
+}

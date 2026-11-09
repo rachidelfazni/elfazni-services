@@ -1,0 +1,74 @@
+[
+  {
+    "test": "Website Homepage: desktop",
+    "passed": true,
+    "details": "1440px viewport",
+    "screenshot": "qa/screenshots/responsive/01-website-desktop.png"
+  },
+  {
+    "test": "Admin Theme Studio: desktop",
+    "passed": true,
+    "details": "1440px viewport",
+    "screenshot": "qa/screenshots/responsive/02-admin-theme-desktop.png"
+  },
+  {
+    "test": "CRM Notes Editor: desktop",
+    "passed": true,
+    "details": "1440px viewport",
+    "screenshot": "qa/screenshots/responsive/03-crm-notes-desktop.png"
+  },
+  {
+    "test": "CRM Customers Module: desktop",
+    "passed": true,
+    "details": "1440px viewport",
+    "screenshot": "qa/screenshots/responsive/04-crm-customers-desktop.png"
+  },
+  {
+    "test": "Website Homepage: tablet",
+    "passed": true,
+    "details": "768px viewport",
+    "screenshot": "qa/screenshots/responsive/01-website-tablet.png"
+  },
+  {
+    "test": "Admin Theme Studio: tablet",
+    "passed": true,
+    "details": "768px viewport",
+    "screenshot": "qa/screenshots/responsive/02-admin-theme-tablet.png"
+  },
+  {
+    "test": "CRM Notes Editor: tablet",
+    "passed": true,
+    "details": "768px viewport",
+    "screenshot": "qa/screenshots/responsive/03-crm-notes-tablet.png"
+  },
+  {
+    "test": "CRM Customers Module: tablet",
+    "passed": true,
+    "details": "768px viewport",
+    "screenshot": "qa/screenshots/responsive/04-crm-customers-tablet.png"
+  },
+  {
+    "test": "Website Homepage: mobile",
+    "passed": true,
+    "details": "375px viewport",
+    "screenshot": "qa/screenshots/responsive/01-website-mobile.png"
+  },
+  {
+    "test": "Admin Theme Studio: mobile",
+    "passed": true,
+    "details": "375px viewport",
+    "screenshot": "qa/screenshots/responsive/02-admin-theme-mobile.png"
+  },
+  {
+    "test": "CRM Notes Editor: mobile",
+    "passed": true,
+    "details": "375px viewport",
+    "screenshot": "qa/screenshots/responsive/03-crm-notes-mobile.png"
+  },
+  {
+    "test": "CRM Customers Module: mobile",
+    "passed": true,
+    "details": "375px viewport",
+    "screenshot": "qa/screenshots/responsive/04-crm-customers-mobile.png"
+  }
+]

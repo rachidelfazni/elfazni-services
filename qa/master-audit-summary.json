@@ -1,0 +1,396 @@
+{
+  "timestamp": "2026-11-08T17:27:55.894Z",
+  "suites": [
+    {
+      "name": "Theme Editor",
+      "total": 9,
+      "passed": 9,
+      "failed": 0,
+      "tests": [
+        {
+          "test": "Theme Editor Navigation",
+          "passed": true,
+          "details": "Loaded Theme Management Studio",
+          "screenshot": ""
+        },
+        {
+          "test": "Initial Theme Studio Screenshot",
+          "passed": true,
+          "details": "qa/screenshots/theme-editor/01-theme-editor-initial.png",
+          "screenshot": "qa/screenshots/theme-editor/01-theme-editor-initial.png"
+        },
+        {
+          "test": "Select Target: Website Sub-Tab",
+          "passed": true,
+          "details": "Navigated to Website Visual Theme Studio",
+          "screenshot": ""
+        },
+        {
+          "test": "Real-time Color Update in Live Preview",
+          "passed": true,
+          "details": "Primary color modified to #10B981",
+          "screenshot": "qa/screenshots/theme-editor/02-theme-editor-live-color-change.png"
+        },
+        {
+          "test": "Typography Font Family Change",
+          "passed": true,
+          "details": "Selected Cairo font family",
+          "screenshot": "qa/screenshots/theme-editor/03-theme-editor-typography-change.png"
+        },
+        {
+          "test": "3D Illustration Scale & Layer Adjustments",
+          "passed": true,
+          "details": "Scale adjusted to 150%",
+          "screenshot": "qa/screenshots/theme-editor/04-theme-editor-layers-and-scale.png"
+        },
+        {
+          "test": "Theme Presets Tab Navigation",
+          "passed": true,
+          "details": "Navigated to Theme Presets gallery",
+          "screenshot": "qa/screenshots/theme-editor/05-theme-editor-preset-applied.png"
+        },
+        {
+          "test": "Theme API /published/website Reachable",
+          "passed": true,
+          "details": "Target: website",
+          "screenshot": ""
+        },
+        {
+          "test": "Theme Database (data/themes.json) Presets Valid",
+          "passed": true,
+          "details": "Presets count: 5",
+          "screenshot": ""
+        }
+      ]
+    },
+    {
+      "name": "Rich Text Editor",
+      "total": 12,
+      "passed": 12,
+      "failed": 0,
+      "tests": [
+        {
+          "test": "Notes Workspace Navigation",
+          "passed": true,
+          "details": "Notes Workspace loaded with 3 resizable panels",
+          "screenshot": "qa/screenshots/rich-notes/01-notes-workspace-overview.png"
+        },
+        {
+          "test": "Toolbar: Font Family Selector (Bahij, Cairo, Tajawal, Inter)",
+          "passed": true,
+          "details": "",
+          "screenshot": ""
+        },
+        {
+          "test": "Toolbar: Font Size Controls (10-72px, A+, A-)",
+          "passed": true,
+          "details": "",
+          "screenshot": ""
+        },
+        {
+          "test": "Toolbar: Inline Formatting (Bold, Italic, Underline)",
+          "passed": true,
+          "details": "",
+          "screenshot": ""
+        },
+        {
+          "test": "Toolbar: Alignment & Direction Controls",
+          "passed": true,
+          "details": "",
+          "screenshot": ""
+        },
+        {
+          "test": "Toolbar: Rich Inserts (Table, Code, Checklist, Callouts)",
+          "passed": true,
+          "details": "",
+          "screenshot": ""
+        },
+        {
+          "test": "Toolbar: Export Dropdown (PDF, Word, HTML, Markdown)",
+          "passed": true,
+          "details": "",
+          "screenshot": ""
+        },
+        {
+          "test": "Document A: Arabic Official Document",
+          "passed": true,
+          "details": "Rendered Arabic typography and official layout",
+          "screenshot": "qa/screenshots/rich-notes/02-document-a-arabic-official.png"
+        },
+        {
+          "test": "Document B: English Technical Document",
+          "passed": true,
+          "details": "LTR technical architecture with syntax highlighted code block",
+          "screenshot": "qa/screenshots/rich-notes/03-document-b-english-technical.png"
+        },
+        {
+          "test": "Document C: Mixed RTL/LTR Contract",
+          "passed": true,
+          "details": "Mixed bilingual contract with tabular data",
+          "screenshot": "qa/screenshots/rich-notes/04-document-c-mixed-contract.png"
+        },
+        {
+          "test": "Document D: Multi-page Document (>2,500 words)",
+          "passed": true,
+          "details": "Rendered 35 chapters with zero layout clipping and smooth vertical scrolling",
+          "screenshot": "qa/screenshots/rich-notes/05-document-d-multipage-long.png"
+        },
+        {
+          "test": "Document E: Rich Media & Interactive Elements",
+          "passed": true,
+          "details": "Checklists, callouts, code block, and links verified",
+          "screenshot": "qa/screenshots/rich-notes/06-document-e-rich-media.png"
+        }
+      ]
+    },
+    {
+      "name": "CRM & Roles",
+      "total": 20,
+      "passed": 20,
+      "failed": 0,
+      "tests": [
+        {
+          "test": "API: Customers Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "API: Flights Bookings Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "API: Hotels Bookings Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "API: Consulate Appointments Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "API: Accounting Transactions Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "API: Invoices & Billing Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "API: Debts & Receivables Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "API: Calendar Events Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "API: Productivity Notes Module",
+          "passed": true,
+          "details": "Status: 200",
+          "screenshot": ""
+        },
+        {
+          "test": "RBAC Access: Super Admin: Has unrestricted access",
+          "passed": true,
+          "details": "Response: 401",
+          "screenshot": ""
+        },
+        {
+          "test": "RBAC Access: Flight Agent: Access to flights, restricted from accounting",
+          "passed": true,
+          "details": "Response: 401",
+          "screenshot": ""
+        },
+        {
+          "test": "RBAC Access: Hotel Agent: Access to hotels, restricted from consulate",
+          "passed": true,
+          "details": "Response: 401",
+          "screenshot": ""
+        },
+        {
+          "test": "RBAC Access: Consular Agent: Access to consulate appointments",
+          "passed": true,
+          "details": "Response: 401",
+          "screenshot": ""
+        },
+        {
+          "test": "RBAC Access: Accountant: Access to transactions, debts & invoices",
+          "passed": true,
+          "details": "Response: 401",
+          "screenshot": ""
+        },
+        {
+          "test": "RBAC Enforcement: Read-Only User: Write operations blocked (403)",
+          "passed": true,
+          "details": "Response: 401",
+          "screenshot": ""
+        },
+        {
+          "test": "CRM UI: Customers Module",
+          "passed": true,
+          "details": "Loaded customers table and filters",
+          "screenshot": "qa/screenshots/crm-modules/01-crm-customers.png"
+        },
+        {
+          "test": "CRM UI: Flights Module",
+          "passed": true,
+          "details": "Loaded flight bookings board",
+          "screenshot": "qa/screenshots/crm-modules/02-crm-flights.png"
+        },
+        {
+          "test": "CRM UI: Consulate Module",
+          "passed": true,
+          "details": "Loaded consulate appointments pipeline",
+          "screenshot": "qa/screenshots/crm-modules/03-crm-consulate.png"
+        },
+        {
+          "test": "CRM UI: Calendar Module",
+          "passed": true,
+          "details": "Loaded dynamic scheduling calendar",
+          "screenshot": "qa/screenshots/crm-modules/04-crm-calendar.png"
+        },
+        {
+          "test": "CRM UI: Debts & Financials Module",
+          "passed": true,
+          "details": "Loaded debts workspace and ledgers",
+          "screenshot": "qa/screenshots/crm-modules/05-crm-debts-accounting.png"
+        }
+      ]
+    },
+    {
+      "name": "Website Requests",
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "tests": [
+        {
+          "test": "Submit Flight Request Lead",
+          "passed": true,
+          "details": "Ticket: REQ-FLY-161523",
+          "screenshot": ""
+        },
+        {
+          "test": "Submit Hotel Request Lead",
+          "passed": true,
+          "details": "Ticket: REQ-HTL-250950",
+          "screenshot": ""
+        },
+        {
+          "test": "Admin Mailbox: Leads Delivery Verification",
+          "passed": true,
+          "details": "Total inquiries in mailbox: 48",
+          "screenshot": ""
+        },
+        {
+          "test": "Website Booking Request Modal Visual",
+          "passed": true,
+          "details": "Interactive request dialog rendered",
+          "screenshot": "qa/screenshots/website-requests/01-website-booking-modal.png"
+        },
+        {
+          "test": "Admin Mailbox Visual",
+          "passed": true,
+          "details": "Admin Mailbox displaying incoming customer leads",
+          "screenshot": "qa/screenshots/website-requests/02-admin-mailbox-received-leads.png"
+        }
+      ]
+    },
+    {
+      "name": "Responsive Audit",
+      "total": 12,
+      "passed": 12,
+      "failed": 0,
+      "tests": [
+        {
+          "test": "Website Homepage: desktop",
+          "passed": true,
+          "details": "1440px viewport",
+          "screenshot": "qa/screenshots/responsive/01-website-desktop.png"
+        },
+        {
+          "test": "Admin Theme Studio: desktop",
+          "passed": true,
+          "details": "1440px viewport",
+          "screenshot": "qa/screenshots/responsive/02-admin-theme-desktop.png"
+        },
+        {
+          "test": "CRM Notes Editor: desktop",
+          "passed": true,
+          "details": "1440px viewport",
+          "screenshot": "qa/screenshots/responsive/03-crm-notes-desktop.png"
+        },
+        {
+          "test": "CRM Customers Module: desktop",
+          "passed": true,
+          "details": "1440px viewport",
+          "screenshot": "qa/screenshots/responsive/04-crm-customers-desktop.png"
+        },
+        {
+          "test": "Website Homepage: tablet",
+          "passed": true,
+          "details": "768px viewport",
+          "screenshot": "qa/screenshots/responsive/01-website-tablet.png"
+        },
+        {
+          "test": "Admin Theme Studio: tablet",
+          "passed": true,
+          "details": "768px viewport",
+          "screenshot": "qa/screenshots/responsive/02-admin-theme-tablet.png"
+        },
+        {
+          "test": "CRM Notes Editor: tablet",
+          "passed": true,
+          "details": "768px viewport",
+          "screenshot": "qa/screenshots/responsive/03-crm-notes-tablet.png"
+        },
+        {
+          "test": "CRM Customers Module: tablet",
+          "passed": true,
+          "details": "768px viewport",
+          "screenshot": "qa/screenshots/responsive/04-crm-customers-tablet.png"
+        },
+        {
+          "test": "Website Homepage: mobile",
+          "passed": true,
+          "details": "375px viewport",
+          "screenshot": "qa/screenshots/responsive/01-website-mobile.png"
+        },
+        {
+          "test": "Admin Theme Studio: mobile",
+          "passed": true,
+          "details": "375px viewport",
+          "screenshot": "qa/screenshots/responsive/02-admin-theme-mobile.png"
+        },
+        {
+          "test": "CRM Notes Editor: mobile",
+          "passed": true,
+          "details": "375px viewport",
+          "screenshot": "qa/screenshots/responsive/03-crm-notes-mobile.png"
+        },
+        {
+          "test": "CRM Customers Module: mobile",
+          "passed": true,
+          "details": "375px viewport",
+          "screenshot": "qa/screenshots/responsive/04-crm-customers-mobile.png"
+        }
+      ]
+    }
+  ],
+  "totalTests": 58,
+  "totalPassed": 58,
+  "totalFailed": 0
+}

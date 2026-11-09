@@ -2,13 +2,17 @@ import { SectionTitle } from './SiteContent';
 import { useSiteSettings } from '../context/SiteSettingsContext';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, ArrowRight, Play, Pause, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Play, Pause } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CAMPAIGN_SLIDES, CampaignSlideItem } from '../data/slides';
 import { SITE_CONTACT } from '../data/content';
 import { WhatsAppLogo } from './WhatsAppLogo';
 
-export const CampaignSlider: React.FC = () => {
+interface CampaignSliderProps {
+  onOpenStartModal?: (serviceId?: string) => void;
+}
+
+export const CampaignSlider: React.FC<CampaignSliderProps> = ({ onOpenStartModal }) => {
   const { isServiceVisible } = useSiteSettings();
   const slides = CAMPAIGN_SLIDES.filter(({ id }) => {
     if (id === 'all_services') return ['consular','flights','airport','translation','hotels','residency','community'].every(isServiceVisible);
@@ -116,10 +120,25 @@ export const CampaignSlider: React.FC = () => {
   };
 
   const handleSlideClick = (slide: CampaignSlideItem) => {
-    const waUrl = `https://wa.me/${SITE_CONTACT.whatsappRaw}?text=${encodeURIComponent(
-      slide.whatsappQuery
-    )}`;
-    window.open(waUrl, '_blank', 'noopener,noreferrer');
+    const targetMap: Record<string, string> = {
+      consular: '#consular-checklist',
+      marriage: '#consular-checklist',
+      agency: '#consular-checklist',
+      newborn: '#consular-checklist',
+      flights: '#airlines',
+      airport: '#airport-transfer',
+      hotels: '#airlines',
+      translation: '#services',
+      residence: '#services',
+      all_services: '#services',
+    };
+    const targetId = targetMap[slide.id] || '#services';
+    const el = document.querySelector(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else if (onOpenStartModal) {
+      onOpenStartModal(slide.id);
+    }
   };
 
   if (!activeSlide) return null;
@@ -222,11 +241,10 @@ export const CampaignSlider: React.FC = () => {
               <button
                 type="button"
                 onClick={() => handleSlideClick(activeSlide)}
-                className="inline-flex items-center gap-2 px-4.5 py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/30 text-xs sm:text-sm font-bold text-emerald-300 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37] hover:to-[#CC9048] text-xs sm:text-sm font-black text-slate-950 transition-all cursor-pointer shadow-sm active:scale-95"
               >
-                <WhatsAppLogo className="w-5 h-5" />
-                <span>{t('تواصل الآن عبر واتساب')}</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <span>{t('طلب واستكشاف الخدمة')}</span>
+                {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
               </button>
 
               <div className="flex items-center gap-3">

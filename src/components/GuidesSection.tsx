@@ -99,31 +99,6 @@ export const GuidesSection: React.FC<GuidesSectionProps> = ({ onSelectGuide }) =
           className="flex gap-6 overflow-x-auto pb-6 pt-2 scroll-smooth no-scrollbar"
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          {/* Featured Official Consular Guide Cover */}
-          <a
-            href="/guide-cover"
-            style={{ scrollSnapAlign: 'start' }}
-            className="group relative w-[300px] sm:w-[345px] h-[440px] shrink-0 rounded-3xl overflow-hidden p-6 flex flex-col justify-between cursor-pointer bg-gradient-to-br from-[#01336F] via-[#0B2E57] to-[#01224A] border-2 border-[#CC9048]/50 shadow-[0_14px_34px_rgba(1,26,59,0.2)] hover:-translate-y-1.5 transition-all duration-500"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl" />
-            <div className="relative z-10 flex items-center justify-between">
-              <span className="px-3 py-1 rounded-full bg-[#CC9048]/20 border border-[#CC9048]/40 text-[#E6BD67] text-[11px] font-bold">
-                🌟 غلاف الدليل الرسمي 2026
-              </span>
-              <span className="text-[10px] text-white/70 font-semibold" dir="ltr">A4 Ready</span>
-            </div>
-            <div className="relative z-10 my-auto text-center py-4">
-              <div className="w-24 h-24 mx-auto mb-3">
-                <img src="/assets/brand/3d/02-consular-documents-transparent.png" alt="" className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform" />
-              </div>
-              <h3 className="text-lg font-black text-white leading-snug">دليل الوثائق القنصلية المغربية</h3>
-              <p className="text-xs text-blue-200 mt-1 line-clamp-2">سبع خدمات للمغاربة المقيمين في تركيا، إسطنبول وأنقرة</p>
-            </div>
-            <div className="relative z-10 flex items-center justify-between pt-3 border-t border-white/15 text-xs font-bold text-[#E6BD67]">
-              <span>عرض وطباعة الغلاف</span>
-              <span>↗</span>
-            </div>
-          </a>
           {guidesData.map((guide) => {
             const currentTitle =
               language === 'tr' ? guide.titleTr : language === 'en' ? guide.titleEn : t(guide.title);

@@ -184,9 +184,9 @@ const MainContent: React.FC = () => {
         style={mainOffsetStyle}
       >
         <main className="crm-main-container flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-          <a href="/admin" className="no-print inline-flex items-center gap-2 rounded-lg border border-[#C7DCF5] bg-white px-3 py-2 text-sm font-bold text-[#004AA5] hover:bg-[#eaf4ff]">
+          <a href="/portal" className="no-print inline-flex items-center gap-2 rounded-lg border border-[#C7DCF5] bg-white px-3 py-2 text-sm font-bold text-[#004AA5] hover:bg-[#eaf4ff]">
             <span aria-hidden="true">↗</span>
-            {isRTL ? "لوحة إدارة الموقع" : "Site administration"}
+            {isRTL ? "بوابة إدارة الموقع" : "Site Management Portal"}
           </a>
           <VisibilitySection
             key={activeTab}

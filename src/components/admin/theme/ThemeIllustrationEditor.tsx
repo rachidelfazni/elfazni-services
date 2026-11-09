@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Image as ImageIcon,
   RotateCcw,
@@ -10,10 +10,13 @@ import {
   Eye,
   EyeOff,
   Sparkles,
+  Upload,
+  Trash2,
 } from 'lucide-react';
 import {
   InterfaceThemeConfig,
   DEFAULT_LAYERS,
+  themeService,
 } from '../../../services/themeService';
 
 interface ThemeIllustrationEditorProps {
@@ -34,6 +37,44 @@ export const ThemeIllustrationEditor: React.FC<ThemeIllustrationEditorProps> = (
   const horizPos = config.illustrationPosition || 'center';
   const vertPos = config.illustrationVerticalPosition || 'center';
   const clip = config.illustrationClip || { top: 0, right: 0, bottom: 0, left: 0 };
+
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const currentIllustration =
+    config.sidePanel?.foregroundImage ||
+    config.illustrationUrl ||
+    '';
+
+  const updateIllustration = (newUrl: string) => {
+    onChangeConfig({
+      illustrationUrl: newUrl,
+      decorativeIllustration: newUrl,
+      ...(config.sidePanel
+        ? {
+            sidePanel: {
+              ...config.sidePanel,
+              foregroundImage: newUrl,
+            },
+          }
+        : {}),
+    });
+  };
+
+  const handleDirectUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const asset = await themeService.uploadMedia(file, 'illustration');
+      updateIllustration(asset.url);
+    } catch (err: any) {
+      alert(err.message || 'فشل رفع الصورة');
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
 
   const activeLayers = config.layers && config.layers.length > 0 ? config.layers : DEFAULT_LAYERS;
   const logoLayer = activeLayers.find((l) => l.id === 'logo');
@@ -62,27 +103,86 @@ export const ThemeIllustrationEditor: React.FC<ThemeIllustrationEditorProps> = (
     <div className="space-y-4 text-right" dir="rtl">
       {/* 1. Media Library Selector & URL Input */}
       <div className="space-y-2">
-        <button
-          type="button"
-          onClick={onOpenMediaPicker}
-          className="w-full py-2.5 px-3 rounded-xl bg-[#004AA5] hover:bg-[#003882] text-white text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
-        >
-          <ImageIcon className="w-4 h-4 text-[#CC9048]" />
-          <span>اختيار / رفع صورة أو مجسم من المكتبة</span>
-        </button>
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            onClick={onOpenMediaPicker}
+            className="py-2 px-3 rounded-xl bg-[#004AA5] hover:bg-[#003882] text-white text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+          >
+            <ImageIcon className="w-4 h-4 text-[#CC9048]" />
+            <span>مكتبة الصور</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploading}
+            className="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs disabled:opacity-50"
+          >
+            <Upload className="w-4 h-4" />
+            <span>{uploading ? 'جاري الرفع...' : 'رفع صورة من جهازك'}</span>
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*,.png,.jpg,.jpeg,.webp,.svg,.avif"
+            onChange={handleDirectUpload}
+            className="hidden"
+          />
+        </div>
 
         <div className="space-y-1">
-          <label className="text-[10px] font-bold text-slate-500 block">
-            مسار الصورة (يدعم PNG شفاف، JPG، WebP، SVG، AVIF):
-          </label>
+          <div className="flex items-center justify-between">
+            <label className="text-[10px] font-bold text-slate-600 block">
+              مسار الصورة (يدعم أي صورة أو صورة فوتوغرافية أو PNG شفاف أو مجسم):
+            </label>
+            {currentIllustration && (
+              <button
+                type="button"
+                onClick={() => updateIllustration('')}
+                className="text-[10px] text-red-600 hover:text-red-700 font-bold flex items-center gap-0.5 cursor-pointer"
+                title="إزالة الصورة"
+              >
+                <Trash2 className="w-3 h-3" />
+                <span>إزالة الصورة</span>
+              </button>
+            )}
+          </div>
           <input
             type="text"
-            value={config.illustrationUrl || ''}
-            onChange={(e) => onChangeConfig({ illustrationUrl: e.target.value })}
-            placeholder="/assets/brand/3d/02-consular-documents-transparent.png"
+            value={currentIllustration}
+            onChange={(e) => updateIllustration(e.target.value)}
+            placeholder="/assets/brand/hub-entry.jpg أو ضع مسار أي صورة"
             className="w-full px-2.5 py-1.5 text-[11px] font-mono bg-slate-50 border border-slate-200 rounded-lg text-slate-700"
             dir="ltr"
           />
+        </div>
+
+        {/* Quick Presets Pills */}
+        <div className="space-y-1 pt-1">
+          <span className="text-[10px] font-bold text-slate-500 block">نماذج وصور سريعة:</span>
+          <div className="grid grid-cols-2 gap-1.5 text-[10px]">
+            {[
+              { name: 'صورة سفر ومطار (JPG)', url: '/assets/brand/hub-entry.jpg' },
+              { name: 'فنادق وإقامة 3D', url: '/assets/brand/3d/04-hotels-residency-transparent.png' },
+              { name: 'طائرة وخدمات 3D', url: '/assets/brand/3d/01-master-service-hero-transparent.png' },
+              { name: 'وثائق ومواعيد 3D', url: '/assets/brand/3d/02-consular-documents-transparent.png' },
+              { name: 'شعار الفزني الرسمي', url: '/assets/brand/logo-horizontal-on-blue.svg' },
+            ].map((p) => (
+              <button
+                key={p.url}
+                type="button"
+                onClick={() => updateIllustration(p.url)}
+                className={`px-2 py-1 rounded-lg border text-right truncate font-bold transition cursor-pointer ${
+                  currentIllustration === p.url
+                    ? 'bg-[#004AA5] text-white border-[#004AA5]'
+                    : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                }`}
+              >
+                {p.name}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

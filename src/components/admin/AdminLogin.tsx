@@ -11,6 +11,7 @@ import type { Language } from '../../data/translations';
 interface AdminLoginProps {
   onLoginSuccess: () => void;
   onNavigate: (path: string) => void;
+  isCrm?: boolean;
 }
 
 interface AdminLoginCopy {
@@ -136,8 +137,12 @@ const COPY: Record<Language, AdminLoginCopy> = {
   },
 };
 
-export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNavigate }) => {
-  const isCrmLogin = new URLSearchParams(window.location.search).get('next') === 'crm';
+export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNavigate, isCrm: isCrmProp }) => {
+  const isCrmLogin =
+    isCrmProp ??
+    (new URLSearchParams(window.location.search).get('next') === 'crm' ||
+     window.location.pathname === '/crm' ||
+     window.location.pathname.startsWith('/crm/'));
   const { isRtl, language, setLanguage } = useLanguage();
   const copy = COPY[language] || COPY.ar;
   const [username, setUsername] = useState('');
@@ -208,9 +213,116 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.45;
   })();
 
+  const ob = theme?.outerBackground;
+  const mp = theme?.menuPanel;
+
+  // Zone A: Main Page Background Resolution
+  const outerBgType = ob?.type || (ob?.image ? 'image' : 'radial_gradient');
+  const outerBgImage = ob?.image || (ob?.type === 'image' ? theme?.backgroundImage : '') || '';
+  const outerBgColor = ob?.color || theme?.backgroundColor || (isCrmLogin ? '#071629' : '#012247');
+  const outerOverlay = ob?.overlay;
+
+  const getOuterMainBackgroundStyle = (): React.CSSProperties => {
+    if (outerBgType === 'transparent') {
+      return { backgroundColor: 'transparent' };
+    }
+    if (outerBgType === 'solid') {
+      return { backgroundColor: outerBgColor };
+    }
+    if (outerBgType === 'linear_gradient') {
+      const dir = outerOverlay?.direction || '135deg';
+      const c1 = outerOverlay?.startColor || outerBgColor;
+      const c2 = outerOverlay?.endColor || '#011B38';
+      return { background: `linear-gradient(${dir}, ${c1}, ${c2})` };
+    }
+    if (outerBgType === 'radial_gradient') {
+      const c1 = outerOverlay?.startColor || (isCrmLogin ? '#004AA5' : '#0B2E57');
+      const c2 = outerOverlay?.endColor || outerBgColor || '#011B38';
+      return { background: `radial-gradient(circle at center, ${c1} 0%, ${c2} 70%, #000E20 100%)` };
+    }
+    return {
+      backgroundColor: outerBgColor,
+      position: 'relative',
+    };
+  };
+
   return (
-    <main className={layoutClass} dir={isRtl ? 'rtl' : 'ltr'}>
-      <div className="admin-entry-shell">
+    <main
+      className={`${layoutClass} relative overflow-hidden`}
+      dir={isRtl ? 'rtl' : 'ltr'}
+      style={getOuterMainBackgroundStyle()}
+    >
+      {/* Zone A: Layer 1 - Main Background Image */}
+      {(outerBgType === 'image' || Boolean(outerBgImage)) && outerBgImage && (
+        <div
+          className="absolute inset-0 pointer-events-none overflow-hidden z-0"
+          style={{
+            backgroundImage: `url(${outerBgImage})`,
+            backgroundSize: ob?.fit === 'contain' ? 'contain' : ob?.fit === 'original' ? 'auto' : 'cover',
+            backgroundPosition: `${ob?.positionX ?? 'center'} ${ob?.positionY ?? 'center'}`,
+            backgroundRepeat: 'no-repeat',
+            transform: `translate(${ob?.customX || 0}px, ${ob?.customY || 0}px) scale(${(ob?.scale ?? 100) / 100})`,
+            transformOrigin: 'center center',
+            opacity: (ob?.opacity ?? 100) / 100,
+            filter: `brightness(${ob?.brightness ?? 100}%) contrast(${ob?.contrast ?? 100}%) saturate(${ob?.saturation ?? 100}%) blur(${ob?.blur || 0}px)`,
+          }}
+        />
+      )}
+
+      {/* Zone A: Layer 2 - Gradient Overlay */}
+      {outerOverlay?.enabled && (
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            background:
+              outerOverlay.type === 'radial'
+                ? `radial-gradient(circle at center, ${outerOverlay.startColor} 0%, ${outerOverlay.middleColor ? `${outerOverlay.middleColor} 50%, ` : ''}${outerOverlay.endColor} 100%)`
+                : `linear-gradient(${outerOverlay.direction || '135deg'}, ${outerOverlay.startColor} 0%, ${outerOverlay.middleColor ? `${outerOverlay.middleColor} 50%, ` : ''}${outerOverlay.endColor} 100%)`,
+            opacity: (outerOverlay.opacity ?? 75) / 100,
+          }}
+        />
+      )}
+
+      {/* Zone A: Subtle Geometric Pattern (when not plain transparent) */}
+      {outerBgType !== 'transparent' && (
+        <div
+          className="absolute inset-0 pointer-events-none opacity-25 z-0"
+          style={{
+            backgroundImage:
+              'repeating-radial-gradient(circle at 4% 116%, transparent 0 64px, rgba(255, 255, 255, 0.06) 64px 65.5px, transparent 65.5px 132px)',
+          }}
+        />
+      )}
+
+      {/* Zone B: Shell Card */}
+      <div
+        className="admin-entry-shell relative z-10 transition-all"
+        style={{
+          backgroundColor: mp?.bgColor || effectiveFormBg,
+          backgroundImage: mp?.bgImage ? `url(${mp.bgImage})` : undefined,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: (mp?.opacity ?? 100) / 100,
+          borderRadius: mp?.borderRadius || theme?.cardRadius || '30px',
+          borderWidth: mp?.borderColor ? '1px' : undefined,
+          borderStyle: mp?.borderColor ? 'solid' : undefined,
+          borderColor: mp?.borderColor || undefined,
+          boxShadow:
+            mp?.shadowIntensity === 'none'
+              ? 'none'
+              : mp?.shadowIntensity === 'sm'
+              ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              : mp?.shadowIntensity === 'md'
+              ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+              : mp?.shadowIntensity === 'lg'
+              ? '0 20px 25px -5px rgba(0, 0, 0, 0.15)'
+              : mp?.shadowIntensity === '2xl'
+              ? '0 35px 60px -15px rgba(0, 0, 0, 0.4)'
+              : '0 40px 110px -30px rgba(0, 15, 35, 0.65)',
+          width: theme?.layoutType === 'centered' ? 'min(100%, 520px)' : 'min(100%, 1080px)',
+          maxWidth: theme?.layoutType === 'centered' ? (mp?.width || '520px') : '1080px',
+        }}
+      >
         {theme?.layoutType !== 'centered' && (
           <ThemeVisualPanel
             config={theme || ({} as any)}
@@ -354,20 +466,23 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
           </button>
           <div className="mt-5 pt-5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-bold text-[#5E7086]">
             {isCrmLogin ? (
-              <button
-                type="button"
-                onClick={() => onNavigate('/admin')}
+              <a
+                href="/portal/login"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/portal/login');
+                }}
                 className="inline-flex items-center gap-1.5 hover:text-[#004AA5] transition-colors cursor-pointer"
               >
                 <span>🏢</span>
-                <span>{language === 'ar' ? 'الانتقال إلى لوحة إدارة الموقع' : language === 'fr' ? "Aller à l'administration du site" : 'Switch to Site Admin'}</span>
-              </button>
+                <span>{language === 'ar' ? 'الانتقال إلى بوابة الإدارة والتحكم' : language === 'fr' ? "Aller à la gestion du portail" : 'Switch to Management Portal'}</span>
+              </a>
             ) : (
               <a
-                href="/admin/login?next=crm"
+                href="/portal/login?next=crm"
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = '/admin/login?next=crm';
+                  onNavigate('/portal/login?next=crm');
                 }}
                 className="inline-flex items-center gap-1.5 hover:text-[#CC9048] transition-colors cursor-pointer"
               >

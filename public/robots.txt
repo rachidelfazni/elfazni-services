@@ -2,6 +2,12 @@
 # Allow full crawling of all public pages and assets
 User-agent: *
 Allow: /
+Disallow: /portal
+Disallow: /crm
+Disallow: /workspace
+Disallow: /hub
+Disallow: /admin
+Disallow: /api/
 
 # Canonical XML Sitemap for Google, Bing, Yandex, Applebot
-Sitemap: https://elfazni-services-online.uzmanlarltd.chatgpt.site/sitemap.xml
+Sitemap: https://elfazni.com/sitemap.xml

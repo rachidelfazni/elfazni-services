@@ -296,7 +296,7 @@ export const LoginPortal: React.FC = () => {
           {/* Cross-App Navigation Matrix */}
           <div className="mt-5 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-bold text-[#5E7086]">
             <a
-              href="/admin"
+              href="/portal"
               className="inline-flex items-center gap-1.5 hover:text-[#004AA5] transition-colors cursor-pointer"
             >
               <span>🏢</span>

@@ -420,7 +420,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({ slug, onNavigate }) 
           </div>
         )}
 
-        {/* WhatsApp Direct Help CTA */}
+        {/* Direct Help CTA */}
         <div className="mt-12 rounded-3xl bg-gradient-to-r from-[#0B2E57] via-[#004AA5] to-[#0B2E57] text-white p-6 sm:p-8 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center sm:text-start">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#E3C88F]">
@@ -438,16 +438,12 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({ slug, onNavigate }) 
           </div>
 
           <a
-            href={`https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(
-              `مرحباً رشيد الفزني، قرأت مقال "${post.title}" وأرغب في استشارة ومساعدة بخصوص معاملتي.`
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/#contact-form"
             onClick={() => tracker.trackPostEngagement(slug, 'consult_click')}
-            className="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-bold shadow-md shadow-[#25D366]/20 transition-all hover:scale-105 active:scale-95"
+            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37] hover:to-[#CC9048] text-slate-950 text-sm sm:text-base font-black shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
           >
-            <WhatsAppLogo className="w-4 h-4 fill-current" />
-            <span>{t('طلب مساعدة عبر واتساب')}</span>
+            <span>{t('طلب مساعدة واستشارة')}</span>
+            {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
           </a>
         </div>
 

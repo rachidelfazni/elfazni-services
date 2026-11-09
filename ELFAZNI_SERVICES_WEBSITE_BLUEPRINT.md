@@ -1,5 +1,5 @@
-# ELFAZNI SERVICES — Complete Website Blueprint & ChatGPT Master Prompt
-**Target Website to Upgrade:** `https://elfazni-services-online.uzmanlarltd.chatgpt.site/`  
+# ELFAZNI SERVICES — Complete Website Blueprint & Architecture
+**Official Website:** `https://elfazni.com`  
 **Brand Name:** ELFAZNI SERVICES (الـفـزنـي للـخـدمـات)  
 **Founder:** Rachid Elfazni (رشيد الفزني)  
 **Location:** Istanbul, Türkiye (إسطنبول، تركيا)  
@@ -289,10 +289,10 @@ Interactive showcase highlighting 10 specialized services with visual cards:
 
 ## 4. Ready-to-Paste Master Prompt for ChatGPT
 
-Copy the prompt block below and paste it directly into ChatGPT to rebuild or upgrade `https://elfazni-services-online.uzmanlarltd.chatgpt.site/`:
+Copy the prompt block below and paste it directly into your AI assistant to develop or upgrade `https://elfazni.com`:
 
 ```markdown
-You are a senior frontend architect and UI/UX designer. I want you to build/upgrade the official website for **ELFAZNI SERVICES (الـفـزنـي للـخـدمـات)** (`https://elfazni-services-online.uzmanlarltd.chatgpt.site/`), founded by **Rachid Elfazni (رشيد الفزني)** in Istanbul, Türkiye.
+You are a senior frontend architect and UI/UX designer. I want you to build/upgrade the official website for **ELFAZNI SERVICES (الـفـزنـي للـخـدمـات)** (`https://elfazni.com`), founded by **Rachid Elfazni (رشيد الفزني)** in Istanbul, Türkiye.
 
 ### 1. Core Brand & Contact Details
 - **Brand Name:** ELFAZNI SERVICES

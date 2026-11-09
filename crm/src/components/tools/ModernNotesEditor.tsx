@@ -9,6 +9,9 @@ import {
   Clock,
   Sparkles,
   Link2,
+  Link as LinkIcon,
+  Bold,
+  Italic,
   User,
   ExternalLink,
   Code2,
@@ -20,9 +23,13 @@ import {
   AlignLeft,
   AlignCenter,
   AlignRight,
+  AlignJustify,
   Heading1,
   Heading2,
   Heading3,
+  Heading4,
+  Heading5,
+  Heading6,
   Highlighter,
   Paperclip,
   Maximize2,
@@ -39,11 +46,32 @@ import {
   Info,
   Tag,
   Share2,
+  Undo2,
+  Redo2,
+  Underline,
+  Strikethrough,
+  Indent,
+  Outdent,
+  Quote,
+  Minus,
+  Download,
+  Printer,
+  FileDown,
+  ArrowLeftRight,
+  Check,
+  X,
+  FileText,
+  ChevronDown,
+  Copy,
+  RemoveFormatting,
+  Palette,
+  Stamp,
 } from 'lucide-react';
-import { NoteItem } from '../../services/productivityService';
+import { NoteItem, PageSetupConfig, StampConfig } from '../../services/productivityService';
 import { productivityService } from '../../services/productivityService';
 import { useCopy } from '../../i18n/useCopy';
 import { useApp } from '../../context/AppContext';
+import { DocumentPrintPreviewModal } from './DocumentPrintPreviewModal';
 import {
   WorkspaceShell,
   ResizablePanel,
@@ -68,14 +96,32 @@ interface ModernNotesEditorProps {
 
 const EMOJI_OPTIONS = ['📝', '📌', '💡', '✈️', '🏨', '🏛️', '💼', '📊', '⭐', '🎯', '📞', '⚖️'];
 
+export const NOTE_FONTS = [
+  { group: 'خطوط عربية', label: 'Bahij TheSansArabic (رسمي)', value: "'Bahij TheSansArabic', 'Bahij', sans-serif" },
+  { group: 'خطوط عربية', label: 'Cairo (القاهرة)', value: "'Cairo', sans-serif" },
+  { group: 'خطوط عربية', label: 'Tajawal (تجوال)', value: "'Tajawal', sans-serif" },
+  { group: 'خطوط عربية', label: 'Noto Sans Arabic (نوتو)', value: "'Noto Sans Arabic', sans-serif" },
+  { group: 'خطوط عربية', label: 'Amiri (الأميري التقليدي)', value: "'Amiri', serif" },
+  { group: 'خطوط لاتينية', label: 'Inter (عصري واجهات)', value: "'Inter', sans-serif" },
+  { group: 'خطوط لاتينية', label: 'Arial', value: "Arial, sans-serif" },
+  { group: 'خطوط لاتينية', label: 'Georgia', value: "Georgia, serif" },
+  { group: 'خطوط لاتينية', label: 'Times New Roman', value: "'Times New Roman', serif" },
+  { group: 'خطوط لاتينية', label: 'Roboto', value: "'Roboto', sans-serif" },
+];
+
+export const NOTE_FONT_SIZES = [10, 11, 12, 14, 16, 18, 20, 24, 28, 32, 36, 48, 72];
+
 const COLOR_OPTIONS = [
   '#0B2E57', // Navy
-  '#004AA5', // Blue
+  '#004AA5', // Primary Blue
   '#2A83D5', // Cyan/Cobalt
-  '#CC9048', // Gold
-  '#2E7D5B', // Emerald
+  '#CC9048', // Official Gold
+  '#10B981', // Emerald
+  '#DC2626', // Red
   '#8B3A62', // Wine/Rose
-  '#4A5568', // Slate
+  '#64748B', // Slate
+  '#1E293B', // Charcoal
+  '#000000', // Black
 ];
 
 const HIGHLIGHT_COLORS = [
@@ -84,6 +130,7 @@ const HIGHLIGHT_COLORS = [
   { name: 'أزرق', color: '#BAE6FD' },
   { name: 'وردي', color: '#FBCFE8' },
   { name: 'برتقالي', color: '#FED7AA' },
+  { name: 'شفاف / إزالة', color: 'transparent' },
 ];
 
 export const ModernNotesEditor: React.FC<ModernNotesEditorProps> = ({
@@ -135,8 +182,48 @@ export const ModernNotesEditor: React.FC<ModernNotesEditorProps> = ({
   const [showUnsavedGuard, setShowUnsavedGuard] = useState(false);
   const [pendingNoteSwitchId, setPendingNoteSwitchId] = useState<string | null>(null);
 
+  // Advanced Typography & Formatting States
+  const [currentFont, setCurrentFont] = useState<string>("'Bahij TheSansArabic', 'Bahij', sans-serif");
+  const [currentFontSize, setCurrentFontSize] = useState<number>(16);
+  const [editorDirection, setEditorDirection] = useState<'rtl' | 'ltr'>('rtl');
+  const [showColorPicker, setShowColorPicker] = useState<boolean>(false);
+  const [showHighlightMenu, setShowHighlightMenu] = useState<boolean>(false);
+  const [showTableModal, setShowTableModal] = useState<boolean>(false);
+  const [tableRowsInput, setTableRowsInput] = useState<number>(3);
+  const [tableColsInput, setTableColsInput] = useState<number>(3);
+  const [showLinkModal, setShowLinkModal] = useState<boolean>(false);
+  const [linkUrlInput, setLinkUrlInput] = useState<string>('');
+  const [linkTextInput, setLinkTextInput] = useState<string>('');
+  const [showExportMenu, setShowExportMenu] = useState<boolean>(false);
+  const [showPrintPreviewModal, setShowPrintPreviewModal] = useState<boolean>(false);
+  const [printPreviewInitialTab, setPrintPreviewInitialTab] = useState<'preview' | 'pageSetup' | 'stamp' | 'export'>('preview');
+
   const editorRef = useRef<HTMLDivElement>(null);
+  const exportMenuRef = useRef<HTMLDivElement>(null);
   const saveTimeoutRef = useRef<any>(null);
+
+  // Close export menu on click outside or Escape
+  useEffect(() => {
+    if (!showExportMenu) return;
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (exportMenuRef.current && !exportMenuRef.current.contains(e.target as Node)) {
+        setShowExportMenu(false);
+      }
+    };
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        e.stopPropagation();
+        setShowExportMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('keydown', handleEscape, true);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('keydown', handleEscape, true);
+    };
+  }, [showExportMenu]);
 
   const activeNote = notes.find((n) => n.id === activeNoteId) || notes[0] || null;
 
@@ -398,8 +485,272 @@ console.log("ELFAZNI Workspace Code Runner");</code></pre>
     }
   };
 
-  // Slash commands '/' handler
+  // Font family applicator
+  const applyFont = (fontValue: string) => {
+    setCurrentFont(fontValue);
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
+      const range = sel.getRangeAt(0);
+      const span = document.createElement('span');
+      span.style.fontFamily = fontValue;
+      try {
+        span.appendChild(range.extractContents());
+        range.insertNode(span);
+        sel.removeAllRanges();
+        const newRange = document.createRange();
+        newRange.selectNodeContents(span);
+        sel.addRange(newRange);
+      } catch {
+        execCmd('fontName', fontValue);
+      }
+    } else if (editorRef.current) {
+      editorRef.current.style.fontFamily = fontValue;
+    }
+    handleEditorInput();
+  };
+
+  // Font size applicator (supports 10-72px)
+  const applyFontSize = (sizePx: number) => {
+    setCurrentFontSize(sizePx);
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
+      const range = sel.getRangeAt(0);
+      const span = document.createElement('span');
+      span.style.fontSize = `${sizePx}px`;
+      try {
+        span.appendChild(range.extractContents());
+        range.insertNode(span);
+        sel.removeAllRanges();
+        const newRange = document.createRange();
+        newRange.selectNodeContents(span);
+        sel.addRange(newRange);
+      } catch {
+        execCmd('fontSize', '3');
+      }
+    }
+    handleEditorInput();
+  };
+
+  const stepFontSize = (delta: number) => {
+    const next = Math.max(8, Math.min(96, currentFontSize + delta));
+    applyFontSize(next);
+  };
+
+  // Direction toggle
+  const toggleDirection = () => {
+    const nextDir = editorDirection === 'rtl' ? 'ltr' : 'rtl';
+    setEditorDirection(nextDir);
+    if (editorRef.current) {
+      editorRef.current.dir = nextDir;
+    }
+    handleEditorInput();
+  };
+
+  // Insert Checklist
+  const insertChecklist = () => {
+    const html = `<div class="ws-checklist-item flex items-center gap-2 my-1" contenteditable="false"><input type="checkbox" class="w-4 h-4 text-emerald-600 rounded cursor-pointer" onclick="this.nextElementSibling.classList.toggle('line-through', this.checked); this.nextElementSibling.classList.toggle('text-slate-400', this.checked);" /><span contenteditable="true" class="flex-1">عنصر قائمة تدقيق جديد...</span></div><p><br/></p>`;
+    insertHtmlAtCursor(html);
+  };
+
+  // Insert Link
+  const handleInsertLink = () => {
+    if (!linkUrlInput.trim()) return;
+    const url = linkUrlInput.trim().startsWith('http') ? linkUrlInput.trim() : `https://${linkUrlInput.trim()}`;
+    const text = linkTextInput.trim() || url;
+    const html = `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline font-semibold hover:text-blue-800">${text}</a> `;
+    insertHtmlAtCursor(html);
+    setShowLinkModal(false);
+    setLinkUrlInput('');
+    setLinkTextInput('');
+  };
+
+  // Insert Table with header row and styled cells
+  const handleInsertCustomTable = () => {
+    insertTable(tableRowsInput || 3, tableColsInput || 3);
+    setShowTableModal(false);
+  };
+
+  // Duplicate Document
+  const handleDuplicateNote = async () => {
+    if (!activeNote) return;
+    const duplicated: NoteItem = {
+      ...activeNote,
+      id: `n_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+      title: `${activeNote.title} (نسخة مكررة)`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    const nextNotes = [duplicated, ...notes];
+    onNotesChange(nextNotes);
+    setActiveNoteId(duplicated.id);
+    await productivityService.saveNote(duplicated, username);
+  };
+
+  // Professional Document Printing, Export & Stamp Handlers
+  const handleOpenPrintPreview = (tab: 'preview' | 'pageSetup' | 'stamp' | 'export' = 'preview') => {
+    setPrintPreviewInitialTab(tab);
+    setShowPrintPreviewModal(true);
+    setShowExportMenu(false);
+  };
+
+  const handlePrintDocument = () => {
+    setShowExportMenu(false);
+    window.print();
+  };
+
+  const handleExportPdfDirect = async (isStamped: boolean = false) => {
+    setShowExportMenu(false);
+    if (!activeNote) return;
+    const currentHtml = editorRef.current?.innerHTML || activeNote.contentHtml || activeNote.body || '';
+    const currentTitle = activeNote.title || 'وثيقة الفزني للخدمات';
+
+    try {
+      const payload = {
+        title: currentTitle,
+        html: currentHtml,
+        pageSetup: activeNote.pageSetup || { paperSize: 'A4', orientation: 'portrait' },
+        stampConfig: activeNote.stampConfig || {
+          enabled: true,
+          stampId: 'stamp_official_blue',
+          stampUrl: '/assets/stamps/elfazni-official-stamp.png',
+          stampName: 'خاتم رسمي معتمد — الفزني للخدمات',
+          presetPosition: 'bottom_right',
+          xPercent: 80,
+          yPercent: 85,
+          scalePercent: 100,
+          rotationDeg: -5,
+          opacityPercent: 90,
+        },
+        isStamped,
+      };
+
+      const res = await fetch('/api/documents/export-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || 'فشل توليد ملف PDF من الخادم');
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      const suffix = isStamped ? '-مختوم' : '-نظيف';
+      link.download = `${currentTitle.replace(/[^a-zA-Z0-9_\u0600-\u06FF-]/g, '_')}${suffix}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err: any) {
+      alert('خطأ أثناء تصدير PDF: ' + err.message);
+    }
+  };
+
+  const handleExportWordDirect = async () => {
+    setShowExportMenu(false);
+    if (!activeNote) return;
+    const currentHtml = editorRef.current?.innerHTML || activeNote.contentHtml || activeNote.body || '';
+    const currentTitle = activeNote.title || 'وثيقة الفزني للخدمات';
+
+    try {
+      const payload = {
+        title: currentTitle,
+        html: currentHtml,
+        pageSetup: activeNote.pageSetup,
+        stampConfig: activeNote.stampConfig,
+      };
+
+      const res = await fetch('/api/documents/export-docx', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || 'فشل توليد مستند Word من الخادم');
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${currentTitle.replace(/[^a-zA-Z0-9_\u0600-\u06FF-]/g, '_')}.docx`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err: any) {
+      alert('خطأ أثناء تصدير Word: ' + err.message);
+    }
+  };
+
+  const handleSaveDocumentSettings = (pageSetup: PageSetupConfig, stampConfig: StampConfig) => {
+    handleUpdateActiveNote({ pageSetup, stampConfig }, true);
+  };
+
+  const handleExportHtml = () => {
+    if (!activeNote) return;
+    const content = `<!DOCTYPE html><html dir="${editorDirection}" lang="ar"><head><meta charset="utf-8"><title>${activeNote.title}</title><style>body{font-family:'Bahij TheSansArabic',sans-serif;max-width:800px;margin:2rem auto;padding:1rem;line-height:1.6;}</style></head><body><h1>${activeNote.title}</h1>${editorRef.current?.innerHTML || activeNote.contentHtml || activeNote.body}</body></html>`;
+    const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${activeNote.title.replace(/[^a-zA-Z0-9_\u0600-\u06FF-]/g, '_')}.html`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+
+  const handleExportMarkdown = () => {
+    if (!activeNote) return;
+    const text = `# ${activeNote.title}\n\n${activeNote.body}`;
+    const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${activeNote.title.replace(/[^a-zA-Z0-9_\u0600-\u06FF-]/g, '_')}.md`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+
+  // Keyboard shortcut & Slash commands '/' handler
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const isCmdOrCtrl = e.ctrlKey || e.metaKey;
+
+    if (isCmdOrCtrl && e.key.toLowerCase() === 'z') {
+      e.preventDefault();
+      if (e.shiftKey) {
+        execCmd('redo');
+      } else {
+        execCmd('undo');
+      }
+      return;
+    }
+    if (isCmdOrCtrl && e.key.toLowerCase() === 'y') {
+      e.preventDefault();
+      execCmd('redo');
+      return;
+    }
+    if (isCmdOrCtrl && e.key.toLowerCase() === 'b') {
+      e.preventDefault();
+      execCmd('bold');
+      return;
+    }
+    if (isCmdOrCtrl && e.key.toLowerCase() === 'i') {
+      e.preventDefault();
+      execCmd('italic');
+      return;
+    }
+    if (isCmdOrCtrl && e.key.toLowerCase() === 'u') {
+      e.preventDefault();
+      execCmd('underline');
+      return;
+    }
+
     if (e.key === '/') {
       const sel = window.getSelection();
       if (sel && sel.rangeCount > 0) {
@@ -831,205 +1182,486 @@ console.log("ELFAZNI Workspace Code Runner");</code></pre>
               </header>
 
               {/* Rich WYSIWYG Modern Editing Toolbar (Wrapped to PREVENT overflow clipping) */}
-              <div className="px-3 py-1.5 border-b border-[#D7E7F7] bg-slate-50 flex flex-wrap items-center gap-1 text-xs shrink-0 select-none overflow-x-auto scrollbar-none">
-                {/* Headings */}
-                <button
-                  type="button"
-                  onClick={() => execCmd('formatBlock', '<h1>')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="عنوان رئيسي H1"
-                >
-                  <Heading1 size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('formatBlock', '<h2>')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="عنوان فرعي H2"
-                >
-                  <Heading2 size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('formatBlock', '<h3>')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="عنوان قسم H3"
-                >
-                  <Heading3 size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('formatBlock', '<p>')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 text-xs font-bold transition cursor-pointer"
-                  title="فقرة عادية"
-                >
-                  P
-                </button>
-
-                <span className="w-px h-4 bg-slate-300 mx-1" />
-
-                {/* Inline Formatting */}
-                <button
-                  type="button"
-                  onClick={() => execCmd('bold')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-800 font-bold transition cursor-pointer"
-                  title="عريض (Ctrl+B)"
-                >
-                  B
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('italic')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-800 italic transition cursor-pointer"
-                  title="مائل (Ctrl+I)"
-                >
-                  I
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('underline')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-800 underline transition cursor-pointer"
-                  title="تسطير (Ctrl+U)"
-                >
-                  U
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('strikeThrough')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-800 line-through transition cursor-pointer"
-                  title="يتوسطه خط"
-                >
-                  S
-                </button>
-
-                <span className="w-px h-4 bg-slate-300 mx-1" />
-
-                {/* Colors */}
+              <div className="px-3 py-1.5 border-b border-[#D7E7F7] bg-slate-50 flex flex-wrap items-center gap-1.5 text-xs shrink-0 select-none overflow-x-auto scrollbar-none">
+                {/* 1. History (Undo / Redo) */}
                 <div className="flex items-center gap-0.5">
-                  {COLOR_OPTIONS.slice(0, 4).map((c) => (
-                    <button
-                      key={c}
-                      type="button"
-                      onClick={() => execCmd('foreColor', c)}
-                      className="w-4 h-4 rounded-full border border-white/50 shadow-2xs hover:scale-110 transition cursor-pointer"
-                      style={{ backgroundColor: c }}
-                      title="لون الخط"
-                    />
-                  ))}
-                </div>
-
-                <span className="w-px h-4 bg-slate-300 mx-1" />
-
-                {/* Alignment */}
-                <button
-                  type="button"
-                  onClick={() => execCmd('justifyRight')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="محاذاة لليمين"
-                >
-                  <AlignRight size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('justifyCenter')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="محاذاة للوسط"
-                >
-                  <AlignCenter size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('justifyLeft')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="محاذاة لليسار"
-                >
-                  <AlignLeft size={14} />
-                </button>
-
-                <span className="w-px h-4 bg-slate-300 mx-1" />
-
-                {/* Lists & Checkboxes */}
-                <button
-                  type="button"
-                  onClick={() => execCmd('insertUnorderedList')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="قائمة نقطية"
-                >
-                  <List size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => execCmd('insertOrderedList')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="قائمة رقمية"
-                >
-                  <ListOrdered size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    insertHtmlAtCursor(
-                      `<div class="flex items-center gap-2 my-1"><input type="checkbox" class="w-4 h-4 text-emerald-600 rounded" /> <span>مهمة تدقيق…</span></div><p><br/></p>`
-                    )
-                  }
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
-                  title="قائمة مهام تفاعلية"
-                >
-                  <CheckSquare size={14} />
-                </button>
-
-                <span className="w-px h-4 bg-slate-300 mx-1" />
-
-                {/* Advanced Structured Inserts */}
-                <button
-                  type="button"
-                  onClick={insertCallout}
-                  className="p-1.5 rounded hover:bg-slate-200 text-amber-700 transition cursor-pointer"
-                  title="إدراج تنبيه مميز (Callout)"
-                >
-                  <Sparkles size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => insertCodeBlock('javascript')}
-                  className="p-1.5 rounded hover:bg-slate-200 text-slate-800 transition cursor-pointer"
-                  title="إدراج كتلة كود برمجية مع شريط نسخ"
-                >
-                  <Code2 size={14} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => insertTable(3, 3)}
-                  className="p-1.5 rounded hover:bg-slate-200 text-emerald-700 transition cursor-pointer"
-                  title="إدراج جدول بيانات متجاوب"
-                >
-                  <TableIcon size={14} />
-                </button>
-
-                {/* Image & Attachment triggers */}
-                <label className="p-1.5 rounded hover:bg-slate-200 text-blue-600 cursor-pointer transition" title="إدراج صورة">
-                  <ImageIcon size={14} />
-                  <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-                </label>
-                <label className="p-1.5 rounded hover:bg-slate-200 text-slate-700 cursor-pointer transition" title="إرفاق ملف">
-                  <Paperclip size={14} />
-                  <input type="file" onChange={handleAttachmentUpload} className="hidden" />
-                </label>
-
-                {/* Markdown Export */}
-                <div className="ms-auto flex items-center gap-1">
                   <button
                     type="button"
-                    onClick={() => {
-                      const text = `# ${activeNote.title}\n\n${activeNote.body}`;
-                      navigator.clipboard.writeText(text);
-                      alert('تم نسخ الملاحظة بتنسيق Markdown.');
-                    }}
-                    className="px-2 py-1 rounded border border-slate-200 hover:bg-white text-slate-700 text-[11px] font-mono transition cursor-pointer"
-                    title="نسخ بصيغة Markdown"
+                    onClick={() => execCmd('undo')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="تراجع (Ctrl+Z)"
+                    aria-label="تراجع"
                   >
-                    Markdown
+                    <Undo2 size={14} />
                   </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('redo')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="إعادة (Ctrl+Y)"
+                    aria-label="إعادة"
+                  >
+                    <Redo2 size={14} />
+                  </button>
+                </div>
+
+                <span className="w-px h-4 bg-slate-300 mx-0.5" />
+
+                {/* 2. Font Family Selector */}
+                <div className="flex items-center">
+                  <select
+                    value={currentFont}
+                    onChange={(e) => applyFont(e.target.value)}
+                    className="h-7 px-2 py-0.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer max-w-[130px]"
+                    title="نوع الخط (Font Family)"
+                  >
+                    {NOTE_FONTS.map((f) => (
+                      <option key={f.value} value={f.value}>
+                        {f.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* 3. Font Size Controls */}
+                <div className="flex items-center gap-1">
+                  <select
+                    value={currentFontSize}
+                    onChange={(e) => applyFontSize(Number(e.target.value))}
+                    className="h-7 px-1.5 py-0.5 bg-white border border-slate-200 rounded-lg text-xs font-mono text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer w-16"
+                    title="حجم الخط"
+                  >
+                    {NOTE_FONT_SIZES.map((s) => (
+                      <option key={s} value={s}>
+                        {s}px
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    type="button"
+                    onClick={() => stepFontSize(2)}
+                    className="h-7 px-1.5 rounded hover:bg-slate-200 text-slate-700 font-bold text-xs transition cursor-pointer"
+                    title="تكبير الخط (A+)"
+                  >
+                    A+
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => stepFontSize(-2)}
+                    className="h-7 px-1.5 rounded hover:bg-slate-200 text-slate-700 font-bold text-xs transition cursor-pointer"
+                    title="تصغير الخط (A-)"
+                  >
+                    A-
+                  </button>
+                </div>
+
+                <span className="w-px h-4 bg-slate-300 mx-0.5" />
+
+                {/* 4. Headings & Blocks */}
+                <select
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      execCmd('formatBlock', e.target.value);
+                      e.target.value = '';
+                    }
+                  }}
+                  defaultValue=""
+                  className="h-7 px-2 py-0.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer"
+                  title="نمط النص والعناوين"
+                >
+                  <option value="" disabled>
+                    نمط النص
+                  </option>
+                  <option value="<p>">فقرة عادية P</option>
+                  <option value="<h1>">عنوان رئيسي H1</option>
+                  <option value="<h2>">عنوان فرعي H2</option>
+                  <option value="<h3>">عنوان قسم H3</option>
+                  <option value="<h4>">عنوان فرعي H4</option>
+                  <option value="<h5>">عنوان فرعي H5</option>
+                  <option value="<h6>">عنوان تفصيلي H6</option>
+                </select>
+
+                <span className="w-px h-4 bg-slate-300 mx-0.5" />
+
+                {/* 5. Inline Formatting */}
+                <div className="flex items-center gap-0.5">
+                  <button
+                    type="button"
+                    onClick={() => execCmd('bold')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-800 transition cursor-pointer"
+                    title="عريض (Ctrl+B)"
+                  >
+                    <Bold size={13} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('italic')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-800 transition cursor-pointer"
+                    title="مائل (Ctrl+I)"
+                  >
+                    <Italic size={13} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('underline')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-800 transition cursor-pointer"
+                    title="تسطير (Ctrl+U)"
+                  >
+                    <Underline size={13} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('strikeThrough')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-800 transition cursor-pointer"
+                    title="يتوسطه خط"
+                  >
+                    <Strikethrough size={13} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('removeFormat')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-600 transition cursor-pointer"
+                    title="إزالة التنسيق"
+                  >
+                    <RemoveFormatting size={13} />
+                  </button>
+                </div>
+
+                <span className="w-px h-4 bg-slate-300 mx-0.5" />
+
+                {/* 6. Text Color & Highlights */}
+                <div className="flex items-center gap-1">
+                  <label className="p-1.5 rounded hover:bg-slate-200 text-slate-700 cursor-pointer transition relative flex items-center" title="لون النص">
+                    <Palette size={14} className="text-[#004AA5]" />
+                    <input
+                      type="color"
+                      defaultValue="#0B2E57"
+                      onChange={(e) => execCmd('foreColor', e.target.value)}
+                      className="opacity-0 w-0 h-0 absolute pointer-events-none"
+                    />
+                  </label>
+                  <label className="p-1.5 rounded hover:bg-slate-200 text-slate-700 cursor-pointer transition relative flex items-center" title="لون التمييز (Highlight)">
+                    <Highlighter size={14} className="text-amber-500" />
+                    <input
+                      type="color"
+                      defaultValue="#FEF08A"
+                      onChange={(e) => execCmd('hiliteColor', e.target.value)}
+                      className="opacity-0 w-0 h-0 absolute pointer-events-none"
+                    />
+                  </label>
+                </div>
+
+                <span className="w-px h-4 bg-slate-300 mx-0.5" />
+
+                {/* 7. Alignment & Direction */}
+                <div className="flex items-center gap-0.5">
+                  <button
+                    type="button"
+                    onClick={() => execCmd('justifyRight')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="محاذاة لليمين"
+                  >
+                    <AlignRight size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('justifyCenter')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="محاذاة للوسط"
+                  >
+                    <AlignCenter size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('justifyLeft')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="محاذاة لليسار"
+                  >
+                    <AlignLeft size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('justifyFull')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="ضبط النص (Justify)"
+                  >
+                    <AlignJustify size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={toggleDirection}
+                    className="px-1.5 py-0.5 rounded hover:bg-slate-200 text-slate-700 font-mono text-[10px] font-bold transition cursor-pointer flex items-center gap-0.5 border border-slate-200"
+                    title="تبديل اتجاه الكتابة (RTL / LTR)"
+                  >
+                    <ArrowLeftRight size={11} />
+                    <span>{editorDirection.toUpperCase()}</span>
+                  </button>
+                </div>
+
+                <span className="w-px h-4 bg-slate-300 mx-0.5" />
+
+                {/* 8. Lists & Indents */}
+                <div className="flex items-center gap-0.5">
+                  <button
+                    type="button"
+                    onClick={() => execCmd('insertUnorderedList')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="قائمة نقطية"
+                  >
+                    <List size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('insertOrderedList')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="قائمة رقمية"
+                  >
+                    <ListOrdered size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={insertChecklist}
+                    className="p-1.5 rounded hover:bg-slate-200 text-emerald-700 transition cursor-pointer"
+                    title="قائمة مهام تفاعلية (Checklist)"
+                  >
+                    <CheckSquare size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('outdent')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="إنقاص المسافة البادئة"
+                  >
+                    <Outdent size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('indent')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="زيادة المسافة البادئة"
+                  >
+                    <Indent size={14} />
+                  </button>
+                </div>
+
+                <span className="w-px h-4 bg-slate-300 mx-0.5" />
+
+                {/* 9. Structured Inserts */}
+                <div className="flex items-center gap-0.5">
+                  <button
+                    type="button"
+                    onClick={() => execCmd('formatBlock', '<blockquote>')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="اقتباس (Quote)"
+                  >
+                    <Quote size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => execCmd('insertHorizontalRule')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="فاصل أفقي"
+                  >
+                    <Minus size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowLinkModal(true)}
+                    className="p-1.5 rounded hover:bg-slate-200 text-blue-600 transition cursor-pointer"
+                    title="إدراج رابط تشعبي"
+                  >
+                    <LinkIcon size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowTableModal(true)}
+                    className="p-1.5 rounded hover:bg-slate-200 text-emerald-700 transition cursor-pointer"
+                    title="إدراج جدول بيانات مخصص"
+                  >
+                    <TableIcon size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => insertCodeBlock('javascript')}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-800 transition cursor-pointer"
+                    title="إدراج كتلة كود برمجية"
+                  >
+                    <Code2 size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={insertCallout}
+                    className="p-1.5 rounded hover:bg-slate-200 text-amber-700 transition cursor-pointer"
+                    title="إدراج صندوق توجيه (Callout)"
+                  >
+                    <Sparkles size={14} />
+                  </button>
+                  <label className="p-1.5 rounded hover:bg-slate-200 text-blue-600 cursor-pointer transition" title="إدراج صورة">
+                    <ImageIcon size={14} />
+                    <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+                  </label>
+                  <label className="p-1.5 rounded hover:bg-slate-200 text-slate-700 cursor-pointer transition" title="إرفاق ملف">
+                    <Paperclip size={14} />
+                    <input type="file" onChange={handleAttachmentUpload} className="hidden" />
+                  </label>
+                </div>
+
+                {/* 10. Actions & Export Menu (End aligned) */}
+                <div className="ms-auto flex items-center gap-1.5">
+                  {/* Add Stamp Button */}
+                  <button
+                    type="button"
+                    onClick={() => handleOpenPrintPreview('stamp')}
+                    className="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold transition cursor-pointer flex items-center gap-1.5 shadow-2xs"
+                    title="إدارة وإضافة ختم رسمي للمستند"
+                  >
+                    <Stamp size={13} className="text-[#CC9048]" />
+                    <span className="hidden sm:inline">إضافة ختم</span>
+                    {activeNote?.stampConfig?.enabled && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleDuplicateNote}
+                    className="p-1.5 rounded hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+                    title="تكرار الملاحظة (Duplicate)"
+                  >
+                    <Copy size={13} />
+                  </button>
+
+                  {/* 8-Option Professional Export Menu */}
+                  <div ref={exportMenuRef} className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setShowExportMenu(!showExportMenu)}
+                      className="px-2 py-1 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold transition cursor-pointer flex items-center gap-1 shadow-2xs"
+                      title="تصدير المستند"
+                    >
+                      <Download size={13} />
+                      <span className="hidden sm:inline">تصدير</span>
+                      <ChevronDown size={11} />
+                    </button>
+                    {showExportMenu && (
+                      <div className="absolute end-0 top-full mt-1 w-56 bg-white rounded-xl shadow-xl border border-slate-200 py-1.5 z-50 text-xs animate-in fade-in duration-100 divide-y divide-slate-100">
+                        {/* Core Export Actions */}
+                        <div className="py-1">
+                          {/* 1. حفظ بصيغة PDF */}
+                          <button
+                            type="button"
+                            onClick={() => handleExportPdfDirect(activeNote?.stampConfig?.enabled ?? false)}
+                            className="w-full text-start px-3 py-1.5 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-slate-800 font-bold"
+                          >
+                            <Printer size={14} className="text-rose-600" />
+                            <span>حفظ بصيغة PDF</span>
+                          </button>
+
+                          {/* 2. حفظ بصيغة Word */}
+                          <button
+                            type="button"
+                            onClick={handleExportWordDirect}
+                            className="w-full text-start px-3 py-1.5 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-slate-800 font-bold"
+                          >
+                            <FileDown size={14} className="text-blue-600" />
+                            <span>حفظ بصيغة Word</span>
+                          </button>
+
+                          {/* 3. طباعة المستند */}
+                          <button
+                            type="button"
+                            onClick={handlePrintDocument}
+                            className="w-full text-start px-3 py-1.5 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-slate-800"
+                          >
+                            <Printer size={14} className="text-slate-600" />
+                            <span>طباعة المستند</span>
+                          </button>
+                        </div>
+
+                        {/* Setup & Previews */}
+                        <div className="py-1">
+                          {/* 4. معاينة قبل الطباعة */}
+                          <button
+                            type="button"
+                            onClick={() => handleOpenPrintPreview('preview')}
+                            className="w-full text-start px-3 py-1.5 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-slate-800 font-medium"
+                          >
+                            <FileText size={14} className="text-emerald-600" />
+                            <span>معاينة قبل الطباعة</span>
+                          </button>
+
+                          {/* 5. إعدادات الصفحة */}
+                          <button
+                            type="button"
+                            onClick={() => handleOpenPrintPreview('pageSetup')}
+                            className="w-full text-start px-3 py-1.5 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-slate-800 font-medium"
+                          >
+                            <SlidersHorizontal size={14} className="text-slate-500" />
+                            <span>إعدادات الصفحة</span>
+                          </button>
+
+                          {/* 6. إضافة ختم */}
+                          <button
+                            type="button"
+                            onClick={() => handleOpenPrintPreview('stamp')}
+                            className="w-full text-start px-3 py-1.5 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-amber-900 font-bold bg-amber-50/50"
+                          >
+                            <Stamp size={14} className="text-[#CC9048]" />
+                            <span>إضافة ختم</span>
+                          </button>
+                        </div>
+
+                        {/* Stamped & Clean Specific Exports */}
+                        <div className="py-1">
+                          {/* 7. تصدير نسخة مختومة */}
+                          <button
+                            type="button"
+                            onClick={() => handleExportPdfDirect(true)}
+                            className="w-full text-start px-3 py-1.5 hover:bg-blue-50 flex items-center gap-2 cursor-pointer text-[#004AA5] font-bold"
+                          >
+                            <Stamp size={14} className="text-[#004AA5]" />
+                            <span>تصدير نسخة مختومة (PDF)</span>
+                          </button>
+
+                          {/* 8. تصدير نسخة بدون ختم */}
+                          <button
+                            type="button"
+                            onClick={() => handleExportPdfDirect(false)}
+                            className="w-full text-start px-3 py-1.5 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-slate-700"
+                          >
+                            <FileText size={14} className="text-slate-400" />
+                            <span>تصدير نسخة بدون ختم (Clean)</span>
+                          </button>
+                        </div>
+
+                        {/* Extra Exports (HTML / Markdown) */}
+                        <div className="pt-1">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setShowExportMenu(false);
+                              handleExportHtml();
+                            }}
+                            className="w-full text-start px-3 py-1 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-slate-500 text-[11px]"
+                          >
+                            <FileText size={12} className="text-emerald-500" />
+                            <span>تصدير HTML</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setShowExportMenu(false);
+                              handleExportMarkdown();
+                            }}
+                            className="w-full text-start px-3 py-1 hover:bg-slate-100 flex items-center gap-2 cursor-pointer text-slate-500 text-[11px]"
+                          >
+                            <Code2 size={12} className="text-amber-500" />
+                            <span>تصدير Markdown</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -1382,6 +2014,126 @@ console.log("ELFAZNI Workspace Code Runner");</code></pre>
         )}
       </WorkspaceShell>
 
+      {/* Insert Link Modal */}
+      {showLinkModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-2xs p-4 animate-in fade-in duration-150">
+          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-sm w-full p-4 space-y-3" dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+              <h3 className="text-sm font-bold text-[#0B2E57] flex items-center gap-1.5">
+                <LinkIcon size={14} className="text-blue-600" />
+                <span>إدراج رابط تشعبي</span>
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowLinkModal(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 transition cursor-pointer"
+              >
+                <X size={14} />
+              </button>
+            </div>
+            <div className="space-y-2 text-xs">
+              <div>
+                <label className="block text-slate-600 mb-1 font-medium">عنوان الرابط (النص المعروض):</label>
+                <input
+                  type="text"
+                  value={linkTextInput}
+                  onChange={(e) => setLinkTextInput(e.target.value)}
+                  placeholder="مثال: موقع الوزارة الرسمي"
+                  className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-blue-500 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-slate-600 mb-1 font-medium">الرابط الإلكتروني (URL):</label>
+                <input
+                  type="url"
+                  value={linkUrlInput}
+                  onChange={(e) => setLinkUrlInput(e.target.value)}
+                  placeholder="https://example.com"
+                  className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-mono focus:ring-1 focus:ring-blue-500 outline-none"
+                />
+              </div>
+            </div>
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setShowLinkModal(false)}
+                className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-medium cursor-pointer"
+              >
+                إلغاء
+              </button>
+              <button
+                type="button"
+                onClick={handleInsertLink}
+                className="px-3 py-1.5 rounded-lg bg-[#004AA5] text-white hover:bg-blue-600 text-xs font-bold shadow-xs cursor-pointer"
+              >
+                إدراج الرابط
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Insert Table Modal */}
+      {showTableModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-2xs p-4 animate-in fade-in duration-150">
+          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-xs w-full p-4 space-y-3" dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+              <h3 className="text-sm font-bold text-[#0B2E57] flex items-center gap-1.5">
+                <TableIcon size={14} className="text-emerald-600" />
+                <span>إدراج جدول بيانات</span>
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowTableModal(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 transition cursor-pointer"
+              >
+                <X size={14} />
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-3 text-xs">
+              <div>
+                <label className="block text-slate-600 mb-1 font-medium">عدد الصفوف:</label>
+                <input
+                  type="number"
+                  min={1}
+                  max={20}
+                  value={tableRowsInput}
+                  onChange={(e) => setTableRowsInput(Math.max(1, parseInt(e.target.value) || 1))}
+                  className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-mono focus:ring-1 focus:ring-emerald-500 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-slate-600 mb-1 font-medium">عدد الأعمدة:</label>
+                <input
+                  type="number"
+                  min={1}
+                  max={10}
+                  value={tableColsInput}
+                  onChange={(e) => setTableColsInput(Math.max(1, parseInt(e.target.value) || 1))}
+                  className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-mono focus:ring-1 focus:ring-emerald-500 outline-none"
+                />
+              </div>
+            </div>
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setShowTableModal(false)}
+                className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-medium cursor-pointer"
+              >
+                إلغاء
+              </button>
+              <button
+                type="button"
+                onClick={handleInsertCustomTable}
+                className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 text-xs font-bold shadow-xs cursor-pointer"
+              >
+                إدراج الجدول
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Unsaved Changes Guard Dialog */}
       <UnsavedChangesGuard
         open={showUnsavedGuard}
@@ -1407,6 +2159,23 @@ console.log("ELFAZNI Workspace Code Runner");</code></pre>
         }}
         isRtl={isRTL}
       />
+
+      {/* Professional Document Printing, Export & Stamp Preview Modal */}
+      {showPrintPreviewModal && (
+        <DocumentPrintPreviewModal
+          isOpen={showPrintPreviewModal}
+          onClose={() => setShowPrintPreviewModal(false)}
+          documentTitle={activeNote?.title || 'وثيقة الفزني للخدمات'}
+          documentHtml={editorRef.current?.innerHTML || activeNote?.contentHtml || activeNote?.body || ''}
+          initialPageSetup={activeNote?.pageSetup}
+          initialStampConfig={activeNote?.stampConfig}
+          initialTab={printPreviewInitialTab}
+          onSaveSettings={handleSaveDocumentSettings}
+          onNotification={(msg, type) => {
+            console.log(`[DocumentPrintPreviewModal] [${type || 'info'}]:`, msg);
+          }}
+        />
+      )}
     </div>
   );
 };

@@ -62,14 +62,10 @@ export const ResizeHandle: React.FC<ResizeHandleProps> = ({
       delta = -delta;
     }
 
-    if (rafIdRef.current) {
-      cancelAnimationFrame(rafIdRef.current);
-    }
-
-    rafIdRef.current = requestAnimationFrame(() => {
+    if (delta !== 0) {
       onResize(delta);
       dragStartPosRef.current = currentPos;
-    });
+    }
   };
 
   const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -82,11 +78,6 @@ export const ResizeHandle: React.FC<ResizeHandleProps> = ({
     }
 
     setIsDragging(false);
-
-    if (rafIdRef.current) {
-      cancelAnimationFrame(rafIdRef.current);
-      rafIdRef.current = null;
-    }
 
     if (typeof document !== 'undefined') {
       document.body.classList.remove('ws-resizing-active');

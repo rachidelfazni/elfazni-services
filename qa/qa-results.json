@@ -1,0 +1,240 @@
+[
+  {
+    "module": "Airlines Marquee",
+    "test": "Air France completely absent from rendered DOM",
+    "passed": true,
+    "details": "Matching elements: 0",
+    "screenshot": ""
+  },
+  {
+    "module": "Airlines Marquee",
+    "test": "Remaining partner airlines rendered seamlessly",
+    "passed": true,
+    "details": "Distinct airline brands detected: 15",
+    "screenshot": ""
+  },
+  {
+    "module": "Airlines Marquee",
+    "test": "Desktop screenshot captured",
+    "passed": true,
+    "details": "qa/airline-partners/after/airlines-desktop-1440.png",
+    "screenshot": "qa/airline-partners/after/airlines-desktop-1440.png"
+  },
+  {
+    "module": "Airlines Marquee",
+    "test": "Mobile screenshot captured",
+    "passed": true,
+    "details": "qa/airline-partners/after/airlines-mobile-390.png",
+    "screenshot": "qa/airline-partners/after/airlines-mobile-390.png"
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Initial list width conforms to default constraint",
+    "passed": true,
+    "details": "Width: 340px (expected ~340px)",
+    "screenshot": ""
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Desktop initial screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-live-chat/before/01-livechat-desktop-initial.png",
+    "screenshot": "qa/resizable-panels/admin-live-chat/before/01-livechat-desktop-initial.png"
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Separator displays col-resize cursor on hover",
+    "passed": true,
+    "details": "Cursor: col-resize",
+    "screenshot": ""
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Continuous drag updates panel width smoothly",
+    "passed": true,
+    "details": "Initial: 340px -> Dragged: 420px",
+    "screenshot": ""
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Desktop dragged screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-live-chat/after/01-livechat-desktop-dragged.png",
+    "screenshot": "qa/resizable-panels/admin-live-chat/after/01-livechat-desktop-dragged.png"
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Width preference persisted to localStorage",
+    "passed": true,
+    "details": "Stored: 420px",
+    "screenshot": ""
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Width preference faithfully restored on reload",
+    "passed": true,
+    "details": "Restored: 420px",
+    "screenshot": ""
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Double-click separator resets panel width to default (340px)",
+    "passed": true,
+    "details": "Reset to: 340px",
+    "screenshot": ""
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Desktop reset screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-live-chat/desktop/03-livechat-desktop-reset.png",
+    "screenshot": "qa/resizable-panels/admin-live-chat/desktop/03-livechat-desktop-reset.png"
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Tablet default screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-live-chat/tablet/01-livechat-tablet-default.png",
+    "screenshot": "qa/resizable-panels/admin-live-chat/tablet/01-livechat-tablet-default.png"
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Tablet toggle button hides/shows visitor list",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-live-chat/tablet/02-livechat-tablet-toggled.png",
+    "screenshot": "qa/resizable-panels/admin-live-chat/tablet/02-livechat-tablet-toggled.png"
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Mobile visitor list screen screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-live-chat/mobile/01-livechat-mobile-visitor-list.png",
+    "screenshot": "qa/resizable-panels/admin-live-chat/mobile/01-livechat-mobile-visitor-list.png"
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Mobile active chat displays visible \"العودة إلى المحادثات\" back button",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-live-chat/mobile/02-livechat-mobile-active-chat.png",
+    "screenshot": "qa/resizable-panels/admin-live-chat/mobile/02-livechat-mobile-active-chat.png"
+  },
+  {
+    "module": "Admin Live Chat",
+    "test": "Back button successfully returns to visitor list",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-live-chat/mobile/03-livechat-mobile-back-to-list.png",
+    "screenshot": "qa/resizable-panels/admin-live-chat/mobile/03-livechat-mobile-back-to-list.png"
+  },
+  {
+    "module": "Admin Mailbox",
+    "test": "Initial view screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-inbox/01-mailbox-initial.png",
+    "screenshot": "qa/resizable-panels/admin-inbox/01-mailbox-initial.png"
+  },
+  {
+    "module": "Admin Mailbox",
+    "test": "Drag resized panel and persisted elfazni_mailbox_list_width",
+    "passed": true,
+    "details": "Initial: 340px -> Dragged: 410px (Stored: 410px)",
+    "screenshot": "qa/resizable-panels/admin-inbox/02-mailbox-dragged.png"
+  },
+  {
+    "module": "Admin Mailbox",
+    "test": "Double-click reset mailbox width to 340px",
+    "passed": true,
+    "details": "qa/resizable-panels/admin-inbox/03-mailbox-reset.png",
+    "screenshot": "qa/resizable-panels/admin-inbox/03-mailbox-reset.png"
+  },
+  {
+    "module": "CRM Customers",
+    "test": "Initial ContactWorkspace screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/crm-customers/01-contacts-initial.png",
+    "screenshot": "qa/resizable-panels/crm-customers/01-contacts-initial.png"
+  },
+  {
+    "module": "CRM Customers",
+    "test": "Directory ResizeHandle present in DOM",
+    "passed": true,
+    "details": "#handle-crm-contact-directory",
+    "screenshot": ""
+  },
+  {
+    "module": "CRM Customers",
+    "test": "Drag resized directory and persisted elfazni_crm_contact_directory_width",
+    "passed": true,
+    "details": "Stored: 390px",
+    "screenshot": "qa/resizable-panels/crm-customers/02-contacts-dragged.png"
+  },
+  {
+    "module": "CRM Customers",
+    "test": "Double-click reset directory width to 310px",
+    "passed": true,
+    "details": "qa/resizable-panels/crm-customers/03-contacts-reset.png",
+    "screenshot": "qa/resizable-panels/crm-customers/03-contacts-reset.png"
+  },
+  {
+    "module": "CRM Customers",
+    "test": "Mobile layout screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/crm-customers/04-contacts-mobile.png",
+    "screenshot": "qa/resizable-panels/crm-customers/04-contacts-mobile.png"
+  },
+  {
+    "module": "CRM Calendar",
+    "test": "Initial Calendar view screenshot captured",
+    "passed": true,
+    "details": "qa/resizable-panels/crm-calendar/01-calendar-initial.png",
+    "screenshot": "qa/resizable-panels/crm-calendar/01-calendar-initial.png"
+  },
+  {
+    "module": "CRM Calendar",
+    "test": "Calendar sources ResizeHandle present in DOM",
+    "passed": true,
+    "details": "#handle-calendar-sources-sidebar",
+    "screenshot": ""
+  },
+  {
+    "module": "CRM Calendar",
+    "test": "Drag resized sidebar and persisted elfazni_calendar_sidebar_width",
+    "passed": true,
+    "details": "Stored: 316px",
+    "screenshot": "qa/resizable-panels/crm-calendar/02-calendar-dragged.png"
+  },
+  {
+    "module": "CRM Calendar",
+    "test": "Double-click reset sidebar width to 256px",
+    "passed": true,
+    "details": "qa/resizable-panels/crm-calendar/03-calendar-reset.png",
+    "screenshot": "qa/resizable-panels/crm-calendar/03-calendar-reset.png"
+  },
+  {
+    "module": "CRM Notes",
+    "test": "Notes workspace with resizable panels captured",
+    "passed": true,
+    "details": "qa/resizable-panels/crm-notes/01-notes-workspace.png",
+    "screenshot": "qa/resizable-panels/crm-notes/01-notes-workspace.png"
+  },
+  {
+    "module": "CRM Notes",
+    "test": "Notes ResizeHandle (#handle-handle-list) verified in DOM",
+    "passed": true,
+    "details": "#handle-handle-list",
+    "screenshot": ""
+  },
+  {
+    "module": "CRM Notes",
+    "test": "Notes sidebar resized smoothly",
+    "passed": true,
+    "details": "qa/resizable-panels/crm-notes/02-notes-dragged.png",
+    "screenshot": "qa/resizable-panels/crm-notes/02-notes-dragged.png"
+  },
+  {
+    "module": "CRM Tasks",
+    "test": "Tasks workspace captured",
+    "passed": true,
+    "details": "qa/resizable-panels/crm-notes/03-tasks-workspace.png",
+    "screenshot": "qa/resizable-panels/crm-notes/03-tasks-workspace.png"
+  }
+]

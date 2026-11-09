@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 import { crmRouter } from './server/crmRoutes';
 import { apiRouter } from './server/routes';
-import { getAuthenticatedUser, hasPermission } from './server/auth';
+import { getAuthenticatedUser, hasPermission, generateToken } from './server/auth';
 import { readDb, registerCloudSyncCallback, getDefaultSeoPages } from './server/db';
 import { initCloudSync, scheduleCloudStatePush } from './server/cloudSync';
 
@@ -39,12 +39,16 @@ async function startServer() {
 
   // Dynamic robots.txt for search engines
   app.get('/robots.txt', (_req, res) => {
-    const baseUrl = 'https://elfazni-services-online.uzmanlarltd.chatgpt.site';
+    const baseUrl = process.env.BASE_URL || 'https://elfazni.com';
     const content = [
       'User-agent: *',
       'Allow: /',
+      'Disallow: /portal',
+      'Disallow: /crm',
+      'Disallow: /workspace',
+      'Disallow: /hub',
       'Disallow: /admin',
-      'Disallow: /api/admin',
+      'Disallow: /api/',
       '',
       `Sitemap: ${baseUrl}/sitemap.xml`,
     ].join('\n');
@@ -55,7 +59,7 @@ async function startServer() {
   // Dynamic sitemap.xml generated from live SEO pages & published blog posts
   app.get(['/sitemap.xml', '/api/sitemap.xml'], (_req, res) => {
     const db = readDb();
-    const baseUrl = 'https://elfazni-services-online.uzmanlarltd.chatgpt.site';
+    const baseUrl = process.env.BASE_URL || 'https://elfazni.com';
     const seoPages = db.seoPages && db.seoPages.length > 0 ? db.seoPages : getDefaultSeoPages();
     const publishedPosts = (db.posts || []).filter((p) => p.status === 'published');
 
@@ -108,7 +112,7 @@ ${urls
   app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 
   const crmDist = path.join(__dirname, 'crm', 'dist');
-  app.use('/admin/crm', (req, res, next) => {
+  app.use(['/crm', '/portal/crm', '/admin/crm'], (req, res, next) => {
     res.setHeader('Cache-Control', 'private, no-store');
     res.setHeader('X-Robots-Tag', 'noindex, nofollow');
     res.setHeader('X-Frame-Options', 'DENY');
@@ -118,8 +122,8 @@ ${urls
       (req.headers.authorization?.startsWith('Bearer ') ? req.headers.authorization.slice(7) : undefined);
     const user = getAuthenticatedUser(token, 'crm') || getAuthenticatedUser(token, 'admin');
     if (!user) {
-      if (req.path === '/' && req.accepts('html')) return res.redirect('/admin/login?next=crm');
-      return res.status(401).json({ error: 'يلزم الدخول من لوحة الإدارة.' });
+      if (req.accepts('html')) return res.redirect('/portal/login?next=crm');
+      return res.status(401).json({ error: 'يلزم تسجيل الدخول أولًا.' });
     }
     const hasCrmPermission =
       user.role === 'superadmin' ||
@@ -132,9 +136,10 @@ ${urls
     res.locals.crmOwner = user;
     next();
   });
-  app.get('/admin/crm/session', (_req, res) => {
+  app.get(['/crm/session', '/portal/crm/session', '/admin/crm/session'], (_req, res) => {
     const user = res.locals.crmOwner;
     const canManageUsers = user.role === 'superadmin' || hasPermission(user, 'crm.users.manage');
+    const token = generateToken(user, 'admin');
     res.json({
       id: user.id,
       username: user.username,
@@ -146,11 +151,16 @@ ${urls
       systemAccess: user.systemAccess,
       permissions: user.permissions,
       canManageUsers,
+      token,
     });
   });
-  app.use('/admin/crm/api', crmRouter);
-  app.use('/admin/crm', express.static(crmDist));
-  app.get(['/admin/crm', '/admin/crm/'], (_req, res) => {
+  app.use(['/crm/api', '/portal/crm/api', '/admin/crm/api'], crmRouter);
+  app.use(['/crm', '/portal/crm', '/admin/crm'], express.static(crmDist));
+  app.get(['/crm', '/crm/*', '/portal/crm', '/portal/crm/*', '/admin/crm', '/admin/crm/*'], (_req, res) => {
+    const indexPath = path.join(crmDist, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      return res.sendFile(indexPath);
+    }
     res.status(503).send('يجب بناء تطبيق CRM أولًا عبر npm run build:crm.');
   });
 

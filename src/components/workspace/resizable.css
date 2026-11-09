@@ -65,6 +65,8 @@
 /* Horizontal Handle (divides left & right) */
 .ws-resize-handle-horizontal {
   width: 10px;
+  height: 100%;
+  align-self: stretch;
   cursor: col-resize;
   margin: 0 -4px;
 }
@@ -72,6 +74,8 @@
 /* Vertical Handle (divides top & bottom) */
 .ws-resize-handle-vertical {
   height: 10px;
+  width: 100%;
+  align-self: stretch;
   cursor: row-resize;
   margin: -4px 0;
 }

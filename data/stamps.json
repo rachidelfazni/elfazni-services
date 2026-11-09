@@ -1,0 +1,35 @@
+[
+  {
+    "id": "stamp_official_blue",
+    "name": "الختم الرسمي لمجموعة الفزني (أزرق ملكي)",
+    "url": "/assets/stamps/elfazni-official-stamp.png",
+    "svgUrl": "/assets/stamps/elfazni-official-stamp.svg",
+    "width": 320,
+    "height": 320,
+    "fileType": "image/png",
+    "uploadedAt": "2026-11-08T12:00:00.000Z",
+    "uploadedBy": "الإدارة العامة"
+  },
+  {
+    "id": "stamp_certified_gold",
+    "name": "خاتم التوثيق والمصادقة (ذهبي وكحلي)",
+    "url": "/assets/stamps/elfazni-certified-seal.png",
+    "svgUrl": "/assets/stamps/elfazni-certified-seal.svg",
+    "width": 320,
+    "height": 320,
+    "fileType": "image/png",
+    "uploadedAt": "2026-11-08T12:00:00.000Z",
+    "uploadedBy": "الإدارة العامة"
+  },
+  {
+    "id": "stamp_confidential_red",
+    "name": "خاتم سري وخاص للغاية (أحمر تنفيذي)",
+    "url": "/assets/stamps/elfazni-confidential-stamp.png",
+    "svgUrl": "/assets/stamps/elfazni-confidential-stamp.svg",
+    "width": 340,
+    "height": 120,
+    "fileType": "image/png",
+    "uploadedAt": "2026-11-08T12:00:00.000Z",
+    "uploadedBy": "الإدارة العامة"
+  }
+]

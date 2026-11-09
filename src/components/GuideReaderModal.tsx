@@ -45,9 +45,11 @@ export const GuideReaderModal: React.FC<GuideReaderModalProps> = ({
       onClose();
       onOpenConsularModal();
     } else {
-      const waText = `مرحباً، قرأت "${guide.title}" وأريد استفساراً أو مساعدة في هذه الخدمة.`;
-      const url = `https://wa.me/${SITE_CONTACT.whatsappRaw}?text=${encodeURIComponent(waText)}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
+      onClose();
+      const el = document.getElementById('contact-form');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

@@ -253,7 +253,7 @@
             "fr": "Suivez clients, transactions, factures et tâches."
           },
           "icon": "Users",
-          "destination": "/admin/login?next=crm",
+          "destination": "/crm",
           "visible": true,
           "featured": true,
           "order": 2,
@@ -283,7 +283,7 @@
             "fr": "Gérez contenu, services, blog et utilisateurs."
           },
           "icon": "Settings",
-          "destination": "/admin/login",
+          "destination": "/portal",
           "visible": true,
           "order": 3,
           "cardBg": "#FFFFFF",
@@ -918,7 +918,7 @@
             "fr": "Suivez clients, transactions, factures et tâches."
           },
           "icon": "Users",
-          "destination": "/admin/login?next=crm",
+          "destination": "/crm",
           "visible": true,
           "featured": true,
           "order": 2,
@@ -948,7 +948,7 @@
             "fr": "Gérez contenu, services, blog et utilisateurs."
           },
           "icon": "Settings",
-          "destination": "/admin/login",
+          "destination": "/portal",
           "visible": true,
           "order": 3,
           "cardBg": "#FFFFFF",
@@ -6811,7 +6811,7 @@
               "fr": "Suivez clients, transactions, factures et tâches."
             },
             "icon": "Users",
-            "destination": "/admin/login?next=crm",
+            "destination": "/crm",
             "visible": true,
             "featured": true,
             "order": 2,
@@ -6841,7 +6841,7 @@
               "fr": "Gérez contenu, services, blog et utilisateurs."
             },
             "icon": "Settings",
-            "destination": "/admin/login",
+            "destination": "/portal",
             "visible": true,
             "order": 3,
             "cardBg": "#FFFFFF",
@@ -6959,7 +6959,7 @@
               "fr": "Suivez clients, transactions, factures et tâches."
             },
             "icon": "Users",
-            "destination": "/admin/login?next=crm",
+            "destination": "/crm",
             "visible": true,
             "featured": true,
             "order": 2,
@@ -6989,7 +6989,7 @@
               "fr": "Gérez contenu, services, blog et utilisateurs."
             },
             "icon": "Settings",
-            "destination": "/admin/login",
+            "destination": "/portal",
             "visible": true,
             "order": 3,
             "cardBg": "#FFFFFF",
@@ -8140,7 +8140,7 @@
               "fr": "Suivez clients, transactions, factures et tâches."
             },
             "icon": "Users",
-            "destination": "/admin/login?next=crm",
+            "destination": "/crm",
             "visible": true,
             "featured": true,
             "order": 2,
@@ -8170,7 +8170,7 @@
               "fr": "Gérez contenu, services, blog et utilisateurs."
             },
             "icon": "Settings",
-            "destination": "/admin/login",
+            "destination": "/portal",
             "visible": true,
             "order": 3,
             "cardBg": "#FFFFFF",
@@ -8288,7 +8288,7 @@
               "fr": "Suivez clients, transactions, factures et tâches."
             },
             "icon": "Users",
-            "destination": "/admin/login?next=crm",
+            "destination": "/crm",
             "visible": true,
             "featured": true,
             "order": 2,
@@ -8318,7 +8318,7 @@
               "fr": "Gérez contenu, services, blog et utilisateurs."
             },
             "icon": "Settings",
-            "destination": "/admin/login",
+            "destination": "/portal",
             "visible": true,
             "order": 3,
             "cardBg": "#FFFFFF",
@@ -8436,7 +8436,7 @@
               "fr": "Suivez clients, transactions, factures et tâches."
             },
             "icon": "Users",
-            "destination": "/admin/login?next=crm",
+            "destination": "/crm",
             "visible": true,
             "featured": true,
             "order": 2,
@@ -8466,7 +8466,7 @@
               "fr": "Gérez contenu, services, blog et utilisateurs."
             },
             "icon": "Settings",
-            "destination": "/admin/login",
+            "destination": "/portal",
             "visible": true,
             "order": 3,
             "cardBg": "#FFFFFF",
@@ -8632,7 +8632,7 @@
               "fr": "Suivez clients, transactions, factures et tâches."
             },
             "icon": "Users",
-            "destination": "/admin/login?next=crm",
+            "destination": "/crm",
             "visible": true,
             "featured": true,
             "order": 2,
@@ -8662,7 +8662,7 @@
               "fr": "Gérez contenu, services, blog et utilisateurs."
             },
             "icon": "Settings",
-            "destination": "/admin/login",
+            "destination": "/portal",
             "visible": true,
             "order": 3,
             "cardBg": "#FFFFFF",

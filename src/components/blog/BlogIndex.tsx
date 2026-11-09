@@ -422,26 +422,22 @@ export const BlogIndex: React.FC<BlogIndexProps> = ({ onNavigate }) => {
           </div>
         )}
 
-        {/* WhatsApp Direct Assistance Banner */}
+        {/* Direct Assistance Banner */}
         <div className="mt-16 rounded-3xl bg-gradient-to-r from-[#0B2E57] via-[#004AA5] to-[#0B2E57] text-white p-6 sm:p-10 shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-start max-w-xl">
             <span className="text-xs font-bold text-[#E3C88F] tracking-wider uppercase">{t('استشارة فورية')}</span>
             <h3 className="text-xl sm:text-2xl font-black">{t('هل لديك سؤال حول أوراقك أو مواعيدك في تركيا؟')}</h3>
             <p className="text-sm text-blue-100 font-medium leading-relaxed">
-              {t('تواصل مباشرة مع رشيد الفزني وفريق ELFAZNI SERVICES عبر واتساب للحصول على إرشاد شخصي ودقيق لمعاملتك.')}
+              {t('تواصل مباشرة مع رشيد الفزني وفريق ELFAZNI SERVICES عبر بوابة الموقع للحصول على إرشاد شخصي ودقيق لمعاملتك.')}
             </p>
           </div>
 
           <a
-            href={`https://wa.me/${SITE_CONTACT.whatsappRaw}?text=${encodeURIComponent(
-              'مرحباً ELFAZNI SERVICES، قرأت مقالات المدونة وأرغب في استشارة بخصوص معاملتي.'
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm sm:text-base font-bold shadow-lg shadow-[#25D366]/30 transition-all hover:scale-105 active:scale-95"
+            href="/#contact-form"
+            className="shrink-0 inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#CC9048] to-[#E3C88F] hover:from-[#B37B37] hover:to-[#CC9048] text-slate-950 text-sm sm:text-base font-black shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
           >
-            <WhatsAppLogo className="w-5 h-5 fill-current" />
-            <span>{t('تواصل معنا عبر واتساب')}</span>
+            <span>{t('تواصل واستفسر الآن')}</span>
+            {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
           </a>
         </div>
       </div>

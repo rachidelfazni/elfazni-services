@@ -61,8 +61,20 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
   const contentLayer = layerMap['content'] || { id: 'content', visible: true, zIndex: 4, opacity: 100 };
   const logoLayer = layerMap['logo'] || { id: 'logo', visible: true, zIndex: 5, opacity: 100 };
 
-  // Texts
+  // Side Panel Independent Configuration (Zone C)
+  const sp = config.sidePanel;
   const isPortal = config.target === 'portal';
+
+  // Side Panel Background:
+  // Strictly independent! Never automatically inherit config.backgroundImage into sidePanel.
+  const sideBgType = sp?.bgType || 'gradient';
+  const effectiveSideBgColor = sp?.bgColor || config.backgroundColor || '#071629';
+  const effectiveSideBgImage =
+    sideBgType === 'image'
+      ? (sp?.bgImage || undefined)
+      : undefined;
+
+  // Texts
   const defaultKicker = isPortal
     ? 'ELFAZNI SERVICES HUB'
     : isCrm
@@ -80,30 +92,41 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
     : 'مدونة، خدمات، ولوحة إدارة محتوى الموقع.';
 
   const kickerText =
+    (language === 'ar' ? sp?.kickerAr : sp?.kickerEn) ||
     config.texts?.photoKicker?.[language] ||
     config.texts?.panelKicker?.[language] ||
     defaultKicker;
   const titleText =
+    (language === 'ar' ? sp?.headingAr : sp?.headingEn) ||
     config.texts?.photoTitle?.[language] ||
     config.texts?.panelTitle?.[language] ||
     config.texts?.heroTitle?.[language] ||
     defaultTitle;
   const noteText =
+    (language === 'ar' ? sp?.descriptionAr : sp?.descriptionEn) ||
     config.texts?.photoNote?.[language] ||
     config.texts?.panelNote?.[language] ||
     defaultNote;
 
+  const effectiveHeadingColor = sp?.headingColor || config.titleColor || '#FFFFFF';
+  const effectiveDescriptionColor = sp?.descriptionColor || config.noteColor || '#E2E8F0';
+
   // Illustration URL with automatic fallback for legacy filenames
+  const explicitEmpty = sp?.foregroundImage === '' || (config.illustrationUrl === '' && !sp?.foregroundImage);
   const rawIllustrationUrl =
-    config.illustrationUrl ||
+    (sp?.foregroundImage !== undefined ? sp.foregroundImage : config.illustrationUrl) ||
     config.decorativeIllustration ||
-    (isCrm
-      ? '/assets/brand/3d/04-hotels-residency-transparent.png'
-      : '/assets/brand/3d/02-consular-documents-transparent.png');
+    (!explicitEmpty
+      ? (isCrm
+          ? '/assets/brand/3d/04-hotels-residency-transparent.png'
+          : isPortal
+          ? '/assets/brand/3d/01-master-service-hero-transparent.png'
+          : '/assets/brand/3d/02-consular-documents-transparent.png')
+      : '');
   const illustrationUrl = LEGACY_URL_FIXES[rawIllustrationUrl] || rawIllustrationUrl;
 
   // Logo setup
-  const rawVariant = config.illustrationLogoVariant || config.logoVariant || 'horizontal-on-blue';
+  const rawVariant = sp?.logoVariant || config.illustrationLogoVariant || config.logoVariant || 'horizontal-on-blue';
   let logoBg: LogoBackground = 'blue';
   let logoOrient: LogoOrientation = 'horizontal';
   if (rawVariant.includes('white')) logoBg = 'white';
@@ -114,15 +137,21 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
   const isSelected = (key: string) => interactive && selectedElementKey === key;
 
   // Scale & Position calculations (0% - 400%)
-  const rawScale = typeof config.illustrationScale === 'number' ? config.illustrationScale : 100;
+  const rawScale =
+    typeof sp?.illustrationScale === 'number'
+      ? sp.illustrationScale
+      : typeof config.illustrationScale === 'number'
+      ? config.illustrationScale
+      : 100;
   const clampedScale = Math.max(0, Math.min(400, rawScale));
-  const customX = config.illustrationCustomX || 0;
-  const customY = config.illustrationCustomY || 0;
-  const rotation = config.illustrationRotation || 0;
-  const fitMode = config.illustrationFit || 'contain';
+  const customX = sp?.illustrationCustomX ?? config.illustrationCustomX ?? 0;
+  const customY = sp?.illustrationCustomY ?? config.illustrationCustomY ?? 0;
+  const rotation = sp?.illustrationRotation ?? config.illustrationRotation ?? 0;
+  const fitMode = sp?.illustrationFit || config.illustrationFit || 'contain';
+  const illustrationOpacity = (sp?.illustrationOpacity ?? config.illustrationOpacity ?? 100) / 100;
 
   // Horizontal & Vertical alignment
-  const horizPos = config.illustrationPosition || 'center';
+  const horizPos = sp?.illustrationAlignment || config.illustrationPosition || 'center';
   const vertPos =
     config.illustrationVerticalPosition ||
     (horizPos === 'top' ? 'top' : horizPos === 'bottom' ? 'bottom' : 'center');
@@ -164,6 +193,15 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
       onUpdateConfig?.({
         illustrationCustomX: nextX,
         illustrationCustomY: nextY,
+        ...(config.sidePanel
+          ? {
+              sidePanel: {
+                ...config.sidePanel,
+                illustrationCustomX: nextX,
+                illustrationCustomY: nextY,
+              },
+            }
+          : {}),
       });
     };
 
@@ -178,7 +216,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [interactive, isDragging, onUpdateConfig]);
+  }, [interactive, isDragging, onUpdateConfig, config.sidePanel]);
 
   const handleIllustrationMouseDown = (e: React.MouseEvent) => {
     if (!interactive) return;
@@ -205,23 +243,23 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
         isolation: 'isolate',
         overflow: 'hidden',
         ...(minHeight ? { minHeight } : {}),
-        backgroundColor: config.backgroundColor || '#071629',
+        backgroundColor: sideBgType === 'transparent' ? 'transparent' : effectiveSideBgColor,
         ...style,
       }}
     >
-      {/* 1. LAYER 1: Background Image / Background Color */}
+      {/* 1. LAYER 1: Side Panel Background Image / Background Color */}
       <div
         className={`theme-background absolute inset-0 transition-opacity ${
-          isSelected('background') ? 'ring-4 ring-inset ring-[#CC9048]' : ''
+          isSelected('background') || isSelected('side_panel') ? 'ring-4 ring-inset ring-[#CC9048]' : ''
         }`}
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: bgLayer.zIndex,
-          display: bgLayer.visible ? 'block' : 'none',
+          display: bgLayer.visible && sideBgType !== 'transparent' ? 'block' : 'none',
           opacity: ((config.backgroundOpacity ?? 100) / 100) * ((bgLayer.opacity ?? 100) / 100),
-          backgroundColor: config.backgroundColor || '#071629',
-          backgroundImage: config.backgroundImage ? `url("${config.backgroundImage}")` : undefined,
+          backgroundColor: sideBgType === 'transparent' ? 'transparent' : effectiveSideBgColor,
+          backgroundImage: effectiveSideBgImage ? `url("${effectiveSideBgImage}")` : undefined,
           backgroundSize: config.backgroundSize || 'cover',
           backgroundPosition: config.backgroundPosition || 'center',
           backgroundRepeat: 'no-repeat',
@@ -232,12 +270,12 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
         onClick={(e) => {
           if (interactive) {
             e.stopPropagation();
-            onSelectElement?.('background');
+            onSelectElement?.('side_panel');
           }
         }}
       />
 
-      {/* 2. LAYER 2: Gradient Overlay */}
+      {/* 2. LAYER 2: Side Panel Gradient Overlay */}
       <div
         className={`theme-gradient absolute inset-0 transition-opacity ${
           isSelected('gradient') ? 'ring-4 ring-inset ring-[#CC9048]' : ''
@@ -246,9 +284,15 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
           position: 'absolute',
           inset: 0,
           zIndex: gradientLayer.zIndex,
-          display: gradientLayer.visible && (config.gradient?.enabled !== false) ? 'block' : 'none',
-          background: generateGradientCss(config.gradient),
-          opacity: (config.gradient?.opacity ?? 0.85) * ((gradientLayer.opacity ?? 100) / 100),
+          display:
+            gradientLayer.visible &&
+            (sideBgType === 'gradient' ||
+              (sideBgType !== 'image' && config.gradient?.enabled !== false) ||
+              Boolean(sp?.bgGradient?.enabled))
+              ? 'block'
+              : 'none',
+          background: generateGradientCss(sp?.bgGradient || config.gradient),
+          opacity: ((sp?.bgGradient?.opacity ?? config.gradient?.opacity ?? 0.85)) * ((gradientLayer.opacity ?? 100) / 100),
           pointerEvents: interactive ? 'auto' : 'none',
           cursor: interactive ? 'pointer' : 'default',
         }}
@@ -268,7 +312,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
           position: 'absolute',
           inset: 0,
           zIndex: illustrationLayer.zIndex,
-          display: illustrationLayer.visible ? 'flex' : 'none',
+          display: illustrationLayer.visible && Boolean(illustrationUrl) ? 'flex' : 'none',
           alignItems: alignValue,
           justifyContent: justifyValue,
           pointerEvents: 'none',
@@ -295,7 +339,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
                 ? 'w-full h-full'
                 : fitMode === 'original' || fitMode === 'custom'
                 ? 'w-auto h-auto'
-                : 'max-h-[65%] max-w-[88%]'
+                : 'max-h-[85%] max-w-[95%]'
             } ${
               isSelected('illustration') ? 'ring-2 ring-[#CC9048] ring-offset-2 ring-offset-[#071629]/60' : ''
             }`}
@@ -325,7 +369,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
                   ? 'w-auto h-auto max-w-none max-h-none'
                   : fitMode === 'custom'
                   ? 'object-contain max-w-none max-h-none'
-                  : 'w-auto h-auto max-h-36 sm:max-h-56 md:max-h-64 object-contain'
+                  : 'w-auto h-auto max-h-[85%] max-w-[95%] object-contain'
               }`}
               style={{
                 opacity: ((config.illustrationOpacity ?? 100) / 100) * ((illustrationLayer.opacity ?? 100) / 100),
@@ -381,12 +425,12 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
           zIndex: logoLayer.zIndex,
           display: logoLayer.visible ? 'flex' : 'none',
           justifyContent:
-            config.logoPosition === 'center'
+            (sp?.logoPosition || config.logoPosition) === 'center'
               ? 'center'
-              : config.logoPosition === 'end'
+              : (sp?.logoPosition || config.logoPosition) === 'end'
               ? 'flex-end'
               : 'flex-start',
-          opacity: ((config.logoOpacity ?? 100) / 100) * ((logoLayer.opacity ?? 100) / 100),
+          opacity: ((sp?.logoOpacity ?? config.logoOpacity ?? 100) / 100) * ((logoLayer.opacity ?? 100) / 100),
         }}
       >
         <div
@@ -396,7 +440,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
           style={{
             transform: `scale(${(config.logoScale ?? 100) / 100})`,
             transformOrigin:
-              config.logoPosition === 'center' ? 'center' : isRtl ? 'right center' : 'left center',
+              (sp?.logoPosition || config.logoPosition) === 'center' ? 'center' : isRtl ? 'right center' : 'left center',
             cursor: interactive ? 'pointer' : 'default',
           }}
           onClick={(e) => {
@@ -411,7 +455,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
               src={config.customLogoUrl}
               alt="Custom Brand Logo"
               style={{
-                width: config.logoWidth ? `${config.logoWidth}px` : 'auto',
+                width: (sp?.logoWidth || config.logoWidth) ? `${sp?.logoWidth || config.logoWidth}px` : 'auto',
                 height: config.logoHeight ? `${config.logoHeight}px` : '48px',
                 objectFit: 'contain',
               }}
@@ -423,7 +467,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
               size="lg"
               className="h-12 sm:h-14 w-auto opacity-95 drop-shadow-md"
               style={{
-                width: config.logoWidth ? `${config.logoWidth}px` : undefined,
+                width: (sp?.logoWidth || config.logoWidth) ? `${sp?.logoWidth || config.logoWidth}px` : undefined,
                 height: config.logoHeight ? `${config.logoHeight}px` : undefined,
               }}
             />
@@ -442,7 +486,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
           position: 'relative',
           zIndex: contentLayer.zIndex,
           display: contentLayer.visible ? 'block' : 'none',
-          textAlign: config.textAlign || 'start',
+          textAlign: sp?.textAlign || config.textAlign || 'start',
           opacity: ((config.textOpacity ?? 100) / 100) * ((contentLayer.opacity ?? 100) / 100),
           cursor: interactive ? 'pointer' : 'default',
         }}
@@ -456,7 +500,7 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
         <p
           className="theme-kicker font-extrabold uppercase tracking-widest transition-colors"
           style={{
-            color: config.kickerColor || '#CC9048',
+            color: sp?.headingColor || config.kickerColor || '#CC9048',
             fontSize: '0.75rem',
             letterSpacing: '0.18em',
             margin: '0 0 4px',
@@ -467,9 +511,12 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
         <h2
           className="theme-title font-black transition-colors"
           style={{
-            color: config.titleColor || '#FFFFFF',
-            fontSize: config.titleFontSize || 'clamp(1.75rem, 3.2vw, 2.5rem)',
-            lineHeight: 1.25,
+            color: effectiveHeadingColor,
+            fontSize: sp?.fontSize || config.titleFontSize || 'clamp(1.75rem, 3.2vw, 2.5rem)',
+            fontFamily: sp?.fontFamily || config.typography?.headingFontFamily || config.typography?.fontFamily,
+            fontWeight: sp?.fontWeight || '900',
+            lineHeight: config.typography?.lineHeight || 1.25,
+            letterSpacing: config.typography?.letterSpacing || '0px',
             margin: '4px 0 8px',
           }}
         >
@@ -478,9 +525,11 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
         <p
           className="theme-note transition-colors"
           style={{
-            color: config.noteColor || '#E2E8F0',
+            color: effectiveDescriptionColor,
             fontSize: config.noteFontSize || '0.92rem',
-            lineHeight: 1.65,
+            fontFamily: sp?.fontFamily || config.typography?.fontFamily,
+            lineHeight: config.typography?.lineHeight || 1.65,
+            letterSpacing: config.typography?.letterSpacing || '0px',
             margin: 0,
             maxWidth: '38ch',
           }}

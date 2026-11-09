@@ -97,6 +97,19 @@ export interface TaskItem {
 
 export type EventKind = 'pers' | 'cns' | 'fly' | 'debt' | 'task' | 'meeting' | 'reminder';
 
+export interface EventRescheduleLog {
+  id: string;
+  previousDate: string;
+  previousTime?: string;
+  previousEndTime?: string;
+  newDate: string;
+  newTime?: string;
+  newEndTime?: string;
+  rescheduledBy: string;
+  rescheduledAt: string;
+  note?: string;
+}
+
 export interface CalEventItem {
   id: string;
   userId: string;
@@ -114,11 +127,32 @@ export interface CalEventItem {
   color?: string;
   participants?: string[];
   assignee?: string;
-  linkedRecordType?: 'consulate' | 'flight' | 'debt' | 'customer' | 'task' | 'note';
+  status?: 'scheduled' | 'in_progress' | 'completed' | 'cancelled';
+  // CRM integration fields
+  linkedRecordType?: 'consulate' | 'flight' | 'debt' | 'customer' | 'task' | 'note' | 'invoice';
   linkedRecordId?: string;
   linkedRecordTitle?: string;
+  linkedCustomerId?: string;
+  linkedCustomerName?: string;
+  linkedCustomerPhone?: string;
+  linkedCustomerEmail?: string;
+  linkedServiceType?: string;
+  linkedTransactionRef?: string;
+  linkedStatus?: string;
+  nextFollowUpDate?: string;
+  // Smart reminder fields
   reminderMinutesBefore?: number;
-  recurrence?: 'none' | 'daily' | 'weekly' | 'monthly';
+  reminderStatus?: 'scheduled' | 'due' | 'snoozed' | 'acknowledged' | 'completed' | 'cancelled';
+  reminderSnoozedUntil?: string;
+  reminderCompletedAt?: string;
+  // Recurrence fields
+  recurrence?: 'none' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'custom';
+  recurrenceInterval?: number;
+  recurrenceEnd?: string;
+  recurrenceExceptions?: string[];
+  parentEventId?: string;
+  // Reschedule audit trail
+  rescheduleHistory?: EventRescheduleLog[];
   createdAt: string;
   updatedAt: string;
 }
@@ -411,6 +445,8 @@ export const productivityStore = {
     const now = new Date().toISOString();
     const existingIndex = current.events.findIndex((e) => e.id === ev.id);
 
+    let savedItem: CalEventItem;
+
     if (existingIndex >= 0) {
       const old = current.events[existingIndex];
       const updated: CalEventItem = {
@@ -421,9 +457,7 @@ export const productivityStore = {
         updatedAt: now,
       };
       current.events[existingIndex] = updated;
-      store.users[normalizedId] = current;
-      writeStoreFile(store);
-      return updated;
+      savedItem = updated;
     } else {
       const newEv: CalEventItem = {
         id: ev.id || `cal_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
@@ -442,19 +476,82 @@ export const productivityStore = {
         color: ev.color || '#CC9048',
         participants: ev.participants || [],
         assignee: ev.assignee,
+        status: ev.status || 'scheduled',
         linkedRecordType: ev.linkedRecordType,
         linkedRecordId: ev.linkedRecordId,
         linkedRecordTitle: ev.linkedRecordTitle,
+        linkedCustomerId: ev.linkedCustomerId,
+        linkedCustomerName: ev.linkedCustomerName,
+        linkedCustomerPhone: ev.linkedCustomerPhone,
+        linkedCustomerEmail: ev.linkedCustomerEmail,
+        linkedServiceType: ev.linkedServiceType,
+        linkedTransactionRef: ev.linkedTransactionRef,
+        linkedStatus: ev.linkedStatus,
+        nextFollowUpDate: ev.nextFollowUpDate,
         reminderMinutesBefore: ev.reminderMinutesBefore,
+        reminderStatus: ev.reminderStatus || (typeof ev.reminderMinutesBefore === 'number' ? 'scheduled' : undefined),
         recurrence: ev.recurrence || 'none',
+        recurrenceInterval: ev.recurrenceInterval,
+        recurrenceEnd: ev.recurrenceEnd,
+        recurrenceExceptions: ev.recurrenceExceptions || [],
+        rescheduleHistory: ev.rescheduleHistory || [],
         createdAt: now,
         updatedAt: now,
       };
       current.events.unshift(newEv);
-      store.users[normalizedId] = current;
-      writeStoreFile(store);
-      return newEv;
+      savedItem = newEv;
     }
+
+    // Synchronize smart reminder for this event
+    if (!current.reminders) current.reminders = [];
+    const reminderIdx = current.reminders.findIndex(
+      (r) => r.entityType === 'event' && r.entityId === savedItem.id
+    );
+
+    if (savedItem.status === 'completed' || savedItem.reminderStatus === 'completed') {
+      if (reminderIdx >= 0) {
+        current.reminders[reminderIdx].status = 'completed';
+        current.reminders[reminderIdx].updatedAt = now;
+      }
+    } else if (typeof savedItem.reminderMinutesBefore === 'number') {
+      const timeStr = savedItem.time || '09:00';
+      const eventDateTime = new Date(`${savedItem.date}T${timeStr}:00`);
+      const targetTime = new Date(eventDateTime.getTime() - savedItem.reminderMinutesBefore * 60 * 1000);
+      const targetIso = isNaN(targetTime.getTime()) ? now : targetTime.toISOString();
+
+      if (reminderIdx >= 0) {
+        current.reminders[reminderIdx].title = `تنبيه: ${savedItem.title}`;
+        current.reminders[reminderIdx].targetDateTime = targetIso;
+        current.reminders[reminderIdx].status = savedItem.reminderStatus || 'pending';
+        current.reminders[reminderIdx].snoozedUntil = savedItem.reminderSnoozedUntil;
+        current.reminders[reminderIdx].linkedCustomerName = savedItem.linkedCustomerName || savedItem.linkedRecordTitle;
+        current.reminders[reminderIdx].linkedEventId = savedItem.id;
+        current.reminders[reminderIdx].updatedAt = now;
+      } else {
+        current.reminders.push({
+          id: `rem_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+          userId: savedItem.userId,
+          title: `تنبيه: ${savedItem.title}`,
+          entityType: 'event',
+          entityId: savedItem.id,
+          linkedEventId: savedItem.id,
+          targetDateTime: targetIso,
+          status: 'pending',
+          channel: 'crm',
+          linkedCustomerName: savedItem.linkedCustomerName || savedItem.linkedRecordTitle,
+          createdAt: now,
+          updatedAt: now,
+        });
+      }
+    } else {
+      if (reminderIdx >= 0) {
+        current.reminders.splice(reminderIdx, 1);
+      }
+    }
+
+    store.users[normalizedId] = current;
+    writeStoreFile(store);
+    return savedItem;
   },
 
   deleteEvent(userId: string, eventId: string): boolean {
@@ -464,11 +561,74 @@ export const productivityStore = {
     const before = current.events.length;
     current.events = current.events.filter((e) => e.id !== eventId);
     if (current.events.length !== before) {
+      if (current.reminders) {
+        current.reminders = current.reminders.filter(
+          (r) => !(r.entityType === 'event' && (r.entityId === eventId || r.linkedEventId === eventId))
+        );
+      }
       store.users[normalizedId] = current;
       writeStoreFile(store);
       return true;
     }
     return false;
+  },
+
+  rescheduleEvent(
+    userId: string,
+    eventId: string,
+    details: {
+      newDate: string;
+      newTime?: string;
+      newEndTime?: string;
+      note?: string;
+      rescheduledBy?: string;
+    }
+  ): CalEventItem | null {
+    const store = readStoreFile();
+    const normalizedId = String(userId || 'owner').trim();
+    const current = store.users[normalizedId] || emptyUserData();
+    const ev = current.events.find((e) => e.id === eventId);
+    if (!ev) return null;
+
+    const now = new Date().toISOString();
+    const historyItem: EventRescheduleLog = {
+      id: randomUUID(),
+      previousDate: ev.date,
+      previousTime: ev.time,
+      previousEndTime: ev.endTime,
+      newDate: details.newDate,
+      newTime: details.newTime ?? ev.time,
+      newEndTime: details.newEndTime ?? ev.endTime,
+      rescheduledBy: details.rescheduledBy || 'المشرف',
+      rescheduledAt: now,
+      note: details.note,
+    };
+
+    ev.date = details.newDate;
+    if (details.newTime !== undefined) ev.time = details.newTime;
+    if (details.newEndTime !== undefined) ev.endTime = details.newEndTime;
+    ev.rescheduleHistory = [historyItem, ...(ev.rescheduleHistory || [])];
+    ev.updatedAt = now;
+
+    // Recalculate smart reminder
+    if (typeof ev.reminderMinutesBefore === 'number' && current.reminders) {
+      const timeStr = ev.time || '09:00';
+      const eventDateTime = new Date(`${ev.date}T${timeStr}:00`);
+      const targetTime = new Date(eventDateTime.getTime() - ev.reminderMinutesBefore * 60 * 1000);
+      const targetIso = isNaN(targetTime.getTime()) ? now : targetTime.toISOString();
+
+      const reminder = current.reminders.find((r) => r.entityType === 'event' && r.entityId === ev.id);
+      if (reminder) {
+        reminder.targetDateTime = targetIso;
+        reminder.status = 'pending';
+        reminder.snoozedUntil = undefined;
+        reminder.updatedAt = now;
+      }
+    }
+
+    store.users[normalizedId] = current;
+    writeStoreFile(store);
+    return ev;
   },
 
   dismissReminder(userId: string, reminderId: string): boolean {
@@ -479,6 +639,32 @@ export const productivityStore = {
     if (rem) {
       rem.status = 'dismissed';
       rem.updatedAt = new Date().toISOString();
+      store.users[normalizedId] = current;
+      writeStoreFile(store);
+      return true;
+    }
+    return false;
+  },
+
+  completeReminder(userId: string, reminderId: string): boolean {
+    const store = readStoreFile();
+    const normalizedId = String(userId || 'owner').trim();
+    const current = store.users[normalizedId] || emptyUserData();
+    const rem = current.reminders.find((r) => r.id === reminderId);
+    if (rem) {
+      const now = new Date().toISOString();
+      rem.status = 'completed';
+      rem.updatedAt = now;
+
+      if (rem.entityType === 'event') {
+        const ev = current.events.find((e) => e.id === rem.entityId);
+        if (ev) {
+          ev.reminderStatus = 'completed';
+          ev.reminderCompletedAt = now;
+          ev.updatedAt = now;
+        }
+      }
+
       store.users[normalizedId] = current;
       writeStoreFile(store);
       return true;
@@ -497,6 +683,16 @@ export const productivityStore = {
       rem.snoozedUntil = now.toISOString();
       rem.status = 'snoozed';
       rem.updatedAt = new Date().toISOString();
+
+      if (rem.entityType === 'event') {
+        const ev = current.events.find((e) => e.id === rem.entityId);
+        if (ev) {
+          ev.reminderStatus = 'snoozed';
+          ev.reminderSnoozedUntil = rem.snoozedUntil;
+          ev.updatedAt = rem.updatedAt;
+        }
+      }
+
       store.users[normalizedId] = current;
       writeStoreFile(store);
       return rem;

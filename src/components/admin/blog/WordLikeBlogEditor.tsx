@@ -252,9 +252,9 @@ export const WordLikeBlogEditor: React.FC<WordLikeBlogEditorProps> = ({
   const [tableSize, setTableSize] = useState<{ rows: number; cols: number }>({ rows: 3, cols: 3 });
   const [ctaModalOpen, setCtaModalOpen] = useState<boolean>(false);
   const [ctaForm, setCtaForm] = useState<{ title: string; buttonText: string; url: string }>({
-    title: 'هل تحتاج مساعدة في تجهيز ملفك القنصلي؟',
-    buttonText: 'تواصل مع الفزني للخدمات عبر واتساب',
-    url: 'https://wa.me/905399202505',
+    title: 'هل تحتاج مساعدة في تجهيز ملفك القنصلي أو حجز موعدك؟',
+    buttonText: 'تواصل مع الفزني للخدمات لحجز موعدك وتدقيق ملفك',
+    url: '/#contact-form',
   });
   const [videoModalOpen, setVideoModalOpen] = useState<boolean>(false);
   const [videoUrl, setVideoUrl] = useState<string>('');

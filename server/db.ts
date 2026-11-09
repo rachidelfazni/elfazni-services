@@ -533,6 +533,7 @@ export type ServiceTag = 'FLIGHT' | 'HOTEL' | 'TRANSFER' | 'CONSULAR' | 'GENERAL
 export type FollowUpStatus =
   | 'NEW'
   | 'FOLLOW_UP_REQUIRED'
+  | 'INCOMPLETE_CONSENTED'
   | 'IN_PROGRESS'
   | 'WAITING_CUSTOMER'
   | 'RESOLVED'
@@ -564,6 +565,9 @@ export interface ContactMessage {
   id: string;
   ticketNumber: string;
   reference?: string;
+  draftId?: string;
+  isConsentedDraft?: boolean;
+  crmContactId?: string;
   name: string;
   phone: string;
   whatsappPhone?: string;
@@ -849,8 +853,12 @@ export function readDb(): DatabaseSchema {
     const parsed = JSON.parse(content) as DatabaseSchema;
     let modified = false;
 
-    if (!parsed.users.some((user) => user.username === 'elfazni.admin') && process.env.ADMIN_PASSWORD) {
+    const rootAdmin = parsed.users.find((user) => user.username === 'elfazni.admin');
+    if (!rootAdmin && process.env.ADMIN_PASSWORD) {
       parsed.users.unshift(createAdminUser(process.env.ADMIN_PASSWORD));
+      modified = true;
+    } else if (rootAdmin && process.env.ADMIN_PASSWORD && !bcrypt.compareSync(process.env.ADMIN_PASSWORD, rootAdmin.passwordHash)) {
+      rootAdmin.passwordHash = bcrypt.hashSync(process.env.ADMIN_PASSWORD, 10);
       modified = true;
     }
 
@@ -1160,7 +1168,7 @@ export function readDb(): DatabaseSchema {
 
 export function getDefaultSeoPages(): PageSeoItem[] {
   const now = new Date().toISOString();
-  const baseUrl = 'https://elfazni-services-online.uzmanlarltd.chatgpt.site';
+  const baseUrl = process.env.BASE_URL || 'https://elfazni.com';
   return [
     {
       id: 'seo_home',

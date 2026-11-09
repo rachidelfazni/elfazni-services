@@ -73,7 +73,7 @@ export const DEFAULT_DOCUMENT_SETTINGS: DocumentSettings = {
   headquartersAr: BRAND_CONFIG.headquarters || 'إسطنبول',
   phone: BRAND_CONFIG.phone || '+905522677851',
   email: BRAND_CONFIG.email || 'rachidelfazni@gmail.com',
-  website: BRAND_CONFIG.websiteUrl || 'https://elfazni-services-online.uzmanlarltd.chatgpt.site/',
+  website: BRAND_CONFIG.websiteUrl || 'https://elfazni.com',
   taxId: '',
   tradeRegistryNo: '',
   defaultDocumentClassification: 'invoice',

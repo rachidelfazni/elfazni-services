@@ -50,6 +50,7 @@ import {
 import { Request } from 'express';
 import { productivityRouter } from './productivityRoutes';
 import { themeRouter } from './themeRoutes';
+import { documentExportRouter } from './documentExportRoutes';
 import { syncInquiryToCrmLead } from './crmLeadSync';
 
 export const apiRouter = Router();
@@ -369,7 +370,9 @@ const upload = multer({
 // ==========================================
 
 apiRouter.post('/auth/logout', (req, res) => {
+  res.clearCookie('elfazni_crm', { httpOnly: true, sameSite: 'strict', secure: req.secure, path: '/' });
   res.clearCookie('elfazni_crm', { httpOnly: true, sameSite: 'strict', secure: req.secure, path: '/admin/crm' });
+  res.clearCookie('token', { httpOnly: true, sameSite: 'strict', secure: req.secure, path: '/' });
   res.clearCookie('elfazni_stream', { httpOnly: true, sameSite: 'strict', secure: req.secure, path: '/api/realtime/stream' });
   res.json({ success: true });
 });
@@ -424,7 +427,7 @@ apiRouter.post('/auth/login', (req, res) => {
   if (allowedCrm) {
     res.cookie('elfazni_crm', generateToken(user, 'crm'), {
       httpOnly: true, sameSite: 'strict', secure: req.secure,
-      path: '/admin/crm', maxAge: 12 * 60 * 60 * 1000,
+      path: '/', maxAge: 12 * 60 * 60 * 1000,
     });
   }
   res.cookie('token', token, {
@@ -2145,9 +2148,147 @@ apiRouter.put('/admin/settings', requireAuth, (req, res) => {
 // UNIFIED REQUESTS & INBOX INTAKE
 // ==========================================
 
+// UNIFIED REQUESTS & INBOX INTAKE
+// ==========================================
+
+// Public: Save consented draft for incomplete inquiries (Consent-Based Auto-Save)
+apiRouter.post('/public/requests/draft', async (req, res) => {
+  const {
+    draftId,
+    consent,
+    name,
+    phone,
+    whatsappPhone,
+    email,
+    serviceTag,
+    serviceRequested,
+    city,
+    notes,
+    source,
+    country,
+  } = req.body;
+
+  // Strict Consent Check: Do not collect or transmit personal contact info before explicit consent
+  if (!consent) {
+    res.status(400).json({ error: 'موافقة المستخدم الصريحة مطلوبة لحفظ المسودة' });
+    return;
+  }
+
+  if (!name || (!phone && !email)) {
+    res.status(400).json({ error: 'يرجى إدخال الاسم ورقم الهاتف أو البريد الإلكتروني' });
+    return;
+  }
+
+  const db = readDb();
+  const clientInfo = detectClientFromRequest(req, req.body);
+  const stableDraftId = String(draftId || randomUUID()).trim();
+
+  const validServiceTag: ServiceTag =
+    ['FLIGHT', 'HOTEL', 'TRANSFER', 'CONSULAR', 'GENERAL', 'OFFLINE_CHAT'].includes(serviceTag)
+      ? serviceTag
+      : 'GENERAL';
+
+  const draftRef = `REQ-DFT-${stableDraftId.slice(0, 6).toUpperCase()}`;
+  const now = new Date().toISOString();
+
+  // Find existing draft by draftId or by matching phone/email
+  const existingDraft = db.messages.find(
+    (m) =>
+      m.draftId === stableDraftId ||
+      (m.isConsentedDraft &&
+        ((phone && m.phone === String(phone).trim()) || (email && m.email === String(email).trim())))
+  );
+
+  if (existingDraft) {
+    existingDraft.name = String(name).trim();
+    existingDraft.phone = String(phone || '').trim();
+    if (whatsappPhone) existingDraft.whatsappPhone = String(whatsappPhone).trim();
+    if (email) existingDraft.email = String(email).trim();
+    if (serviceRequested) existingDraft.serviceRequested = serviceRequested;
+    existingDraft.serviceTag = validServiceTag;
+    existingDraft.message = `المدينة: ${city || 'إسطنبول'}\n${notes || ''}`.trim();
+    existingDraft.followUpStatus = 'INCOMPLETE_CONSENTED';
+    existingDraft.needsFollowUp = true;
+    if (!existingDraft.activityTimeline) existingDraft.activityTimeline = [];
+    existingDraft.activityTimeline.push({
+      id: randomUUID(),
+      action: 'تحديث مسودة التواصل بموافقة صريحة من العميل',
+      actor: String(name).trim(),
+      details: `المرجع المؤقت: ${existingDraft.reference || draftRef}`,
+      createdAt: now,
+    });
+    existingDraft.updatedAt = now;
+    writeDb(db);
+
+    broadcastRealtime('mailbox:update', { message: existingDraft });
+    res.json({
+      success: true,
+      draftId: stableDraftId,
+      reference: existingDraft.reference || draftRef,
+      message: 'تم تحديث مسودة التواصل بنجاح',
+      request: existingDraft,
+    });
+    return;
+  }
+
+  const newDraft: ContactMessage = {
+    id: randomUUID(),
+    draftId: stableDraftId,
+    isConsentedDraft: true,
+    ticketNumber: draftRef,
+    reference: draftRef,
+    name: String(name).trim(),
+    phone: String(phone || '').trim(),
+    whatsappPhone: whatsappPhone ? String(whatsappPhone).trim() : undefined,
+    email: email ? String(email).trim() : undefined,
+    serviceRequested: serviceRequested || 'استفسار أولي',
+    serviceTag: validServiceTag,
+    followUpStatus: 'INCOMPLETE_CONSENTED',
+    needsFollowUp: true,
+    requestSource: (source as RequestSource) || 'website_form',
+    subject: `استفسار غير مكتمل — بيانات تواصل محفوظة (${serviceRequested || 'خدمة'})`,
+    message: `المدينة: ${city || 'إسطنبول'}\n${notes || ''}`.trim(),
+    folder: 'inbox',
+    status: 'new',
+    starred: false,
+    country: country || `${clientInfo.country} ${clientInfo.flag}`,
+    attachments: [],
+    replies: [],
+    internalNotes: [],
+    activityTimeline: [
+      {
+        id: randomUUID(),
+        action: 'حفظ مسودة بيانات التواصل بموافقة صريحة من العميل',
+        actor: String(name).trim(),
+        details: `المرجع المؤقت: ${draftRef}`,
+        createdAt: now,
+      },
+    ],
+    source: source ? `${source} (مسودة)` : `معالج الموقع (مسودة)`,
+    createdAt: now,
+  };
+
+  db.messages.unshift(newDraft);
+  writeDb(db);
+
+  broadcastRealtime('mailbox:new', {
+    message: newDraft,
+    unreadCount: db.messages.filter((m) => m.status === 'new').length,
+  });
+
+  res.status(201).json({
+    success: true,
+    draftId: stableDraftId,
+    reference: draftRef,
+    message: 'تم حفظ مسودة التواصل بنجاح',
+    request: newDraft,
+  });
+});
+
 // Public: Unified intake for website service forms (Flight, Hotel, Transfer, Consular, General)
 apiRouter.post(['/public/requests', '/requests'], async (req, res) => {
   const {
+    draftId,
     name,
     phone,
     whatsappPhone,
@@ -2195,44 +2336,80 @@ apiRouter.post(['/public/requests', '/requests'], async (req, res) => {
   };
 
   const resolvedServiceName = serviceRequested || serviceLabelMap[validServiceTag];
+  const now = new Date().toISOString();
 
-  const newRequest: ContactMessage = {
-    id: randomUUID(),
-    ticketNumber: refCode,
-    reference: refCode,
-    name: String(name).trim(),
-    phone: String(phone || '').trim(),
-    whatsappPhone: whatsappPhone ? String(whatsappPhone).trim() : undefined,
-    email: email ? String(email).trim() : undefined,
-    serviceRequested: resolvedServiceName,
-    serviceTag: validServiceTag,
-    followUpStatus: 'NEW',
-    needsFollowUp: true,
-    requestSource: (source as RequestSource) || 'website_form',
-    subject: subject ? String(subject).trim() : `طلب ${resolvedServiceName}`,
-    message: message ? String(message).trim() : 'طلب خدمة عبر موقع ELFAZNI SERVICES',
-    payloadJson: payloadJson && typeof payloadJson === 'object' ? payloadJson : undefined,
-    folder: 'inbox',
-    status: 'new',
-    starred: false,
-    country: country || `${clientInfo.country} ${clientInfo.flag}`,
-    attachments: [],
-    replies: [],
-    internalNotes: [],
-    activityTimeline: [
-      {
-        id: randomUUID(),
-        action: `تقديم طلب جديد [${validServiceTag}] عبر الموقع`,
-        actor: String(name).trim(),
-        details: `المرجع: ${refCode}`,
-        createdAt: new Date().toISOString(),
-      },
-    ],
-    source: source ? `${source} (${clientInfo.device})` : `نموذج الموقع (${clientInfo.device})`,
-    createdAt: new Date().toISOString(),
-  };
+  // Check if there is an existing consented draft to update in-place (Prevents Duplicate Records)
+  let targetRequest: ContactMessage;
+  const existingDraft = draftId
+    ? db.messages.find((m) => m.draftId === String(draftId).trim())
+    : undefined;
 
-  db.messages.unshift(newRequest);
+  if (existingDraft) {
+    targetRequest = existingDraft;
+    targetRequest.ticketNumber = refCode;
+    targetRequest.reference = refCode;
+    targetRequest.name = String(name).trim();
+    targetRequest.phone = String(phone || '').trim();
+    targetRequest.whatsappPhone = whatsappPhone ? String(whatsappPhone).trim() : undefined;
+    targetRequest.email = email ? String(email).trim() : undefined;
+    targetRequest.serviceRequested = resolvedServiceName;
+    targetRequest.serviceTag = validServiceTag;
+    targetRequest.followUpStatus = 'NEW';
+    targetRequest.needsFollowUp = true;
+    targetRequest.isConsentedDraft = false;
+    targetRequest.requestSource = (source as RequestSource) || 'website_form';
+    targetRequest.subject = subject ? String(subject).trim() : `طلب ${resolvedServiceName}`;
+    targetRequest.message = message ? String(message).trim() : 'طلب خدمة عبر موقع ELFAZNI SERVICES';
+    targetRequest.payloadJson = payloadJson && typeof payloadJson === 'object' ? payloadJson : undefined;
+    targetRequest.source = source ? `${source} (${clientInfo.device})` : `نموذج الموقع (${clientInfo.device})`;
+    targetRequest.updatedAt = now;
+    if (!targetRequest.activityTimeline) targetRequest.activityTimeline = [];
+    targetRequest.activityTimeline.push({
+      id: randomUUID(),
+      action: `تأكيد وإرسال الطلب نهائياً عبر الموقع [${validServiceTag}]`,
+      actor: String(name).trim(),
+      details: `المرجع الرسمي: ${refCode}`,
+      createdAt: now,
+    });
+  } else {
+    targetRequest = {
+      id: randomUUID(),
+      ticketNumber: refCode,
+      reference: refCode,
+      name: String(name).trim(),
+      phone: String(phone || '').trim(),
+      whatsappPhone: whatsappPhone ? String(whatsappPhone).trim() : undefined,
+      email: email ? String(email).trim() : undefined,
+      serviceRequested: resolvedServiceName,
+      serviceTag: validServiceTag,
+      followUpStatus: 'NEW',
+      needsFollowUp: true,
+      requestSource: (source as RequestSource) || 'website_form',
+      subject: subject ? String(subject).trim() : `طلب ${resolvedServiceName}`,
+      message: message ? String(message).trim() : 'طلب خدمة عبر موقع ELFAZNI SERVICES',
+      payloadJson: payloadJson && typeof payloadJson === 'object' ? payloadJson : undefined,
+      folder: 'inbox',
+      status: 'new',
+      starred: false,
+      country: country || `${clientInfo.country} ${clientInfo.flag}`,
+      attachments: [],
+      replies: [],
+      internalNotes: [],
+      activityTimeline: [
+        {
+          id: randomUUID(),
+          action: `تقديم طلب جديد [${validServiceTag}] عبر الموقع`,
+          actor: String(name).trim(),
+          details: `المرجع: ${refCode}`,
+          createdAt: now,
+        },
+      ],
+      source: source ? `${source} (${clientInfo.device})` : `نموذج الموقع (${clientInfo.device})`,
+      createdAt: now,
+    };
+    db.messages.unshift(targetRequest);
+  }
+
   const visitInfo = recordGenuineVisit(
     db,
     req,
@@ -2247,52 +2424,128 @@ apiRouter.post(['/public/requests', '/requests'], async (req, res) => {
   writeDb(db);
 
   syncInquiryToCrmLead({
-    name: newRequest.name,
-    phone: newRequest.phone || newRequest.whatsappPhone,
-    email: newRequest.email,
-    serviceRequested: newRequest.serviceRequested,
-    reference: newRequest.reference,
-    message: newRequest.message,
+    name: targetRequest.name,
+    phone: targetRequest.phone || targetRequest.whatsappPhone,
+    email: targetRequest.email,
+    serviceRequested: targetRequest.serviceRequested,
+    reference: targetRequest.reference,
+    message: targetRequest.message,
   });
 
   // Enqueue tagged email alert
   const emailAlertPromise = dispatchAdminEmailAlert({
-    ticketNumber: newRequest.ticketNumber,
-    reference: newRequest.reference,
+    ticketNumber: targetRequest.ticketNumber,
+    reference: targetRequest.reference,
     serviceTag: validServiceTag,
     followUpStatus: 'NEW',
     needsFollowUp: true,
-    senderName: newRequest.name,
-    senderPhone: newRequest.phone,
-    senderWhatsapp: newRequest.whatsappPhone,
-    senderEmail: newRequest.email,
-    serviceRequested: newRequest.serviceRequested,
-    subject: newRequest.subject,
-    message: newRequest.message,
+    senderName: targetRequest.name,
+    senderPhone: targetRequest.phone,
+    senderWhatsapp: targetRequest.whatsappPhone,
+    senderEmail: targetRequest.email,
+    serviceRequested: targetRequest.serviceRequested,
+    subject: targetRequest.subject,
+    message: targetRequest.message,
     device: clientInfo.device,
-    country: newRequest.country,
-    source: newRequest.source,
-    details: newRequest.payloadJson,
+    country: targetRequest.country,
+    source: targetRequest.source,
+    details: targetRequest.payloadJson,
   });
 
-  broadcastRealtime('mailbox:new', {
-    message: newRequest,
+  broadcastRealtime(existingDraft ? 'mailbox:update' : 'mailbox:new', {
+    message: targetRequest,
     unreadCount: db.messages.filter((m) => m.status === 'new').length,
   });
 
   const emailResult = await emailAlertPromise;
-  newRequest.emailDeliveryStatus = emailResult.status === 'accepted' ? 'sent' : emailResult.status;
+  targetRequest.emailDeliveryStatus = emailResult.status === 'accepted' ? 'sent' : emailResult.status;
   writeDb(db);
 
-  res.status(201).json({
+  res.status(existingDraft ? 200 : 201).json({
     success: true,
     reference: refCode,
     ticketNumber: refCode,
-    emailDeliveryStatus: newRequest.emailDeliveryStatus,
+    emailDeliveryStatus: targetRequest.emailDeliveryStatus,
     message: 'تم استلام طلبكم بنجاح وسيتواصل معكم فريقنا لتأكيد التفاصيل.',
-    request: newRequest,
+    request: targetRequest,
   });
 });
+
+// Admin/API: Convert mailbox message / inquiry to CRM Customer / Lead
+apiRouter.post(['/api/mailbox/:id/convert-to-crm', '/admin/mailbox/:id/convert-to-crm'], async (req, res) => {
+  const db = readDb();
+  const id = req.params.id;
+  const msg = db.messages.find((m) => m.id === id || m.ticketNumber === id || m.reference === id);
+  if (!msg) {
+    res.status(404).json({ error: 'الرسالة غير موجودة' });
+    return;
+  }
+
+  const syncResult = syncInquiryToCrmLead({
+    name: msg.name,
+    phone: msg.phone || msg.whatsappPhone,
+    email: msg.email,
+    serviceRequested: msg.serviceRequested,
+    reference: msg.reference || msg.ticketNumber,
+    message: msg.message,
+  });
+
+  const contactId = syncResult?.contactId || randomUUID();
+  msg.crmContactId = contactId;
+  if (!msg.activityTimeline) msg.activityTimeline = [];
+  msg.activityTimeline.push({
+    id: randomUUID(),
+    action: syncResult?.matched ? 'ربط الطلب بجهة اتصال موجودة في CRM' : 'إنشاء جهة اتصال وعميل جديد في CRM',
+    actor: 'المسؤول (Admin)',
+    details: `معرف العميل في CRM: ${contactId}`,
+    createdAt: new Date().toISOString(),
+  });
+
+  writeDb(db);
+  broadcastRealtime('mailbox:update', { message: msg });
+  res.json({
+    success: true,
+    contactId,
+    matched: syncResult?.matched ?? false,
+    message: 'تم تحويل وربط الطلب بنظام إدارة العملاء (CRM) بنجاح',
+    request: msg,
+  });
+});
+
+// Admin/API: Create follow-up task for mailbox message
+apiRouter.post(['/api/mailbox/:id/create-task', '/admin/mailbox/:id/create-task'], async (req, res) => {
+  const db = readDb();
+  const id = req.params.id;
+  const msg = db.messages.find((m) => m.id === id || m.ticketNumber === id || m.reference === id);
+  if (!msg) {
+    res.status(404).json({ error: 'الرسالة غير موجودة' });
+    return;
+  }
+
+  const taskTitle = req.body.title || `متابعة الطلب ${msg.reference || msg.ticketNumber} — ${msg.name}`;
+  const taskId = `TSK-${Date.now().toString(36).toUpperCase()}`;
+
+  if (!msg.activityTimeline) msg.activityTimeline = [];
+  msg.activityTimeline.push({
+    id: randomUUID(),
+    action: 'إنشاء مهمة متابعة للطلب',
+    actor: 'المسؤول (Admin)',
+    details: `${taskTitle} (${taskId})`,
+    createdAt: new Date().toISOString(),
+  });
+  msg.needsFollowUp = true;
+
+  writeDb(db);
+  broadcastRealtime('mailbox:update', { message: msg });
+  res.json({
+    success: true,
+    taskId,
+    title: taskTitle,
+    message: 'تم إنشاء مهمة المتابعة بنجاح',
+    request: msg,
+  });
+});
+
 
 // Public: Offline live chat capture when staff is not available
 apiRouter.post('/public/offline-messages', async (req, res) => {
@@ -3902,7 +4155,7 @@ apiRouter.post('/admin/seo', requireAuth, (req, res) => {
     ogTitle: String(ogTitle || metaTitle || 'ELFAZNI SERVICES').trim(),
     ogDescription: String(ogDescription || metaDescription || '').trim(),
     ogImage: String(ogImage || '/assets/slides/10-all-services.webp').trim(),
-    canonicalUrl: String(canonicalUrl || `https://elfazni-services-online.uzmanlarltd.chatgpt.site${pagePath}`).trim(),
+    canonicalUrl: String(canonicalUrl || `https://elfazni.com${pagePath}`).trim(),
     robots: String(robots || 'index, follow').trim(),
     updatedAt: new Date().toISOString(),
   };
@@ -3948,6 +4201,7 @@ apiRouter.post('/admin/system/sync-cloud', requireAuth, (_req, res) => {
 
 apiRouter.use('/productivity', productivityRouter);
 apiRouter.use('/theme', themeRouter);
+apiRouter.use('/documents', documentExportRouter);
 
 // 404 handler for unmatched API routes
 apiRouter.use((_req, res) => {

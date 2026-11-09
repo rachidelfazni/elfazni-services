@@ -53,7 +53,7 @@ export const AdminProfileSettings: React.FC = () => {
     try {
       await api.changePassword(currentPassword, newPassword);
       api.logout();
-      window.location.assign('/admin/login');
+      window.location.assign('/portal/login');
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');

@@ -1,0 +1,196 @@
+{
+  "passed": 38,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "Consular Guide Cover Removed from DOM",
+      "status": "PASS",
+      "details": "Count: 0"
+    },
+    {
+      "name": "Promotional Video Section Mounted",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Video Source is ELFAZNI_SERVICES_BRANDED.mp4",
+      "status": "PASS",
+      "details": "src: /assets/videos/ELFAZNI_SERVICES_BRANDED.mp4"
+    },
+    {
+      "name": "Video Has autoPlay Enabled",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Video Has loop Enabled (continuous loop)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Video Has muted Enabled (browser compliance)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Video Is Actively Playing",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Floating Audio Toggle Unmutes Video",
+      "status": "PASS",
+      "details": "Video sound successfully toggled"
+    },
+    {
+      "name": "Export Button Found in Smart Notebook",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "8-Option Export Dropdown Opens Cleanly",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Escape Key Closes Export Dropdown Menu",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Outside Click Closes Export Dropdown Menu",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Clicked \"معاينة قبل الطباعة\" Option",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Document Studio Modal Mounted Successfully",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Modal Rendered in Portal Attached to document.body",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Modal z-index is High Layer (99999)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Zero Collision with CRM Navigation Bar",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Page Setup Tab Active and Paper Size Select Present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Paper Size Options Available (A4, A5, Letter, Legal, Custom)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Stamp Manager Tab Active and Controls Present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Printable Document Sheet Rendered in Canvas",
+      "status": "PASS",
+      "details": "Dimensions: 754x1123px"
+    },
+    {
+      "name": "Margin Guides Box Rendered on Document Sheet",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Resize Separator Handle Found between Panels",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Settings Aside Successfully Resized by Dragging",
+      "status": "PASS",
+      "details": "New width: 440px"
+    },
+    {
+      "name": "Sidebar Width Preference Saved in localStorage",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Double-Click Resets Sidebar Width to 380px Default",
+      "status": "PASS",
+      "details": "Reset width: 380px"
+    },
+    {
+      "name": "Viewport Responsive Check: 1920x1080 Desktop Wide",
+      "status": "PASS",
+      "details": "No clipping or collision"
+    },
+    {
+      "name": "Viewport Responsive Check: 1440x900 Desktop Standard",
+      "status": "PASS",
+      "details": "No clipping or collision"
+    },
+    {
+      "name": "Viewport Responsive Check: 1280x800 Laptop",
+      "status": "PASS",
+      "details": "No clipping or collision"
+    },
+    {
+      "name": "Viewport Responsive Check: 1024x768 Tablet Landscape",
+      "status": "PASS",
+      "details": "No clipping or collision"
+    },
+    {
+      "name": "Viewport Responsive Check: 768x1024 Tablet Portrait",
+      "status": "PASS",
+      "details": "No clipping or collision"
+    },
+    {
+      "name": "Viewport Responsive Check: 390x844 Mobile iPhone 14/15",
+      "status": "PASS",
+      "details": "No clipping or collision"
+    },
+    {
+      "name": "Viewport Responsive Check: 375x812 Mobile Small",
+      "status": "PASS",
+      "details": "No clipping or collision"
+    },
+    {
+      "name": "PDF Export Server Endpoint Responding",
+      "status": "PASS",
+      "details": "Status: 200"
+    },
+    {
+      "name": "DOCX Export Server Endpoint Responding",
+      "status": "PASS",
+      "details": "Status: 200"
+    },
+    {
+      "name": "Clicked \"العودة للمفكرة\" (Return to Notebook) Button",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Document Studio Modal Closed Cleanly",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Smart Notebook Restored and Active",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

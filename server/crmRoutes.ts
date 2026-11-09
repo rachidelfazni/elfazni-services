@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import { createCrmStore, CrmStoreError } from './crmStore';
 import { productivityRouter } from './productivityRoutes';
 import { themeRouter } from './themeRoutes';
+import { documentExportRouter } from './documentExportRoutes';
 import {
   readDb,
   writeDb,
@@ -114,6 +115,7 @@ crmRouter.get('/backups/:name', (req, res, next) => {
 
 crmRouter.use('/productivity', productivityRouter);
 crmRouter.use('/theme', themeRouter);
+crmRouter.use('/documents', documentExportRouter);
 
 // Unified Users & Roles Management for CRM
 const canManageUsers = (_req: any, res: any, next: any) => {

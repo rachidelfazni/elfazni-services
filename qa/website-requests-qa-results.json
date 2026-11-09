@@ -1,0 +1,32 @@
+[
+  {
+    "test": "Submit Flight Request Lead",
+    "passed": true,
+    "details": "Ticket: REQ-FLY-161523",
+    "screenshot": ""
+  },
+  {
+    "test": "Submit Hotel Request Lead",
+    "passed": true,
+    "details": "Ticket: REQ-HTL-250950",
+    "screenshot": ""
+  },
+  {
+    "test": "Admin Mailbox: Leads Delivery Verification",
+    "passed": true,
+    "details": "Total inquiries in mailbox: 48",
+    "screenshot": ""
+  },
+  {
+    "test": "Website Booking Request Modal Visual",
+    "passed": true,
+    "details": "Interactive request dialog rendered",
+    "screenshot": "qa/screenshots/website-requests/01-website-booking-modal.png"
+  },
+  {
+    "test": "Admin Mailbox Visual",
+    "passed": true,
+    "details": "Admin Mailbox displaying incoming customer leads",
+    "screenshot": "qa/screenshots/website-requests/02-admin-mailbox-received-leads.png"
+  }
+]

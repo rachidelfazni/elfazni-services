@@ -1,18 +1,13 @@
 import { SectionTitle } from './SiteContent';
 import React from 'react';
-import { Award, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
+import { Award, CheckCircle2, ShieldCheck, Sparkles, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSiteSettings } from '../context/SiteSettingsContext';
-import { WhatsAppLogo } from './WhatsAppLogo';
 
 export const FounderSection: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { t, language, isRtl } = useLanguage();
   const { settings } = useSiteSettings();
   const founderShortAr = settings.founderName?.split('(')[0]?.trim() || 'رشيد الفزني';
-
-  const whatsappUrl = `https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(
-    `مرحباً ${founderShortAr}، أود الاستفسار عن خدمات ELFAZNI SERVICES.`
-  )}`;
 
   const highlights = [
     t('تواصل سريع واستجابة مباشرة'),
@@ -149,13 +144,11 @@ export const FounderSection: React.FC = () => {
                 </div>
 
                 <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact-form"
                   className="inline-flex items-center justify-center gap-2.5 bg-[#004AA5] hover:bg-[#0B2E57] text-white font-black px-7 py-4 rounded-2xl shadow-lg shadow-[#004AA5]/20 hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-sm sm:text-base cursor-pointer"
                 >
-                  <WhatsAppLogo className="w-5 h-5" />
                   <span>{t('تواصل مباشرة مع رشيد الفزني')}</span>
+                  {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
                 </a>
               </div>
             </div>

@@ -109,18 +109,14 @@ export const HowItWorks: React.FC = () => {
           ))}
         </div>
 
-        {/* Quick WhatsApp helper bar */}
+        {/* Quick helper bar */}
         <div className="mt-14 text-center">
           <a
-            href={`https://wa.me/${SITE_CONTACT.whatsappRaw}?text=${encodeURIComponent(
-              'مرحباً، أود معرفة الخطوات اللازمة لمعاملتي.'
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact-form"
             className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-[#FFFFFF] border border-[#D7E7F7] hover:border-[#2A83D5] shadow-2xs hover:shadow-xs text-[#0B2E57] font-bold text-sm sm:text-base active:scale-[0.98] transition-all cursor-pointer"
           >
-            <WhatsAppLogo className="w-5 h-5" />
             <span>{t('هل لديك سؤال حول الخطوات؟ تواصل معنا مباشرة')}</span>
+            <span className="text-[#CC9048]">↓</span>
           </a>
         </div>
       </div>

@@ -36,6 +36,8 @@ import {
   AlertCircle,
   Activity,
   Plus,
+  UserPlus,
+  CheckSquare,
 } from 'lucide-react';
 import {
   api,
@@ -49,6 +51,9 @@ import {
 } from '../../services/api';
 import { WhatsAppLogo } from '../WhatsAppLogo';
 import { realtime } from '../../services/realtime';
+import { useLanguage } from '../../context/LanguageContext';
+import { ResizeHandle } from '../workspace/ResizeHandle';
+import { clampPanelSize } from '../workspace/layoutPreferences';
 
 type FolderType = 'inbox' | 'starred' | 'sent' | 'in_progress' | 'resolved' | 'trash';
 
@@ -69,6 +74,7 @@ const FOLLOW_UP_STATUS_CONFIG: Record<
   { label: string; color: string; bg: string; border: string; dotColor: string }
 > = {
   NEW: { label: 'جديد', color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-200', dotColor: 'bg-blue-500' },
+  INCOMPLETE_CONSENTED: { label: 'طلب غير مكتمل — بيانات محفوظة', color: 'text-amber-800', bg: 'bg-amber-50', border: 'border-amber-300', dotColor: 'bg-amber-500' },
   FOLLOW_UP_REQUIRED: { label: 'يحتاج متابعة', color: 'text-rose-700', bg: 'bg-rose-50', border: 'border-rose-300', dotColor: 'bg-rose-500' },
   IN_PROGRESS: { label: 'قيد المعالجة', color: 'text-amber-800', bg: 'bg-amber-50', border: 'border-amber-200', dotColor: 'bg-amber-500' },
   WAITING_CUSTOMER: { label: 'بانتظار العميل', color: 'text-purple-700', bg: 'bg-purple-50', border: 'border-purple-200', dotColor: 'bg-purple-500' },
@@ -123,8 +129,39 @@ export const AdminMailbox: React.FC = () => {
   const [newNoteText, setNewNoteText] = useState('');
   const [addingNote, setAddingNote] = useState(false);
   const [feedbackBanner, setFeedbackBanner] = useState<string | null>(null);
-  const [copiedField, setCopiedField] = useState<string | null>(null);
   const [showTimeline, setShowTimeline] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+  const { isRtl = true } = useLanguage();
+
+  // Resizable Messages List Width (default 340px, min 260px, max 520px)
+  const [listWidth, setListWidth] = useState<number>(() => {
+    if (typeof window === 'undefined') return 340;
+    try {
+      const saved = localStorage.getItem('elfazni_mailbox_list_width');
+      if (saved) {
+        const num = parseInt(saved, 10);
+        if (!isNaN(num)) return clampPanelSize(num, 260, 520);
+      }
+    } catch {}
+    return 340;
+  });
+
+  const handleResize = (delta: number) => {
+    setListWidth((prev) => {
+      const next = clampPanelSize(prev + delta, 260, 520);
+      try {
+        localStorage.setItem('elfazni_mailbox_list_width', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleResetWidth = () => {
+    setListWidth(340);
+    try {
+      localStorage.setItem('elfazni_mailbox_list_width', '340');
+    } catch {}
+  };
 
   useEffect(() => {
     loadMailbox();
@@ -361,6 +398,53 @@ export const AdminMailbox: React.FC = () => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  const [convertingCrm, setConvertingCrm] = useState(false);
+  const [creatingTask, setCreatingTask] = useState(false);
+
+  const handleConvertToCrm = async () => {
+    if (!selectedMessage || convertingCrm) return;
+    setConvertingCrm(true);
+    try {
+      const res = await api.convertMailboxMessageToCrm(selectedMessage.id);
+      const updatedMsg: ContactMessage = {
+        ...selectedMessage,
+        crmContactId: res.contactId,
+      };
+      setSelectedMessage(updatedMsg);
+      setMessages((prev) => prev.map((m) => (m.id === selectedMessage.id ? updatedMsg : m)));
+      setFeedbackBanner(
+        (res as any).matched
+          ? 'تم ربط الطلب بجهة اتصال موجودة في CRM بنجاح'
+          : 'تم إنشاء عميل جديد في CRM وربطه بالتذكرة بنجاح!'
+      );
+      setTimeout(() => setFeedbackBanner(null), 3500);
+    } catch (err) {
+      console.error('Failed to convert to CRM:', err);
+      setFeedbackBanner('تعذر تحويل الطلب إلى CRM');
+      setTimeout(() => setFeedbackBanner(null), 3000);
+    } finally {
+      setConvertingCrm(false);
+    }
+  };
+
+  const handleCreateTask = async () => {
+    if (!selectedMessage || creatingTask) return;
+    setCreatingTask(true);
+    try {
+      const res = await api.createTaskFromMailboxMessage(selectedMessage.id, {
+        title: `متابعة الطلب ${selectedMessage.reference || selectedMessage.ticketNumber} — ${selectedMessage.name}`,
+      });
+      setFeedbackBanner(`تم إنشاء مهمة المتابعة بنجاح (${res.taskId})`);
+      setTimeout(() => setFeedbackBanner(null), 3500);
+    } catch (err) {
+      console.error('Failed to create task:', err);
+      setFeedbackBanner('تعذر إنشاء مهمة المتابعة');
+      setTimeout(() => setFeedbackBanner(null), 3000);
+    } finally {
+      setCreatingTask(false);
+    }
+  };
+
   const copyToClipboard = (text: string, fieldName: string) => {
     navigator.clipboard.writeText(text);
     setCopiedField(fieldName);
@@ -496,6 +580,17 @@ export const AdminMailbox: React.FC = () => {
           >
             <span className="w-2 h-2 rounded-full bg-rose-500" />
             <span>يحتاج متابعة</span>
+          </button>
+          <button
+            onClick={() => setFollowUpFilter('INCOMPLETE_CONSENTED')}
+            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all shrink-0 ${
+              followUpFilter === 'INCOMPLETE_CONSENTED'
+                ? 'bg-amber-100 text-amber-900 border border-amber-300 ring-1 ring-amber-400'
+                : 'bg-white text-amber-800 border border-amber-200 hover:bg-amber-50'
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-amber-500" />
+            <span>طلب غير مكتمل</span>
           </button>
           <button
             onClick={() => setFollowUpFilter('NEW')}
@@ -691,8 +786,11 @@ export const AdminMailbox: React.FC = () => {
           </div>
         </div>
 
-        {/* Column 2: Message Index List (w-72 lg:w-88) */}
-        <div className="w-72 lg:w-88 border-l border-slate-200 flex flex-col bg-white shrink-0">
+        {/* Column 2: Message Index List (Resizable) */}
+        <div
+          style={{ width: `${listWidth}px` }}
+          className="shrink-0 border-l border-slate-200 flex flex-col bg-white transition-[width] duration-75"
+        >
           {/* Search Header */}
           <div className="p-3 border-b border-slate-200">
             <div className="relative">
@@ -825,6 +923,21 @@ export const AdminMailbox: React.FC = () => {
               })
             )}
           </div>
+        </div>
+
+        {/* Resizable Divider Handle (Between Message List and Details) */}
+        <div className="hidden md:flex shrink-0 items-stretch">
+          <ResizeHandle
+            id="mailbox-message-list"
+            direction="horizontal"
+            isRtl={isRtl}
+            currentSize={listWidth}
+            minSize={260}
+            maxSize={520}
+            onResize={handleResize}
+            onReset={handleResetWidth}
+            ariaLabel="مقبض تعديل عرض قائمة الطلبات — Resize mailbox list"
+          />
         </div>
 
         {/* Column 3: Full Message Reader, Structured Payload, Internal Notes & Reply Composer */}
@@ -986,6 +1099,84 @@ export const AdminMailbox: React.FC = () => {
                       </span>
                     )}
                   </div>
+                </div>
+
+                {/* Fast Action Toolbar (WhatsApp, Email Reply, CRM conversion, Task creation) */}
+                <div className="mt-2.5 pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {/* Action 1: Open WhatsApp */}
+                    {(selectedMessage.whatsappPhone || selectedMessage.phone) && (
+                      <button
+                        type="button"
+                        onClick={handleWhatsAppReply}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all shadow-xs cursor-pointer"
+                        title="فتح محادثة واتساب للتواصل المباشر مع العميل"
+                      >
+                        <WhatsAppLogo className="w-3.5 h-3.5" />
+                        <span>فتح واتساب</span>
+                      </button>
+                    )}
+
+                    {/* Action 2: Email Reply shortcut */}
+                    {selectedMessage.email && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const ta = document.querySelector('textarea');
+                          ta?.focus();
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold transition-all shadow-xs cursor-pointer"
+                        title="كتابة وإرسال رد بريدي"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        <span>إرسال بريد إلكتروني</span>
+                      </button>
+                    )}
+
+                    {/* Action 3: Convert to CRM Customer */}
+                    <button
+                      type="button"
+                      disabled={convertingCrm}
+                      onClick={handleConvertToCrm}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold transition-all shadow-xs cursor-pointer ${
+                        selectedMessage.crmContactId
+                          ? 'bg-blue-100 text-blue-900 border border-blue-300'
+                          : 'bg-[#004AA5] hover:bg-[#0B2E57] text-white'
+                      }`}
+                      title="مزامنة وإنشاء سجل العميل في CRM"
+                    >
+                      {convertingCrm ? (
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <UserPlus className="w-3.5 h-3.5" />
+                      )}
+                      <span>
+                        {selectedMessage.crmContactId ? 'مرتبط بالـ CRM ✓' : 'إنشاء عميل في CRM'}
+                      </span>
+                    </button>
+
+                    {/* Action 4: Create Follow-up Task */}
+                    <button
+                      type="button"
+                      disabled={creatingTask}
+                      onClick={handleCreateTask}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold transition-all shadow-xs cursor-pointer"
+                      title="إنشاء مهمة متابعة مسندة للطلب"
+                    >
+                      {creatingTask ? (
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <CheckSquare className="w-3.5 h-3.5" />
+                      )}
+                      <span>إنشاء مهمة متابعة</span>
+                    </button>
+                  </div>
+
+                  {selectedMessage.crmContactId && (
+                    <span className="text-[11px] font-mono font-bold bg-blue-50 text-blue-700 px-2.5 py-0.5 rounded-lg border border-blue-200">
+                      CRM ID: {selectedMessage.crmContactId.slice(0, 8)}...
+                    </span>
+                  )}
                 </div>
               </div>
 

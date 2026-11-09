@@ -238,6 +238,74 @@ async function runWorkspaceTestSuite() {
   }
 
   // =========================================================================
+  // 10. Calendar Workspace Resizing (`ModernCalendar.tsx`)
+  // =========================================================================
+  console.log('\n--- 10. Calendar Workspace Resizing ---');
+  {
+    const calPath = path.join(ROOT_DIR, 'crm/src/components/tools/ModernCalendar.tsx');
+    const calCode = fs.readFileSync(calPath, 'utf8');
+
+    const hasCalWidth = calCode.includes('sidebarWidth') && calCode.includes('handleSidebarResize');
+    assert('CALENDAR-01', 'Calendar Workspace', hasCalWidth, 'true', String(hasCalWidth), 'ModernCalendar manages dynamic sidebarWidth (180-420px)');
+
+    const hasCalHandle = calCode.includes('id="calendar-sources-sidebar"') && calCode.includes('handleSidebarResize');
+    assert('CALENDAR-02', 'Calendar Workspace', hasCalHandle, 'true', String(hasCalHandle), 'Renders ResizeHandle separating sources sidebar from calendar grid');
+
+    const hasCalReset = calCode.includes('handleResetSidebarWidth') && calCode.includes('onReset={handleResetSidebarWidth}');
+    assert('CALENDAR-03', 'Calendar Workspace', hasCalReset, 'true', String(hasCalReset), 'Supports double-click layout reset to default 256px');
+
+    const hasCalPersistence = calCode.includes('elfazni_calendar_sidebar_width');
+    assert('CALENDAR-04', 'Calendar Workspace', hasCalPersistence, 'true', String(hasCalPersistence), 'Persists calendar sidebar width in localStorage (elfazni_calendar_sidebar_width)');
+  }
+
+  // =========================================================================
+  // 11. Task Manager Workspace Resizing (`ModernTaskManager.tsx`)
+  // =========================================================================
+  console.log('\n--- 11. Task Manager Workspace Resizing ---');
+  {
+    const taskPath = path.join(ROOT_DIR, 'crm/src/components/tools/ModernTaskManager.tsx');
+    const taskCode = fs.readFileSync(taskPath, 'utf8');
+
+    const hasTaskWidth = taskCode.includes('drawerWidth') && taskCode.includes('handleDrawerResize');
+    assert('TASK-01', 'Task Manager Workspace', hasTaskWidth, 'true', String(hasTaskWidth), 'ModernTaskManager manages dynamic active task drawerWidth (280-600px)');
+
+    const hasTaskHandle = taskCode.includes('id="task-details-drawer"') && taskCode.includes('handleDrawerResize');
+    assert('TASK-02', 'Task Manager Workspace', hasTaskHandle, 'true', String(hasTaskHandle), 'Renders ResizeHandle separating task board from detail drawer');
+
+    const hasTaskReset = taskCode.includes('handleResetDrawerWidth') && taskCode.includes('onReset={handleResetDrawerWidth}');
+    assert('TASK-03', 'Task Manager Workspace', hasTaskReset, 'true', String(hasTaskReset), 'Supports double-click layout reset to default 384px');
+
+    const hasTaskPersistence = taskCode.includes('elfazni_task_drawer_width');
+    assert('TASK-04', 'Task Manager Workspace', hasTaskPersistence, 'true', String(hasTaskPersistence), 'Persists task drawer width in localStorage (elfazni_task_drawer_width)');
+  }
+
+  // =========================================================================
+  // 12. Hub Portal Interactive Visual Resizing (`HubPage.tsx`)
+  // =========================================================================
+  console.log('\n--- 12. Hub Portal Interactive Visual Resizing ---');
+  {
+    const hubPath = path.join(ROOT_DIR, 'src/components/hub/HubPage.tsx');
+    const hubCssPath = path.join(ROOT_DIR, 'src/components/hub/hub-entry.css');
+    const hubCode = fs.readFileSync(hubPath, 'utf8');
+    const hubCss = fs.readFileSync(hubCssPath, 'utf8');
+
+    const hasHubWidth = hubCode.includes('hubVisualWidth') && hubCode.includes('handleHubVisualResize');
+    assert('HUB-01', 'Hub Portal', hasHubWidth, 'true', String(hasHubWidth), 'HubPage manages dynamic hubVisualWidth (340-680px)');
+
+    const hasHubHandle = hubCode.includes('id="hub-portal-split"') && hubCode.includes('handleHubVisualResize');
+    assert('HUB-02', 'Hub Portal', hasHubHandle, 'true', String(hasHubHandle), 'Renders ResizeHandle separating 3D visual panel from access tiles');
+
+    const hasHubReset = hubCode.includes('handleResetHubVisual') && hubCode.includes('onReset={handleResetHubVisual}');
+    assert('HUB-03', 'Hub Portal', hasHubReset, 'true', String(hasHubReset), 'Supports double-click layout reset to default 510px');
+
+    const hasHubPersistence = hubCode.includes('elfazni_hub_visual_width');
+    assert('HUB-04', 'Hub Portal', hasHubPersistence, 'true', String(hasHubPersistence), 'Persists Hub visual panel width in localStorage (elfazni_hub_visual_width)');
+
+    const hasHubCssWrapper = hubCss.includes('.hub-entry-photo-wrapper') && hubCss.includes('display: flex');
+    assert('HUB-05', 'Hub Portal', hasHubCssWrapper, 'true', String(hasHubCssWrapper), 'hub-entry.css defines .hub-entry-photo-wrapper with flexbox layout support');
+  }
+
+  // =========================================================================
   // Generate Markdown Test Report
   // =========================================================================
   const total = results.length;
@@ -305,6 +373,15 @@ ${results.map((r) => `| \`${r.id}\` | ${r.category} | ${r.passed ? '✅ PASS' : 
 
 6. **Theme & Appearance Manager (\`src/components/admin/theme/AdminThemeManager.tsx\`):**
    - Resizable settings sidebar (260–520px, default 340px) alongside live interactive preview.
+
+7. **Calendar Workspace (\`crm/src/components/tools/ModernCalendar.tsx\`):**
+   - Resizable upcoming events and source filters sidebar (180–420px, default 256px), double-click reset, localStorage persistence.
+
+8. **Task Manager Workspace (\`crm/src/components/tools/ModernTaskManager.tsx\`):**
+   - Resizable active task details drawer (280–600px, default 384px), double-click reset, localStorage persistence.
+
+9. **Hub Portal Access Front (\`src/components/hub/HubPage.tsx\` & \`hub-entry.css\`):**
+   - Resizable 3D visual showcase panel (340–680px, default 510px) with col-resize separator handle, double-click reset, localStorage persistence.
 
 ---
 *Report generated automatically by ELFAZNI SERVICES QA Engine.*

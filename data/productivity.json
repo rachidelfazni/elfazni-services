@@ -4,13 +4,91 @@
     "elfazni.admin": {
       "notes": [
         {
+          "id": "n_1794159704558_mjme",
+          "userId": "elfazni.admin",
+          "title": "ملاحظة تجريبية لاجتماع القنصلية (نسخة مكررة)",
+          "icon": "🏛️",
+          "coverColor": "#0B2E57",
+          "body": "شهادة مطابقة وتوثيق رسمي — الفزني للخدمات\n\nتشهد مؤسسة الفزني للخدمات والاستشارات الدولية بموجب هذه الوثيقة المعتمدة أن كافة الإجراءات القانونية والمستندات الثبوتية قد تم تدقيقها والمصادقة عليها وفقاً للمعايير المهنية المعمول بها.\n\nرقم المعاملة\tنوع الخدمة\tحالة الاعتماد\tالتاريخ\nELZ-2026-889\tتوثيق قنصلي وحجز طيران معتمد\tمكتمل ومصادق عليه\t08 نوفمبر 2026\n\nصدرت هذه الشهادة الرسمية بناءً على طلب المعني بالأمر لتقديمها لدى الجهات المختصة.",
+          "contentHtml": "\n          <h2>شهادة مطابقة وتوثيق رسمي — الفزني للخدمات</h2>\n          <p>تشهد مؤسسة <strong>الفزني للخدمات والاستشارات الدولية</strong> بموجب هذه الوثيقة المعتمدة أن كافة الإجراءات القانونية والمستندات الثبوتية قد تم تدقيقها والمصادقة عليها وفقاً للمعايير المهنية المعمول بها.</p>\n          <table border=\"1\" style=\"width:100%; border-collapse:collapse; margin: 15px 0;\">\n            <thead>\n              <tr style=\"background:#004AA5; color:white;\">\n                <th style=\"padding:8px;\">رقم المعاملة</th>\n                <th style=\"padding:8px;\">نوع الخدمة</th>\n                <th style=\"padding:8px;\">حالة الاعتماد</th>\n                <th style=\"padding:8px;\">التاريخ</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <td style=\"padding:8px; text-align:center;\">ELZ-2026-889</td>\n                <td style=\"padding:8px;\">توثيق قنصلي وحجز طيران معتمد</td>\n                <td style=\"padding:8px; text-align:center; color:#10B981; font-weight:bold;\">مكتمل ومصادق عليه</td>\n                <td style=\"padding:8px; text-align:center;\">08 نوفمبر 2026</td>\n              </tr>\n            </tbody>\n          </table>\n          <p>صدرت هذه الشهادة الرسمية بناءً على طلب المعني بالأمر لتقديمها لدى الجهات المختصة.</p>\n        ",
+          "tags": [
+            "قنصلية",
+            "تأشيرات"
+          ],
+          "pinned": true,
+          "favorite": false,
+          "archived": false,
+          "linkedTaskIds": [
+            "task_1794089683506_bvwj"
+          ],
+          "revisions": [
+            {
+              "id": "042939af-1481-4404-83b9-bfdf58be15d2",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية (نسخة مكررة)",
+              "contentHtml": "\n          <h1 style=\"color: #0B2E57;\"><div class=\"ws-table-wrapper\" contenteditable=\"false\"><table class=\"w-full border-collapse text-xs\" contenteditable=\"true\"><tbody><tr><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,3</td></tr></tbody></table></div><p><br></p>الدليل الإرشادي الموحد للموظفين (Interactive Operations Playbook)</h1>\n          <div class=\"ws-callout my-3\">\n            💡 <strong>تنبيه فوري:</strong> يجب التحقق من صلاحية جواز السفر لمدة لا تقل عن 6 أشهر قبل تأكيد أي حجز طيران دولي.\n          </div>\n          <div class=\"space-y-1 my-3\">\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التدقيق المالي الأولي ومطابقة الفاتورة</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التأكد من الاسم باللغة الإنجليزية كما في الجواز</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <blockquote><span>إرسال&nbsp;</span></blockquote><hr>\n        <div class=\"my-2.5 inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-[#D7E7F7] bg-white shadow-2xs text-xs\" contenteditable=\"false\">\n          <span class=\"p-1.5 rounded-lg bg-blue-100 text-blue-700 font-bold text-[10px]\">\n            DOC\n          </span>\n          <span class=\"font-bold text-[#0B2E57]\">2.png</span>\n          <a href=\"/uploads/productivity/2-1794159711709-945e0e85.png\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:underline ms-2 font-bold flex items-center gap-0.5\">\n            تحميل <span class=\"text-[10px]\">⬇</span>\n          </a>\n        </div><p><br></p>\n      <blockquote><span>إشعار التأكيد عبر WhatsApp إلى العميل</span></blockquote></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <span>تصدير السند التنفيذي إلى الأرشيف السحابي</span></div>\n          </div>\n          <div class=\"ws-code-wrapper my-3\">\n            <pre class=\"ws-code-content\"><code>// PNR Auto-Validation Regex\nconst PNR_PATTERN = /^[A-Z0-9]{6}$/;\nfunction validatePNR(pnr) { return PNR_PATTERN.test(pnr.trim()); }</code></pre>\n          </div>\n        ",
+              "updatedAt": "2026-11-08T17:42:08.479Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "9562c9f8-5f6b-40ec-a85c-d4830d8be817",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية (نسخة مكررة)",
+              "contentHtml": "\n          <h1 style=\"color: #0B2E57;\"><div class=\"ws-table-wrapper\" contenteditable=\"false\"><table class=\"w-full border-collapse text-xs\" contenteditable=\"true\"><tbody><tr><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,3</td></tr></tbody></table></div><p><br></p>الدليل الإرشادي الموحد للموظفين (Interactive Operations Playbook)</h1>\n          <div class=\"ws-callout my-3\">\n            💡 <strong>تنبيه فوري:</strong> يجب التحقق من صلاحية جواز السفر لمدة لا تقل عن 6 أشهر قبل تأكيد أي حجز طيران دولي.\n          </div>\n          <div class=\"space-y-1 my-3\">\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التدقيق المالي الأولي ومطابقة الفاتورة</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التأكد من الاسم باللغة الإنجليزية كما في الجواز</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <blockquote><span>إرسال&nbsp;</span></blockquote><hr><blockquote><span>إشعار التأكيد عبر WhatsApp إلى العميل</span></blockquote></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <span>تصدير السند التنفيذي إلى الأرشيف السحابي</span></div>\n          </div>\n          <div class=\"ws-code-wrapper my-3\">\n            <pre class=\"ws-code-content\"><code>// PNR Auto-Validation Regex\nconst PNR_PATTERN = /^[A-Z0-9]{6}$/;\nfunction validatePNR(pnr) { return PNR_PATTERN.test(pnr.trim()); }</code></pre>\n          </div>\n        ",
+              "updatedAt": "2026-11-08T17:41:44.567Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            }
+          ],
+          "createdAt": "2026-11-08T17:41:44.558Z",
+          "updatedAt": "2026-11-08T18:08:44.772Z",
+          "pageSetup": {
+            "paperSize": "A4",
+            "customWidthMm": 210,
+            "customHeightMm": 297,
+            "orientation": "portrait",
+            "margins": {
+              "topMm": 15,
+              "bottomMm": 15,
+              "leftMm": 15,
+              "rightMm": 15
+            },
+            "header": {
+              "enabled": true,
+              "text": "الفزني للخدمات — وثيقة معتمدة",
+              "showTitle": true,
+              "showDate": true
+            },
+            "footer": {
+              "enabled": true,
+              "text": "الفزني للخدمات — ELFAZNI SERVICES",
+              "showPageNumbers": true,
+              "showDate": true
+            },
+            "printBackground": true,
+            "pageBreaks": true
+          },
+          "stampConfig": {
+            "enabled": true,
+            "stampId": "stamp_official_blue",
+            "stampUrl": "/assets/stamps/elfazni-official-stamp.png",
+            "stampName": "خاتم رسمي معتمد — الفزني للخدمات",
+            "targetPages": "last",
+            "presetPosition": "bottom_right",
+            "xPercent": 80,
+            "yPercent": 85,
+            "scalePercent": 100,
+            "rotationDeg": -5,
+            "opacityPercent": 90,
+            "layer": "foreground",
+            "locked": false
+          }
+        },
+        {
           "id": "note_1794089683503_rkcr",
           "userId": "elfazni.admin",
           "title": "ملاحظة تجريبية لاجتماع القنصلية",
           "icon": "🏛️",
           "coverColor": "#0B2E57",
-          "body": "💡\nتنبيه هام: اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n\n\n\n\n💡\nتنبيه هام: اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n\n\n\n\nJAVASCRIPT\nنسخ الكود\n// اكتب الكود هنا...\n\n\n\n\nملاحظة تجريبية لاجتماع القنصلية\nJAVASCRIPT\nنسخ الكود\n// اكتب الكود هنا...\n\n\n\n\nJAVASCRIPT\nنسخ الكود\n// اكتب الكود هنا...\n\n\n\n\nخلايا 1,1\tخلايا 1,2\tخلايا 1,3\nخلايا 2,1\tخلايا 2,2\tخلايا 2,3\nخلايا 3,1\t\nخلايا 1,1\tخلايا 1,2\tخلايا 1,3\nخلايا 2,1\tخلايا 2,2\tخلايا 2,3\nخلايا 3,1\tخلايا 3,2\tخلايا 3,3\n\n\n\n\nخلايا 1,1\tخلايا 1,2\tخلايا 1,3\nخلايا 2,1\tخلايا 2,2\tخلايا 2,3\nخلايا 3,1\tخلايا 3,2\tخلايا 3,3\n\n\n\n\n\n\t\n\n\n\n\nتم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.\n\nحجز الطيران مؤكد\nالتأمين ساري",
-          "contentHtml": "<h1>\n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091220121\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \"><span style=\"background-color: rgb(254, 240, 138);\">خلايا 2,1</span></td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+          "body": "خلية 1,1\tخلية 1,2\tخلية 1,3\nخلية 2,1\tخلية 2,2\tخلية 2,3\nخلية 3,1\tخلية 3,2\tخلية 3,3\nخلية 4,1\tخلية 4,2\tخلية 4,3\nخلية 5,1\tخلية 5,2\tخلية 5,3\nخلية 6,1\tخلية 6,2\tخلية 6,3\n\n\n\n\nالدليل الإرشادي الموحد للموظفين (Interactive Operations Playbook)\n💡 تنبيه فوري: يجب التحقق من صلاحية جواز السفر لمدة لا تقل عن 6 أشهر قبل تأكيد أي حجز طيران دولي.\nالتدقيق المالي الأولي ومطابقة الفاتورة\nالتأكد من الاسم باللغة الإنجليزية كما في الجواز\nإرسال \nإشعار التأكيد عبر WhatsApp إلى العميل\nتصدير السند التنفيذي إلى الأرشيف السحابي\n// PNR Auto-Validation Regex\nconst PNR_PATTERN = /^[A-Z0-9]{6}$/;\nfunction validatePNR(pnr) { return PNR_PATTERN.test(pnr.trim()); }",
+          "contentHtml": "\n          <h1 style=\"color: #0B2E57;\"><div class=\"ws-table-wrapper\" contenteditable=\"false\"><table class=\"w-full border-collapse text-xs\" contenteditable=\"true\"><tbody><tr><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,3</td></tr></tbody></table></div><p><br></p>الدليل الإرشادي الموحد للموظفين (Interactive Operations Playbook)</h1>\n          <div class=\"ws-callout my-3\">\n            💡 <strong>تنبيه فوري:</strong> يجب التحقق من صلاحية جواز السفر لمدة لا تقل عن 6 أشهر قبل تأكيد أي حجز طيران دولي.\n          </div>\n          <div class=\"space-y-1 my-3\">\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التدقيق المالي الأولي ومطابقة الفاتورة</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التأكد من الاسم باللغة الإنجليزية كما في الجواز</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <blockquote><span>إرسال&nbsp;</span></blockquote><hr><blockquote><span>إشعار التأكيد عبر WhatsApp إلى العميل</span></blockquote></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <span>تصدير السند التنفيذي إلى الأرشيف السحابي</span></div>\n          </div>\n          <div class=\"ws-code-wrapper my-3\">\n            <pre class=\"ws-code-content\"><code>// PNR Auto-Validation Regex\nconst PNR_PATTERN = /^[A-Z0-9]{6}$/;\nfunction validatePNR(pnr) { return PNR_PATTERN.test(pnr.trim()); }</code></pre>\n          </div>\n        ",
           "tags": [
             "قنصلية",
             "تأشيرات"
@@ -22,6 +100,69 @@
             "task_1794089683506_bvwj"
           ],
           "revisions": [
+            {
+              "id": "b3ad7014-2199-4bf4-b005-e4c5b463c61c",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "\n          <h1 style=\"color: #0B2E57;\"><div class=\"ws-table-wrapper\" contenteditable=\"false\"><table class=\"w-full border-collapse text-xs\" contenteditable=\"true\"><tbody><tr><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,3</td></tr></tbody></table></div><p><br></p>الدليل الإرشادي الموحد للموظفين (Interactive Operations Playbook)</h1>\n          <div class=\"ws-callout my-3\">\n            💡 <strong>تنبيه فوري:</strong> يجب التحقق من صلاحية جواز السفر لمدة لا تقل عن 6 أشهر قبل تأكيد أي حجز طيران دولي.\n          </div>\n          <div class=\"space-y-1 my-3\">\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التدقيق المالي الأولي ومطابقة الفاتورة</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التأكد من الاسم باللغة الإنجليزية كما في الجواز</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <blockquote><span>إرسال إشعار التأكيد عبر WhatsApp إلى العميل</span></blockquote></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <span>تصدير السند التنفيذي إلى الأرشيف السحابي</span></div>\n          </div>\n          <div class=\"ws-code-wrapper my-3\">\n            <pre class=\"ws-code-content\"><code>// PNR Auto-Validation Regex\nconst PNR_PATTERN = /^[A-Z0-9]{6}$/;\nfunction validatePNR(pnr) { return PNR_PATTERN.test(pnr.trim()); }</code></pre>\n          </div>\n        ",
+              "updatedAt": "2026-11-08T17:38:16.531Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "a708f7b3-e9d0-4d22-99d4-18f2cca967ef",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "\n          <h1 style=\"color: #0B2E57;\"><div class=\"ws-table-wrapper\" contenteditable=\"false\"><table class=\"w-full border-collapse text-xs\" contenteditable=\"true\"><tbody><tr><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 4,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 5,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 6,3</td></tr></tbody></table></div><p><br></p>الدليل الإرشادي الموحد للموظفين (Interactive Operations Playbook)</h1>\n          <div class=\"ws-callout my-3\">\n            💡 <strong>تنبيه فوري:</strong> يجب التحقق من صلاحية جواز السفر لمدة لا تقل عن 6 أشهر قبل تأكيد أي حجز طيران دولي.\n          </div>\n          <div class=\"space-y-1 my-3\">\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التدقيق المالي الأولي ومطابقة الفاتورة</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التأكد من الاسم باللغة الإنجليزية كما في الجواز</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <span>إرسال إشعار التأكيد عبر WhatsApp إلى العميل</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <span>تصدير السند التنفيذي إلى الأرشيف السحابي</span></div>\n          </div>\n          <div class=\"ws-code-wrapper my-3\">\n            <pre class=\"ws-code-content\"><code>// PNR Auto-Validation Regex\nconst PNR_PATTERN = /^[A-Z0-9]{6}$/;\nfunction validatePNR(pnr) { return PNR_PATTERN.test(pnr.trim()); }</code></pre>\n          </div>\n        ",
+              "updatedAt": "2026-11-08T17:38:10.641Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "d49b00de-dbeb-4558-9d4c-65bf1b7cb6c1",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "\n          <h1 style=\"color: #0B2E57;\">الدليل الإرشادي الموحد للموظفين (Interactive Operations Playbook)</h1>\n          <div class=\"ws-callout my-3\">\n            💡 <strong>تنبيه فوري:</strong> يجب التحقق من صلاحية جواز السفر لمدة لا تقل عن 6 أشهر قبل تأكيد أي حجز طيران دولي.\n          </div>\n          <div class=\"space-y-1 my-3\">\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التدقيق المالي الأولي ومطابقة الفاتورة</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\" checked=\"\"> <span class=\"line-through text-slate-400\">التأكد من الاسم باللغة الإنجليزية كما في الجواز</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <span>إرسال إشعار التأكيد عبر WhatsApp إلى العميل</span></div>\n            <div class=\"ws-checklist-item flex items-center gap-2\"><input type=\"checkbox\"> <span>تصدير السند التنفيذي إلى الأرشيف السحابي</span></div>\n          </div>\n          <div class=\"ws-code-wrapper my-3\">\n            <pre class=\"ws-code-content\"><code>// PNR Auto-Validation Regex\nconst PNR_PATTERN = /^[A-Z0-9]{6}$/;\nfunction validatePNR(pnr) { return PNR_PATTERN.test(pnr.trim()); }</code></pre>\n          </div>\n        ",
+              "updatedAt": "2026-11-08T17:28:15.544Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "a9e1f217-ba57-4763-90c4-3c9532fda93b",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>التقرير الإداري الشامل لعمليات الربع السنوي - وثيقة تفصيلية متكاملة</h1>\n\n            <h3>الفصل 1: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 2: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 3: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 4: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 5: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 6: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 7: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 8: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 9: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 10: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 11: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 12: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 13: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 14: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 15: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 16: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 17: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 18: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 19: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 20: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 21: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 22: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 23: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 24: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 25: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 26: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 27: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 28: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 29: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 30: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 31: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 32: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 33: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 34: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          \n\n            <h3>الفصل 35: مراجعة مؤشرات الأداء والتحليل المالي والتشغيلي للمجموعة</h3>\n            <p>يمثل هذا القسم تحليلاً تفصيلياً شاملاً يغطي حركة المعاملات وحجوزات التذاكر والرحلات الجوية ومواعيد القنصليات المعتمدة لدى سفارات الدول الأوروبية والآسيوية. تشير الأرقام الإحصائية إلى نمو ملحوظ في معدل استجابة خدمة العملاء والالتزام الصارم بمواعيد إيداع الملفات، مع تحقيق معدل رضا يتجاوز 98.4% عبر كافة المنصات الرقمية ومركز الاتصال الموحد.</p>\n            <p>تواصل فرق العمل الميدانية في فروع طنجة والدار البيضاء وإسطنبول والرياض تقديم أرقى المعايير الاحترافية لعملائنا الكرام، مع مراقبة يومية لجداول الرحلات وسياسات الأمتعة وإجراءات التأشيرات الدبلوماسية والتجارية.</p>\n          ",
+              "updatedAt": "2026-11-08T17:28:14.466Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "679545b3-2078-4453-aa85-6a779d3e9921",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "\n          <h2 style=\"color: #0B2E57;\">عقد تقديم خدمات سياحية وحجوزات دولية (International Travel Master Agreement)</h2>\n          <p>تم إبرام هذا العقد بين <strong>شركة الفزني للخدمات (ELFAZNI SERVICES GROUP)</strong> والطرف الثاني العميل الموقر:</p>\n          <div class=\"ws-table-wrapper\">\n            <table class=\"w-full border-collapse text-xs\" style=\"border: 1px solid #D7E7F7;\">\n              <thead>\n                <tr style=\"background-color: #004AA5; color: white;\">\n                  <th style=\"padding: 8px; border: 1px solid #CBD5E1;\">البند التعاقدي</th>\n                  <th style=\"padding: 8px; border: 1px solid #CBD5E1;\">International Description</th>\n                  <th style=\"padding: 8px; border: 1px solid #CBD5E1;\">الحالة / Status</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <td style=\"padding: 6px; border: 1px solid #E2E8F0;\">تذكرة الذهاب والعودة</td>\n                  <td style=\"padding: 6px; border: 1px solid #E2E8F0;\" dir=\"ltr\">Casablanca (CMN) -&gt; Istanbul (IST)</td>\n                  <td style=\"padding: 6px; border: 1px solid #E2E8F0; color: #16A34A; font-weight: bold;\">مؤكد (CONFIRMED)</td>\n                </tr>\n                <tr>\n                  <td style=\"padding: 6px; border: 1px solid #E2E8F0;\">الإقامة الفندقية</td>\n                  <td style=\"padding: 6px; border: 1px solid #E2E8F0;\" dir=\"ltr\">CVK Park Bosphorus Hotel (5 Stars)</td>\n                  <td style=\"padding: 6px; border: 1px solid #E2E8F0; color: #16A34A; font-weight: bold;\">مدفوع بالكامل</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        ",
+              "updatedAt": "2026-11-08T17:28:13.590Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "99bb289c-e651-4410-ab0e-f0319a0aca61",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "\n          <div dir=\"ltr\" style=\"font-family: Inter, sans-serif;\">\n            <h1 style=\"color: #004AA5; font-size: 24px;\">System Architecture &amp; CloudSync API Specifications</h1>\n            <p><strong>Module:</strong> Enterprise Resizable Workspace Engine &amp; Multi-Tenant Sync</p>\n            <div class=\"ws-code-wrapper\">\n              <pre class=\"ws-code-content\"><code>// Real-time Event Subscription Handler\ninterface SyncPayload {\n  readonly recordId: string;\n  readonly entity: 'flight' | 'consulate' | 'customer' | 'invoice';\n  readonly timestamp: number;\n}\nexport async function pushTransactionState(payload: SyncPayload): Promise<void> {\n  console.log(`[ELFAZNI] Committing payload ${payload.recordId}`);\n}</void></code></pre>\n            </div>\n            <p>All client state transitions are verified with strict idempotency keys and cryptographic bearer signatures.</p>\n          </div>\n        ",
+              "updatedAt": "2026-11-08T17:28:12.749Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "c7bedef5-e35e-4783-8f5e-5feb0b6441ec",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "\n          <h1 style=\"color: #0B2E57; font-size: 26px; border-bottom: 2px solid #004AA5; padding-bottom: 8px;\">إشعار اعتماد رسمي صادر عن إدارة العمليات</h1>\n          <p><strong>الرقم المرجعي:</strong> ELZ-DOC-2026-0881<br><strong>التاريخ:</strong> 08 نوفمبر 2026</p>\n          <div class=\"ws-callout my-3\">\n            <strong>توجيه إداري رسمي:</strong> يُعتمد هذا الإجراء الموحد لكافة فروع ووكالات مجموعة الفزني للخدمات في المغرب وتركيا والمملكة العربية السعودية، مع مراعاة كافة الضوابط المعمول بها.\n          </div>\n          <p>تلتزم الإدارة العامة بضمان أعلى معايير الجودة والموثوقية والسرعة في إنجاز المعاملات القنصلية، وحجوزات الطيران الدولية، وخدمات الإقامة للمواطنين والمقيمين.</p>\n        ",
+              "updatedAt": "2026-11-08T17:28:11.899Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "4cefdd82-05f1-4525-a5e2-3dd97e494dbb",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>\n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\"><div class=\"ws-table-wrapper\" contenteditable=\"false\"><table class=\"w-full border-collapse text-xs\" contenteditable=\"true\"><tbody><tr><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 bg-slate-100 font-bold text-[#0B2E57]\">خلية 1,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 2,3</td></tr><tr><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,1</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,2</td><td class=\"p-2 min-w-[90px] border border-slate-200 \">خلية 3,3</td></tr></tbody></table></div><p><br></p>💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091220121\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \"><span style=\"background-color: rgb(254, 240, 138);\">خلايا 2,1</span></td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-08T15:54:20.581Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
+            {
+              "id": "47e830af-9baf-46c7-bd45-b83f8f5fe172",
+              "title": "ملاحظة تجريبية لاجتماع القنصلية",
+              "contentHtml": "<h1>\n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-3 p-3.5 rounded-xl border-r-4 border-r-[#A67B30] bg-[#FFF9ED] border border-[#E3C88F] text-[#0B2E57] text-xs leading-relaxed flex items-start gap-2.5\">\n        <span class=\"text-base leading-none select-none\">💡</span>\n        <div contenteditable=\"true\" class=\"flex-1 min-w-0\">\n          <strong>تنبيه هام:</strong> اكتب التفاصيل أو التوجيهات الخاصة بالمعاملة هنا...\n        </div>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091220121\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \"><span style=\"background-color: rgb(254, 240, 138);\">خلايا 2,1</span></td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
+              "updatedAt": "2026-11-08T13:00:42.171Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
             {
               "id": "f6a26090-732d-48ae-a2f0-72fdae909266",
               "title": "ملاحظة تجريبية لاجتماع القنصلية",
@@ -63,73 +204,10 @@
               "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \"><br></td><td class=\"border border-slate-300 p-2 min-w-[70px] \"></td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
               "updatedAt": "2026-11-07T22:39:46.002Z",
               "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "a886dbd9-cd84-4044-9524-5f75781244c0",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    <table class=\"w-full my-4 border-collapse border border-slate-300 text-xs\"><tbody><tr><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] bg-slate-100 font-bold\">خلايا 1,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 2,3</td></tr><tr><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,1</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,2</td><td class=\"border border-slate-300 p-2 min-w-[70px] \">خلايا 3,3</td></tr></tbody></table><p><br></p></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:39.248Z",
-              "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "94bbf591-d781-4ce0-bb08-7047d42f6d92",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    \n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091175864\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    </h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:36.469Z",
-              "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "73fc89a0-8d33-43f3-95c9-132372dbc28e",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية\n      <div class=\"my-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-100 overflow-hidden font-mono text-xs shadow-sm\" contenteditable=\"false\" data-code-block=\"code_1794091174192\">\n        <div class=\"flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-[11px] text-slate-400\">\n          <span class=\"font-bold text-amber-400\">JAVASCRIPT</span>\n          <button type=\"button\" onclick=\"navigator.clipboard.writeText(this.closest('[data-code-block]').querySelector('code').innerText); this.innerText='تم النسخ ✓'; setTimeout(() =&gt; this.innerText='نسخ الكود', 2000);\" class=\"px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-white cursor-pointer transition\">\n            نسخ الكود\n          </button>\n        </div>\n        <pre class=\"p-3 overflow-x-auto\"><code contenteditable=\"true\">// اكتب الكود هنا...</code></pre>\n      </div><p><br></p>\n    </h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:34.800Z",
-              "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "81330150-875f-4bf4-be07-d3bd3ad61814",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:28.525Z",
-              "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "ae38e3d8-f375-4e1d-a4da-1612fef8dac7",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1><b>ملاحظة تجريبية لاجتماع القنصلية</b></h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:27.188Z",
-              "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "274febc6-78f8-46ad-ab90-d2ccbcf25349",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:11.555Z",
-              "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "91e1f595-c82d-4524-ba90-4684f74b6e50",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل <b>على تجهي</b>ز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:10.698Z",
-              "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "950614fd-f8dd-47d4-93dd-5e041b34ef3d",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل على تجهيز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:07.703Z",
-              "summary": "حفظ تلقائي قبل التعديل"
-            },
-            {
-              "id": "2e4657e7-fbe8-4870-9b06-33330b00dfa4",
-              "title": "ملاحظة تجريبية لاجتماع القنصلية",
-              "contentHtml": "<h1>ملاحظة تجريبية لاجتماع القنصلية</h1><p>تم الاتفاق مع العميل <i>على تجهي</i>ز ملف فيزا إسبانيا.</p><ul><li>حجز الطيران مؤكد</li><li>التأمين ساري</li></ul>",
-              "updatedAt": "2026-11-07T22:39:07.085Z",
-              "summary": "حفظ تلقائي قبل التعديل"
             }
           ],
           "createdAt": "2026-11-07T22:14:43.503Z",
-          "updatedAt": "2026-11-08T13:00:42.171Z"
+          "updatedAt": "2026-11-08T17:38:18.079Z"
         },
         {
           "id": "n_1794089455038_h1h6",
@@ -137,8 +215,8 @@
           "title": "ملاحظة جديدة",
           "icon": "📝",
           "coverColor": "#0B2E57",
-          "body": "ابدأ بكتابة أفكارك، أو اكتب / لإدراج العناوين والجداول والمهام...\n\nزنيسنتkkjhadskjsdkj",
-          "contentHtml": "<p>ابدأ بكتابة أفكارك، أو اكتب <strong>/</strong> لإدراج العناوين والجداول والمهام...<br><div style=\"text-align: left;\">زنيسنتkkjhadskjsdkj</div></p>",
+          "body": "ابدأ بكتابة أفكارك، أو اكتب / لإدراج العناوين والجداول والمهام...\n\n\nزنيسنتkkjhadskjsdkj",
+          "contentHtml": "<p>ابدأ بكتابة أفكارك، أو اكتب <strong>/</strong> لإدراج العناوين والجداول والمهام...<br></p><div style=\"text-align: left;\">زنيسنتkkjhadskjsdkj</div><p></p>",
           "tags": [
             "عام"
           ],
@@ -147,6 +225,13 @@
           "archived": false,
           "linkedTaskIds": [],
           "revisions": [
+            {
+              "id": "fc81e563-0410-4aa0-bb53-84032f53a6dd",
+              "title": "ملاحظة جديدة",
+              "contentHtml": "<p>ابدأ بكتابة أفكارك، أو اكتب <strong>/</strong> لإدراج العناوين والجداول والمهام...<br><div style=\"text-align: left;\">زنيسنتkkjhadskjsdkj</div></p>",
+              "updatedAt": "2026-11-07T22:42:05.548Z",
+              "summary": "حفظ تلقائي قبل التعديل"
+            },
             {
               "id": "54432b62-665c-43c1-80d5-3a7195dfb0d8",
               "title": "ملاحظة جديدة",
@@ -177,7 +262,7 @@
             }
           ],
           "createdAt": "2026-11-07T22:10:55.044Z",
-          "updatedAt": "2026-11-07T22:42:05.548Z"
+          "updatedAt": "2026-11-08T17:19:43.768Z"
         }
       ],
       "tasks": [
@@ -257,6 +342,82 @@
       ],
       "events": [
         {
+          "id": "cal_1794255016559_bunj",
+          "userId": "elfazni.admin",
+          "title": "اجتماع تنسيق فريق التأشيرات الأسبوعي",
+          "kind": "meeting",
+          "date": "2026-11-09",
+          "time": "09:00",
+          "durationMin": 45,
+          "allDay": false,
+          "description": "مراجعة أسبوعية لملفات التأشيرات وتوزيع المهام القنصلية.",
+          "color": "#059669",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T20:10:16.559Z",
+          "updatedAt": "2026-11-09T20:10:16.559Z"
+        },
+        {
+          "id": "cal_1794254476221_fj6v",
+          "userId": "elfazni.admin",
+          "title": "اجتماع تنسيق فريق التأشيرات الأسبوعي",
+          "kind": "meeting",
+          "date": "2026-11-09",
+          "time": "09:00",
+          "durationMin": 45,
+          "allDay": false,
+          "description": "مراجعة أسبوعية لملفات التأشيرات وتوزيع المهام القنصلية.",
+          "color": "#059669",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T20:01:16.221Z",
+          "updatedAt": "2026-11-09T20:01:16.221Z"
+        },
+        {
+          "id": "cal_1794254070571_vz7o",
+          "userId": "elfazni.admin",
+          "title": "اجتماع تنسيق فريق التأشيرات الأسبوعي",
+          "kind": "meeting",
+          "date": "2026-11-09",
+          "time": "09:00",
+          "durationMin": 45,
+          "allDay": false,
+          "description": "مراجعة أسبوعية لملفات التأشيرات وتوزيع المهام القنصلية.",
+          "color": "#059669",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T19:54:30.571Z",
+          "updatedAt": "2026-11-09T19:54:30.571Z"
+        },
+        {
+          "id": "cal_1794251524019_wsm8",
+          "userId": "elfazni.admin",
+          "title": "اجتماع تنسيق فريق التأشيرات الأسبوعي",
+          "kind": "meeting",
+          "date": "2026-11-09",
+          "time": "09:00",
+          "durationMin": 45,
+          "allDay": false,
+          "description": "مراجعة أسبوعية لملفات التأشيرات وتوزيع المهام القنصلية.",
+          "color": "#059669",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T19:12:04.019Z",
+          "updatedAt": "2026-11-09T19:12:04.019Z"
+        },
+        {
           "id": "cal_1794089683510_8d74",
           "userId": "elfazni.admin",
           "title": "موعد إيداع ملف القنصلية الإسبانية",
@@ -282,7 +443,130 @@
       "tasks": [],
       "events": [],
       "reminders": []
+    },
+    "owner": {
+      "notes": [],
+      "tasks": [],
+      "events": [
+        {
+          "id": "cal_1794251197957_bq40",
+          "userId": "owner",
+          "title": "اجتماع تنسيق فريق التأشيرات الأسبوعي",
+          "kind": "meeting",
+          "date": "2026-11-09",
+          "time": "09:00",
+          "durationMin": 45,
+          "allDay": false,
+          "description": "مراجعة أسبوعية لملفات التأشيرات وتوزيع المهام القنصلية.",
+          "color": "#059669",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T19:06:37.957Z",
+          "updatedAt": "2026-11-09T19:06:37.957Z"
+        }
+      ],
+      "reminders": []
+    },
+    "guest_readonly": {
+      "notes": [],
+      "tasks": [],
+      "events": [
+        {
+          "id": "cal_1794255024538_qz8m",
+          "userId": "guest_readonly",
+          "title": "محاولة غير مصرحة",
+          "kind": "pers",
+          "date": "2026-11-09",
+          "durationMin": 60,
+          "allDay": true,
+          "description": "",
+          "color": "#CC9048",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T20:10:24.538Z",
+          "updatedAt": "2026-11-09T20:10:24.538Z"
+        },
+        {
+          "id": "cal_1794254484136_ujof",
+          "userId": "guest_readonly",
+          "title": "محاولة غير مصرحة",
+          "kind": "pers",
+          "date": "2026-11-09",
+          "durationMin": 60,
+          "allDay": true,
+          "description": "",
+          "color": "#CC9048",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T20:01:24.136Z",
+          "updatedAt": "2026-11-09T20:01:24.136Z"
+        },
+        {
+          "id": "cal_1794254078519_e7z1",
+          "userId": "guest_readonly",
+          "title": "محاولة غير مصرحة",
+          "kind": "pers",
+          "date": "2026-11-09",
+          "durationMin": 60,
+          "allDay": true,
+          "description": "",
+          "color": "#CC9048",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T19:54:38.519Z",
+          "updatedAt": "2026-11-09T19:54:38.519Z"
+        },
+        {
+          "id": "cal_1794251531850_p7zl",
+          "userId": "guest_readonly",
+          "title": "محاولة غير مصرحة",
+          "kind": "pers",
+          "date": "2026-11-09",
+          "durationMin": 60,
+          "allDay": true,
+          "description": "",
+          "color": "#CC9048",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T19:12:11.850Z",
+          "updatedAt": "2026-11-09T19:12:11.850Z"
+        },
+        {
+          "id": "cal_1794251205846_7d39",
+          "userId": "guest_readonly",
+          "title": "محاولة غير مصرحة",
+          "kind": "pers",
+          "date": "2026-11-09",
+          "durationMin": 60,
+          "allDay": true,
+          "description": "",
+          "color": "#CC9048",
+          "participants": [],
+          "status": "scheduled",
+          "recurrence": "none",
+          "recurrenceExceptions": [],
+          "rescheduleHistory": [],
+          "createdAt": "2026-11-09T19:06:45.846Z",
+          "updatedAt": "2026-11-09T19:06:45.846Z"
+        }
+      ],
+      "reminders": []
     }
   },
-  "updatedAt": "2026-11-08T13:00:42.171Z"
+  "updatedAt": "2026-11-09T20:10:24.538Z"
 }

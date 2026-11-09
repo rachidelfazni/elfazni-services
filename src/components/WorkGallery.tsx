@@ -13,10 +13,12 @@ export const WorkGallery: React.FC = () => {
     setLoadedImages((prev) => (prev[idx] ? prev : { ...prev, [idx]: true }));
   };
 
-  const handleWhatsAppInquiry = (item: (typeof WORK_GALLERY)[0]) => {
-    const text = `مرحباً ELFAZNI SERVICES، رأيت نموذج "${item.title}" في معرض الأعمال وأود طلب هذه الخدمة.`;
-    const url = `https://wa.me/${SITE_CONTACT.whatsappRaw}?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+  const handleRequestService = (_item: (typeof WORK_GALLERY)[0]) => {
+    setActiveImage(null);
+    const el = document.getElementById('contact-form');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -216,11 +218,11 @@ export const WorkGallery: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => handleWhatsAppInquiry(activeImage)}
-                className="w-full py-3.5 px-5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
+                onClick={() => handleRequestService(activeImage)}
+                className="w-full py-3.5 px-5 rounded-2xl bg-[#004AA5] hover:bg-[#003882] text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
               >
-                <MessageSquare className="w-4 h-4 text-[#0B2E57]" />
-                <span>{t('طلب هذه الخدمة عبر واتساب')}</span>
+                <span>{t('طلب واستفسار عن هذه الخدمة')}</span>
+                <span className="text-[#CC9048]">←</span>
               </button>
             </div>
           </div>

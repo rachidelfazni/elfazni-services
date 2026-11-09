@@ -21,6 +21,7 @@ import { ServiceCardSkeleton } from './SectionSkeletons';
 interface ServicesSectionProps {
   onOpenFlightModal: () => void;
   onOpenConsularModal: (serviceName?: string) => void;
+  onOpenStartModal?: (serviceId?: string) => void;
 }
 
 const SERVICE_IMAGES: Record<string, string> = {
@@ -46,6 +47,7 @@ const SERVICE_PRICE_PILLS: Record<string, string> = {
 export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onOpenFlightModal,
   onOpenConsularModal,
+  onOpenStartModal,
 }) => {
   const { services, settings } = useSiteSettings();
   const { t, language, isRtl } = useLanguage();
@@ -144,19 +146,24 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   };
 
   const handleAction = (service: ServiceItem) => {
-    if (service.actionType === 'flight_modal') {
+    if (service.actionType === 'flight_modal' || service.id === 'flights') {
       onOpenFlightModal();
-    } else if (service.actionType === 'consular_modal') {
+    } else if (service.actionType === 'consular_modal' || service.id === 'consular') {
       onOpenConsularModal(service.title);
     } else if (service.id === 'airport') {
-      const msg = getAirportWhatsAppMessage();
-      const waUrl = `https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(msg)}`;
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
+      const el = document.getElementById('airport-transfer');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else if (onOpenStartModal) {
+        onOpenStartModal('airport');
+      }
+    } else if (onOpenStartModal) {
+      onOpenStartModal(service.id);
     } else {
-      const waUrl = `https://wa.me/${settings.whatsappRaw}?text=${encodeURIComponent(
-        service.whatsappQuery || `مرحباً، أريد الاستفسار عن خدمة ${service.title}`
-      )}`;
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
+      const el = document.getElementById('contact-form');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

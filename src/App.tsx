@@ -49,6 +49,9 @@ const UnifiedBookingsSection = lazy(() =>
 const CampaignSlider = lazy(() =>
   import('./components/CampaignSlider').then((m) => ({ default: m.CampaignSlider }))
 );
+const PromoVideoSection = lazy(() =>
+  import('./components/PromoVideoSection').then((m) => ({ default: m.PromoVideoSection }))
+);
 const GuidesSection = lazy(() =>
   import('./components/GuidesSection').then((m) => ({ default: m.GuidesSection }))
 );
@@ -90,9 +93,6 @@ const AdminLayout = lazy(() =>
 const HubPage = lazy(() =>
   import('./components/hub/HubPage').then((m) => ({ default: m.HubPage }))
 );
-const ConsularGuideCover = lazy(() =>
-  import('./components/ConsularGuideCover').then((m) => ({ default: m.ConsularGuideCover }))
-);
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => window.location.pathname);
@@ -115,8 +115,8 @@ export default function App() {
     };
     window.addEventListener('popstate', handlePopState);
 
-    // Initial genuine visitor hit tracking
-    if (!window.location.pathname.startsWith('/admin')) {
+    // Initial genuine visitor hit tracking (ignore admin & portal visits)
+    if (!window.location.pathname.startsWith('/portal') && !window.location.pathname.startsWith('/admin')) {
       tracker.trackPage(window.location.pathname, 'زيارة الصفحة الرئيسية');
     }
 
@@ -163,20 +163,25 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!currentPath.startsWith('/admin') || !isAuthenticated) return;
-    const token = api.getToken();
+    if (!currentPath.startsWith('/portal') && !currentPath.startsWith('/admin')) return;
     let active = true;
-    api.getMe().catch(() => {
-      if (active && api.getToken() === token) {
-        api.removeToken();
-        setIsAuthenticated(false);
-      }
-    });
+    api.getMe()
+      .then((res) => {
+        if (active && res?.user) {
+          setIsAuthenticated(true);
+        }
+      })
+      .catch(() => {
+        if (active && isAuthenticated) {
+          api.removeToken();
+          setIsAuthenticated(false);
+        }
+      });
     return () => { active = false; };
-  }, [currentPath, isAuthenticated]);
+  }, [currentPath]);
 
   useEffect(() => {
-    if (currentPath === '/hub' || currentPath.startsWith('/admin')) {
+    if (currentPath === '/hub' || currentPath.startsWith('/portal') || currentPath.startsWith('/admin')) {
       return;
     }
     let active = true;
@@ -201,7 +206,7 @@ export default function App() {
   const handleLogout = () => {
     api.logout();
     setIsAuthenticated(false);
-    handleNavigate('/admin/login');
+    handleNavigate('/portal/login');
   };
 
   const handleOpenStartRequest = (serviceId?: string) => {
@@ -209,15 +214,38 @@ export default function App() {
     setStartRequestModalOpen(true);
   };
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).__openStartRequestModal = handleOpenStartRequest;
+      const onOpenEvent = (e: any) => handleOpenStartRequest(e.detail?.serviceId);
+      window.addEventListener('open-start-request', onOpenEvent);
+      return () => {
+        window.removeEventListener('open-start-request', onOpenEvent);
+      };
+    }
+  }, []);
+
   const handleOpenConsular = (serviceName?: string) => {
     setDefaultConsularService(serviceName);
     setConsularModalOpen(true);
   };
 
-  if (currentPath === '/workspace') return <WorkspacePortal />;
+  const currentPathname = currentPath.split('?')[0];
+  const queryPart = currentPath.includes('?')
+    ? currentPath.slice(currentPath.indexOf('?'))
+    : typeof window !== 'undefined'
+    ? window.location.search
+    : '';
+  const searchParams = new URLSearchParams(queryPart);
+  const isCrmTarget =
+    currentPathname === '/crm' ||
+    currentPathname === '/crm/login' ||
+    searchParams.get('next') === 'crm';
+
+  if (currentPathname === '/workspace') return <WorkspacePortal />;
 
   // Route 0: ELFAZNI SERVICES HUB — unified access portal
-  if (currentPath === '/hub' || currentPath === '/hub/') {
+  if (currentPathname === '/hub' || currentPathname === '/hub/') {
     return (
       <LanguageProvider>
         <Suspense
@@ -233,26 +261,20 @@ export default function App() {
     );
   }
 
-  // Route 0B: Consular Guide Cover Template
-  if (currentPath === '/guide-cover' || currentPath === '/guide-cover/') {
-    return (
-      <LanguageProvider>
-        <Suspense fallback={<div className="min-h-screen bg-[#0B2E57] flex items-center justify-center text-white font-bold">جاري التحميل...</div>}>
-          <ConsularGuideCover onNavigate={handleNavigate} />
-        </Suspense>
-      </LanguageProvider>
-    );
-  }
-
-  // Route 1: Admin Login
-  if (currentPath === '/admin/login') {
+  // Route 1: Direct CRM Access
+  if (currentPathname === '/crm' || currentPathname === '/crm/') {
+    if (isAuthenticated) {
+      window.location.replace('/admin/crm/');
+      return null;
+    }
     return (
       <LanguageProvider>
         <Suspense fallback={<div className="min-h-screen bg-[#0B2E57] flex items-center justify-center text-white font-bold">جاري التحميل...</div>}>
           <AdminLogin
+            isCrm={true}
             onLoginSuccess={() => {
               setIsAuthenticated(true);
-              handleNavigate('/admin');
+              window.location.replace('/admin/crm/');
             }}
             onNavigate={handleNavigate}
           />
@@ -261,17 +283,44 @@ export default function App() {
     );
   }
 
-  // Route 2: Admin Dashboard (Protected)
-  if (currentPath.startsWith('/admin')) {
+  // Route 2: Secure Management Login (/portal/login & /crm/login)
+  if (currentPathname === '/portal/login' || currentPathname === '/crm/login') {
+    return (
+      <LanguageProvider>
+        <Suspense fallback={<div className="min-h-screen bg-[#0B2E57] flex items-center justify-center text-white font-bold">جاري التحميل...</div>}>
+          <AdminLogin
+            isCrm={isCrmTarget}
+            onLoginSuccess={() => {
+              setIsAuthenticated(true);
+              if (isCrmTarget) {
+                window.location.replace('/admin/crm/');
+              } else {
+                handleNavigate('/portal');
+              }
+            }}
+            onNavigate={handleNavigate}
+          />
+        </Suspense>
+      </LanguageProvider>
+    );
+  }
+
+  // Route 3: Secure Management Dashboard (/portal)
+  if (currentPathname.startsWith('/portal')) {
     if (!isAuthenticated) {
       return (
         <LanguageProvider>
           <SiteSettingsProvider>
             <Suspense fallback={<div className="min-h-screen bg-[#0B2E57] flex items-center justify-center text-white font-bold">جاري التحميل...</div>}>
               <AdminLogin
+                isCrm={isCrmTarget}
                 onLoginSuccess={() => {
                   setIsAuthenticated(true);
-                  handleNavigate('/admin');
+                  if (isCrmTarget) {
+                    window.location.replace('/admin/crm/');
+                  } else {
+                    handleNavigate('/portal');
+                  }
                 }}
                 onNavigate={handleNavigate}
               />
@@ -290,6 +339,21 @@ export default function App() {
         </SiteSettingsProvider>
       </LanguageProvider>
     );
+  }
+
+  // Route 4: Legacy /admin Stealth Protection (Redirect bots and unauthenticated visitors to homepage)
+  if (currentPath.startsWith('/admin')) {
+    if (!isAuthenticated) {
+      window.location.replace('/');
+      return null;
+    }
+    // If authenticated, seamlessly forward to secure portal
+    if (currentPath.startsWith('/admin/crm')) {
+      // Allow internal CRM asset / iframe loading
+    } else {
+      handleNavigate('/portal');
+      return null;
+    }
   }
 
   // Route 3: Public Blog Index
@@ -368,6 +432,7 @@ export default function App() {
                 <ServicesSection
                   onOpenFlightModal={() => setFlightModalOpen(true)}
                   onOpenConsularModal={handleOpenConsular}
+                  onOpenStartModal={handleOpenStartRequest}
                 />
               </Suspense>
             </ScrollRevealSection>
@@ -395,7 +460,16 @@ export default function App() {
           <VisibleSection id="service-slides">
             <ScrollRevealSection>
               <Suspense fallback={<CampaignSliderSkeleton />}>
-                <CampaignSlider />
+                <CampaignSlider onOpenStartModal={handleOpenStartRequest} />
+              </Suspense>
+            </ScrollRevealSection>
+          </VisibleSection>
+
+          {/* Promotional Video Showcase */}
+          <VisibleSection id="promo-video">
+            <ScrollRevealSection>
+              <Suspense fallback={<GenericSectionSkeleton id="promo-video" />}>
+                <PromoVideoSection onOpenStartModal={handleOpenStartRequest} />
               </Suspense>
             </ScrollRevealSection>
           </VisibleSection>

@@ -100,7 +100,9 @@ export async function dispatchAdminEmailAlert(params: DispatchEmailAlertParams) 
   };
 
   let finalSubject: string;
-  if (params.subject && params.subject.startsWith('[ELFAZNI]')) {
+  if (params.followUpStatus === 'INCOMPLETE_CONSENTED') {
+    finalSubject = `[ELFAZNI][FOLLOW-UP][INCOMPLETE] استفسار غير مكتمل — بيانات محفوظة — ${refCode}`;
+  } else if (params.subject && params.subject.startsWith('[ELFAZNI]')) {
     finalSubject = params.subject;
   } else {
     const descriptiveTitle = params.subject || serviceLabelMap[tag] || 'طلب خدمة جديد';
@@ -123,7 +125,7 @@ export async function dispatchAdminEmailAlert(params: DispatchEmailAlertParams) 
     `📝 تفاصيل الرسالة والطلب:`,
     params.message,
     `----------------------------------------`,
-    `لوحة الإدارة: ${process.env.ADMIN_URL || 'http://localhost:8080/admin'}`,
+    `بوابة الإدارة: ${process.env.ADMIN_URL || 'http://localhost:8080/portal'}`,
   ].filter(Boolean).join('\n');
 
   // Rich HTML template with authentic branding
@@ -221,8 +223,8 @@ export async function dispatchAdminEmailAlert(params: DispatchEmailAlertParams) 
     <!-- Action Button -->
     <tr>
       <td style="padding: 0 32px 32px 32px; text-align: center;">
-        <a href="${process.env.ADMIN_URL || 'http://localhost:8080/admin'}" style="display: inline-block; background: linear-gradient(135deg, #004AA5 0%, #0B2E57 100%); color: #FFFFFF; font-size: 15px; font-weight: 800; text-decoration: none; padding: 14px 32px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 74, 165, 0.25);">
-          فتح الطلب في لوحة الإدارة ⬅
+        <a href="${process.env.ADMIN_URL || 'http://localhost:8080/portal'}" style="display: inline-block; background: linear-gradient(135deg, #004AA5 0%, #0B2E57 100%); color: #FFFFFF; font-size: 15px; font-weight: 800; text-decoration: none; padding: 14px 32px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 74, 165, 0.25);">
+          فتح الطلب في بوابة الإدارة ⬅
         </a>
       </td>
     </tr>

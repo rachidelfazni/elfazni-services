@@ -16,6 +16,9 @@ import {
 import {
   InterfaceTarget,
   InterfaceThemeConfig,
+  DEFAULT_LAYERS,
+  generateGradientCss,
+  LayerConfig,
 } from '../../../services/themeService';
 import { BrandLogo } from '../../common/BrandLogo';
 import { ThemeVisualPanel } from '../../common/ThemeVisualPanel';
@@ -73,8 +76,55 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
   const isRtl = direction === 'rtl';
   const langKey = isRtl ? 'ar' : 'en';
 
+  const activeLayers = config.layers && config.layers.length > 0 ? config.layers : DEFAULT_LAYERS;
+  const layerMap = activeLayers.reduce((acc, l) => {
+    acc[l.id] = l;
+    return acc;
+  }, {} as Record<string, LayerConfig>);
+
+  const bgLayer = layerMap['background'] || { id: 'background', visible: true, zIndex: 1, opacity: 100 };
+  const gradientLayer = layerMap['gradient'] || { id: 'gradient', visible: true, zIndex: 2, opacity: 85 };
+  const illustrationLayer = layerMap['illustration'] || { id: 'illustration', visible: true, zIndex: 3, opacity: 100 };
+  const contentLayer = layerMap['content'] || { id: 'content', visible: true, zIndex: 4, opacity: 100 };
+  const logoLayer = layerMap['logo'] || { id: 'logo', visible: true, zIndex: 5, opacity: 100 };
+
+  const rawIllustrationUrl =
+    config.illustrationUrl ||
+    config.decorativeIllustration ||
+    '/assets/brand/3d/01-master-service-hero-transparent.png';
+
+  const rawScale = typeof config.illustrationScale === 'number' ? config.illustrationScale : 100;
+  const clampedScale = Math.max(0, Math.min(400, rawScale));
+  const customX = config.illustrationCustomX || 0;
+  const customY = config.illustrationCustomY || 0;
+  const rotation = config.illustrationRotation || 0;
+
   const getText = (key: string, fallbackAr: string, fallbackEn: string) => {
-    return config.texts?.[key]?.[langKey] || (isRtl ? fallbackAr : fallbackEn);
+    const candidateKeys = [
+      key,
+      `portal_${key}`,
+      `website_${key}`,
+      key === 'heroTitle' ? 'portal_title' : '',
+      key === 'heroTitle' ? 'website_title' : '',
+      key === 'heroKicker' ? 'portal_kicker' : '',
+      key === 'heroKicker' ? 'website_kicker' : '',
+      key === 'heroDescription' ? 'portal_desc' : '',
+      key === 'heroSubtitle' ? 'website_subtitle' : '',
+      key === 'formKicker' ? 'form_kicker' : '',
+      key === 'loginTitle' ? 'login_title' : '',
+      key === 'loginDesc' ? 'login_desc' : '',
+      key === 'primaryButton' ? 'website_primary_action' : '',
+      key === 'secondaryButton' ? 'website_secondary_action' : '',
+      key === 'secureNote' ? 'portal_secure_note' : '',
+      key === 'returnToSite' ? 'portal_return_site' : '',
+    ].filter(Boolean);
+
+    for (const k of candidateKeys) {
+      if (config.texts?.[k]?.[langKey]) return config.texts[k][langKey];
+      if (config.texts?.[k]?.ar && isRtl) return config.texts[k].ar;
+      if (config.texts?.[k]?.en && !isRtl) return config.texts[k].en;
+    }
+    return isRtl ? fallbackAr : fallbackEn;
   };
 
   // Helper for clickable inspectable wrapper
@@ -192,61 +242,170 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
           {/* ======================================================== */}
           {/* 1. ADMIN LOGIN & CRM LOGIN PREVIEW                      */}
           {/* ======================================================== */}
-          {(target === 'admin_login' || target === 'crm_login') && (
-            <div
-              className={`min-h-[520px] flex ${
-                config.layoutType === 'centered'
-                  ? 'items-center justify-center p-6'
-                  : config.layoutType === 'split-left'
-                  ? 'flex-col md:flex-row-reverse'
-                  : 'flex-col md:flex-row'
-              }`}
-              style={{
-                backgroundColor: config.layoutType === 'centered' ? colors.secondary : undefined,
-                backgroundImage:
-                  config.layoutType === 'full-bg' && config.backgroundImage
-                    ? `url(${config.backgroundImage})`
-                    : undefined,
-                fontFamily: config.typography?.fontFamily,
-              }}
-            >
-              {/* Illustration Area with Shared ThemeVisualPanel */}
-              {config.layoutType !== 'centered' && (
-                <div className="w-full md:w-1/2 relative min-h-[460px] flex">
-                  <ThemeVisualPanel
-                    config={config}
-                    language={direction === 'rtl' ? 'ar' : 'en'}
-                    interactive={true}
-                    selectedElementKey={selectedElementKey}
-                    onSelectElement={onSelectElement}
-                    onUpdateConfig={onUpdateConfig}
-                    isCrm={target === 'crm_login'}
-                    className="w-full h-full"
-                  />
-                </div>
-              )}
+          {(target === 'admin_login' || target === 'crm_login') && (() => {
+            const ob = config.outerBackground;
+            const mp = config.menuPanel;
 
-              {/* Login Form Area */}
-              <section
-                className={`w-full ${
-                  config.layoutType === 'centered' ? 'max-w-md' : 'md:w-1/2'
-                } p-8 flex flex-col justify-center transition-colors`}
+            const outerBgType = ob?.type || (ob?.image ? 'image' : 'radial_gradient');
+            const outerBgImage = ob?.image || (ob?.type === 'image' ? config.backgroundImage : '') || '';
+            const outerBgColor = ob?.color || config.backgroundColor || (target === 'crm_login' ? '#071629' : '#012247');
+            const outerOverlay = ob?.overlay;
+
+            const getOuterLiveBgStyle = (): React.CSSProperties => {
+              if (outerBgType === 'transparent') return { backgroundColor: 'transparent' };
+              if (outerBgType === 'solid') return { backgroundColor: outerBgColor };
+              if (outerBgType === 'linear_gradient') {
+                const dir = outerOverlay?.direction || '135deg';
+                const c1 = outerOverlay?.startColor || outerBgColor;
+                const c2 = outerOverlay?.endColor || '#011B38';
+                return { background: `linear-gradient(${dir}, ${c1}, ${c2})` };
+              }
+              if (outerBgType === 'radial_gradient') {
+                const c1 = outerOverlay?.startColor || (target === 'crm_login' ? '#004AA5' : '#0B2E57');
+                const c2 = outerOverlay?.endColor || outerBgColor || '#011B38';
+                return { background: `radial-gradient(circle at center, ${c1} 0%, ${c2} 70%, #000E20 100%)` };
+              }
+              return { backgroundColor: outerBgColor };
+            };
+
+            return (
+              <div
+                className={`min-h-[640px] p-4 sm:p-8 flex flex-col items-center justify-center relative overflow-hidden transition-all ${
+                  selectedElementKey === 'outer_background' ? 'ring-4 ring-inset ring-[#CC9048]' : ''
+                }`}
                 style={{
-                  backgroundColor: effectiveFormBg,
-                  color: effectiveFormText,
-                  borderRadius: config.layoutType === 'centered' ? '24px' : undefined,
+                  ...getOuterLiveBgStyle(),
+                  cursor: 'pointer',
                 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectElement('outer_background');
+                }}
+                title="الخلفية الرئيسية (Zone A) — اضغط لتعديل خصائص الخلفية"
               >
+                {/* Zone A: Background Image Layer */}
+                {(outerBgType === 'image' || Boolean(outerBgImage)) && outerBgImage && (
+                  <div
+                    className="absolute inset-0 pointer-events-none overflow-hidden z-0"
+                    style={{
+                      backgroundImage: `url(${outerBgImage})`,
+                      backgroundSize: ob?.fit === 'contain' ? 'contain' : ob?.fit === 'original' ? 'auto' : 'cover',
+                      backgroundPosition: `${ob?.positionX ?? 'center'} ${ob?.positionY ?? 'center'}`,
+                      backgroundRepeat: 'no-repeat',
+                      transform: `translate(${ob?.customX || 0}px, ${ob?.customY || 0}px) scale(${(ob?.scale ?? 100) / 100})`,
+                      transformOrigin: 'center center',
+                      opacity: (ob?.opacity ?? 100) / 100,
+                      filter: `brightness(${ob?.brightness ?? 100}%) contrast(${ob?.contrast ?? 100}%) saturate(${ob?.saturation ?? 100}%) blur(${ob?.blur || 0}px)`,
+                    }}
+                  />
+                )}
+
+                {/* Zone A: Gradient Overlay Layer */}
+                {outerOverlay?.enabled && (
+                  <div
+                    className="absolute inset-0 pointer-events-none z-0"
+                    style={{
+                      background:
+                        outerOverlay.type === 'radial'
+                          ? `radial-gradient(circle at center, ${outerOverlay.startColor} 0%, ${outerOverlay.middleColor ? `${outerOverlay.middleColor} 50%, ` : ''}${outerOverlay.endColor} 100%)`
+                          : `linear-gradient(${outerOverlay.direction || '135deg'}, ${outerOverlay.startColor} 0%, ${outerOverlay.middleColor ? `${outerOverlay.middleColor} 50%, ` : ''}${outerOverlay.endColor} 100%)`,
+                      opacity: (outerOverlay.opacity ?? 75) / 100,
+                    }}
+                  />
+                )}
+
+                {/* Concentric Arcs Background Pattern */}
+                {outerBgType !== 'transparent' && (
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-30 z-0"
+                    style={{
+                      backgroundImage:
+                        'repeating-radial-gradient(circle at 4% 116%, transparent 0 64px, rgba(255, 255, 255, 0.08) 64px 65.5px, transparent 65.5px 132px)',
+                    }}
+                  />
+                )}
+
+                {/* Zone B: Shell Card */}
+                <div
+                  className={`w-full max-w-4xl shadow-2xl overflow-hidden grid relative z-10 transition-all ${
+                    device === 'mobile'
+                      ? 'grid-cols-1'
+                      : config.layoutType === 'split-left'
+                      ? 'grid-cols-1 md:grid-cols-2'
+                      : 'grid-cols-1 md:grid-cols-2'
+                  } ${selectedElementKey === 'menu_panel' ? 'ring-4 ring-[#004AA5]' : ''}`}
+                  style={{
+                    backgroundColor: mp?.bgColor || effectiveFormBg,
+                    backgroundImage: mp?.bgImage ? `url(${mp.bgImage})` : undefined,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: (mp?.opacity ?? 100) / 100,
+                    borderRadius: mp?.borderRadius || config.cardRadius || '28px',
+                    borderColor: mp?.borderColor || undefined,
+                    borderWidth: mp?.borderColor ? '1px' : undefined,
+                    borderStyle: mp?.borderColor ? 'solid' : undefined,
+                    boxShadow:
+                      mp?.shadowIntensity === 'none'
+                        ? 'none'
+                        : mp?.shadowIntensity === 'sm'
+                        ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                        : mp?.shadowIntensity === 'md'
+                        ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+                        : mp?.shadowIntensity === 'lg'
+                        ? '0 20px 25px -5px rgba(0, 0, 0, 0.15)'
+                        : mp?.shadowIntensity === '2xl'
+                        ? '0 35px 60px -15px rgba(0, 0, 0, 0.4)'
+                        : '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                    maxWidth: mp?.width || (config.layoutType === 'centered' ? '520px' : '1080px'),
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectElement('menu_panel');
+                  }}
+                >
+                  {/* Illustration Area with Shared ThemeVisualPanel */}
+                  {config.layoutType !== 'centered' && (
+                    <div className="w-full relative min-h-[460px] flex overflow-hidden">
+                      <ThemeVisualPanel
+                        config={config}
+                        language={direction === 'rtl' ? 'ar' : 'en'}
+                        interactive={true}
+                        selectedElementKey={selectedElementKey}
+                        onSelectElement={onSelectElement}
+                        onUpdateConfig={onUpdateConfig}
+                        isCrm={target === 'crm_login'}
+                        className="w-full h-full"
+                      />
+                    </div>
+                  )}
+
+                  {/* Login Form Area */}
+                  <section
+                    className={`w-full ${
+                      config.layoutType === 'centered' ? 'max-w-md mx-auto' : ''
+                    } p-8 flex flex-col justify-center transition-colors`}
+                    style={{
+                      backgroundColor: mp?.bgColor || effectiveFormBg,
+                      color: effectiveFormText,
+                    }}
+                  >
                 <div className="space-y-5">
                   <div className="flex items-center justify-between pb-2">
                     {inspectWrapper(
                       'logo',
-                      <BrandLogo
-                        background={formIsDark ? 'blue' : 'white'}
-                        orientation="horizontal"
-                        size="md"
-                        className="h-10 w-auto"
-                      />
+                      <div
+                        style={{
+                          transform: `scale(${(config.logoScale ?? 100) / 100})`,
+                          transformOrigin: isRtl ? 'right center' : 'left center',
+                        }}
+                      >
+                        <BrandLogo
+                          background={formIsDark ? 'blue' : 'white'}
+                          orientation="horizontal"
+                          size="md"
+                          className="h-10 w-auto"
+                        />
+                      </div>
                     )}
                     <span
                       className="text-[11px] font-bold px-2.5 py-0.5 rounded-full border"
@@ -265,7 +424,10 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                       'form_kicker',
                       <p
                         className="text-xs font-bold"
-                        style={{ color: config.kickerColor || colors.gold || '#CC9048' }}
+                        style={{
+                          color: config.kickerColor || colors.gold || '#CC9048',
+                          fontFamily: config.typography?.fontFamily,
+                        }}
                       >
                         {getText('formKicker', 'بوابة الدخول الآمنة', 'Secure Login Portal')}
                       </p>
@@ -273,8 +435,14 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                     {inspectWrapper(
                       'login_title',
                       <h1
-                        className="text-xl font-black mt-0.5"
-                        style={{ color: effectiveFormText }}
+                        className="font-black mt-0.5 transition-all"
+                        style={{
+                          color: config.titleColor || effectiveFormText,
+                          fontFamily: config.typography?.headingFontFamily || config.typography?.fontFamily,
+                          fontSize: config.titleFontSize || config.typography?.h1Size || '1.35rem',
+                          lineHeight: config.typography?.lineHeight || '1.25',
+                          letterSpacing: config.typography?.letterSpacing || '0px',
+                        }}
                       >
                         {getText('loginTitle', 'تسجيل الدخول', 'Sign in')}
                       </h1>
@@ -282,8 +450,12 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                     {inspectWrapper(
                       'login_desc',
                       <p
-                        className="text-xs mt-1"
-                        style={{ color: effectiveFormMuted }}
+                        className="text-xs mt-1 transition-all"
+                        style={{
+                          color: config.noteColor || effectiveFormMuted,
+                          fontSize: config.noteFontSize || config.typography?.baseFontSize || '0.825rem',
+                          fontFamily: config.typography?.fontFamily,
+                        }}
                       >
                         {getText('loginDesc', 'أدخل بيانات حسابك للوصول إلى النظام.', 'Enter your account credentials.')}
                       </p>
@@ -371,62 +543,152 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                 </div>
               </section>
             </div>
-          )}
+          </div>
+        );
+      })()}
 
           {/* ======================================================== */}
-          {/* 2. UNIFIED PORTAL (HUB & Workspace) PREVIEW             */}
+          {/* 2. UNIFIED PORTAL (HUB & Workspace) PREVIEW (3 ZONES)   */}
           {/* ======================================================== */}
-          {target === 'portal' && (
-            <div
-              className="min-h-[640px] p-4 sm:p-8 flex flex-col items-center justify-center relative overflow-hidden"
-              style={{
-                backgroundColor: config.backgroundColor || '#012247',
-                backgroundImage: config.backgroundImage ? `url(${config.backgroundImage})` : undefined,
-                backgroundSize: config.backgroundSize || 'cover',
-                backgroundPosition: config.backgroundPosition || 'center',
-              }}
-            >
-              {/* Concentric Arcs Background Pattern */}
-              <div
-                className="absolute inset-0 pointer-events-none opacity-40"
-                style={{
-                  backgroundImage:
-                    'repeating-radial-gradient(circle at 4% 116%, transparent 0 64px, rgba(255, 255, 255, 0.08) 64px 65.5px, transparent 65.5px 132px)',
-                }}
-              />
+          {target === 'portal' && (() => {
+            const ob = config.outerBackground;
+            const mp = config.menuPanel;
+            const sp = config.sidePanel;
 
-              {/* Shell Card */}
+            const outerBgType = ob?.type || (ob?.image ? 'image' : 'radial_gradient');
+            const outerBgImage = ob?.image || (ob?.type === 'image' ? config.backgroundImage : '') || '';
+            const outerBgColor = ob?.color || config.backgroundColor || '#012247';
+            const outerOverlay = ob?.overlay;
+
+            const getOuterLiveBgStyle = (): React.CSSProperties => {
+              if (outerBgType === 'transparent') return { backgroundColor: 'transparent' };
+              if (outerBgType === 'solid') return { backgroundColor: outerBgColor };
+              if (outerBgType === 'linear_gradient') {
+                const dir = outerOverlay?.direction || '135deg';
+                const c1 = outerOverlay?.startColor || outerBgColor;
+                const c2 = outerOverlay?.endColor || '#011B38';
+                return { background: `linear-gradient(${dir}, ${c1}, ${c2})` };
+              }
+              if (outerBgType === 'radial_gradient') {
+                const c1 = outerOverlay?.startColor || '#0B2E57';
+                const c2 = outerOverlay?.endColor || outerBgColor || '#011B38';
+                return { background: `radial-gradient(circle at center, ${c1} 0%, ${c2} 70%, #000E20 100%)` };
+              }
+              return { backgroundColor: outerBgColor };
+            };
+
+            return (
               <div
-                className={`w-full max-w-4xl shadow-2xl overflow-hidden grid relative z-10 transition-all ${
-                  device === 'mobile'
-                    ? 'grid-cols-1'
-                    : config.layoutType === 'split-left'
-                    ? 'grid-cols-1 md:grid-cols-2'
-                    : 'grid-cols-1 md:grid-cols-2'
+                className={`min-h-[640px] p-4 sm:p-8 flex flex-col items-center justify-center relative overflow-hidden transition-all ${
+                  selectedElementKey === 'outer_background' ? 'ring-4 ring-inset ring-[#CC9048]' : ''
                 }`}
                 style={{
-                  backgroundColor: effectiveFormBg,
-                  borderRadius: config.cardRadius || '28px',
+                  ...getOuterLiveBgStyle(),
+                  cursor: 'pointer',
                 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectElement('outer_background');
+                }}
+                title="الخلفية الرئيسية (Zone A) — اضغط لتعديل خصائص الخلفية"
               >
-                {/* 3D Visual Panel Column */}
-                <div
-                  className={`overflow-hidden relative ${
-                    config.layoutType === 'split-left' ? 'order-1 md:order-2' : 'order-1 md:order-1'
-                  }`}
-                >
-                  <ThemeVisualPanel
-                    config={config}
-                    language={direction === 'rtl' ? 'ar' : 'en'}
-                    interactive={true}
-                    selectedElementKey={selectedElementKey}
-                    onSelectElement={onSelectElement}
-                    onUpdateConfig={onUpdateConfig}
-                    isCrm={false}
-                    minHeight={device === 'mobile' ? '240px' : '560px'}
-                    className="h-full w-full"
+                {/* Zone A: Background Image Layer */}
+                {(outerBgType === 'image' || Boolean(outerBgImage)) && outerBgImage && (
+                  <div
+                    className="absolute inset-0 pointer-events-none overflow-hidden z-0"
+                    style={{
+                      backgroundImage: `url(${outerBgImage})`,
+                      backgroundSize: ob?.fit === 'contain' ? 'contain' : ob?.fit === 'original' ? 'auto' : 'cover',
+                      backgroundPosition: `${ob?.positionX ?? 'center'} ${ob?.positionY ?? 'center'}`,
+                      backgroundRepeat: 'no-repeat',
+                      transform: `translate(${ob?.customX || 0}px, ${ob?.customY || 0}px) scale(${(ob?.scale ?? 100) / 100})`,
+                      transformOrigin: 'center center',
+                      opacity: (ob?.opacity ?? 100) / 100,
+                      filter: `brightness(${ob?.brightness ?? 100}%) contrast(${ob?.contrast ?? 100}%) saturate(${ob?.saturation ?? 100}%) blur(${ob?.blur || 0}px)`,
+                    }}
                   />
-                </div>
+                )}
+
+                {/* Zone A: Gradient Overlay Layer */}
+                {outerOverlay?.enabled && (
+                  <div
+                    className="absolute inset-0 pointer-events-none z-0"
+                    style={{
+                      background:
+                        outerOverlay.type === 'radial'
+                          ? `radial-gradient(circle at center, ${outerOverlay.startColor} 0%, ${outerOverlay.middleColor ? `${outerOverlay.middleColor} 50%, ` : ''}${outerOverlay.endColor} 100%)`
+                          : `linear-gradient(${outerOverlay.direction || '135deg'}, ${outerOverlay.startColor} 0%, ${outerOverlay.middleColor ? `${outerOverlay.middleColor} 50%, ` : ''}${outerOverlay.endColor} 100%)`,
+                      opacity: (outerOverlay.opacity ?? 75) / 100,
+                    }}
+                  />
+                )}
+
+                {/* Concentric Arcs Background Pattern */}
+                {outerBgType !== 'transparent' && (
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-30 z-0"
+                    style={{
+                      backgroundImage:
+                        'repeating-radial-gradient(circle at 4% 116%, transparent 0 64px, rgba(255, 255, 255, 0.08) 64px 65.5px, transparent 65.5px 132px)',
+                    }}
+                  />
+                )}
+
+                {/* Zone B: Shell Card */}
+                <div
+                  className={`w-full max-w-4xl shadow-2xl overflow-hidden grid relative z-10 transition-all ${
+                    device === 'mobile'
+                      ? 'grid-cols-1'
+                      : config.layoutType === 'split-left'
+                      ? 'grid-cols-1 md:grid-cols-2'
+                      : 'grid-cols-1 md:grid-cols-2'
+                  } ${selectedElementKey === 'menu_panel' ? 'ring-4 ring-[#004AA5]' : ''}`}
+                  style={{
+                    backgroundColor: mp?.bgColor || effectiveFormBg,
+                    backgroundImage: mp?.bgImage ? `url(${mp.bgImage})` : undefined,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: (mp?.opacity ?? 100) / 100,
+                    borderRadius: mp?.borderRadius || config.cardRadius || '28px',
+                    borderColor: mp?.borderColor || undefined,
+                    borderWidth: mp?.borderColor ? '1px' : undefined,
+                    borderStyle: mp?.borderColor ? 'solid' : undefined,
+                    boxShadow:
+                      mp?.shadowIntensity === 'none'
+                        ? 'none'
+                        : mp?.shadowIntensity === 'sm'
+                        ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                        : mp?.shadowIntensity === 'md'
+                        ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+                        : mp?.shadowIntensity === 'lg'
+                        ? '0 20px 25px -5px rgba(0, 0, 0, 0.15)'
+                        : mp?.shadowIntensity === '2xl'
+                        ? '0 35px 60px -15px rgba(0, 0, 0, 0.4)'
+                        : '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectElement('menu_panel');
+                  }}
+                >
+                  {/* Zone C: 3D Visual Panel Column */}
+                  <div
+                    className={`overflow-hidden relative ${
+                      config.layoutType === 'split-left' ? 'order-1 md:order-2' : 'order-1 md:order-1'
+                    }`}
+                  >
+                    <ThemeVisualPanel
+                      config={config}
+                      language={direction === 'rtl' ? 'ar' : 'en'}
+                      interactive={true}
+                      selectedElementKey={selectedElementKey}
+                      onSelectElement={onSelectElement}
+                      onUpdateConfig={onUpdateConfig}
+                      isCrm={false}
+                      minHeight={device === 'mobile' ? '240px' : '560px'}
+                      className="h-full w-full"
+                    />
+                  </div>
 
                 {/* Content Column */}
                 <div
@@ -456,7 +718,13 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                   {/* Brand Logo */}
                   {inspectWrapper(
                     'portal_logo',
-                    <div className="my-2 cursor-pointer">
+                    <div
+                      className="my-2 cursor-pointer"
+                      style={{
+                        transform: `scale(${(config.logoScale ?? 100) / 100})`,
+                        transformOrigin: 'center center',
+                      }}
+                    >
                       <BrandLogo
                         background="white"
                         orientation="horizontal"
@@ -472,7 +740,10 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                       'portal_kicker',
                       <p
                         className="text-xs font-bold tracking-wider uppercase cursor-pointer"
-                        style={{ color: config.kickerColor || colors.gold || '#CC9048' }}
+                        style={{
+                          color: config.menuPanel?.kickerColor || config.kickerColor || colors.gold || '#CC9048',
+                          fontFamily: config.typography?.fontFamily,
+                        }}
                       >
                         {getText('heroKicker', 'مركز الوصول الموحّد', 'UNIFIED ACCESS PORTAL')}
                       </p>
@@ -480,8 +751,14 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                     {inspectWrapper(
                       'portal_title',
                       <h1
-                        className="text-2xl sm:text-3xl font-black cursor-pointer"
-                        style={{ color: effectiveFormText }}
+                        className="font-black cursor-pointer transition-all"
+                        style={{
+                          color: config.menuPanel?.headingColor || config.titleColor || effectiveFormText,
+                          fontFamily: config.typography?.headingFontFamily || config.typography?.fontFamily,
+                          fontSize: config.titleFontSize || config.typography?.h1Size || '1.75rem',
+                          lineHeight: config.typography?.lineHeight || '1.25',
+                          letterSpacing: config.typography?.letterSpacing || '0px',
+                        }}
                       >
                         {getText('heroTitle', 'بوابة الفزني سيرفيسز', 'ELFAZNI SERVICES HUB')}
                       </h1>
@@ -489,8 +766,13 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                     {inspectWrapper(
                       'portal_desc',
                       <p
-                        className="text-xs leading-relaxed cursor-pointer"
-                        style={{ color: effectiveFormMuted }}
+                        className="leading-relaxed cursor-pointer transition-all"
+                        style={{
+                          color: config.menuPanel?.descColor || config.noteColor || effectiveFormMuted,
+                          fontSize: config.noteFontSize || config.typography?.baseFontSize || '0.825rem',
+                          fontFamily: config.typography?.fontFamily,
+                          lineHeight: config.typography?.lineHeight || '1.6',
+                        }}
                       >
                         {getText(
                           'heroDescription',
@@ -600,55 +882,182 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                 © {new Date().getFullYear()} ELFAZNI SERVICES - All rights reserved
               </p>
             </div>
-          )}
+            );
+          })()}
 
           {/* ======================================================== */}
           {/* 3. MAIN WEBSITE PREVIEW                                 */}
           {/* ======================================================== */}
+          {/* ======================================================== */}
+          {/* 3. MAIN WEBSITE PREVIEW                                 */}
+          {/* ======================================================== */}
           {target === 'website' && (
-            <div className="min-h-[560px] bg-slate-50 text-slate-900 flex flex-col">
+            <div
+              className="min-h-[560px] bg-slate-50 text-slate-900 flex flex-col transition-all"
+              style={{
+                fontFamily: config.typography?.fontFamily || "'Bahij TheSansArabic', sans-serif",
+              }}
+            >
               {/* Header */}
-              <header className="px-6 py-4 bg-white border-b border-slate-200 flex items-center justify-between">
+              <header
+                className="px-6 py-4 border-b flex items-center justify-between transition-colors"
+                style={{
+                  backgroundColor: colors.surface || '#FFFFFF',
+                  borderColor: colors.border || '#DCE6F2',
+                }}
+              >
                 {inspectWrapper(
                   'website_logo',
-                  <BrandLogo
-                    background="white"
-                    orientation="horizontal"
-                    size="md"
-                    className="h-10 w-auto"
-                  />
+                  <div
+                    style={{
+                      transform: `scale(${(config.logoScale ?? 100) / 100})`,
+                      transformOrigin: isRtl ? 'right center' : 'left center',
+                    }}
+                  >
+                    <BrandLogo
+                      background={config.illustrationLogoVariant?.includes('blue') || config.logoVariant?.includes('blue') ? 'blue' : config.illustrationLogoVariant?.includes('gold') || config.logoVariant?.includes('gold') ? 'gold' : 'white'}
+                      orientation={config.illustrationLogoVariant?.includes('vertical') || config.logoVariant?.includes('vertical') ? 'vertical' : 'horizontal'}
+                      size="md"
+                      className="h-10 w-auto"
+                    />
+                  </div>
                 )}
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-[#004AA5] hidden sm:inline">
+                  <span
+                    className="text-xs font-bold hidden sm:inline transition-colors"
+                    style={{
+                      color: colors.primary,
+                      fontFamily: config.typography?.fontFamily,
+                    }}
+                  >
                     {isRtl ? 'المواعيد القنصلية · الطيران · الإقامات' : 'Consular · Flights · Visas'}
                   </span>
-                  <button
-                    type="button"
-                    className="px-3.5 py-1.5 rounded-xl text-white font-bold text-xs shadow-xs"
-                    style={{ backgroundColor: colors.button }}
-                  >
-                    {getText('primaryButton', 'ابدأ طلبك الآن', 'Start Request')}
-                  </button>
+                  {inspectWrapper(
+                    'website_header_btn',
+                    <button
+                      type="button"
+                      className="px-3.5 py-1.5 font-bold text-xs shadow-xs transition-all cursor-pointer"
+                      style={{
+                        backgroundColor: config.primaryButtonBg || colors.button,
+                        color: config.primaryButtonTextColor || '#FFFFFF',
+                        borderRadius: config.primaryButtonRadius || '12px',
+                        fontSize: config.typography?.buttonFontSize || '13px',
+                      }}
+                    >
+                      {getText('primaryButton', 'ابدأ طلبك الآن', 'Start Request')}
+                    </button>
+                  )}
                 </div>
               </header>
 
-              {/* Hero Banner */}
+              {/* Hero Banner with Layering, Background, Gradient, Illustration and Content */}
               <div
-                className="p-8 sm:p-12 text-white relative overflow-hidden"
+                className="p-8 sm:p-12 text-white relative overflow-hidden min-h-[380px] flex items-center"
                 style={{
-                  background: `linear-gradient(135deg, ${colors.secondary} 0%, ${colors.primary} 100%)`,
+                  position: 'relative',
+                  backgroundColor: config.backgroundColor || colors.secondary || '#0B2E57',
                 }}
               >
-                <div className="max-w-xl space-y-4 relative z-10">
+                {/* 1. LAYER: Background Image & Color */}
+                <div
+                  className="absolute inset-0 pointer-events-none transition-all"
+                  style={{
+                    zIndex: bgLayer.zIndex,
+                    display: bgLayer.visible ? 'block' : 'none',
+                    opacity: ((config.backgroundOpacity ?? 100) / 100) * ((bgLayer.opacity ?? 100) / 100),
+                    backgroundColor: config.backgroundColor || colors.secondary || '#0B2E57',
+                    backgroundImage: config.backgroundImage ? `url("${config.backgroundImage}")` : undefined,
+                    backgroundSize: config.backgroundSize || 'cover',
+                    backgroundPosition: config.backgroundPosition || 'center',
+                    backgroundRepeat: 'no-repeat',
+                    filter: `blur(${config.backgroundBlur || 0}px) brightness(${config.backgroundBrightness ?? 100}%)`,
+                  }}
+                />
+
+                {/* 2. LAYER: Gradient Overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none transition-all"
+                  style={{
+                    zIndex: gradientLayer.zIndex,
+                    display: gradientLayer.visible && (config.gradient?.enabled !== false) ? 'block' : 'none',
+                    background: generateGradientCss(config.gradient || {
+                      enabled: true,
+                      type: 'linear',
+                      direction: 'custom',
+                      angle: 135,
+                      opacity: 0.85,
+                      stops: [
+                        { position: 0, color: colors.secondary, opacity: 0.95 },
+                        { position: 100, color: colors.primary, opacity: 0.75 },
+                      ],
+                    }),
+                    opacity: (config.gradient?.opacity ?? 0.85) * ((gradientLayer.opacity ?? 100) / 100),
+                  }}
+                />
+
+                {/* 3. LAYER: Foreground 3D Illustration */}
+                <div
+                  className="absolute inset-0 pointer-events-none flex items-center justify-end p-6"
+                  style={{
+                    zIndex: illustrationLayer.zIndex,
+                    display: illustrationLayer.visible && clampedScale > 0 ? 'flex' : 'none',
+                    opacity: ((config.illustrationOpacity ?? 100) / 100) * ((illustrationLayer.opacity ?? 100) / 100),
+                  }}
+                >
+                  {inspectWrapper(
+                    'website_illustration',
+                    <div
+                      style={{
+                        transform: `translate(${customX}px, ${customY}px) scale(${clampedScale / 100}) rotate(${rotation}deg)`,
+                        transformOrigin: 'center center',
+                        pointerEvents: 'auto',
+                      }}
+                    >
+                      <img
+                        src={rawIllustrationUrl}
+                        alt="Website Hero Illustration"
+                        className="max-h-[320px] w-auto object-contain drop-shadow-2xl"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* 4. LAYER: Content & Headings */}
+                <div
+                  className="max-w-xl space-y-4 relative"
+                  style={{
+                    zIndex: contentLayer.zIndex,
+                    display: contentLayer.visible ? 'block' : 'none',
+                    opacity: (contentLayer.opacity ?? 100) / 100,
+                  }}
+                >
                   {inspectWrapper(
                     'website_kicker',
-                    <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-[#CC9048] border border-[#CC9048]/30 text-xs font-extrabold">
+                    <span
+                      className="inline-block px-3 py-1 rounded-full text-xs font-extrabold border transition-all"
+                      style={{
+                        color: config.kickerColor || colors.gold || '#CC9048',
+                        borderColor: `${config.kickerColor || colors.gold || '#CC9048'}40`,
+                        backgroundColor: `${config.kickerColor || colors.gold || '#CC9048'}15`,
+                        fontFamily: config.typography?.fontFamily,
+                      }}
+                    >
                       {getText('heroKicker', 'المكتب المعتمد في تركيا', 'Certified Agency in Türkiye')}
                     </span>
                   )}
                   {inspectWrapper(
                     'website_title',
-                    <h1 className="text-2xl sm:text-3xl font-black text-white leading-tight">
+                    <h1
+                      className="font-black leading-tight transition-all"
+                      style={{
+                        color: config.titleColor || '#FFFFFF',
+                        fontSize: config.titleFontSize || config.typography?.h1Size || '2rem',
+                        fontWeight: config.typography?.fontWeightHeavy || '900',
+                        fontFamily: config.typography?.headingFontFamily || config.typography?.fontFamily,
+                        lineHeight: config.typography?.lineHeight || '1.25',
+                        letterSpacing: config.typography?.letterSpacing || '0px',
+                      }}
+                    >
                       {getText(
                         'heroTitle',
                         'الفزني للخدمات العامة والقنصلية والسياحية للمغاربة والعرب',
@@ -658,7 +1067,16 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                   )}
                   {inspectWrapper(
                     'website_subtitle',
-                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                    <p
+                      className="leading-relaxed transition-all"
+                      style={{
+                        color: config.noteColor || '#E2E8F0',
+                        fontSize: config.noteFontSize || config.typography?.baseFontSize || '0.95rem',
+                        fontFamily: config.typography?.fontFamily,
+                        lineHeight: config.typography?.lineHeight || '1.6',
+                        letterSpacing: config.typography?.letterSpacing || '0px',
+                      }}
+                    >
                       {getText(
                         'heroSubtitle',
                         'حجوزات طيران وفنادق، مواعيد قنصلية، إقامات وتأشيرات، وترجمة محلفة بأعلى جودة.',
@@ -667,34 +1085,65 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                     </p>
                   )}
                   <div className="pt-2 flex items-center gap-3">
-                    <button
-                      type="button"
-                      className="px-5 py-2.5 rounded-xl font-bold text-xs text-[#0B2E57] bg-[#CC9048] hover:bg-amber-400 shadow-md transition-transform"
-                    >
-                      {getText('primaryButton', 'ابدأ طلبك الآن', 'Start Request')}
-                    </button>
-                    <button
-                      type="button"
-                      className="px-5 py-2.5 rounded-xl font-bold text-xs text-white bg-white/10 hover:bg-white/20 border border-white/20"
-                    >
-                      {getText('secondaryButton', 'استكشف الخدمات', 'Explore Services')}
-                    </button>
+                    {inspectWrapper(
+                      'website_primary_action',
+                      <button
+                        type="button"
+                        className="px-5 py-2.5 font-bold shadow-md transition-transform cursor-pointer"
+                        style={{
+                          backgroundColor: config.primaryButtonBg || colors.gold || '#CC9048',
+                          color: config.primaryButtonTextColor || colors.secondary || '#0B2E57',
+                          borderRadius: config.primaryButtonRadius || '12px',
+                          fontSize: config.typography?.buttonFontSize || '14px',
+                          fontFamily: config.typography?.fontFamily,
+                        }}
+                      >
+                        {getText('primaryButton', 'ابدأ طلبك الآن', 'Start Request')}
+                      </button>
+                    )}
+                    {inspectWrapper(
+                      'website_secondary_action',
+                      <button
+                        type="button"
+                        className="px-5 py-2.5 font-bold border transition-colors cursor-pointer"
+                        style={{
+                          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                          borderColor: colors.border || 'rgba(255, 255, 255, 0.25)',
+                          color: '#FFFFFF',
+                          borderRadius: config.primaryButtonRadius || '12px',
+                          fontSize: config.typography?.buttonFontSize || '14px',
+                          fontFamily: config.typography?.fontFamily,
+                        }}
+                      >
+                        {getText('secondaryButton', 'استكشف الخدمات', 'Explore Services')}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
 
               {/* Continuous Golden Services Marquee Banner */}
-              <div className="px-6 py-3 bg-[#0B2E57] border-y border-white/10 flex items-center justify-between text-xs font-bold text-white">
+              <div
+                className="px-6 py-3 border-y flex items-center justify-between text-xs font-bold transition-colors"
+                style={{
+                  backgroundColor: colors.navySupport || colors.secondary || '#0B2E57',
+                  borderColor: colors.border || 'rgba(255,255,255,0.1)',
+                  color: '#FFFFFF',
+                  fontFamily: config.typography?.fontFamily,
+                }}
+              >
                 <span className="flex items-center gap-2">
                   <span>حجوزات الطيران</span>
-                  <span className="text-[#CC9048]">✦</span>
+                  <span style={{ color: colors.gold || '#CC9048' }}>✦</span>
                   <span>المواعيد القنصلية</span>
-                  <span className="text-[#CC9048]">✦</span>
+                  <span style={{ color: colors.gold || '#CC9048' }}>✦</span>
                   <span>الإقامات والتأشيرات</span>
-                  <span className="text-[#CC9048]">✦</span>
+                  <span style={{ color: colors.gold || '#CC9048' }}>✦</span>
                   <span>الترجمة المحلفة</span>
                 </span>
-                <span className="text-[#CC9048] font-black">ELFAZNI SERVICES</span>
+                <span style={{ color: colors.gold || '#CC9048' }} className="font-black">
+                  ELFAZNI SERVICES
+                </span>
               </div>
             </div>
           )}

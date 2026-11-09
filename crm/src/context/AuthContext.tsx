@@ -234,6 +234,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       .then(async (response) => {
         if (!response.ok) throw new Error('CRM session expired');
         const owner = await response.json();
+        if (owner?.token) {
+          try {
+            localStorage.setItem('elfazni_auth_token', owner.token);
+            localStorage.setItem('elfazni_auth_user', JSON.stringify({
+              id: owner.id,
+              username: owner.username,
+              displayName: owner.displayName,
+              role: owner.role,
+            }));
+          } catch {}
+        }
         let profile: Partial<Pick<AuthUser, 'displayName' | 'email' | 'phone' | 'avatarUrl'>> = {};
         try {
           profile = JSON.parse(localStorage.getItem(ownerProfileKey(owner.id)) || '{}') || {};
@@ -294,7 +305,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
       })
       .catch(() => {
-        if (!controller.signal.aborted) window.location.replace('/admin');
+        if (!controller.signal.aborted) window.location.replace('/portal/login?next=crm');
       });
     return () => controller.abort();
   }, []);
@@ -430,12 +441,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.removeItem(STORAGE_KEY_USER);
     }
 
+    // Synchronize authentication token with portal
+    try {
+      const loginRes = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: cleanUser, password: cleanPass, purpose: 'crm' }),
+      });
+      if (loginRes.ok) {
+        const loginData = await loginRes.json();
+        if (loginData?.token) {
+          localStorage.setItem('elfazni_auth_token', loginData.token);
+          if (loginData.user) {
+            localStorage.setItem('elfazni_auth_user', JSON.stringify(loginData.user));
+          }
+        }
+      }
+    } catch {}
+
     return { success: true };
   };
 
   const logout = () => {
     localStorage.removeItem('elfazni_auth_token');
-    void fetch('/api/auth/logout', { method: 'POST' }).finally(() => window.location.replace('/admin'));
+    void fetch('/api/auth/logout', { method: 'POST' }).finally(() => window.location.replace('/portal/login'));
   };
 
   const lockScreen = logout;

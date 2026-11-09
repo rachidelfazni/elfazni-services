@@ -17,9 +17,15 @@ import {
   Power,
   RefreshCw,
   Trash2,
+  ArrowRight,
+  ArrowLeft,
+  Users,
 } from 'lucide-react';
 import { api, ChatMessage, ChatSession, ChatStatus } from '../../services/api';
 import { realtime } from '../../services/realtime';
+import { useLanguage } from '../../context/LanguageContext';
+import { ResizeHandle } from '../workspace/ResizeHandle';
+import { clampPanelSize } from '../workspace/layoutPreferences';
 
 // Soft audio chime
 function playAdminChime(type: 'incoming' | 'outgoing' = 'incoming') {
@@ -58,6 +64,7 @@ const CANNED_REPLIES = [
 ];
 
 export const AdminLiveChat: React.FC = () => {
+  const { isRtl = true } = useLanguage();
   const [sessions, setSessions] = useState<ChatSession[]>([]);
   const [selectedSession, setSelectedSession] = useState<ChatSession | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -68,6 +75,42 @@ export const AdminLiveChat: React.FC = () => {
   const [visitorTyping, setVisitorTyping] = useState(false);
   const [attachedFile, setAttachedFile] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Resizable Conversation List Panel Width (default 340px, min 240px, max 520px)
+  const [listWidth, setListWidth] = useState<number>(() => {
+    if (typeof window === 'undefined') return 340;
+    try {
+      const saved = localStorage.getItem('elfazni_livechat_list_width');
+      if (saved) {
+        const num = parseInt(saved, 10);
+        if (!isNaN(num)) return clampPanelSize(num, 240, 520);
+      }
+    } catch {}
+    return 340;
+  });
+
+  // Tablet toggle for showing/hiding conversation list
+  const [isListHiddenOnTablet, setIsListHiddenOnTablet] = useState(false);
+
+  // Mobile navigation state: 'list' (visitor list) vs 'chat' (active conversation)
+  const [mobileChatView, setMobileChatView] = useState<'list' | 'chat'>('list');
+
+  const handleResize = (delta: number) => {
+    setListWidth((prev) => {
+      const next = clampPanelSize(prev + delta, 240, 520);
+      try {
+        localStorage.setItem('elfazni_livechat_list_width', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  const handleResetWidth = () => {
+    setListWidth(340);
+    try {
+      localStorage.setItem('elfazni_livechat_list_width', '340');
+    } catch {}
+  };
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -225,6 +268,7 @@ export const AdminLiveChat: React.FC = () => {
   const selectSession = async (sess: ChatSession) => {
     if (selectedSessionRef.current?.id !== sess.id) setMessages([]);
     setSelectedSession(sess);
+    setMobileChatView('chat');
     selectedSessionRef.current = sess;
     try {
       const msgRes = await api.getChatMessages(sess.id);
@@ -388,6 +432,16 @@ export const AdminLiveChat: React.FC = () => {
             {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4 text-slate-400" />}
           </button>
 
+          {/* Tablet toggle button for visitor list */}
+          <button
+            data-testid="tablet-toggle-visitors"
+            onClick={() => setIsListHiddenOnTablet(!isListHiddenOnTablet)}
+            className="hidden md:flex lg:hidden p-2 bg-white/10 hover:bg-white/15 text-blue-200 hover:text-white rounded-xl transition-colors cursor-pointer"
+            title={isListHiddenOnTablet ? 'إظهار قائمة الزوار' : 'إخفاء قائمة الزوار'}
+          >
+            <Users className="w-4 h-4" />
+          </button>
+
           <button
             onClick={loadChatData}
             className="p-2 bg-white/10 hover:bg-white/15 text-blue-200 hover:text-white rounded-xl transition-colors"
@@ -399,9 +453,16 @@ export const AdminLiveChat: React.FC = () => {
       </div>
 
       {/* Main Chat Workspace: 2 Columns */}
-      <div className="min-h-0 flex-1 flex flex-col md:flex-row overflow-hidden">
-        {/* Left Column: Active Chat Sessions List */}
-        <div className="w-full max-h-52 shrink-0 md:max-h-none md:w-72 xl:w-96 border-b md:border-b-0 md:border-l border-slate-200 flex flex-col bg-slate-50">
+      <div className="min-h-0 flex-1 flex flex-col md:flex-row overflow-hidden relative">
+        {/* Left/Right Column: Active Chat Sessions List (Resizable on Desktop/Tablet) */}
+        <div
+          style={{ width: `${listWidth}px` }}
+          className={`shrink-0 border-b md:border-b-0 ${
+            isRtl ? 'md:border-l' : 'md:border-r'
+          } border-slate-200 flex flex-col bg-slate-50 transition-[width] duration-75 ${
+            mobileChatView === 'chat' && selectedSession ? 'hidden md:flex' : 'flex w-full md:w-auto'
+          } ${isListHiddenOnTablet ? 'hidden lg:flex' : ''}`}
+        >
           {/* Search box */}
           <div className="p-3 border-b border-slate-200 bg-white">
             <div className="relative">
@@ -428,6 +489,7 @@ export const AdminLiveChat: React.FC = () => {
                 return (
                   <div
                     key={s.id}
+                    data-testid="livechat-session-item"
                     onClick={() => selectSession(s)}
                     className={`p-3.5 cursor-pointer transition-all ${
                       isSelected
@@ -476,30 +538,59 @@ export const AdminLiveChat: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column: Chat Conversation Stream & Composer */}
-        <div className="flex-1 flex flex-col bg-slate-100/50">
+        {/* Resizable Divider Handle (Hidden on Mobile) */}
+        <div className={`hidden md:flex shrink-0 items-stretch ${isListHiddenOnTablet ? 'hidden lg:flex' : ''}`}>
+          <ResizeHandle
+            id="livechat-conversation-list"
+            direction="horizontal"
+            isRtl={isRtl}
+            currentSize={listWidth}
+            minSize={240}
+            maxSize={520}
+            onResize={handleResize}
+            onReset={handleResetWidth}
+            ariaLabel="مقبض تعديل عرض قائمة المحادثات — Resize chat list"
+          />
+        </div>
+
+        {/* Right/Active Column: Chat Conversation Stream & Composer */}
+        <div className={`flex-1 flex flex-col bg-slate-100/50 min-w-0 ${
+          mobileChatView === 'list' ? 'hidden md:flex' : 'flex'
+        }`}>
           {selectedSession ? (
             <>
               {/* Chat Session Header */}
-              <div className="p-3.5 bg-white border-b border-slate-200 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">
+              <div className="p-3.5 bg-white border-b border-slate-200 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  {/* Back button on mobile */}
+                  <button
+                    type="button"
+                    data-testid="livechat-back-button"
+                    onClick={() => setMobileChatView('list')}
+                    className="md:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#004AA5] text-xs font-bold transition-colors shrink-0 shadow-xs cursor-pointer"
+                    aria-label="العودة إلى المحادثات"
+                  >
+                    {isRtl ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
+                    <span>العودة إلى المحادثات</span>
+                  </button>
+
+                  <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm shrink-0">
                     {selectedSession.visitorName.charAt(0)}
                   </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2">
-                      <span>{selectedSession.visitorName}</span>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-semibold">
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 truncate">
+                      <span className="truncate">{selectedSession.visitorName}</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-semibold shrink-0">
                         {selectedSession.visitorCountry || 'المغرب 🇲🇦'}
                       </span>
                     </h3>
-                    <div className="text-xs text-slate-500 flex items-center gap-3">
+                    <div className="text-xs text-slate-500 flex items-center gap-3 truncate">
                       {selectedSession.visitorPhone && (
-                        <span className="flex items-center gap-1 font-mono text-slate-700" dir="ltr">
+                        <span className="flex items-center gap-1 font-mono text-slate-700 shrink-0" dir="ltr">
                           <Phone className="w-3 h-3 text-slate-400" /> {selectedSession.visitorPhone}
                         </span>
                       )}
-                      <span>يتصفح حالياً: {selectedSession.currentPage || 'الرئيسية'}</span>
+                      <span className="truncate">يتصفح حالياً: {selectedSession.currentPage || 'الرئيسية'}</span>
                     </div>
                   </div>
                 </div>

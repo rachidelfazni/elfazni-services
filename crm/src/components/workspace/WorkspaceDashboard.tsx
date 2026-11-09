@@ -560,7 +560,7 @@ export const WorkspaceDashboard: React.FC<{ children?: React.ReactNode }> = ({
                   )}
                 </h3>
                 <a
-                  href="https://elfazni-services-pro.uzmanlarltd.chatgpt.site/"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -85,6 +85,15 @@ productivityRouter.post('/events', (req: Request, res: Response) => {
   res.json({ success: true, event });
 });
 
+productivityRouter.post('/events/:id/reschedule', (req: Request, res: Response) => {
+  const userId = getUserId(req, res);
+  const event = productivityStore.rescheduleEvent(userId, req.params.id, req.body || {});
+  if (!event) {
+    return res.status(404).json({ error: 'الحدث غير موجود.' });
+  }
+  res.json({ success: true, event });
+});
+
 productivityRouter.delete('/events/:id', (req: Request, res: Response) => {
   const userId = getUserId(req, res);
   const deleted = productivityStore.deleteEvent(userId, req.params.id);
@@ -96,6 +105,12 @@ productivityRouter.post('/reminders/:id/dismiss', (req: Request, res: Response) 
   const userId = getUserId(req, res);
   const dismissed = productivityStore.dismissReminder(userId, req.params.id);
   res.json({ success: dismissed });
+});
+
+productivityRouter.post('/reminders/:id/complete', (req: Request, res: Response) => {
+  const userId = getUserId(req, res);
+  const completed = productivityStore.completeReminder(userId, req.params.id);
+  res.json({ success: completed });
 });
 
 productivityRouter.post('/reminders/:id/snooze', (req: Request, res: Response) => {

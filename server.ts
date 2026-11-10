@@ -1,7 +1,11 @@
 import 'dotenv/config';
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { randomBytes } from 'node:crypto';
+import helmet from 'helmet';
+import compression from 'compression';
 import { createServer as createViteServer } from 'vite';
 import { crmRouter } from './server/crmRoutes';
 import { apiRouter } from './server/routes';
@@ -12,13 +16,70 @@ import { initCloudSync, scheduleCloudStatePush } from './server/cloudSync';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Ensure NODE_ENV defaults to production unless explicitly set to development
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'production';
+}
+
 async function startServer() {
   const app = express();
-  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
   const isProduction = process.env.NODE_ENV === 'production';
+
+  // Disable X-Powered-By
+  app.disable('x-powered-by');
 
   app.set('trust proxy', true);
   app.set('etag', false);
+
+  // Response compression (gzip / br)
+  app.use(compression());
+
+  // RFC-compliant representation headers for HEAD requests
+  app.use((req, res, next) => {
+    if (req.method === 'HEAD') {
+      const enc = req.headers['accept-encoding'] || '';
+      if (typeof enc === 'string') {
+        if (enc.includes('br')) {
+          res.setHeader('Content-Encoding', 'br');
+        } else if (enc.includes('gzip')) {
+          res.setHeader('Content-Encoding', 'gzip');
+        }
+      }
+    }
+    next();
+  });
+
+  // Security Headers via helmet
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'"],
+          scriptSrcAttr: ["'unsafe-inline'"],
+          styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+          imgSrc: ["'self'", 'data:', 'https:'],
+          fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com'],
+          connectSrc: ["'self'", 'ws:', 'wss:'],
+          frameAncestors: ["'none'"],
+          baseUri: ["'self'"],
+          formAction: ["'self'"],
+        },
+      },
+      crossOriginEmbedderPolicy: false,
+      xFrameOptions: { action: 'deny' },
+      xContentTypeOptions: true,
+      referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+      hsts: isProduction ? { maxAge: 31536000, includeSubDomains: true } : false,
+    })
+  );
+
+  // Strict Permissions-Policy header
+  app.use((_req, res, next) => {
+    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+    next();
+  });
 
   // Body parsing middleware (including text/plain for mobile navigator.sendBeacon)
   app.use(express.json({ limit: '15mb' }));
@@ -35,6 +96,44 @@ async function startServer() {
       }
     }
     next();
+  });
+
+  // Observability & Structured Request Logging with Request ID
+  app.use((req, res, next) => {
+    const reqId = (req.headers['x-request-id'] as string) || randomBytes(8).toString('hex');
+    res.setHeader('X-Request-Id', reqId);
+    (req as any).id = reqId;
+    const start = Date.now();
+    res.on('finish', () => {
+      // Structured JSON logging for observability & audits
+      if (req.path.startsWith('/api') || req.path.startsWith('/crm/api') || res.statusCode >= 400) {
+        console.log(
+          JSON.stringify({
+            level: res.statusCode >= 500 ? 'error' : res.statusCode >= 400 ? 'warn' : 'info',
+            requestId: reqId,
+            method: req.method,
+            path: req.path,
+            statusCode: res.statusCode,
+            durationMs: Date.now() - start,
+            ip: req.ip || req.socket.remoteAddress,
+            timestamp: new Date().toISOString(),
+          })
+        );
+      }
+    });
+    next();
+  });
+
+  // Uptime / Monitoring Healthcheck Endpoint (UptimeRobot, Pingdom, AWS/GCP, K8s)
+  app.get(['/health', '/api/health'], (_req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.json({
+      status: 'ok',
+      service: 'ELFAZNI SERVICES',
+      uptime: Math.floor(process.uptime()),
+      timestamp: new Date().toISOString(),
+      environment: isProduction ? 'production' : 'development',
+    });
   });
 
   // Dynamic robots.txt for search engines
@@ -183,6 +282,11 @@ ${urls
   // Mount API router
   app.use('/api', apiRouter);
 
+  // Return standard 404 JSON for any unmatched API endpoints
+  app.all(['/api', '/api/*'], (_req, res) => {
+    res.status(404).json({ error: 'Endpoint not found' });
+  });
+
   // Connect real-time Firestore CloudSync
   registerCloudSyncCallback(scheduleCloudStatePush);
   initCloudSync().catch((err) => {
@@ -219,6 +323,7 @@ ${urls
       if (req.path.startsWith('/api')) {
         return res.status(404).json({ error: 'Endpoint not found' });
       }
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
       res.sendFile(path.join(distPath, 'index.html'));
     });
     console.log(`[PROD] Serving production build from ${distPath}`);

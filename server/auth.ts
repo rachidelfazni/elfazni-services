@@ -1,9 +1,36 @@
 import { createHash, randomBytes } from 'node:crypto';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, CookieOptions } from 'express';
 import jwt from 'jsonwebtoken';
 import { readDb, StaffAccess, User, RoleDefinition } from './db';
 
-const getJwtSecret = () => process.env.JWT_SECRET || 'elfazni-services-jwt-auth-secret-key-2026';
+const getJwtSecret = (): string => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('FATAL: JWT_SECRET environment variable is required in production.');
+    }
+    return 'elfazni-services-jwt-auth-secret-key-2026';
+  }
+  if (process.env.NODE_ENV === 'production' && Buffer.byteLength(secret, 'utf8') < 32) {
+    throw new Error('FATAL: JWT_SECRET must be at least 32 bytes for cryptographic security in production.');
+  }
+  return secret;
+};
+
+/**
+ * Central cookie options configuration:
+ * Secure: true strictly when NODE_ENV === 'production'.
+ * Maintains HttpOnly: true and SameSite: 'strict'.
+ */
+export function getCookieOptions(overrides: CookieOptions = {}): CookieOptions {
+  return {
+    httpOnly: true,
+    sameSite: 'strict',
+    secure: process.env.NODE_ENV === 'production',
+    path: '/',
+    ...overrides,
+  };
+}
 
 export interface AuthRequest extends Request {
   user?: Omit<User, 'passwordHash'>;

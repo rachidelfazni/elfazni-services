@@ -438,6 +438,7 @@ export const translations: Record<'tr' | 'en' | 'fr', Record<string, string>> = 
     "المؤسس": "Kurucu",
     "جميع الخدمات": "Tüm hizmetler",
     "كل المواضيع": "Tüm rehberler",
+    "قائمة الخدمات المتاحة": "Mevcut Hizmetler Listesi",
     "اطلب التوصيل عبر واتساب": "WhatsApp ile Transfer İste"
   },
   "en": {
@@ -877,6 +878,7 @@ export const translations: Record<'tr' | 'en' | 'fr', Record<string, string>> = 
     "المؤسس": "Founder",
     "جميع الخدمات": "All services",
     "كل المواضيع": "All guides",
+    "قائمة الخدمات المتاحة": "Available Services List",
     "اطلب التوصيل عبر واتساب": "Request Transfer on WhatsApp"
   },
   "fr": {
@@ -1311,6 +1313,7 @@ export const translations: Record<'tr' | 'en' | 'fr', Record<string, string>> = 
     "المؤسس": "Fondateur",
     "جميع الخدمات": "Tous les services",
     "كل المواضيع": "Tous les guides",
+    "قائمة الخدمات المتاحة": "Liste des services disponibles",
     "اطلب التوصيل عبر واتساب": "Demander le transfert sur WhatsApp"
   }
 };

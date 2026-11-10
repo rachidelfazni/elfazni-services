@@ -347,19 +347,33 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
               size="lg"
               className="admin-entry-logo"
             />
-            <div className="flex items-center bg-[#EAF4FF] p-0.5 rounded-full border border-[#D7E7F7] text-[11px] font-bold">
-              {(['ar', 'en', 'fr'] as const).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLanguage(l)}
-                  className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
-                    language === l ? 'bg-[#004AA5] text-white shadow-xs font-black' : 'text-[#5E7086] hover:text-[#0B2E57]'
-                  }`}
-                >
-                  {l === 'ar' ? 'ع' : l.toUpperCase()}
-                </button>
-              ))}
+            <div
+              className="flex items-center bg-[#EAF4FF] p-0.5 rounded-full border border-[#D7E7F7] text-[11px] font-bold"
+              role="group"
+              aria-label="Language selector"
+            >
+              {(['ar', 'tr', 'en', 'fr'] as const).map((l) => {
+                const labels: Record<string, string> = {
+                  ar: 'تغيير اللغة إلى العربية (Arabic)',
+                  tr: 'Dili Türkçe olarak değiştir (Turkish)',
+                  en: 'Switch language to English',
+                  fr: 'Changer la langue en français (French)',
+                };
+                return (
+                  <button
+                    key={l}
+                    type="button"
+                    onClick={() => setLanguage(l)}
+                    aria-label={labels[l]}
+                    aria-pressed={language === l}
+                    className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
+                      language === l ? 'bg-[#004AA5] text-white shadow-xs font-black' : 'text-[#5E7086] hover:text-[#0B2E57]'
+                    }`}
+                  >
+                    {l === 'ar' ? 'ع' : l.toUpperCase()}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -394,6 +408,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
               <div className="relative">
                 <input
                   id="admin-username"
+                  name="username"
                   type="text"
                   required
                   value={username}
@@ -420,6 +435,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
                 <div className="relative">
                   <input
                     id="admin-password"
+                    name="password"
                     type={showPassword ? 'text' : 'password'}
                     required
                     value={password}

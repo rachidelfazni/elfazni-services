@@ -180,21 +180,32 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               role="group"
               aria-label="Language selector"
             >
-              {(['ar', 'tr', 'en', 'fr'] as const).map((lang) => (
-                <button
-                  key={lang}
-                  type="button"
-                  onClick={() => setLanguage(lang)}
-                  className={`px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer ${
-                    language === lang
-                      ? 'bg-[#FFFFFF] text-[#0B2E57] shadow-xs font-black'
-                      : 'text-[#5E7086] hover:text-[#0B2E57]'
-                  }`}
-                  title={lang.toUpperCase()}
-                >
-                  {lang === 'ar' ? 'ع' : lang.toUpperCase()}
-                </button>
-              ))}
+              {(['ar', 'tr', 'en', 'fr'] as const).map((lang) => {
+                const visibleLabel = lang === 'ar' ? 'ع' : lang.toUpperCase();
+                const langLabels: Record<string, string> = {
+                  ar: 'ع - تغيير اللغة إلى العربية',
+                  tr: 'TR - Dili Türkçe olarak değiştir',
+                  en: 'EN - Switch language to English',
+                  fr: 'FR - Changer la langue en français',
+                };
+                return (
+                  <button
+                    key={lang}
+                    type="button"
+                    onClick={() => setLanguage(lang)}
+                    aria-label={langLabels[lang]}
+                    aria-pressed={language === lang}
+                    className={`px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer ${
+                      language === lang
+                        ? 'bg-[#FFFFFF] text-[#0B2E57] shadow-xs font-black'
+                        : 'text-[#5E7086] hover:text-[#0B2E57]'
+                    }`}
+                    title={lang.toUpperCase()}
+                  >
+                    {visibleLabel}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Primary Action Button */}

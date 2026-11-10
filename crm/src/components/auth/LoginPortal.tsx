@@ -194,7 +194,9 @@ export const LoginPortal: React.FC = () => {
                   required
                   dir="ltr"
                   autoFocus
-                  id="login-username" autoComplete="username"
+                  id="login-username"
+                  name="username"
+                  autoComplete="username"
                   className="w-full pl-4 pr-11 py-3 bg-[#F8FAFC] border border-[#D7E7F7] focus:border-[#CC9048] text-[#0B2E57] placeholder-slate-500 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#CC9048]/30 transition-all text-left"
                   style={{
                     backgroundColor: theme?.inputBg || undefined,
@@ -235,7 +237,9 @@ export const LoginPortal: React.FC = () => {
                   placeholder="••••••••••••"
                   required
                   dir="ltr"
-                  id="login-password" autoComplete="current-password"
+                  id="login-password"
+                  name="password"
+                  autoComplete="current-password"
                   className="w-full pl-11 pr-11 py-3 bg-[#F8FAFC] border border-[#D7E7F7] focus:border-[#CC9048] text-[#0B2E57] placeholder-slate-500 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#CC9048]/30 transition-all text-left tracking-wider"
                   style={{
                     backgroundColor: theme?.inputBg || undefined,

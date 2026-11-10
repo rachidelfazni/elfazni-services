@@ -407,92 +407,96 @@ export interface AdminStats {
 
 const TOKEN_KEY = 'elfazni_auth_token';
 
+function getToken(): string | null {
+  try {
+    return localStorage.getItem(TOKEN_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function setToken(token: string) {
+  try {
+    localStorage.setItem(TOKEN_KEY, token);
+  } catch {
+    // ignore
+  }
+}
+
+function removeToken() {
+  try {
+    localStorage.removeItem(TOKEN_KEY);
+  } catch {
+    // ignore
+  }
+}
+
+async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  const token = getToken();
+  const headers: Record<string, string> = {
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    Pragma: 'no-cache',
+    ...(options.headers as Record<string, string>),
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  if (!(options.body instanceof FormData) && !headers['Content-Type']) {
+    headers['Content-Type'] = 'application/json';
+  }
+
+  const isGet = !options.method || options.method.toUpperCase() === 'GET';
+  const sep = endpoint.includes('?') ? '&' : '?';
+  const finalUrl = isGet ? `/api${endpoint}${sep}_t=${Date.now()}` : `/api${endpoint}`;
+
+  const res = await fetch(finalUrl, {
+    ...options,
+    cache: 'no-store',
+    headers,
+  });
+
+  const data = await res.json().catch(() => null);
+
+  if (!res.ok) {
+    const err: any = new Error(data?.error || 'حدث خطأ أثناء الاتصال بالخادم');
+    err.status = res.status;
+    err.data = data;
+    throw err;
+  }
+
+  if (data === null) throw new Error('رد الخادم غير صالح. تأكد من تشغيل خادم الموقع.');
+  return data as T;
+}
+
 export const api = {
-  // Token management
-  getToken(): string | null {
-    try {
-      return localStorage.getItem(TOKEN_KEY);
-    } catch {
-      return null;
-    }
-  },
-
-  setToken(token: string) {
-    try {
-      localStorage.setItem(TOKEN_KEY, token);
-    } catch {
-      // ignore
-    }
-  },
-
-  removeToken() {
-    try {
-      localStorage.removeItem(TOKEN_KEY);
-    } catch {
-      // ignore
-    }
-  },
-
-  async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-    const token = this.getToken();
-    const headers: Record<string, string> = {
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-      Pragma: 'no-cache',
-      ...(options.headers as Record<string, string>),
-    };
-
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-    }
-
-    if (!(options.body instanceof FormData) && !headers['Content-Type']) {
-      headers['Content-Type'] = 'application/json';
-    }
-
-    const isGet = !options.method || options.method.toUpperCase() === 'GET';
-    const sep = endpoint.includes('?') ? '&' : '?';
-    const finalUrl = isGet ? `/api${endpoint}${sep}_t=${Date.now()}` : `/api${endpoint}`;
-
-    const res = await fetch(finalUrl, {
-      ...options,
-      cache: 'no-store',
-      headers,
-    });
-
-    const data = await res.json().catch(() => null);
-
-    if (!res.ok) {
-      const err: any = new Error(data?.error || 'حدث خطأ أثناء الاتصال بالخادم');
-      err.status = res.status;
-      err.data = data;
-      throw err;
-    }
-
-    if (data === null) throw new Error('رد الخادم غير صالح. تأكد من تشغيل خادم الموقع.');
-    return data as T;
-  },
+  getToken,
+  setToken,
+  removeToken,
+  request,
 
   // Auth
   async login(username: string, password: string, purpose?: 'crm'): Promise<{ token: string; user: User }> {
-    const data = await this.request<{ token: string; user: User }>('/auth/login', {
+    const data = await request<{ token: string; user: User }>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ username, password, purpose }),
     });
-    this.setToken(data.token);
+    setToken(data.token);
     return data;
   },
 
   async getMe(): Promise<{ user: User }> {
-    return this.request<{ user: User }>('/auth/me');
+    return request<{ user: User }>('/auth/me');
   },
 
   logout() {
-    this.removeToken();
-    void this.request('/auth/logout', { method: 'POST' }).catch(() => {});
+    removeToken();
+    void request('/auth/logout', { method: 'POST' }).catch(() => {});
   },
 
   async changePassword(currentPassword: string, newPassword: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>('/auth/change-password', {
+    return request<{ success: boolean; message: string }>('/auth/change-password', {
       method: 'POST',
       body: JSON.stringify({ currentPassword, newPassword }),
     });
@@ -506,7 +510,7 @@ export const api = {
     if (limit) params.append('limit', String(limit));
     if (language && language !== 'all') params.append('language', language);
     if (tag) params.append('tag', tag);
-    return this.request<{ posts: BlogPost[] }>(`/posts?${params.toString()}`);
+    return request<{ posts: BlogPost[] }>(`/posts?${params.toString()}`);
   },
 
   async getPostBySlug(
@@ -519,11 +523,11 @@ export const api = {
     isPreview?: boolean;
   }> {
     const q = preview ? '?preview=1' : '';
-    return this.request(`/posts/${encodeURIComponent(slug)}${q}`);
+    return request(`/posts/${encodeURIComponent(slug)}${q}`);
   },
 
   async getAdminPosts(): Promise<{ posts: BlogPost[] }> {
-    return this.request<{ posts: BlogPost[] }>('/admin/posts');
+    return request<{ posts: BlogPost[] }>('/admin/posts');
   },
 
   async getAdminPost(id: string): Promise<{
@@ -531,11 +535,11 @@ export const api = {
     revisions: BlogRevision[];
     translations: Array<{ id: string; slug: string; title: string; language: BlogLanguage; status: BlogStatus }>;
   }> {
-    return this.request(`/admin/posts/${encodeURIComponent(id)}`);
+    return request(`/admin/posts/${encodeURIComponent(id)}`);
   },
 
   async createPost(postData: Partial<BlogPost>): Promise<{ success: boolean; post: BlogPost }> {
-    return this.request<{ success: boolean; post: BlogPost }>('/admin/posts', {
+    return request<{ success: boolean; post: BlogPost }>('/admin/posts', {
       method: 'POST',
       body: JSON.stringify(postData),
     });
@@ -545,7 +549,7 @@ export const api = {
     id: string,
     postData: Partial<BlogPost> & { expectedRevision?: number; revisionSummary?: string }
   ): Promise<{ success: boolean; post: BlogPost }> {
-    return this.request<{ success: boolean; post: BlogPost }>(`/admin/posts/${id}`, {
+    return request<{ success: boolean; post: BlogPost }>(`/admin/posts/${id}`, {
       method: 'PUT',
       body: JSON.stringify(postData),
     });
@@ -555,18 +559,18 @@ export const api = {
     id: string,
     options?: { language?: BlogLanguage; asTranslation?: boolean }
   ): Promise<{ success: boolean; post: BlogPost }> {
-    return this.request<{ success: boolean; post: BlogPost }>(`/admin/posts/${id}/duplicate`, {
+    return request<{ success: boolean; post: BlogPost }>(`/admin/posts/${id}/duplicate`, {
       method: 'POST',
       body: JSON.stringify(options || {}),
     });
   },
 
   async getPostRevisions(id: string): Promise<{ revisions: BlogRevision[] }> {
-    return this.request<{ revisions: BlogRevision[] }>(`/admin/posts/${id}/revisions`);
+    return request<{ revisions: BlogRevision[] }>(`/admin/posts/${id}/revisions`);
   },
 
   async restorePostRevision(postId: string, revisionId: string): Promise<{ success: boolean; post: BlogPost }> {
-    return this.request<{ success: boolean; post: BlogPost }>(`/admin/posts/${postId}/revisions/${revisionId}/restore`, {
+    return request<{ success: boolean; post: BlogPost }>(`/admin/posts/${postId}/revisions/${revisionId}/restore`, {
       method: 'POST',
     });
   },
@@ -575,100 +579,100 @@ export const api = {
     ids: string[],
     action: 'publish' | 'draft' | 'archive' | 'trash' | 'delete'
   ): Promise<{ success: boolean; updatedCount: number }> {
-    return this.request<{ success: boolean; updatedCount: number }>('/admin/posts/bulk', {
+    return request<{ success: boolean; updatedCount: number }>('/admin/posts/bulk', {
       method: 'POST',
       body: JSON.stringify({ ids, action }),
     });
   },
 
   async deletePost(id: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/admin/posts/${id}`, {
+    return request<{ success: boolean; message: string }>(`/admin/posts/${id}`, {
       method: 'DELETE',
     });
   },
 
   // Categories
   async getCategories(): Promise<{ categories: BlogCategory[] }> {
-    return this.request<{ categories: BlogCategory[] }>('/categories');
+    return request<{ categories: BlogCategory[] }>('/categories');
   },
 
   async createCategory(catData: Partial<BlogCategory>): Promise<{ success: boolean; category: BlogCategory }> {
-    return this.request<{ success: boolean; category: BlogCategory }>('/admin/categories', {
+    return request<{ success: boolean; category: BlogCategory }>('/admin/categories', {
       method: 'POST',
       body: JSON.stringify(catData),
     });
   },
 
   async updateCategory(id: string, catData: Partial<BlogCategory>): Promise<{ success: boolean; category: BlogCategory }> {
-    return this.request<{ success: boolean; category: BlogCategory }>(`/admin/categories/${id}`, {
+    return request<{ success: boolean; category: BlogCategory }>(`/admin/categories/${id}`, {
       method: 'PUT',
       body: JSON.stringify(catData),
     });
   },
 
   async deleteCategory(id: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/admin/categories/${id}`, {
+    return request<{ success: boolean; message: string }>(`/admin/categories/${id}`, {
       method: 'DELETE',
     });
   },
 
   // Tags
   async getTags(): Promise<{ tags: BlogTag[] }> {
-    return this.request<{ tags: BlogTag[] }>('/tags');
+    return request<{ tags: BlogTag[] }>('/tags');
   },
 
   async createTag(tagData: Partial<BlogTag>): Promise<{ success: boolean; tag: BlogTag }> {
-    return this.request<{ success: boolean; tag: BlogTag }>('/admin/tags', {
+    return request<{ success: boolean; tag: BlogTag }>('/admin/tags', {
       method: 'POST',
       body: JSON.stringify(tagData),
     });
   },
 
   async updateTag(id: string, tagData: Partial<BlogTag>): Promise<{ success: boolean; tag: BlogTag }> {
-    return this.request<{ success: boolean; tag: BlogTag }>(`/admin/tags/${id}`, {
+    return request<{ success: boolean; tag: BlogTag }>(`/admin/tags/${id}`, {
       method: 'PUT',
       body: JSON.stringify(tagData),
     });
   },
 
   async deleteTag(id: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/admin/tags/${id}`, {
+    return request<{ success: boolean; message: string }>(`/admin/tags/${id}`, {
       method: 'DELETE',
     });
   },
 
   // Article Templates
   async getTemplates(): Promise<{ templates: BlogTemplate[] }> {
-    return this.request<{ templates: BlogTemplate[] }>('/admin/templates');
+    return request<{ templates: BlogTemplate[] }>('/admin/templates');
   },
 
   async createTemplate(tplData: Partial<BlogTemplate>): Promise<{ success: boolean; template: BlogTemplate }> {
-    return this.request<{ success: boolean; template: BlogTemplate }>('/admin/templates', {
+    return request<{ success: boolean; template: BlogTemplate }>('/admin/templates', {
       method: 'POST',
       body: JSON.stringify(tplData),
     });
   },
 
   async updateTemplate(id: string, tplData: Partial<BlogTemplate>): Promise<{ success: boolean; template: BlogTemplate }> {
-    return this.request<{ success: boolean; template: BlogTemplate }>(`/admin/templates/${id}`, {
+    return request<{ success: boolean; template: BlogTemplate }>(`/admin/templates/${id}`, {
       method: 'PUT',
       body: JSON.stringify(tplData),
     });
   },
 
   async deleteTemplate(id: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/admin/templates/${id}`, {
+    return request<{ success: boolean; message: string }>(`/admin/templates/${id}`, {
       method: 'DELETE',
     });
   },
 
   // Blog Settings
   async getBlogSettings(): Promise<{ blogSettings: BlogSettings }> {
-    return this.request<{ blogSettings: BlogSettings }>('/blog-settings');
+    return request<{ blogSettings: BlogSettings }>('/blog-settings');
   },
 
   async updateBlogSettings(data: Partial<BlogSettings>): Promise<{ success: boolean; blogSettings: BlogSettings }> {
-    return this.request<{ success: boolean; blogSettings: BlogSettings }>('/admin/blog-settings', {
+    return request<{ success: boolean; blogSettings: BlogSettings }>('/admin/blog-settings', {
       method: 'PUT',
       body: JSON.stringify(data),
     });
@@ -676,7 +680,7 @@ export const api = {
 
   // Media
   async getMedia(): Promise<{ media: MediaAsset[] }> {
-    return this.request<{ media: MediaAsset[] }>('/admin/media');
+    return request<{ media: MediaAsset[] }>('/admin/media');
   },
 
   async uploadMedia(file: File, altText?: string, caption?: string): Promise<{ success: boolean; asset: MediaAsset }> {
@@ -684,7 +688,7 @@ export const api = {
     formData.append('file', file);
     if (altText) formData.append('altText', altText);
     if (caption) formData.append('caption', caption);
-    return this.request<{ success: boolean; asset: MediaAsset }>('/admin/media/upload', {
+    return request<{ success: boolean; asset: MediaAsset }>('/admin/media/upload', {
       method: 'POST',
       body: formData,
     });
@@ -740,7 +744,7 @@ export const api = {
     id: string,
     updates: { altText?: string; caption?: string }
   ): Promise<{ success: boolean; asset: MediaAsset }> {
-    return this.request<{ success: boolean; asset: MediaAsset }>(`/admin/media/${id}`, {
+    return request<{ success: boolean; asset: MediaAsset }>(`/admin/media/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(updates),
     });
@@ -748,7 +752,7 @@ export const api = {
 
   async deleteMedia(id: string, force: boolean = false): Promise<{ success: boolean; message: string }> {
     const q = force ? '?force=true' : '';
-    return this.request<{ success: boolean; message: string }>(`/admin/media/${id}${q}`, {
+    return request<{ success: boolean; message: string }>(`/admin/media/${id}${q}`, {
       method: 'DELETE',
     });
   },
@@ -757,40 +761,40 @@ export const api = {
 
   // Services
   async getServices(): Promise<{ services: SiteService[] }> {
-    return this.request<{ services: SiteService[] }>('/services');
+    return request<{ services: SiteService[] }>('/services');
   },
 
   async getAdminServices(): Promise<{ services: SiteService[] }> {
-    return this.request('/admin/services');
+    return request('/admin/services');
   },
 
   async createService(serviceData: Partial<SiteService>): Promise<{ success: boolean; service: SiteService }> {
-    return this.request<{ success: boolean; service: SiteService }>('/admin/services', {
+    return request<{ success: boolean; service: SiteService }>('/admin/services', {
       method: 'POST',
       body: JSON.stringify(serviceData),
     });
   },
 
   async updateService(id: string, serviceData: Partial<SiteService>): Promise<{ success: boolean; service: SiteService }> {
-    return this.request<{ success: boolean; service: SiteService }>(`/admin/services/${id}`, {
+    return request<{ success: boolean; service: SiteService }>(`/admin/services/${id}`, {
       method: 'PUT',
       body: JSON.stringify(serviceData),
     });
   },
 
   async deleteService(id: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/admin/services/${id}`, {
+    return request<{ success: boolean; message: string }>(`/admin/services/${id}`, {
       method: 'DELETE',
     });
   },
 
   // Settings
   async getSettings(): Promise<{ settings: SiteSettings }> {
-    return this.request<{ settings: SiteSettings }>('/settings');
+    return request<{ settings: SiteSettings }>('/settings');
   },
 
   async updateSettings(settingsData: Partial<SiteSettings>): Promise<{ success: boolean; settings: SiteSettings }> {
-    return this.request<{ success: boolean; settings: SiteSettings }>('/admin/settings', {
+    return request<{ success: boolean; settings: SiteSettings }>('/admin/settings', {
       method: 'PUT',
       body: JSON.stringify(settingsData),
     });
@@ -816,7 +820,7 @@ export const api = {
     source?: string;
     notifyByEmail?: boolean;
   }): Promise<{ success: boolean; ticketNumber: string; message: string; emailStatus?: 'accepted' | 'not_configured' | 'failed' }> {
-    return this.request<{ success: boolean; ticketNumber: string; message: string; emailStatus?: 'accepted' | 'not_configured' | 'failed' }>('/mailbox', {
+    return request<{ success: boolean; ticketNumber: string; message: string; emailStatus?: 'accepted' | 'not_configured' | 'failed' }>('/mailbox', {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -842,7 +846,7 @@ export const api = {
     message: string;
     request?: ContactMessage;
   }> {
-    return this.request<{
+    return request<{
       success: boolean;
       draftId: string;
       reference: string;
@@ -875,7 +879,7 @@ export const api = {
     message: string;
     request: ContactMessage;
   }> {
-    return this.request<{
+    return request<{
       success: boolean;
       reference: string;
       ticketNumber: string;
@@ -891,7 +895,7 @@ export const api = {
   async convertMailboxMessageToCrm(
     id: string
   ): Promise<{ success: boolean; contactId: string; message: string }> {
-    return this.request<{ success: boolean; contactId: string; message: string }>(
+    return request<{ success: boolean; contactId: string; message: string }>(
       `/api/mailbox/${id}/convert-to-crm`,
       {
         method: 'POST',
@@ -903,7 +907,7 @@ export const api = {
     id: string,
     task?: { title?: string; dueDate?: string }
   ): Promise<{ success: boolean; taskId: string; message: string }> {
-    return this.request<{ success: boolean; taskId: string; message: string }>(
+    return request<{ success: boolean; taskId: string; message: string }>(
       `/api/mailbox/${id}/create-task`,
       {
         method: 'POST',
@@ -929,7 +933,7 @@ export const api = {
     emailDeliveryStatus?: string;
     message: string;
   }> {
-    return this.request<{
+    return request<{
       success: boolean;
       reference: string;
       ticketNumber: string;
@@ -1002,7 +1006,7 @@ export const api = {
         params.append('assignedTo', assignedTo);
       }
     }
-    return this.request(`/admin/mailbox?${params.toString()}`);
+    return request(`/admin/mailbox?${params.toString()}`);
   },
 
   async updateMailboxItem(
@@ -1017,21 +1021,21 @@ export const api = {
       note?: string;
     }
   ): Promise<{ success: boolean; message: ContactMessage }> {
-    return this.request<{ success: boolean; message: ContactMessage }>(`/admin/mailbox/${id}`, {
+    return request<{ success: boolean; message: ContactMessage }>(`/admin/mailbox/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(updates),
     });
   },
 
   async replyMailboxMessage(id: string, message: string, channel: 'site' | 'email' | 'whatsapp' = 'site'): Promise<{ success: boolean; message: ContactMessage; reply: MailboxReply }> {
-    return this.request<{ success: boolean; message: ContactMessage; reply: MailboxReply }>(`/admin/mailbox/${id}/reply`, {
+    return request<{ success: boolean; message: ContactMessage; reply: MailboxReply }>(`/admin/mailbox/${id}/reply`, {
       method: 'POST',
       body: JSON.stringify({ message, channel }),
     });
   },
 
   async deleteMailboxMessage(id: string, permanent: boolean = false): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/admin/mailbox/${id}?permanent=${permanent}`, {
+    return request<{ success: boolean; message: string }>(`/admin/mailbox/${id}?permanent=${permanent}`, {
       method: 'DELETE',
     });
   },
@@ -1045,36 +1049,36 @@ export const api = {
     message: string;
     source?: string;
   }): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>('/inbox', {
+    return request<{ success: boolean; message: string }>('/inbox', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   },
 
   async getInbox(): Promise<{ messages: ContactMessage[] }> {
-    return this.request<{ messages: ContactMessage[] }>('/admin/inbox');
+    return request<{ messages: ContactMessage[] }>('/admin/inbox');
   },
 
   async updateInboxStatus(id: string, status: string): Promise<{ success: boolean; message: ContactMessage }> {
-    return this.request<{ success: boolean; message: ContactMessage }>(`/admin/inbox/${id}/status`, {
+    return request<{ success: boolean; message: ContactMessage }>(`/admin/inbox/${id}/status`, {
       method: 'PATCH',
       body: JSON.stringify({ status }),
     });
   },
 
   async deleteInboxMessage(id: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/admin/inbox/${id}`, {
+    return request<{ success: boolean; message: string }>(`/admin/inbox/${id}`, {
       method: 'DELETE',
     });
   },
 
   // Real-time Live Chat
   async getChatStatus(): Promise<{ chatStatus: ChatStatus }> {
-    return this.request<{ chatStatus: ChatStatus }>('/chat/status');
+    return request<{ chatStatus: ChatStatus }>('/chat/status');
   },
 
   async updateChatStatus(adminOnline: boolean): Promise<{ success: boolean; chatStatus: ChatStatus }> {
-    return this.request<{ success: boolean; chatStatus: ChatStatus }>('/admin/chat/status', {
+    return request<{ success: boolean; chatStatus: ChatStatus }>('/admin/chat/status', {
       method: 'POST',
       body: JSON.stringify({ adminOnline }),
     });
@@ -1082,7 +1086,7 @@ export const api = {
 
   async getChatSessions(visitorId?: string): Promise<{ sessions: ChatSession[] }> {
     const q = visitorId ? `?visitorId=${encodeURIComponent(visitorId)}` : '';
-    return this.request<{ sessions: ChatSession[] }>(`/chat/sessions${q}`);
+    return request<{ sessions: ChatSession[] }>(`/chat/sessions${q}`);
   },
 
   async createChatSession(
@@ -1096,7 +1100,7 @@ export const api = {
       maxTouchPoints?: number;
     }
   ): Promise<{ session: ChatSession }> {
-    return this.request<{ session: ChatSession }>('/chat/sessions', {
+    return request<{ session: ChatSession }>('/chat/sessions', {
       method: 'POST',
       keepalive: true,
       body: JSON.stringify(data),
@@ -1104,7 +1108,7 @@ export const api = {
   },
 
   async getChatMessages(sessionId: string, visitorId?: string): Promise<{ messages: ChatMessage[] }> {
-    return this.request<{ messages: ChatMessage[] }>(`/chat/messages/${sessionId}`, { headers: visitorId ? { 'X-Visitor-Id': visitorId } : {} });
+    return request<{ messages: ChatMessage[] }>(`/chat/messages/${sessionId}`, { headers: visitorId ? { 'X-Visitor-Id': visitorId } : {} });
   },
 
   async sendChatMessage(data: {
@@ -1125,28 +1129,28 @@ export const api = {
     screenW?: number;
     maxTouchPoints?: number;
   }): Promise<{ success: boolean; message: ChatMessage; session?: ChatSession }> {
-    return this.request<{ success: boolean; message: ChatMessage; session?: ChatSession }>('/chat/messages', {
+    return request<{ success: boolean; message: ChatMessage; session?: ChatSession }>('/chat/messages', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   },
 
   async sendTypingIndicator(sessionId: string, sender: 'admin' | 'visitor', visitorId?: string): Promise<{ ok: boolean }> {
-    return this.request<{ ok: boolean }>('/chat/typing', {
+    return request<{ ok: boolean }>('/chat/typing', {
       method: 'POST',
       body: JSON.stringify({ sessionId, sender, visitorId }),
     });
   },
 
   async markChatRead(sessionId: string, reader: 'admin' | 'visitor', visitorId?: string): Promise<{ success: boolean }> {
-    return this.request<{ success: boolean }>(`/chat/messages/${sessionId}/read`, {
+    return request<{ success: boolean }>(`/chat/messages/${sessionId}/read`, {
       method: 'POST',
       body: JSON.stringify({ reader, visitorId }),
     });
   },
 
   async deleteChatSession(sessionId: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/admin/chat/sessions/${sessionId}`, {
+    return request<{ success: boolean; message: string }>(`/admin/chat/sessions/${sessionId}`, {
       method: 'DELETE',
     });
   },
@@ -1162,14 +1166,14 @@ export const api = {
       unreadMessages: number;
     };
   }> {
-    return this.request('/analytics');
+    return request('/analytics');
   },
 
   async getBlogPostAnalytics(): Promise<{
     posts: BlogPostMetric[];
     summary: BlogAnalyticsSummary;
   }> {
-    return this.request<{
+    return request<{
       posts: BlogPostMetric[];
       summary: BlogAnalyticsSummary;
     }>('/admin/analytics/blog-posts');
@@ -1187,7 +1191,7 @@ export const api = {
     screenW?: number;
     maxTouchPoints?: number;
   }): Promise<{ success: boolean; totalVisits?: number }> {
-    return this.request('/analytics/visit', {
+    return request('/analytics/visit', {
       method: 'POST',
       keepalive: true,
       body: JSON.stringify(data),
@@ -1212,7 +1216,7 @@ export const api = {
   ): Promise<{ activeVisitors: number }> {
     const payload =
       typeof dataOrVisitorId === 'string' ? { visitorId: dataOrVisitorId } : dataOrVisitorId;
-    return this.request('/analytics/heartbeat', {
+    return request('/analytics/heartbeat', {
       method: 'POST',
       keepalive: true,
       body: JSON.stringify(payload),
@@ -1220,34 +1224,34 @@ export const api = {
   },
 
   async trackPostAction(slug: string, type: 'engaged_read' | 'share' | 'consult_click'): Promise<{ success: boolean }> {
-    return this.request('/analytics/post-action', {
+    return request('/analytics/post-action', {
       method: 'POST',
       body: JSON.stringify({ slug, type }),
     });
   },
 
   async resetAnalytics(): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>('/admin/analytics/reset', {
+    return request<{ success: boolean; message: string }>('/admin/analytics/reset', {
       method: 'POST',
     });
   },
 
   async updateTodo(id: string, updates: Partial<TodoItem>): Promise<{ success: boolean; todoList: TodoItem[] }> {
-    return this.request<{ success: boolean; todoList: TodoItem[] }>(`/admin/analytics/todos/${id}`, {
+    return request<{ success: boolean; todoList: TodoItem[] }>(`/admin/analytics/todos/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(updates),
     });
   },
 
   async createTodo(data: { text: string; priority?: 'high' | 'medium' | 'low'; dueDate?: string; kind?: 'task' | 'reminder'; time?: string }): Promise<{ success: boolean; todoList: TodoItem[] }> {
-    return this.request<{ success: boolean; todoList: TodoItem[] }>('/admin/analytics/todos', {
+    return request<{ success: boolean; todoList: TodoItem[] }>('/admin/analytics/todos', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   },
 
   async deleteTodo(id: string): Promise<{ success: boolean; todoList: TodoItem[] }> {
-    return this.request<{ success: boolean; todoList: TodoItem[] }>(`/admin/analytics/todos/${id}`, {
+    return request<{ success: boolean; todoList: TodoItem[] }>(`/admin/analytics/todos/${id}`, {
       method: 'DELETE',
     });
   },
@@ -1258,7 +1262,7 @@ export const api = {
   },
 
   async importBackup(data: any): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>('/admin/backup/import', {
+    return request<{ success: boolean; message: string }>('/admin/backup/import', {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -1270,7 +1274,7 @@ export const api = {
     recentPosts: BlogPost[];
     recentMessages: ContactMessage[];
   }> {
-    return this.request<{
+    return request<{
       stats: AdminStats;
       recentPosts: BlogPost[];
       recentMessages: ContactMessage[];
@@ -1279,14 +1283,14 @@ export const api = {
 
   // SEO & Meta Management
   async getSeoPages(): Promise<{ seoPages: PageSeoItem[] }> {
-    return this.request<{ seoPages: PageSeoItem[] }>('/seo');
+    return request<{ seoPages: PageSeoItem[] }>('/seo');
   },
 
   async updateSeoPage(
     id: string,
     data: Partial<PageSeoItem>
   ): Promise<{ success: boolean; seoPage: PageSeoItem; seoPages: PageSeoItem[] }> {
-    return this.request<{ success: boolean; seoPage: PageSeoItem; seoPages: PageSeoItem[] }>(`/admin/seo/${id}`, {
+    return request<{ success: boolean; seoPage: PageSeoItem; seoPages: PageSeoItem[] }>(`/admin/seo/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
@@ -1295,14 +1299,14 @@ export const api = {
   async createSeoPage(
     data: Partial<PageSeoItem>
   ): Promise<{ success: boolean; seoPage: PageSeoItem; seoPages: PageSeoItem[] }> {
-    return this.request<{ success: boolean; seoPage: PageSeoItem; seoPages: PageSeoItem[] }>('/admin/seo', {
+    return request<{ success: boolean; seoPage: PageSeoItem; seoPages: PageSeoItem[] }>('/admin/seo', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   },
 
   async deleteSeoPage(id: string): Promise<{ success: boolean; seoPages: PageSeoItem[] }> {
-    return this.request<{ success: boolean; seoPages: PageSeoItem[] }>(`/admin/seo/${id}`, {
+    return request<{ success: boolean; seoPages: PageSeoItem[] }>(`/admin/seo/${id}`, {
       method: 'DELETE',
     });
   },

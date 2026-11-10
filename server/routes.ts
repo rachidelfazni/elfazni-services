@@ -38,7 +38,8 @@ import {
   SystemAccessScope,
   User,
 } from './db';
-import { generateToken, requireAuth, getAuthenticatedUser, getBearerUser, hasAccess, hasPermission, publicUser, AuthRequest } from './auth';
+import { generateToken, requireAuth, getAuthenticatedUser, getBearerUser, hasAccess, hasPermission, publicUser, AuthRequest, getCookieOptions } from './auth';
+import { loginRateLimitMiddleware, recordLoginFailure, resetLoginRateLimit, publicSubmissionRateLimiter } from './rateLimiter';
 import { registerSSEClient, broadcastRealtime } from './realtime';
 import {
   dispatchAdminEmailAlert,
@@ -370,14 +371,14 @@ const upload = multer({
 // ==========================================
 
 apiRouter.post('/auth/logout', (req, res) => {
-  res.clearCookie('elfazni_crm', { httpOnly: true, sameSite: 'strict', secure: req.secure, path: '/' });
-  res.clearCookie('elfazni_crm', { httpOnly: true, sameSite: 'strict', secure: req.secure, path: '/admin/crm' });
-  res.clearCookie('token', { httpOnly: true, sameSite: 'strict', secure: req.secure, path: '/' });
-  res.clearCookie('elfazni_stream', { httpOnly: true, sameSite: 'strict', secure: req.secure, path: '/api/realtime/stream' });
+  res.clearCookie('elfazni_crm', getCookieOptions({ path: '/' }));
+  res.clearCookie('elfazni_crm', getCookieOptions({ path: '/admin/crm' }));
+  res.clearCookie('token', getCookieOptions({ path: '/' }));
+  res.clearCookie('elfazni_stream', getCookieOptions({ path: '/api/realtime/stream' }));
   res.json({ success: true });
 });
 
-apiRouter.post('/auth/login', (req, res) => {
+apiRouter.post('/auth/login', loginRateLimitMiddleware, (req, res) => {
   const { username, password, purpose } = req.body;
   if (typeof username !== 'string' || typeof password !== 'string' || !username.trim() || !password) {
     res.status(400).json({ error: 'يرجى إدخال اسم المستخدم وكلمة المرور' });
@@ -388,12 +389,14 @@ apiRouter.post('/auth/login', (req, res) => {
   const user = db.users.find((u) => u.username.toLowerCase() === String(username).trim().toLowerCase());
 
   if (!user || user.disabled) {
+    recordLoginFailure(req);
     res.status(401).json({ error: 'بيانات الدخول غير صحيحة' });
     return;
   }
 
   const isMatch = bcrypt.compareSync(password, user.passwordHash);
   if (!isMatch) {
+    recordLoginFailure(req);
     res.status(401).json({ error: 'بيانات الدخول غير صحيحة' });
     return;
   }
@@ -420,24 +423,25 @@ apiRouter.post('/auth/login', (req, res) => {
     return;
   }
 
+  // Reset rate limiting counter upon successful authentication
+  resetLoginRateLimit(req);
+
   user.lastLoginAt = new Date().toISOString();
   writeDb(db);
 
   const token = generateToken(user);
   if (allowedCrm) {
-    res.cookie('elfazni_crm', generateToken(user, 'crm'), {
-      httpOnly: true, sameSite: 'strict', secure: req.secure,
-      path: '/', maxAge: 12 * 60 * 60 * 1000,
-    });
+    res.cookie('elfazni_crm', generateToken(user, 'crm'), getCookieOptions({
+      maxAge: 12 * 60 * 60 * 1000,
+    }));
   }
-  res.cookie('token', token, {
-    httpOnly: true, sameSite: 'strict', secure: req.secure,
-    path: '/', maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
-  res.cookie('elfazni_stream', token, {
-    httpOnly: true, sameSite: 'strict', secure: req.secure,
-    path: '/api/realtime/stream', maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
+  res.cookie('token', token, getCookieOptions({
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  }));
+  res.cookie('elfazni_stream', token, getCookieOptions({
+    path: '/api/realtime/stream',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  }));
   res.json({
     token,
     user: publicUser(user),
@@ -2286,7 +2290,7 @@ apiRouter.post('/public/requests/draft', async (req, res) => {
 });
 
 // Public: Unified intake for website service forms (Flight, Hotel, Transfer, Consular, General)
-apiRouter.post(['/public/requests', '/requests'], async (req, res) => {
+apiRouter.post(['/public/requests', '/requests'], publicSubmissionRateLimiter, async (req, res) => {
   const {
     draftId,
     name,
@@ -2548,7 +2552,7 @@ apiRouter.post(['/api/mailbox/:id/create-task', '/admin/mailbox/:id/create-task'
 
 
 // Public: Offline live chat capture when staff is not available
-apiRouter.post('/public/offline-messages', async (req, res) => {
+apiRouter.post('/public/offline-messages', publicSubmissionRateLimiter, async (req, res) => {
   const {
     name,
     phone,
@@ -2726,7 +2730,7 @@ apiRouter.post('/public/offline-messages', async (req, res) => {
 });
 
 // Public: Submit message from dual contact portal (Enhanced backwards-compatible)
-apiRouter.post('/mailbox', async (req, res) => {
+apiRouter.post('/mailbox', publicSubmissionRateLimiter, async (req, res) => {
   const { name, phone, whatsappPhone, email, serviceRequested, serviceTag, subject, message, attachments, source, country, payloadJson } = req.body;
   if (!name || (!phone && !email)) {
     res.status(400).json({ error: 'يرجى إدخال الاسم ورقم الهاتف/الواتساب' });

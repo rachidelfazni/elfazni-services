@@ -136,3 +136,46 @@ export function resetLoginRateLimit(req: Request): void {
   }
 }
 
+// -------------------------------------------------------------
+// Public Form & Contact Submission Rate Limiter
+// Prevents DDoS, spam flooding, and automated abuse on public endpoints.
+// -------------------------------------------------------------
+const publicSubmissionAttempts = new Map<string, { count: number; firstTime: number }>();
+const PUBLIC_WINDOW_MS = 5 * 60 * 1000; // 5 minutes
+const MAX_PUBLIC_SUBMISSIONS = 20; // Up to 20 submissions per 5 minutes per IP
+
+// Periodic cleanup
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of publicSubmissionAttempts.entries()) {
+    if (now - entry.firstTime > PUBLIC_WINDOW_MS) {
+      publicSubmissionAttempts.delete(ip);
+    }
+  }
+}, 5 * 60 * 1000).unref();
+
+export function publicSubmissionRateLimiter(req: Request, res: Response, next: NextFunction): void {
+  const ip = getClientIp(req);
+  const now = Date.now();
+  const entry = publicSubmissionAttempts.get(ip);
+
+  if (!entry || now - entry.firstTime > PUBLIC_WINDOW_MS) {
+    publicSubmissionAttempts.set(ip, { count: 1, firstTime: now });
+    return next();
+  }
+
+  if (entry.count >= MAX_PUBLIC_SUBMISSIONS) {
+    const remainingSeconds = Math.max(1, Math.ceil((entry.firstTime + PUBLIC_WINDOW_MS - now) / 1000));
+    const remainingMinutes = Math.max(1, Math.ceil(remainingSeconds / 60));
+    res.setHeader('Retry-After', remainingSeconds.toString());
+    res.status(429).json({
+      error: `تم تجاوز الحد المسموح لإرسال الطلبات مؤقتاً. يرجى الانتظار ${remainingMinutes} دقيقة ثم المحاولة مجدداً.`,
+      retryAfter: remainingSeconds,
+    });
+    return;
+  }
+
+  entry.count += 1;
+  next();
+}
+

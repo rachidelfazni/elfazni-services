@@ -1,4 +1,4 @@
-# ELFAZNI SERVICES — Comprehensive Android Master MDA Blueprint (V3.0 Enterprise)
+# ELFAZNI SERVICES — Comprehensive Android Master MDA Blueprint (V3.1 Enterprise)
 ## المخطط المعماري الشامل ونموذج البيانات الموحد لتطوير تطبيق الأندرويد
 **الرابط الأساسي المعتمد للإنتاج (Production URL):**  
 `https://elfazni-services.uzmanlarltd.chatgpt.site`
@@ -6,13 +6,15 @@
 **رابط البث اللحظي الفوري (Zero-Latency SSE Stream):**  
 `https://elfazni-services.uzmanlarltd.chatgpt.site/api/realtime/stream?admin=1`
 
-**تاريخ التحديث:** نوفمبر 2026 — الإصدار المعتمد 3.0  
+**تاريخ التحديث:** نوفمبر 2026 — الإصدار المعتمد 3.1  
 **الغرض:** وثيقة معمارية واحدة مستقلة وجامعة (Single Master MDA File) تحتوي على كافة متطلبات العمليات الشاملة على المعاملات (الحذف، الإلغاء، التعديل الكامل، والنسخ)، والمحرك الحسابي الواقعي للإحصائيات الحقيقية بنسبة 100% بدون أي تزييف أو تذبذب وهمي، وبروتوكول الاختبار الآلي الشامل لـ Google AI Studio لأخذ لقطات الشاشة (Screenshots) والتحقق من عمل كل زر بدون استثناء.
 
 ---
 
 ## فهرس المحتويات
-1. **العمليات الأربع الإلزامية على كل المعاملات (CRUD: Edit, Delete, Cancel, Duplicate)**
+1. **العمليات الأربع الإلزامية ونظام حوارات التأكيد (CRUD & Dialog Menu: Edit, Delete, Cancel, Duplicate)**
+   * 1.1 مكون حوار التأكيد والحماية الموحد (`Dialog Menu / AppDialogMenu`)
+   * 1.2 كود Jetpack Compose التفاعلي الكامل مع حوارات التأكيد للتعديل والحذف
 2. **محرك الإحصائيات والمبيانات الواقعية 100% (Truthful Real Data Aggregation - No Fake Waves)**
 3. **بروتوكول الفحص الآلي ولقطات الشاشة لأدوات الذكاء الاصطناعي (AI Studio Automated QA & Screenshot Protocol)**
 4. **المعمارية العامة والبث اللحظي الحقيقي (Real-Time SSE Engine vs Polling)**
@@ -28,25 +30,110 @@
 
 ---
 
-## 1. العمليات الأربع الإلزامية على كل المعاملات (CRUD Operations)
+## 1. العمليات الأربع الإلزامية ونظام حوارات التأكيد (CRUD & Dialog Menu)
 
-في كل قسم من أقسام المعاملات (حجوزات الطيران، مواعيد القنصلية، الفواتير، والمهام)، **يجب أن تكون الأزرار الأربعة التالية تفاعلية 100% وغير معطلة**:
+في كل قسم من أقسام المعاملات (حجوزات الطيران، مواعيد القنصلية، الفواتير، والمهام)، **يجب أن تكون الأزرار الأربعة التالية تفاعلية 100% وغير معطلة**، مع حماية المعاملات بحوارات تأكيد منبثقة (`Dialog Menu`) تمنع المسح أو التعديل بالخطأ:
 
 ```mermaid
-flowchart LR
+flowchart TD
     Card["بطاقة المعاملة في التطبيق"] --> Actions{"خيارات المعاملة"}
-    Actions -->|1| Edit["✏️ تعديل (Edit)\nفتح BottomSheet محمل ببيانات الحجز وتعديل السعر والمسار والتاريخ"]
-    Actions -->|2| Cancel["🚫 إلغاء (Cancel)\nتحويل الحالة إلى 'ملغاة' وحساب الاسترداد المالي دون حذفها"]
-    Actions -->|3| Duplicate["📋 نسخ (Duplicate)\nاستنساخ نسخة ثانية لنفس المسار وتوليد PNR و ID جديدين"]
-    Actions -->|4| Delete["🗑️ حذف نهائي (Delete)\nحذف قاطع من قاعدة البيانات بعد تأكيد المستخدم"]
+    Actions -->|1| Edit["✏️ تعديل (Edit)\nتعديل الحقول والأسعار"]
+    Actions -->|2| Cancel["🚫 إلغاء (Cancel)\nتحويل الحالة إلى ملغاة دون حذف السجل المالي"]
+    Actions -->|3| Duplicate["📋 نسخ (Duplicate)\nاستنساخ فوري لنسخة ثانية مع لاحقة -COPY"]
+    Actions -->|4| Delete["🗑️ حذف نهائي (Delete)\nطلب مسح قاطع من السيرفر"]
 
-    Edit --> SaveAPI["حفظ فوري في السيرفر عبر PUT /api/crm/state"]
-    Cancel --> SaveAPI
-    Duplicate --> SaveAPI
-    Delete --> SaveAPI
+    Edit --> EditDialog{"Dialog Menu للتعديل:\n'أنت الآن بصدد التعديل، هل توافق؟'"}
+    EditDialog -->|موافق| SaveAPI["حفظ فوري في السيرفر عبر PUT /api/crm/state"]
+    EditDialog -->|رجوع| EditStay["البقاء في شاشة التعديل لمراجعة البيانات"]
+
+    Delete --> DeleteDialog{"Dialog Menu للحذف:\n'هل أنت متأكد أنك تريد المسح؟'"}
+    DeleteDialog -->|موافق| DeleteAPI["مسح قاطع من السيرفر وقاعدة البيانات"]
+    DeleteDialog -->|رجوع| Abort["إلغاء الأمر والرجوع للبطاقة بأمان"]
 ```
 
-### 1.1 كود Jetpack Compose التفاعلي الكامل لتعديل وحذف ونسخ وإلغاء تذكرة طيران:
+---
+
+### 1.1 مكون حوار التأكيد والحماية الموحد (`Dialog Menu / AppDialogMenu`):
+هذا المكون هو المرجع الإلزامي لكل نوافذ التأكيد في التطبيق، ويحتوي بدقة على الزرين: **[ موافق ]** و **[ رجوع ]** لحماية كافة بياناتك من الضياع العفوي:
+
+```kotlin
+package services.elfazni.app.ui.components
+
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+
+/**
+ * Dialog Menu الموحد لعمليات الحذف والتعديل والإجراءات الحساسة
+ */
+@Composable
+fun AppDialogMenu(
+    isOpen: Boolean,
+    title: String,
+    message: String,
+    confirmText: String = "موافق",
+    dismissText: String = "رجوع",
+    confirmColor: Color = Color(0xFF004AA5), // أزرق ملكي افتراضي للتعديل، أحمر للحذف
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    if (!isOpen) return
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        shape = RoundedCornerShape(24.dp),
+        containerColor = Color.White,
+        title = {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF0B2E57)
+            )
+        },
+        text = {
+            Text(
+                text = message,
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color(0xFF334155)
+            )
+        },
+        confirmButton = {
+            Button(
+                onClick = onConfirm,
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = confirmColor)
+            ) {
+                Text(
+                    text = confirmText,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+        },
+        dismissButton = {
+            OutlinedButton(
+                onClick = onDismiss,
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF64748B))
+            ) {
+                Text(
+                    text = dismissText,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+        }
+    )
+}
+```
+
+---
+
+### 1.2 كود Jetpack Compose التفاعلي الكامل لتعديل وحذف ونسخ وإلغاء تذكرة طيران مع الـ Dialog Menu:
 ```kotlin
 package services.elfazni.app.ui.flights
 
@@ -73,17 +160,23 @@ fun FlightActionBottomSheet(
     onDeleteBooking: (String) -> Unit
 ) {
     var isEditing by remember { mutableStateOf(false) }
-    var showDeleteConfirm by remember { mutableStateOf(false) }
+    
+    // حالات حوارات التأكيد (Dialog Menu States)
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    var showEditDialog by remember { mutableStateOf(false) }
 
-    // حقول التعديل القابلة للتغيير الفوري
+    // حقول التعديل القابلة للتغيير الفوري (مطابقة لحقول الموقع والـ CRM بنسبة 100%)
     var clientName by remember { mutableStateOf(flight.clientName) }
     var phoneNumber by remember { mutableStateOf(flight.phoneNumber) }
     var pnr by remember { mutableStateOf(flight.pnr) }
     var airlineAndRoute by remember { mutableStateOf(flight.airlineAndRoute) }
     var bookingDate by remember { mutableStateOf(flight.bookingDate) }
     var cost by remember { mutableStateOf(flight.cost.toString()) }
+    var costCurrency by remember { mutableStateOf(flight.costCurrency ?: "MAD") }
     var sellingPrice by remember { mutableStateOf(flight.sellingPrice.toString()) }
+    var currency by remember { mutableStateOf(flight.currency ?: "MAD") }
     var paidAmount by remember { mutableStateOf(flight.paidAmount.toString()) }
+    var flagColor by remember { mutableStateOf(flight.flagColor ?: "none") }
     var notes by remember { mutableStateOf(flight.notes ?: "") }
 
     ModalBottomSheet(onDismissRequest = onDismiss) {
@@ -157,9 +250,9 @@ fun FlightActionBottomSheet(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // زر الحذف النهائي (Delete)
+                // زر الحذف النهائي (Delete) - يفتح الـ Dialog Menu للتأكيد
                 Button(
-                    onClick = { showDeleteConfirm = true },
+                    onClick = { showDeleteDialog = true },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFDC2626))
                 ) {
@@ -257,35 +350,20 @@ fun FlightActionBottomSheet(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // زر حفظ التعديلات الفوري
+                // زر حفظ التعديلات - يفتح تنبيه الـ Dialog Menu للتأكيد
                 Button(
                     onClick = {
-                        val c = cost.toDoubleOrNull() ?: flight.cost
-                        val sp = sellingPrice.toDoubleOrNull() ?: flight.sellingPrice
-                        val paid = paidAmount.toDoubleOrNull() ?: flight.paidAmount
-                        val updated = flight.copy(
-                            clientName = clientName,
-                            phoneNumber = phoneNumber,
-                            pnr = pnr,
-                            airlineAndRoute = airlineAndRoute,
-                            bookingDate = bookingDate,
-                            cost = c,
-                            sellingPrice = sp,
-                            netProfit = sp - c,
-                            paidAmount = paid,
-                            remainingAmount = sp - paid,
-                            notes = notes,
-                            updatedAt = System.currentTimeMillis().toString()
-                        )
-                        onSaveUpdate(updated)
-                        onDismiss()
+                        // التحقق من الحقول الإلزامية ثم فتح حوار التأكيد
+                        if (clientName.isNotBlank() && pnr.isNotBlank()) {
+                            showEditDialog = true
+                        }
                     },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF004AA5))
                 ) {
                     Icon(Icons.Default.Save, contentDescription = null)
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("حفظ التعديلات في الخادم فوراً")
+                    Text("حفظ التعديلات في الخادم فوراً (OK)")
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -300,27 +378,62 @@ fun FlightActionBottomSheet(
         }
     }
 
-    // نافذة تأكيد الحذف النهائي
-    if (showDeleteConfirm) {
-        AlertDialog(
-            onDismissRequest = { showDeleteConfirm = false },
-            title = { Text("تأكيد حذف المعاملة") },
-            text = { Text("هل أنت متأكد من حذف الحجز (${flight.pnr}) نهائياً من قاعدة البيانات؟ لا يمكن التراجع عن هذا الإجراء.") },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        onDeleteBooking(flight.id)
-                        showDeleteConfirm = false
-                        onDismiss()
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
-                ) { Text("نعم، احذف المعاملة") }
-            },
-            dismissButton = {
-                TextButton(onClick = { showDeleteConfirm = false }) { Text("إلغاء") }
-            }
-        )
-    }
+    // 1. حوار تأكيد الحذف النهائي (Dialog Menu للحذف)
+    AppDialogMenu(
+        isOpen = showDeleteDialog,
+        title = "تأكيد الحذف",
+        message = "هل أنت متأكد أنك تريد المسح؟ لن تتمكن من استرجاع هذا الحجز (${flight.pnr}) بعد حذفه نهائياً.",
+        confirmText = "موافق",
+        dismissText = "رجوع",
+        confirmColor = Color(0xFFDC2626), // أحمر للحذف
+        onConfirm = {
+            onDeleteBooking(flight.id)
+            showDeleteDialog = false
+            onDismiss()
+        },
+        onDismiss = {
+            showDeleteDialog = false // رجوع دون حذف
+        }
+    )
+
+    // 2. حوار تأكيد التعديل (Dialog Menu للتعديل)
+    AppDialogMenu(
+        isOpen = showEditDialog,
+        title = "تأكيد التعديل",
+        message = "أنت الآن بصدد التعديل، هل توافق؟ سيتم تحديث بيانات المعاملة في الخادم وقاعدة البيانات فوراً.",
+        confirmText = "موافق",
+        dismissText = "رجوع",
+        confirmColor = Color(0xFF004AA5), // أزرق ملكي للتعديل
+        onConfirm = {
+            val c = cost.toDoubleOrNull() ?: flight.cost
+            val sp = sellingPrice.toDoubleOrNull() ?: flight.sellingPrice
+            val paid = paidAmount.toDoubleOrNull() ?: flight.paidAmount
+            val updated = flight.copy(
+                clientName = clientName,
+                phoneNumber = phoneNumber,
+                pnr = pnr.uppercase(),
+                airlineAndRoute = airlineAndRoute,
+                bookingDate = bookingDate,
+                cost = c,
+                costCurrency = costCurrency,
+                sellingPrice = sp,
+                currency = currency,
+                netProfit = sp - c,
+                paidAmount = paid,
+                remainingAmount = sp - paid,
+                flagColor = flagColor,
+                notes = notes,
+                updatedAt = System.currentTimeMillis().toString()
+            )
+            onSaveUpdate(updated)
+            showEditDialog = false
+            isEditing = false
+            onDismiss()
+        },
+        onDismiss = {
+            showEditDialog = false // رجوع للبقاء في شاشة التعديل ومراجعة الحقول
+        }
+    )
 }
 ```
 
@@ -748,13 +861,100 @@ erDiagram
 
 ---
 
-## 11. تكامل جهات الاتصال ونماذج إدخال المعاملات الفاخرة
+## 11. تكامل جهات الاتصال ونماذج إدخال المعاملات المطابقة للموقع 100%
 
-### 11.1 التحرر من إجبارية البريد الإلكتروني:
-* **الاسم ورقم الهاتف فقط هما الإلزاميان.**
+### 11.1 المطابقة التامة والشاملة لاستمارة حجز الطيران مع الموقع والـ CRM:
+من أجل الحفاظ على قاعدة البيانات ومنع أي تناقض أو أخطاء، **يجب أن يوفر تطبيق الأندرويد نفس الخيارات والحقول الموجودة في الموقع بدقة تامة 100%**:
+
+```mermaid
+flowchart TD
+    Form["استمارة إضافة / تعديل حجز طيران"]
+    
+    subgraph S1["1. خط السير والمطارات والنوع"]
+        TripType["نوع الرحلة: ذهاب فقط / ذهاب وعودة"]
+        Airports["مطار المغادرة ⇄ مطار الوصول (مع زر التبديل والمدن السريعة)"]
+        Dates["تاريخ الذهاب + تاريخ العودة + مرونة التواريخ (+/- يومين)"]
+    end
+    
+    subgraph S2["2. المسافرون والدرجة والخدمات"]
+        Pax["المسافرون: بالغون (+12) / أطفال (2-11) / رضع (<2)"]
+        Class["الدرجة: سياحية (Economy) / رجال أعمال (Business)"]
+        Baggage["الأمتعة: شحن مسجل مع وزن / حقيبة يد فقط"]
+        Airline["شركة الطيران المفضلة (RAM, Turkish, Pegasus, العربية, أي شركة)"]
+        VIP["خدمة استقبال وتوصيل مطار VIP بسيارة خاصة"]
+    end
+
+    subgraph S3["3. البيانات المالية والتحصيل والربح"]
+        Pricing["التكلفة + سعر البيع (مع اختيار العملة: MAD, USD, EUR, TRY)"]
+        Profit["صافي الربح التلقائي = سعر البيع - سعر التكلفة"]
+        PaymentStatus["خيارات التحصيل: مدفوع بالكامل / دفع جزئي / لم يدفع (دين كامل)"]
+    end
+
+    subgraph S4["4. التذكير المجدول والتمييز"]
+        Remind["تفعيل تذكير فوري مجدول مع وقت وتاريخ التنبيه والسبب"]
+        Flag["علامة التمييز: بدون / 🌟 ذهبي / 🚨 تنبيه أحمر / ⭐ نجمة / 📌 دبوس"]
+    end
+
+    Form --> S1 --> S2 --> S3 --> S4
+```
+
+#### جدول حقول استمارة حجز الطيران الكاملة في الأندرويد:
+| الحقل في التطبيق | نوع الحقل والخيارات المتاحة | المطابقة مع الموقع والـ CRM |
+| :--- | :--- | :--- |
+| **نوع الرحلة (Trip Type)** | زر تبديل: `ذهاب فقط (One Way)` أو `ذهاب وعودة (Round Trip)` | مطابق تماماً لمودال الموقع |
+| **مطار المغادرة (From)** | قائمة إكمال تلقائي + مدن سريعة: `إسطنبول (IST/SAW)`, `الدار البيضاء (CMN)`, `مراكش (RAK)`, `طنجة (TNG)`, `الرباط (RBA)`, `فاس (FEZ)`, `أنطاليا (AYT)` | مطابق لـ `quickCities` في الموقع |
+| **مطار الوصول (To)** | نفس قائمة المطارات، مع **زر تبديل فوري (Swap ⇄)** لعكس الوجهتين بنقرة واحدة | مطابق لـ `handleSwapAirports` |
+| **تاريخ السفر (Depart Date)** | منتقي تاريخ تفاعلي (Date Picker) | إلزامي |
+| **تاريخ العودة (Return Date)** | يظهر تلقائياً عند اختيار "ذهاب وعودة" | إلزامي في رحلات الذهاب والعودة |
+| **مرونة التواريخ (Flexible)** | مفتاح تفعيل: `مرونة التواريخ (+/- يوم أو يومين)` | مطابق لخيار الموقع |
+| **عدد المسافرين (Passengers)** | عدادات رقمية منفصلة (+ / -):<br>• البالغون (`Adults >= 1`)<br>• الأطفال (`Children`)<br>• الرضع (`Infants`) | مطابق لتقسيم المسافرين في الموقع |
+| **درجة السفر (Cabin Class)** | اختيار: `الدرجة السياحية (Economy)` أو `درجة رجال الأعمال (Business)` | مطابق للموقع |
+| **الأمتعة المشحونة (Baggage)** | خيار: `أمتعة مسجلة بوزن شحن` أو `حقيبة يد فقط (Cabin Bag)` | مطابق لخيار الموقع |
+| **الخطوط المفضلة (Airline)** | قائمة اختيار: `الخطوط الملكية المغربية (RAM)`، `الخطوط التركية (THY)`، `بيغاسوس (Pegasus)`، `العربية للطيران (Air Arabia)`، أو `أي شركة متاحة` | مطابق لقائمة شركات الطيران في الموقع |
+| **توصيل مطار VIP** | زر اختيار: `طلب استقبال وتوصيل مطار VIP بسيارة خاصة` | مطابق لمودال الموقع |
+| **رمز الحجز (PNR)** | حقل نصي إنجليزي كبير (Uppercase) يولد تلقائياً أو يدخل يدوياً | مطابق لـ CRM |
+| **سعر التكلفة وعملتها** | حقل رقمي + قائمة عملات: `MAD (درهم)`, `USD ($)`, `EUR (€)`, `TRY (₺)` | مطابق لـ CRM |
+| **سعر البيع وعملتها** | حقل رقمي + نفس قائمة العملات مع **حساب الربح الصافي تلقائياً** | مطابق لـ CRM |
+| **حالة السداد والتحصيل** | 3 أزرار سريعة بنقرة واحدة:<br>1. `مدفوع بالكامل (Full)`: المتبقي = 0<br>2. `دفع جزئي (Custom)`: إدخال المستلم والمتبقي يُحسب كدين<br>3. `لم يدفع (دين كامل Zero)`: كامل المبلغ يُسجل كدين | مطابق لـ `paidChoice` في CRM |
+| **علامة التمييز (Flag Color)** | `بدون تمييز`، `🌟 توهج ذهبي (#E39622)`، `🚨 تنبيه أحمر (#EF4444)`، `⭐ نجمة مميزة`، `📌 تثبيت دبوس` | مطابق لخيارات CRM |
+| **التذكير المجدول (Reminder)** | خانة تفعيل + حقل تاريخ ووقت + سبب التذكير | يربط مع `AlarmManager` في الهاتف |
+| **ملاحظات الحجز** | حقل نصي حر للمقاعد، الأمتعة، أو أي تفاصيل خاصة | مطابق |
+
+---
+
+### 11.2 المطابقة التامة لمواعيد واستشارات القنصلية المغربية وخيارات التقديم:
+تتضمن استمارة القنصلية المغربية نفس خيارات الموقع والـ CRM بدقة:
+
+#### أ. تصنيفات الخدمات القنصلية الأربعة:
+1. **01 - الجواز والهوية (Passport & National ID):**
+   * جواز السفر البيومتري المغربي.
+   * البطاقة الوطنية للتعريف الإلكترونية (CNIE).
+   * شهادة إدارية لإنجاز البطاقة.
+   * تصريح بضياع الوثائق (جواز أو بطاقة).
+2. **02 - الحالة المدنية والأسرة (Civil Status & Family):**
+   * شهادة أهلية الزواج.
+   * تسجيل ولادة وإضافتها إلى السجلات والحالة المدنية.
+   * الدفتر العائلي (Livret de Famille).
+3. **03 - التوكيلات والعدول (Power of Attorney & Notary):**
+   * وكالة عامة أو خاصة (Vekâletname).
+   * رسم الوراثة وثبوت الزوجية وإشهاد استمرار.
+4. **04 - الشواهد الإدارية والتصديقات (Certificates & Apostille):**
+   * شهادة سكنى وقنصلية، تصديق مطابقة الأصل للأوراق.
+
+#### ب. خيارات حالة التقديم ("هل أول مرة؟"):
+قائمة خيارات إجبارية تحدد نوع المعاملة لمنع الأخطاء:
+* `⭐ إصدار أول مرة (First Time Issue)`: للعميل الذي يستخرج الوثيقة لأول مرة.
+* `🔄 تجديد (Renewal)`: عند انتهاء صلاحية الجواز أو البطاقة الوطنية.
+* `✏️ تحديث البيانات (Data Update)`: لتغيير العنوان أو الحالة العائلية أو المهنة.
+* `⚠️ بدل فاقد / تصريح بضياع (Lost / Replacement)`: في حالة فقدان أو سرقة الوثيقة السابقة.
+
+---
+
+### 11.3 تكامل جهات الاتصال وإلغاء إجبارية البريد الإلكتروني:
+* **الاسم ورقم الهاتف فقط هما الإلزاميان** لإنشاء أي معاملة.
 * حقل البريد الإلكتروني اختياري بنسبة 100% ولا يمنع حفظ المعاملة إذا تُرِك فارغاً.
 
-### 11.2 خيارات اختيار العميل الذكية الثلاثة:
+#### خيارات اختيار العميل الذكية الثلاثة:
 1. **البحث في عملاء CRM المسجلين:** كتابة أول حرفين فيظهر العميل فوراً.
 2. **إضافة عميل جديد بنقرة واحدة:** زر `[ + إضافة عميل جديد ]` يفتح نافذة سريعة لتسجيل اسمه ورقمه فوراً.
 3. **استيراد مباشر من دليل هاتف الأندرويد:** زر `[ 📱 اختيار من جهات اتصال الهاتف ]` يفتح جهات اتصال هاتفك المحمول، وعند اختيار أي اسم يتم سحب اسمه ورقم هاتفه وتعبئتهما فوراً في حقول المعاملة مع خيار حفظه في قاعدة بيانات الـ CRM.
@@ -842,4 +1042,4 @@ dependencies {
 ---
 
 ### خلاصة الاعتماد والتنفيذ:
-هذا الملف هو **المرجع الهندسي الشامل والنهائي V3.0**؛ يحتوي على حل كافة المشاكل، ودوال التعديل والحذف والنسخ والإلغاء الكاملة، وبروتوكول الاختبار الآلي لـ Google AI Studio لأخذ Screenshots والتأكد من عمل كافة الأزرار، وحساب الإحصائيات الواقعية الحقيقية بنسبة 100%!
+هذا الملف هو **المرجع الهندسي الشامل والنهائي V3.1**؛ يحتوي على حل كافة المشاكل، ودوال التعديل والحذف والنسخ والإلغاء الكاملة، وبروتوكول الاختبار الآلي لـ Google AI Studio لأخذ Screenshots والتأكد من عمل كافة الأزرار، وحساب الإحصائيات الواقعية الحقيقية بنسبة 100%!

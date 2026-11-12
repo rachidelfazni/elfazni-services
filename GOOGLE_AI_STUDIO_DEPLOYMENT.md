@@ -59,3 +59,4 @@ gcloud run deploy elfazni-services \
   --allow-unauthenticated \
   --port 8080
 ```
+

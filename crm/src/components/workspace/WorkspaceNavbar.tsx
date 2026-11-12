@@ -29,6 +29,7 @@ import {
   CalendarDays,
   NotebookPen,
   Building2,
+  Globe,
   ExternalLink,
   Workflow,
 } from "lucide-react";
@@ -571,6 +572,17 @@ export const WorkspaceNavbar: React.FC<Props> = (props) => {
                       "بوابة إدارة الموقع",
                       "Website management portal",
                       "Portail de gestion du site",
+                    )}
+                    <ExternalLink size={13} />
+                  </span>
+                </a>
+                <a href="/hub">
+                  <Globe />
+                  <span className="ws-dropdown-spread">
+                    {l(
+                      "بوابة HUB الموحدة",
+                      "Unified HUB Portal",
+                      "Portail HUB unifié",
                     )}
                     <ExternalLink size={13} />
                   </span>

@@ -340,55 +340,62 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
             color: effectiveFormText,
           }}
         >
-          <div className="flex items-center justify-between w-full mb-5">
+          {/* Logo on Top */}
+          <div className="flex justify-center w-full mb-4">
             <BrandLogo
               background={isFormDark ? 'blue' : 'white'}
               orientation="horizontal"
               size="lg"
               className="admin-entry-logo"
             />
-            <div
-              className="flex items-center bg-[#EAF4FF] p-0.5 rounded-full border border-[#D7E7F7] text-[11px] font-bold"
-              role="group"
-              aria-label="Language selector"
-            >
-              {(['ar', 'tr', 'en', 'fr'] as const).map((l) => {
-                const labels: Record<string, string> = {
-                  ar: 'تغيير اللغة إلى العربية (Arabic)',
-                  tr: 'Dili Türkçe olarak değiştir (Turkish)',
-                  en: 'Switch language to English',
-                  fr: 'Changer la langue en français (French)',
-                };
-                return (
-                  <button
-                    key={l}
-                    type="button"
-                    onClick={() => setLanguage(l)}
-                    aria-label={labels[l]}
-                    aria-pressed={language === l}
-                    className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
-                      language === l ? 'bg-[#004AA5] text-white shadow-xs font-black' : 'text-[#5E7086] hover:text-[#0B2E57]'
-                    }`}
-                  >
-                    {l === 'ar' ? 'ع' : l.toUpperCase()}
-                  </button>
-                );
-              })}
-            </div>
           </div>
 
-          <div className="admin-entry-heading">
-            <p
-              className="admin-entry-kicker"
-              style={{ color: theme?.kickerColor || theme?.colors?.gold || '#CC9048' }}
+          {/* Segmented Pill Switcher: [ نظام CRM | لوحة الموقع ] */}
+          <div className="w-full bg-[#EAF4FF] p-1 rounded-2xl flex items-center justify-between mb-4 border border-[#D7E4F2]">
+            <button
+              type="button"
+              onClick={() => {
+                if (isCrmLogin) onNavigate('/portal/login');
+              }}
+              className={`flex-1 py-2 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                !isCrmLogin
+                  ? 'bg-[#004AA5] text-white shadow-xs'
+                  : 'text-[#004AA5] hover:bg-white/60'
+              }`}
             >
-              {theme?.texts?.formKicker?.[language] || copy.formKicker(isCrmLogin)}
-            </p>
-            <h1 id="admin-login-title" style={{ color: effectiveFormText }}>
-              {recovery ? copy.recoveryTitle : (theme?.texts?.loginTitle?.[language] || copy.loginTitle)}
+              لوحة الموقع
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (!isCrmLogin) onNavigate('/portal/login?next=crm');
+              }}
+              className={`flex-1 py-2 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                isCrmLogin
+                  ? 'bg-[#004AA5] text-white shadow-xs'
+                  : 'text-[#004AA5] hover:bg-white/60'
+              }`}
+            >
+              نظام CRM
+            </button>
+          </div>
+
+          {/* Golden Shield Icon Badge */}
+          <div className="w-9 h-9 rounded-2xl bg-[#FEF3C7] border border-[#FDE68A] flex items-center justify-center text-[#D97706] mx-auto mb-2 shadow-2xs">
+            <ShieldCheck className="w-5 h-5" />
+          </div>
+
+          {/* Centered Heading */}
+          <div className="admin-entry-heading text-center mb-5">
+            <h1 id="admin-login-title" className="text-xl sm:text-2xl font-black text-[#0B2E57] tracking-tight">
+              {recovery
+                ? copy.recoveryTitle
+                : isCrmLogin
+                ? 'تسجيل الدخول إلى CRM'
+                : 'تسجيل الدخول للإدارة'}
             </h1>
-            <p style={{ color: effectiveFormMuted }}>
-              {recovery ? copy.recoveryDesc : (theme?.texts?.loginDesc?.[language] || copy.loginDesc)}
+            <p className="text-xs sm:text-sm text-[#64748B] font-medium mt-1">
+              {recovery ? copy.recoveryDesc : 'أدخل بيانات حساب الإدارة للمتابعة.'}
             </p>
           </div>
 
@@ -399,10 +406,11 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
             </div>
           )}
 
-          {recoveryNote && <p role="status" className="mb-4 rounded-lg bg-[#F5F8FA] p-3 text-sm">{recoveryNote}</p>}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {recoveryNote && <p role="status" className="mb-4 rounded-lg bg-[#F5F8FA] p-3 text-sm text-center font-bold text-emerald-700">{recoveryNote}</p>}
+
+          <form onSubmit={handleSubmit} className="space-y-3.5">
             <div>
-              <label htmlFor="admin-username" className="admin-entry-label" style={{ color: effectiveFormText }}>
+              <label htmlFor="admin-username" className="admin-entry-label block text-xs font-extrabold text-[#0B2E57] mb-1.5 text-right">
                 {copy.usernameLabel}
               </label>
               <div className="relative">
@@ -413,23 +421,23 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  placeholder="elfazni.admin"
                   autoComplete="username"
                   dir="ltr"
                   className="admin-entry-field"
                   style={{
-                    backgroundColor: theme?.inputBg || undefined,
-                    borderColor: theme?.inputBorder || undefined,
-                    borderRadius: theme?.inputRadius || undefined,
-                    color: theme?.inputTextColor || undefined,
+                    backgroundColor: '#F8FAFC',
+                    borderColor: '#CBD8E8',
+                    color: '#0B2E57',
                   }}
                 />
-                <User className="admin-entry-field-icon" aria-hidden="true" />
+                <User className="admin-entry-field-icon text-[#64748B]" aria-hidden="true" />
               </div>
             </div>
 
             {!recovery && (
               <div>
-                <label htmlFor="admin-password" className="admin-entry-label" style={{ color: effectiveFormText }}>
+                <label htmlFor="admin-password" className="admin-entry-label block text-xs font-extrabold text-[#0B2E57] mb-1.5 text-right">
                   {copy.passwordLabel}
                 </label>
                 <div className="relative">
@@ -444,82 +452,78 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onNaviga
                     dir="ltr"
                     className="admin-entry-field"
                     style={{
-                      backgroundColor: theme?.inputBg || undefined,
-                      borderColor: theme?.inputBorder || undefined,
-                      borderRadius: theme?.inputRadius || undefined,
-                      color: theme?.inputTextColor || undefined,
+                      backgroundColor: '#F8FAFC',
+                      borderColor: '#CBD8E8',
+                      color: '#0B2E57',
                     }}
                   />
-                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="admin-entry-toggle" aria-label={showPassword ? copy.hidePassword : copy.showPassword}>
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="admin-entry-toggle"
+                    aria-label={showPassword ? copy.hidePassword : copy.showPassword}
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4 text-[#64748B]" /> : <Eye className="w-4 h-4 text-[#64748B]" />}
                   </button>
                 </div>
               </div>
             )}
+
             <button
               type="submit"
               disabled={loading}
-              className="admin-entry-submit"
-              style={{
-                backgroundColor: theme?.primaryButtonBg || theme?.colors?.button || undefined,
-                color: theme?.primaryButtonTextColor || '#FFFFFF',
-                borderRadius: theme?.primaryButtonRadius || undefined,
-              }}
+              className="admin-entry-submit w-full py-3.5 rounded-xl bg-[#004AA5] hover:bg-[#003B84] text-white text-sm font-black flex items-center justify-center gap-2 shadow-md shadow-[#004AA5]/25 transition-all cursor-pointer disabled:opacity-50 mt-2"
             >
               {loading ? (
                 <span>{copy.loading}</span>
               ) : (
                 <>
                   <Lock className="w-4 h-4" />
-                  <span>{recovery ? copy.submitRecovery : (theme?.texts?.submitButton?.[language] || copy.submitLogin(isCrmLogin))}</span>
+                  <span>
+                    {recovery
+                      ? copy.submitRecovery
+                      : isCrmLogin
+                      ? 'الدخول إلى CRM'
+                      : 'دخول إلى لوحة التحكم'}
+                  </span>
                 </>
               )}
             </button>
           </form>
 
-          <button type="button" className="mt-4 text-sm font-bold text-[#004AA5] underline" onClick={() => { setRecovery(!recovery); setError(null); setRecoveryNote(''); setPassword(''); }}>
-            {recovery ? copy.backToLogin : copy.forgot}
-          </button>
-          <div className="mt-5 pt-5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-bold text-[#5E7086]">
-            {isCrmLogin ? (
-              <a
-                href="/portal/login"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('/portal/login');
-                }}
-                className="inline-flex items-center gap-1.5 hover:text-[#004AA5] transition-colors cursor-pointer"
-              >
-                <span>🏢</span>
-                <span>{language === 'ar' ? 'الانتقال إلى بوابة الإدارة والتحكم' : language === 'fr' ? "Aller à la gestion du portail" : 'Switch to Management Portal'}</span>
-              </a>
-            ) : (
-              <a
-                href="/portal/login?next=crm"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('/portal/login?next=crm');
-                }}
-                className="inline-flex items-center gap-1.5 hover:text-[#CC9048] transition-colors cursor-pointer"
-              >
-                <span>💼</span>
-                <span>{language === 'ar' ? 'الانتقال إلى نظام CRM' : language === 'fr' ? 'Aller au système CRM' : 'Switch to CRM System'}</span>
-              </a>
-            )}
-
+          {/* Forgot Password Link */}
+          <div className="text-center pt-2">
             <button
               type="button"
-              onClick={() => onNavigate('/')}
-              className="inline-flex items-center gap-1.5 hover:text-[#004AA5] transition-colors cursor-pointer"
+              className="text-xs font-bold text-[#004AA5] hover:underline cursor-pointer"
+              onClick={() => {
+                setRecovery(!recovery);
+                setError(null);
+                setRecoveryNote('');
+                setPassword('');
+              }}
             >
-              {isRtl ? <ArrowRight className="w-3.5 h-3.5" /> : <ArrowLeft className="w-3.5 h-3.5" />}
-              <span>{language === 'ar' ? 'العودة إلى الموقع العام' : language === 'fr' ? 'Retour au site public' : 'Back to public website'}</span>
+              {recovery ? copy.backToLogin : copy.forgot}
             </button>
           </div>
-          <p className="mt-6 flex items-center gap-2 text-[11px] font-bold text-[#5E7086]">
-            <ShieldCheck className="w-4 h-4 text-[#CC9048]" aria-hidden="true" />
-            <span>{copy.securityNote}</span>
-          </p>
+
+          {/* Bottom Destination Link */}
+          <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-center">
+            <button
+              type="button"
+              onClick={() => {
+                if (isCrmLogin) {
+                  onNavigate('/portal/login');
+                } else {
+                  onNavigate('/');
+                }
+              }}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#64748B] hover:text-[#004AA5] transition-colors cursor-pointer"
+            >
+              <span>{isCrmLogin ? 'العودة إلى لوحة إدارة الموقع' : 'العودة إلى الموقع العام'}</span>
+              {isRtl ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
+            </button>
+          </div>
         </section>
       </div>
     </main>

@@ -96,7 +96,7 @@ export const ThemePresetsView: React.FC<ThemePresetsViewProps> = ({
     try {
       await onApplyPreset(preset.id, effectiveTarget, {
         forceOverwriteLocal,
-        autoPublish: false,
+        autoPublish: true,
         openEditor,
       });
     } catch (err: any) {

@@ -102,11 +102,11 @@ export const AirportAutocompleteInput: React.FC<AirportAutocompleteInputProps> =
             <button
               type="button"
               onClick={handleClear}
-              className="w-4 h-4 rounded-full bg-slate-800 hover:bg-slate-950 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0"
+              className="w-6 h-6 min-w-[24px] min-h-[24px] rounded-full bg-slate-800 hover:bg-slate-950 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0"
               aria-label={t('مسح')}
               title={t('مسح')}
             >
-              <X className="w-2.5 h-2.5 stroke-[2.5]" />
+              <X className="w-3.5 h-3.5 stroke-[2.5]" />
             </button>
           )}
         </div>

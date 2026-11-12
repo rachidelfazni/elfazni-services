@@ -588,6 +588,46 @@ export const ThemePortalZonesEditor: React.FC<ThemePortalZonesEditorProps> = ({
               </div>
             </div>
 
+            {/* Card Width & Proportion Control */}
+            <div className="space-y-1.5 pt-1">
+              <div className="flex items-center justify-between text-[11px] font-bold text-slate-700">
+                <span>عرض وحجم البطاقة (Card Width):</span>
+                <span className="font-mono text-amber-700 text-xs">
+                  {mp.width || (config.layoutType === 'centered' ? '520px' : '1040px')}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-1.5 text-xs">
+                {[
+                  { id: '1040px', label: 'عريض فاخر (1040px)', desc: 'مثالي للواجهات المنقسمة' },
+                  { id: '1140px', label: 'فائق الاتساع (1140px)', desc: 'مساحة عريضة جداً' },
+                  { id: '920px', label: 'متوسط متوازن (920px)', desc: 'مدمج ومتناسق' },
+                  { id: '520px', label: 'مركزي فردي (520px)', desc: 'بدون لوحة جانبية' },
+                ].map((w) => (
+                  <button
+                    key={w.id}
+                    type="button"
+                    onClick={() => updateMenuPanel({ width: w.id })}
+                    className={`px-2 py-1.5 rounded-lg border text-right transition cursor-pointer ${
+                      (mp.width || (config.layoutType === 'centered' ? '520px' : '1040px')) === w.id
+                        ? 'bg-[#004AA5] text-white border-[#004AA5] font-bold shadow-sm'
+                        : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 font-medium'
+                    }`}
+                  >
+                    <div className="text-[11px]">{w.label}</div>
+                    <div
+                      className={`text-[9px] truncate ${
+                        (mp.width || (config.layoutType === 'centered' ? '520px' : '1040px')) === w.id
+                          ? 'text-blue-100'
+                          : 'text-slate-400'
+                      }`}
+                    >
+                      {w.desc}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Border Radius & Shadow Intensity */}
             <div className="grid grid-cols-2 gap-2">
               <div className="space-y-1">
@@ -966,6 +1006,7 @@ export const ThemePortalZonesEditor: React.FC<ThemePortalZonesEditorProps> = ({
                         illustrationCustomX: 0,
                         illustrationCustomY: 0,
                         illustrationRotation: 0,
+                        illustrationFit: 'contain',
                       })
                     }
                     className="text-[10px] text-emerald-700 hover:text-emerald-900 font-bold flex items-center gap-1 cursor-pointer"
@@ -1063,21 +1104,95 @@ export const ThemePortalZonesEditor: React.FC<ThemePortalZonesEditorProps> = ({
                 </div>
               </div>
 
-              {/* Scale Slider (0% - 400%) */}
-              <div className="space-y-1 pt-1">
-                <div className="flex justify-between text-[11px] font-bold text-slate-700">
-                  <span>حجم المجسم (Scale 0%–400%):</span>
-                  <span className="font-mono text-emerald-800">{sp.illustrationScale ?? 100}%</span>
+              {/* Display Fit Mode (contain, cover, original, custom) */}
+              <div className="space-y-1.5 pt-1">
+                <span className="text-[11px] font-bold text-slate-700 block">نمط ملاءمة الصورة (Fit Mode):</span>
+                <div className="grid grid-cols-2 gap-1.5 text-xs">
+                  {[
+                    { id: 'contain', label: 'احتواء (Contain / Fit)', desc: 'يحتوي كامل الصورة دون قص' },
+                    { id: 'cover', label: 'تعبئة كاملة (Cover / Fill)', desc: 'يملأ كامل اللوحة الجانبية' },
+                    { id: 'original', label: 'الحجم الأصلي (Original)', desc: 'أبعاد الصورة الطبيعية' },
+                    { id: 'custom', label: 'مخصص (Custom)', desc: 'تحديد دقيق للأبعاد' },
+                  ].map((mode) => (
+                    <button
+                      key={mode.id}
+                      type="button"
+                      onClick={() => updateSidePanel({ illustrationFit: mode.id as any })}
+                      className={`px-2 py-1.5 rounded-lg border text-right transition cursor-pointer ${
+                        (sp.illustrationFit || config.illustrationFit || 'contain') === mode.id
+                          ? 'bg-emerald-700 text-white border-emerald-700 font-bold shadow-sm'
+                          : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 font-medium'
+                      }`}
+                    >
+                      <div className="text-[11px]">{mode.label}</div>
+                      <div
+                        className={`text-[9px] truncate ${
+                          (sp.illustrationFit || config.illustrationFit || 'contain') === mode.id
+                            ? 'text-emerald-100'
+                            : 'text-slate-400'
+                        }`}
+                      >
+                        {mode.desc}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Scale Slider (0% - 400%) + Numeric Input + Presets */}
+              <div className="space-y-1.5 pt-1">
+                <div className="flex items-center justify-between text-[11px] font-bold text-slate-700">
+                  <span>حجم الصورة / المجسم (Scale):</span>
+                  <div className="flex items-center gap-1.5">
+                    <input
+                      type="number"
+                      min="0"
+                      max="400"
+                      step="1"
+                      value={sp.illustrationScale ?? config.illustrationScale ?? 100}
+                      onChange={(e) => {
+                        const val = Math.max(0, Math.min(400, parseInt(e.target.value, 10) || 0));
+                        updateSidePanel({ illustrationScale: val });
+                      }}
+                      className="w-16 px-1.5 py-0.5 text-center text-xs font-mono font-bold border border-slate-300 rounded-md bg-white text-emerald-800"
+                    />
+                    <span className="text-xs font-mono text-emerald-800">%</span>
+                    <button
+                      type="button"
+                      onClick={() => updateSidePanel({ illustrationScale: 100 })}
+                      className="px-1.5 py-0.5 text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-600 rounded border border-slate-200 font-bold"
+                      title="إعادة التعيين إلى 100%"
+                    >
+                      100%
+                    </button>
+                  </div>
                 </div>
                 <input
                   type="range"
                   min="0"
                   max="400"
-                  step="5"
-                  value={sp.illustrationScale ?? 100}
+                  step="1"
+                  value={sp.illustrationScale ?? config.illustrationScale ?? 100}
                   onChange={(e) => updateSidePanel({ illustrationScale: parseInt(e.target.value, 10) })}
                   className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-700"
                 />
+                {/* Scale preset pills */}
+                <div className="flex flex-wrap gap-1 pt-0.5">
+                  {[25, 50, 75, 100, 150, 200, 300, 400].map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => updateSidePanel({ illustrationScale: preset })}
+                      className={`px-1.5 py-0.5 rounded text-[10px] font-mono transition cursor-pointer ${
+                        (sp.illustrationScale ?? config.illustrationScale ?? 100) === preset
+                          ? 'bg-emerald-700 text-white font-bold'
+                          : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+                      }`}
+                    >
+                      {preset}%
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Custom X & Y offsets */}

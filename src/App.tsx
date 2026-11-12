@@ -31,6 +31,7 @@ import { api } from './services/api';
 import { tracker } from './services/tracker';
 import { VisitorLiveChat } from './components/chat/VisitorLiveChat';
 import { themeService } from './services/themeService';
+import { NotFoundPage } from './components/NotFoundPage';
 
 // Lazy load heavy homepage sections
 const ServicesSection = lazy(() =>
@@ -109,7 +110,7 @@ export default function App() {
     let lastTouchPing = 0;
 
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(window.location.pathname + window.location.search);
       setIsAuthenticated(Boolean(api.getToken()));
       tracker.trackPage(window.location.pathname, 'تصفح صفحة بالموقع');
     };
@@ -397,6 +398,28 @@ export default function App() {
             <MobileQuickDock />
           </div>
         </SiteSettingsProvider>
+      </LanguageProvider>
+    );
+  }
+
+  // Route 5: Catch-all 404 Page for unrecognized SPA routes
+  const knownLandingRoutes = ['/', '', '/index.html'];
+  const isRecognizedRoute =
+    knownLandingRoutes.includes(currentPathname) ||
+    currentPathname.startsWith('/blog') ||
+    currentPathname.startsWith('/hub') ||
+    currentPathname.startsWith('/crm') ||
+    currentPathname.startsWith('/portal') ||
+    currentPathname.startsWith('/admin') ||
+    currentPathname.startsWith('/workspace');
+
+  if (!isRecognizedRoute) {
+    return (
+      <LanguageProvider>
+        <NotFoundPage
+          onNavigate={handleNavigate}
+          onOpenContact={() => handleOpenStartRequest('general')}
+        />
       </LanguageProvider>
     );
   }

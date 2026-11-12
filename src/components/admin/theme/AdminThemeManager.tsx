@@ -194,9 +194,39 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
   const handleDraftUpdate = (updates: Partial<InterfaceThemeConfig>) => {
     setWorkingDraft((prev) => {
       if (!prev) return prev;
+      const nextSidePanel = updates.sidePanel !== undefined
+        ? { ...(prev.sidePanel || {}), ...updates.sidePanel }
+        : prev.sidePanel ? { ...prev.sidePanel } : undefined;
+
+      // Lockstep synchronization for illustration fields
+      const effectiveScale = updates.sidePanel?.illustrationScale ?? updates.illustrationScale ?? nextSidePanel?.illustrationScale ?? prev.illustrationScale;
+      const effectiveFit = updates.sidePanel?.illustrationFit ?? updates.illustrationFit ?? nextSidePanel?.illustrationFit ?? prev.illustrationFit;
+      const effectiveCustomX = updates.sidePanel?.illustrationCustomX ?? updates.illustrationCustomX ?? nextSidePanel?.illustrationCustomX ?? prev.illustrationCustomX;
+      const effectiveCustomY = updates.sidePanel?.illustrationCustomY ?? updates.illustrationCustomY ?? nextSidePanel?.illustrationCustomY ?? prev.illustrationCustomY;
+      const effectiveRotation = updates.sidePanel?.illustrationRotation ?? updates.illustrationRotation ?? nextSidePanel?.illustrationRotation ?? prev.illustrationRotation;
+      const effectiveOpacity = updates.sidePanel?.illustrationOpacity ?? updates.illustrationOpacity ?? nextSidePanel?.illustrationOpacity ?? prev.illustrationOpacity;
+      const effectiveUrl = updates.sidePanel?.foregroundImage ?? updates.illustrationUrl ?? nextSidePanel?.foregroundImage ?? prev.illustrationUrl;
+
+      if (nextSidePanel) {
+        if (effectiveScale !== undefined) nextSidePanel.illustrationScale = effectiveScale;
+        if (effectiveFit !== undefined) nextSidePanel.illustrationFit = effectiveFit;
+        if (effectiveCustomX !== undefined) nextSidePanel.illustrationCustomX = effectiveCustomX;
+        if (effectiveCustomY !== undefined) nextSidePanel.illustrationCustomY = effectiveCustomY;
+        if (effectiveRotation !== undefined) nextSidePanel.illustrationRotation = effectiveRotation;
+        if (effectiveOpacity !== undefined) nextSidePanel.illustrationOpacity = effectiveOpacity;
+        if (effectiveUrl !== undefined) nextSidePanel.foregroundImage = effectiveUrl;
+      }
+
       return {
         ...prev,
         ...updates,
+        ...(effectiveScale !== undefined ? { illustrationScale: effectiveScale } : {}),
+        ...(effectiveFit !== undefined ? { illustrationFit: effectiveFit } : {}),
+        ...(effectiveCustomX !== undefined ? { illustrationCustomX: effectiveCustomX } : {}),
+        ...(effectiveCustomY !== undefined ? { illustrationCustomY: effectiveCustomY } : {}),
+        ...(effectiveRotation !== undefined ? { illustrationRotation: effectiveRotation } : {}),
+        ...(effectiveOpacity !== undefined ? { illustrationOpacity: effectiveOpacity } : {}),
+        ...(effectiveUrl !== undefined ? { illustrationUrl: effectiveUrl } : {}),
         colors: { ...(prev.colors || {}), ...(updates.colors || {}) },
         typography: { ...(prev.typography || {}), ...(updates.typography || {}) },
         texts: (() => {
@@ -214,9 +244,7 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
         menuPanel: updates.menuPanel !== undefined
           ? { ...(prev.menuPanel || {}), ...updates.menuPanel }
           : prev.menuPanel,
-        sidePanel: updates.sidePanel !== undefined
-          ? { ...(prev.sidePanel || {}), ...updates.sidePanel }
-          : prev.sidePanel,
+        sidePanel: nextSidePanel,
       };
     });
     setIsModified(true);
@@ -276,6 +304,37 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
       showFeedback(`تم نشر التعديلات بنجاح على واجهة (${published.nameAr || selectedTarget})!`);
     } catch (err: any) {
       showFeedback(err.message || 'فشل نشر التعديلات', 'error');
+    } finally {
+      setPublishing(false);
+    }
+  };
+
+  const handleQuickSaveAndPublish = async () => {
+    if (!workingDraft) return;
+    setPublishing(true);
+    try {
+      await themeService.saveDraft(selectedTarget, workingDraft);
+      const { published, version } = await themeService.publishTheme(selectedTarget, 'حفظ ونشر فوري مباشر');
+
+      if (themeData) {
+        setThemeData({
+          ...themeData,
+          published: {
+            ...themeData.published,
+            [selectedTarget]: published,
+          },
+          drafts: {
+            ...themeData.drafts,
+            [selectedTarget]: JSON.parse(JSON.stringify(published)),
+          },
+          versions: [version, ...themeData.versions],
+        });
+      }
+      setWorkingDraft(JSON.parse(JSON.stringify(published)));
+      setIsModified(false);
+      showFeedback(`تم حفظ ونشر التعديلات فوراً على (${published.nameAr || selectedTarget}) بنجاح! التغييرات حية الآن على الموقع.`);
+    } catch (err: any) {
+      showFeedback(err.message || 'فشل النشر المباشر', 'error');
     } finally {
       setPublishing(false);
     }
@@ -519,7 +578,7 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
               <button
                 type="button"
                 onClick={handleSaveDraft}
-                disabled={saving}
+                disabled={saving || publishing}
                 className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs disabled:opacity-50"
               >
                 <Save className="w-3.5 h-3.5" />
@@ -528,12 +587,23 @@ export const AdminThemeManager: React.FC<AdminThemeManagerProps> = ({
 
               <button
                 type="button"
-                onClick={() => setPublishModalOpen(true)}
-                disabled={publishing}
-                className="px-4 py-2 rounded-xl bg-[#004AA5] hover:bg-[#003B84] text-white text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#004AA5]/20 disabled:opacity-50"
+                onClick={handleQuickSaveAndPublish}
+                disabled={publishing || saving}
+                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black transition flex items-center gap-1.5 cursor-pointer shadow-md shadow-emerald-600/25 disabled:opacity-50"
+                title="تطبيق التعديلات وحفظها ونشرها فوراً على الموقع الحي بضغطة واحدة"
               >
                 <Send className="w-3.5 h-3.5" />
-                <span>نشر التعديلات للعامة</span>
+                <span>{publishing ? 'جاري النشر الحي...' : 'حفظ وتطبيق فوري'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPublishModalOpen(true)}
+                disabled={publishing}
+                className="px-3.5 py-2 rounded-xl bg-[#004AA5] hover:bg-[#003B84] text-white text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-sm disabled:opacity-50"
+                title="نشر مع كتابة ملاحظات الإصدار وسجل التغييرات"
+              >
+                <span>نشر مع تقرير</span>
               </button>
             </div>
           </div>

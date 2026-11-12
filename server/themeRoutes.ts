@@ -217,10 +217,39 @@ themeRouter.put('/draft/:target', requireThemePermission('theme.edit'), (req: Re
       }
     }
 
+    const finalSidePanel = updates.sidePanel !== undefined
+      ? { ...(existing?.sidePanel || {}), ...updates.sidePanel }
+      : existing?.sidePanel ? { ...existing.sidePanel } : undefined;
+
+    const effectiveScale = updates.sidePanel?.illustrationScale ?? updates.illustrationScale ?? finalSidePanel?.illustrationScale ?? existing?.illustrationScale;
+    const effectiveFit = updates.sidePanel?.illustrationFit ?? updates.illustrationFit ?? finalSidePanel?.illustrationFit ?? existing?.illustrationFit;
+    const effectiveCustomX = updates.sidePanel?.illustrationCustomX ?? updates.illustrationCustomX ?? finalSidePanel?.illustrationCustomX ?? existing?.illustrationCustomX;
+    const effectiveCustomY = updates.sidePanel?.illustrationCustomY ?? updates.illustrationCustomY ?? finalSidePanel?.illustrationCustomY ?? existing?.illustrationCustomY;
+    const effectiveRotation = updates.sidePanel?.illustrationRotation ?? updates.illustrationRotation ?? finalSidePanel?.illustrationRotation ?? existing?.illustrationRotation;
+    const effectiveOpacity = updates.sidePanel?.illustrationOpacity ?? updates.illustrationOpacity ?? finalSidePanel?.illustrationOpacity ?? existing?.illustrationOpacity;
+    const effectiveUrl = updates.sidePanel?.foregroundImage ?? updates.illustrationUrl ?? finalSidePanel?.foregroundImage ?? existing?.illustrationUrl;
+
+    if (finalSidePanel) {
+      if (effectiveScale !== undefined) finalSidePanel.illustrationScale = effectiveScale;
+      if (effectiveFit !== undefined) finalSidePanel.illustrationFit = effectiveFit;
+      if (effectiveCustomX !== undefined) finalSidePanel.illustrationCustomX = effectiveCustomX;
+      if (effectiveCustomY !== undefined) finalSidePanel.illustrationCustomY = effectiveCustomY;
+      if (effectiveRotation !== undefined) finalSidePanel.illustrationRotation = effectiveRotation;
+      if (effectiveOpacity !== undefined) finalSidePanel.illustrationOpacity = effectiveOpacity;
+      if (effectiveUrl !== undefined) finalSidePanel.foregroundImage = effectiveUrl;
+    }
+
     const updatedConfig: InterfaceThemeConfig = {
       ...existing,
       ...updates,
       target,
+      illustrationScale: effectiveScale,
+      illustrationFit: effectiveFit,
+      illustrationCustomX: effectiveCustomX,
+      illustrationCustomY: effectiveCustomY,
+      illustrationRotation: effectiveRotation,
+      illustrationOpacity: effectiveOpacity,
+      illustrationUrl: effectiveUrl,
       colors: mergedColors,
       typography: mergedTypography,
       texts: (() => {
@@ -238,9 +267,7 @@ themeRouter.put('/draft/:target', requireThemePermission('theme.edit'), (req: Re
       menuPanel: updates.menuPanel !== undefined
         ? { ...(existing?.menuPanel || {}), ...updates.menuPanel }
         : existing?.menuPanel,
-      sidePanel: updates.sidePanel !== undefined
-        ? { ...(existing?.sidePanel || {}), ...updates.sidePanel }
-        : existing?.sidePanel,
+      sidePanel: finalSidePanel,
       updatedAt: new Date().toISOString(),
       updatedBy: user.username || user.displayName || 'admin',
     };
@@ -454,6 +481,7 @@ function applyPresetToInterfaceConfig(
   if (preset.primaryButtonBg) updated.primaryButtonBg = preset.primaryButtonBg;
   if (preset.primaryButtonTextColor) updated.primaryButtonTextColor = preset.primaryButtonTextColor;
 
+  if (preset.layers) updated.layers = JSON.parse(JSON.stringify(preset.layers));
   if (preset.outerBackground) updated.outerBackground = JSON.parse(JSON.stringify(preset.outerBackground));
   if (preset.menuPanel) {
     updated.menuPanel = JSON.parse(JSON.stringify(preset.menuPanel));
@@ -463,19 +491,26 @@ function applyPresetToInterfaceConfig(
   }
   if (preset.sidePanel) {
     const spCopy = JSON.parse(JSON.stringify(preset.sidePanel));
-    if (cfg.target === 'admin_login') {
-      spCopy.foregroundImage = '/assets/brand/3d/02-consular-documents-transparent.png';
-      spCopy.headingAr = 'الفزني سيرفيسز';
-      spCopy.headingEn = 'ELFAZNI SERVICES';
-      spCopy.descriptionAr = 'مدونة، خدمات، ولوحة إدارة محتوى الموقع.';
-    } else if (cfg.target === 'crm_login') {
-      spCopy.foregroundImage = '/assets/brand/3d/04-hotels-residency-transparent.png';
-      spCopy.headingAr = 'الفزني CRM';
-      spCopy.headingEn = 'ELFAZNI CRM';
-      spCopy.descriptionAr = 'نظام إدارة العملاء والمعاملات والحجوزات والمالية.';
+    if (!spCopy.foregroundImage) {
+      if (cfg.target === 'admin_login') {
+        spCopy.foregroundImage = '/assets/brand/elfazni-admin-side.webp';
+      } else if (cfg.target === 'crm_login') {
+        spCopy.foregroundImage = '/assets/brand/elfazni-crm-side.webp';
+      } else if (cfg.target === 'portal') {
+        spCopy.foregroundImage = '/assets/brand/elfazni-hub-side.webp';
+      }
+    }
+    if (!spCopy.headingAr) {
+      if (cfg.target === 'admin_login') {
+        spCopy.headingAr = 'موقعك، من مكان واحد.';
+      } else if (cfg.target === 'crm_login') {
+        spCopy.headingAr = 'كل عميل، من أول تواصل.';
+      } else if (cfg.target === 'portal') {
+        spCopy.headingAr = 'بوابة الفزني سيرفيسز';
+      }
     }
     updated.sidePanel = spCopy;
-    updated.illustrationUrl = spCopy.foregroundImage;
+    updated.illustrationUrl = spCopy.foregroundImage || preset.illustrationUrl;
   }
 
   return updated;

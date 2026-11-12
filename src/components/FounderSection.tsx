@@ -78,28 +78,28 @@ export const FounderSection: React.FC = () => {
                 {language === 'tr' ? (
                   <>
                     <span className="block font-black text-[#0B2E57]">Rachid Elfazni</span>
-                    <span className="block font-extralight font-bahij-bold text-[#CC9048] text-[33.6px] mt-1">
+                    <span className="block font-extralight font-bahij-bold text-[#A36014] text-[33.6px] mt-1">
                       Kurucu ve Hizmet Yönetimi
                     </span>
                   </>
                 ) : language === 'en' ? (
                   <>
                     <span className="block font-black text-[#0B2E57]">Rachid Elfazni</span>
-                    <span className="block font-extralight font-bahij-bold text-[#CC9048] text-[33.6px] mt-1">
+                    <span className="block font-extralight font-bahij-bold text-[#A36014] text-[33.6px] mt-1">
                       Founder & Service Management
                     </span>
                   </>
                 ) : language === 'fr' ? (
                   <>
                     <span className="block font-black text-[#0B2E57]">Rachid Elfazni</span>
-                    <span className="block font-extralight font-bahij-bold text-[#CC9048] text-[33.6px] mt-1">
+                    <span className="block font-extralight font-bahij-bold text-[#A36014] text-[33.6px] mt-1">
                       Fondateur et Gestion des Services
                     </span>
                   </>
                 ) : (
                   <>
                     <span className="block font-black text-[#0B2E57]">{founderShortAr}</span>
-                    <span className="block font-extralight font-bahij-bold text-[#CC9048] text-[33.6px] mt-1">
+                    <span className="block font-extralight font-bahij-bold text-[#A36014] text-[33.6px] mt-1">
                       {settings.founderTitleAr || 'المؤسس وإدارة الخدمات'}
                     </span>
                   </>

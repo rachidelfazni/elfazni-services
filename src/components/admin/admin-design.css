@@ -31,7 +31,7 @@
       transparent 65.5px 132px
     );
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
 .admin-entry-shell {
@@ -205,9 +205,18 @@
   min-height: 48px;
   padding: 10px 46px 10px 14px;
   border: 1px solid #cbd8e8;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #f8fafc;
-  font-size: 1rem;
+  color: #0B2E57 !important;
+  caret-color: #004AA5;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+.admin-entry-field::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
 }
 
 .admin-entry-field:focus,
@@ -261,7 +270,7 @@
     align-items: center !important;
     padding: 16px 20px !important;
   }
-  .admin-entry-brand .theme-illustration img {
+  .admin-entry-brand .theme-illustration img:not(.object-cover) {
     max-height: 135px !important;
     max-width: 44% !important;
   }

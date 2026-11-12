@@ -48,22 +48,22 @@ export const GuidesSection: React.FC<GuidesSectionProps> = ({ onSelectGuide }) =
               {language === 'tr' ? (
                 <>
                   <span className="block font-black text-[#0B2E57]">İşlem ve Seyahat Rehberi</span>
-                  <span className="block font-extralight font-bahij-bold text-[#CC9048] mt-1">İşinize Yarayan Pratik Bilgiler</span>
+                  <span className="block font-extralight font-bahij-bold text-[#A36014] mt-1">İşinize Yarayan Pratik Bilgiler</span>
                 </>
               ) : language === 'en' ? (
                 <>
                   <span className="block font-black text-[#0B2E57]">Practical Service Guides</span>
-                  <span className="block font-extralight font-bahij-bold text-[#CC9048] mt-1">Essential Information Closer to You</span>
+                  <span className="block font-extralight font-bahij-bold text-[#A36014] mt-1">Essential Information Closer to You</span>
                 </>
               ) : language === 'fr' ? (
                 <>
                   <span className="block font-black text-[#0B2E57]">Guides Pratiques en Turquie</span>
-                  <span className="block font-extralight font-bahij-bold text-[#CC9048] mt-1">Des informations utiles à votre portée</span>
+                  <span className="block font-extralight font-bahij-bold text-[#A36014] mt-1">Des informations utiles à votre portée</span>
                 </>
               ) : (
                 <>
                   <span className="block font-black text-[#0B2E57]">دليل المعاملات في تركيا</span>
-                  <span className="block font-extralight font-bahij-bold text-[#CC9048] mt-1">معلومات تهمك وخدمات أقرب إليك</span>
+                  <span className="block font-extralight font-bahij-bold text-[#A36014] mt-1">معلومات تهمك وخدمات أقرب إليك</span>
                 </>
               )}
             </SectionTitle>

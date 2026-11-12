@@ -25,16 +25,48 @@ interface ThemeIllustrationEditorProps {
   onOpenMediaPicker: () => void;
 }
 
+// Root illustration fields that the renderer (ThemeVisualPanel) resolves from
+// sidePanel FIRST. Every edit must be mirrored into sidePanel, otherwise a stale
+// sidePanel value silently overrides the user's change.
+const SIDE_PANEL_MIRROR: Record<string, string> = {
+  illustrationScale: 'illustrationScale',
+  illustrationCustomX: 'illustrationCustomX',
+  illustrationCustomY: 'illustrationCustomY',
+  illustrationRotation: 'illustrationRotation',
+  illustrationOpacity: 'illustrationOpacity',
+  illustrationFit: 'illustrationFit',
+  illustrationPosition: 'illustrationAlignment',
+};
+
 export const ThemeIllustrationEditor: React.FC<ThemeIllustrationEditorProps> = ({
   config,
-  onChangeConfig,
+  onChangeConfig: onChangeConfigRaw,
   onOpenMediaPicker,
 }) => {
-  const currentScale = typeof config.illustrationScale === 'number' ? config.illustrationScale : 100;
-  const customX = config.illustrationCustomX || 0;
-  const customY = config.illustrationCustomY || 0;
-  const fitMode = config.illustrationFit || 'contain';
-  const horizPos = config.illustrationPosition || 'center';
+  const sp = config.sidePanel;
+  const onChangeConfig = (updates: Partial<InterfaceThemeConfig>) => {
+    if (!sp) return onChangeConfigRaw(updates);
+    const spPatch: Record<string, unknown> = {};
+    for (const [rootKey, spKey] of Object.entries(SIDE_PANEL_MIRROR)) {
+      if (rootKey in updates) spPatch[spKey] = (updates as any)[rootKey];
+    }
+    if (Object.keys(spPatch).length === 0) return onChangeConfigRaw(updates);
+    onChangeConfigRaw({
+      ...updates,
+      sidePanel: { ...sp, ...(updates.sidePanel || {}), ...spPatch } as any,
+    });
+  };
+
+  const currentScale =
+    typeof sp?.illustrationScale === 'number'
+      ? sp.illustrationScale
+      : typeof config.illustrationScale === 'number'
+      ? config.illustrationScale
+      : 100;
+  const customX = sp?.illustrationCustomX ?? config.illustrationCustomX ?? 0;
+  const customY = sp?.illustrationCustomY ?? config.illustrationCustomY ?? 0;
+  const fitMode = sp?.illustrationFit || config.illustrationFit || 'contain';
+  const horizPos = (sp?.illustrationAlignment as any) || config.illustrationPosition || 'center';
   const vertPos = config.illustrationVerticalPosition || 'center';
   const clip = config.illustrationClip || { top: 0, right: 0, bottom: 0, left: 0 };
 

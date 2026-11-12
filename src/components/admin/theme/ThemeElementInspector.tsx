@@ -36,17 +36,7 @@ export const ThemeElementInspector: React.FC<ThemeElementInspectorProps> = ({
   onClose,
 }) => {
   if (!selectedElementKey) {
-    return (
-      <div className="w-80 bg-white border-r border-slate-200 p-5 flex flex-col items-center justify-center text-center text-slate-400 space-y-3 shrink-0">
-        <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400">
-          <Sliders className="w-6 h-6 text-slate-400" />
-        </div>
-        <h4 className="text-xs font-bold text-slate-700">مفتش خصائص العناصر</h4>
-        <p className="text-[11px] leading-relaxed text-slate-400">
-          انقر فوق أي عنصر داخل المعاينة الحية (الشعار، العنوان، الزر، المجسم، أو الخلفية) لفتح إعداداته وتعديلها فوراً هنا.
-        </p>
-      </div>
-    );
+    return null;
   }
 
   const isGradient = selectedElementKey.includes('gradient');

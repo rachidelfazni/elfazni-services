@@ -78,18 +78,18 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
   const defaultKicker = isPortal
     ? 'ELFAZNI SERVICES HUB'
     : isCrm
-    ? 'ELFAZNI SERVICES · CRM'
-    : 'ELFAZNI SERVICES · ADMIN';
+    ? 'إدارة العملاء · CRM'
+    : 'إدارة الموقع';
   const defaultTitle = isPortal
     ? (language === 'ar' ? 'بوابة الفزني سيرفيسز' : 'ELFAZNI SERVICES HUB')
     : isCrm
-    ? 'الفزني CRM'
-    : 'الفزني سيرفيسز';
+    ? 'كل عميل، من أول تواصل.'
+    : 'موقعك، من مكان واحد.';
   const defaultNote = isPortal
-    ? (language === 'ar' ? 'خدمات السفر والمعاملات في تركيا' : 'Travel and consular services in Türkiye')
+    ? ''
     : isCrm
-    ? 'نظام إدارة العملاء والمعاملات والحجوزات والمالية.'
-    : 'مدونة، خدمات، ولوحة إدارة محتوى الموقع.';
+    ? 'الحجوزات والمعاملات والمتابعات في مساحة واحدة.'
+    : 'تابع المحادثات والرسائل، وحدّث محتوى موقعك.';
 
   const kickerText =
     (language === 'ar' ? sp?.kickerAr : sp?.kickerEn) ||
@@ -103,9 +103,9 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
     config.texts?.heroTitle?.[language] ||
     defaultTitle;
   const noteText =
-    (language === 'ar' ? sp?.descriptionAr : sp?.descriptionEn) ||
-    config.texts?.photoNote?.[language] ||
-    config.texts?.panelNote?.[language] ||
+    (language === 'ar' ? sp?.descriptionAr : sp?.descriptionEn) ??
+    config.texts?.photoNote?.[language] ??
+    config.texts?.panelNote?.[language] ??
     defaultNote;
 
   const effectiveHeadingColor = sp?.headingColor || config.titleColor || '#FFFFFF';
@@ -118,10 +118,10 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
     config.decorativeIllustration ||
     (!explicitEmpty
       ? (isCrm
-          ? '/assets/brand/3d/04-hotels-residency-transparent.png'
+          ? '/uploads/elfazni-crm-side.webp'
           : isPortal
-          ? '/assets/brand/3d/01-master-service-hero-transparent.png'
-          : '/assets/brand/3d/02-consular-documents-transparent.png')
+          ? '/uploads/elfazni-hub-side.webp'
+          : '/uploads/elfazni-hub-side.webp')
       : '');
   const illustrationUrl = LEGACY_URL_FIXES[rawIllustrationUrl] || rawIllustrationUrl;
 
@@ -257,13 +257,15 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
           inset: 0,
           zIndex: bgLayer.zIndex,
           display: bgLayer.visible && sideBgType !== 'transparent' ? 'block' : 'none',
-          opacity: ((config.backgroundOpacity ?? 100) / 100) * ((bgLayer.opacity ?? 100) / 100),
+          opacity: ((sp?.bgOpacity ?? config.backgroundOpacity ?? 100) / 100) * ((bgLayer.opacity ?? 100) / 100),
           backgroundColor: sideBgType === 'transparent' ? 'transparent' : effectiveSideBgColor,
           backgroundImage: effectiveSideBgImage ? `url("${effectiveSideBgImage}")` : undefined,
-          backgroundSize: config.backgroundSize || 'cover',
-          backgroundPosition: config.backgroundPosition || 'center',
+          backgroundSize: sp?.bgFit || config.backgroundSize || 'cover',
+          backgroundPosition: `${sp?.bgPositionX || 'center'} ${sp?.bgPositionY || 'center'}`,
           backgroundRepeat: 'no-repeat',
-          filter: `blur(${config.backgroundBlur || 0}px) brightness(${config.backgroundBrightness ?? 100}%)`,
+          transform: `translate(${sp?.bgCustomX || 0}px, ${sp?.bgCustomY || 0}px) scale(${(sp?.bgScale ?? 100) / 100})`,
+          transformOrigin: 'center center',
+          filter: `blur(${sp?.bgBlur ?? config.backgroundBlur ?? 0}px) brightness(${sp?.bgBrightness ?? config.backgroundBrightness ?? 100}%)`,
           pointerEvents: interactive ? 'auto' : 'none',
           cursor: interactive ? 'pointer' : 'default',
         }}
@@ -306,16 +308,20 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
 
       {/* 3. LAYER 3: Foreground Illustration (Supports 0%-400% scale, independent X/Y, drag, fit modes, clip) */}
       <div
-        className={`theme-illustration absolute inset-0 flex ${fitMode === 'cover' ? 'p-0' : 'p-6'}`}
+        className={`theme-illustration absolute flex ${
+          fitMode === 'cover'
+            ? 'inset-0 p-0'
+            : 'left-4 right-4 sm:left-6 sm:right-6 top-16 bottom-32 sm:top-20 sm:bottom-36'
+        }`}
         dir="ltr"
         style={{
           position: 'absolute',
-          inset: 0,
           zIndex: illustrationLayer.zIndex,
           display: illustrationLayer.visible && Boolean(illustrationUrl) ? 'flex' : 'none',
           alignItems: alignValue,
           justifyContent: justifyValue,
           pointerEvents: 'none',
+          overflow: fitMode === 'cover' ? 'hidden' : 'visible',
         }}
       >
         {clampedScale === 0 ? (
@@ -334,12 +340,12 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
           ) : null
         ) : (
           <div
-            className={`relative flex items-center justify-center rounded-2xl ${
+            className={`relative flex items-center justify-center ${
               fitMode === 'cover'
-                ? 'w-full h-full'
+                ? 'w-full h-full rounded-none overflow-hidden'
                 : fitMode === 'original' || fitMode === 'custom'
-                ? 'w-auto h-auto'
-                : 'max-h-[85%] max-w-[95%]'
+                ? 'w-auto h-auto rounded-2xl'
+                : 'w-full h-full max-h-[96%] max-w-[96%] rounded-2xl'
             } ${
               isSelected('illustration') ? 'ring-2 ring-[#CC9048] ring-offset-2 ring-offset-[#071629]/60' : ''
             }`}
@@ -369,10 +375,10 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
                   ? 'w-auto h-auto max-w-none max-h-none'
                   : fitMode === 'custom'
                   ? 'object-contain max-w-none max-h-none'
-                  : 'w-auto h-auto max-h-[85%] max-w-[95%] object-contain'
+                  : 'w-full h-full object-contain'
               }`}
               style={{
-                opacity: ((config.illustrationOpacity ?? 100) / 100) * ((illustrationLayer.opacity ?? 100) / 100),
+                opacity: illustrationOpacity * ((illustrationLayer.opacity ?? 100) / 100),
                 filter: `${fitMode === 'cover' ? '' : 'drop-shadow(0 20px 30px rgba(0, 0, 0, 0.45))'} ${
                   config.imageEffects?.brightness ? `brightness(${config.imageEffects.brightness}%)` : ''
                 } ${config.imageEffects?.contrast ? `contrast(${config.imageEffects.contrast}%)` : ''} ${
@@ -417,13 +423,23 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
         </div>
       )}
 
+      {/* Dark gradient scrim at the bottom to ensure crystal-clear text readability over photography */}
+      {fitMode === 'cover' && (
+        <div
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            background: 'linear-gradient(to top, rgba(7, 22, 41, 0.95) 0%, rgba(7, 22, 41, 0.70) 25%, rgba(7, 22, 41, 0.20) 45%, transparent 65%)',
+          }}
+        />
+      )}
+
       {/* 4. LAYER 5: Logo (Top Area) */}
       <div
         className="theme-logo relative w-full flex items-center"
         style={{
           position: 'relative',
           zIndex: logoLayer.zIndex,
-          display: logoLayer.visible ? 'flex' : 'none',
+          display: (sp?.showLogo ?? (fitMode === 'cover' ? false : logoLayer.visible)) ? 'flex' : 'none',
           justifyContent:
             (sp?.logoPosition || config.logoPosition) === 'center'
               ? 'center'
@@ -477,14 +493,14 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
 
       {/* 5. LAYER 4: Content / Headings & Text (Bottom Area) */}
       <div
-        className={`theme-content relative w-full space-y-2 mt-auto pt-6 rounded-2xl p-2 transition-all ${
+        className={`theme-content relative w-full space-y-1.5 mt-auto pt-6 rounded-2xl p-2 transition-all ${
           isSelected('content') || isSelected('typography')
             ? 'ring-2 ring-[#CC9048] ring-offset-2 ring-offset-[#071629] bg-white/5'
             : ''
         }`}
         style={{
           position: 'relative',
-          zIndex: contentLayer.zIndex,
+          zIndex: 20,
           display: contentLayer.visible ? 'block' : 'none',
           textAlign: sp?.textAlign || config.textAlign || 'start',
           opacity: ((config.textOpacity ?? 100) / 100) * ((contentLayer.opacity ?? 100) / 100),
@@ -497,45 +513,48 @@ export const ThemeVisualPanel: React.FC<ThemeVisualPanelProps> = ({
           }
         }}
       >
-        <p
-          className="theme-kicker font-extrabold uppercase tracking-widest transition-colors"
-          style={{
-            color: sp?.headingColor || config.kickerColor || '#CC9048',
-            fontSize: '0.75rem',
-            letterSpacing: '0.18em',
-            margin: '0 0 4px',
-          }}
-        >
-          {kickerText}
-        </p>
+        {kickerText && (
+          <p
+            className="theme-kicker font-extrabold uppercase tracking-widest transition-colors"
+            style={{
+              color: sp?.headingColor || config.kickerColor || '#CC9048',
+              fontSize: '0.78rem',
+              letterSpacing: '0.12em',
+              margin: '0 0 4px',
+            }}
+          >
+            {kickerText}
+          </p>
+        )}
         <h2
           className="theme-title font-black transition-colors"
           style={{
             color: effectiveHeadingColor,
-            fontSize: sp?.fontSize || config.titleFontSize || 'clamp(1.75rem, 3.2vw, 2.5rem)',
+            fontSize: sp?.fontSize || config.titleFontSize || 'clamp(1.85rem, 3.4vw, 2.6rem)',
             fontFamily: sp?.fontFamily || config.typography?.headingFontFamily || config.typography?.fontFamily,
             fontWeight: sp?.fontWeight || '900',
-            lineHeight: config.typography?.lineHeight || 1.25,
-            letterSpacing: config.typography?.letterSpacing || '0px',
-            margin: '4px 0 8px',
+            lineHeight: 1.25,
+            letterSpacing: '0px',
+            margin: '4px 0 6px',
           }}
         >
           {titleText}
         </h2>
-        <p
-          className="theme-note transition-colors"
-          style={{
-            color: effectiveDescriptionColor,
-            fontSize: config.noteFontSize || '0.92rem',
-            fontFamily: sp?.fontFamily || config.typography?.fontFamily,
-            lineHeight: config.typography?.lineHeight || 1.65,
-            letterSpacing: config.typography?.letterSpacing || '0px',
-            margin: 0,
-            maxWidth: '38ch',
-          }}
-        >
-          {noteText}
-        </p>
+        {noteText && noteText.trim() !== '' && (
+          <p
+            className="theme-note transition-colors"
+            style={{
+              color: effectiveDescriptionColor,
+              fontSize: config.noteFontSize || '0.92rem',
+              fontFamily: sp?.fontFamily || config.typography?.fontFamily,
+              lineHeight: 1.6,
+              margin: 0,
+              maxWidth: '38ch',
+            }}
+          >
+            {noteText}
+          </p>
+        )}
       </div>
     </div>
   );

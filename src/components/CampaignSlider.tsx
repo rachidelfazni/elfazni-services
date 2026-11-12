@@ -158,7 +158,7 @@ export const CampaignSlider: React.FC<CampaignSliderProps> = ({ onOpenStartModal
         <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-12">
           <SectionTitle sectionId="service-slides" id="service-slides-heading" className="tracking-tight">
             <span className="block font-black text-[#0B2E57]">{t('من خدمات الفزني')}</span>
-            <span className="block font-bahij-bold text-[#CC9048]">{t('السفر والمعاملات في تركيا')}</span>
+            <span className="block font-bahij-bold text-[#A36014]">{t('السفر والمعاملات في تركيا')}</span>
           </SectionTitle>
           <p className="mt-3 text-base text-[#52657e] sm:text-lg">
             {t('تصفّح الخدمات واختر ما تحتاجه للتواصل مع فريقنا.')}
@@ -223,7 +223,7 @@ export const CampaignSlider: React.FC<CampaignSliderProps> = ({ onOpenStartModal
               className="cursor-pointer space-y-1.5 flex-1 min-w-0"
             >
               <div className="flex items-center gap-2.5 flex-wrap">
-                <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#CC9048] text-white text-xs font-extrabold shadow-xs">
+                <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#A36014] text-white text-xs font-extrabold shadow-xs">
                   {activeSlide.num}
                 </span>
                 <span className="text-xs sm:text-sm font-bold text-amber-200">

@@ -429,10 +429,13 @@ export const ContactFormSection: React.FC = () => {
 
                 {/* Service Selection */}
                 <div>
-                  <label className="block text-xs sm:text-sm font-extrabold text-[#0B2E57] mb-1.5">
+                  <label htmlFor="contact-service-select" className="block text-xs sm:text-sm font-extrabold text-[#0B2E57] mb-1.5">
                     {t('الخدمة المطلوبة')}
                   </label>
                   <select
+                    id="contact-service-select"
+                    name="requestedService"
+                    aria-label={t('الخدمة المطلوبة')}
                     value={requestedService}
                     onChange={(e) => setService(e.target.value)}
                     className="w-full rounded-xl border border-[#D7E7F7] bg-[#FBFBFD] focus:bg-white focus:border-[#004AA5] focus:ring-2 focus:ring-[#004AA5]/15 py-2.5 px-3 text-sm font-medium text-[#0B2E57] outline-none transition-all"

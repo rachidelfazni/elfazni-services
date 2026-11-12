@@ -6,9 +6,14 @@ crm/dist/
 !.env.example
 crmsecrets/
 data/db.json.backup
+data/crm-backups/
+backups/
+.agents/
+qa/
+current-*.png
+verified-*.png
 *.log
 .DS_Store
 __pycache__/
-
 *.zip
 

@@ -384,7 +384,7 @@
           "userId": "elfazni.admin",
           "title": "اجتماع تنسيق فريق التأشيرات الأسبوعي",
           "kind": "meeting",
-          "date": "2026-11-09",
+          "date": "2026-11-10",
           "time": "09:00",
           "durationMin": 45,
           "allDay": false,
@@ -394,9 +394,30 @@
           "status": "scheduled",
           "recurrence": "none",
           "recurrenceExceptions": [],
-          "rescheduleHistory": [],
+          "rescheduleHistory": [
+            {
+              "id": "41aac9dd-5f89-47e3-826f-2061d59dfe18",
+              "previousDate": "2026-11-11",
+              "previousTime": "09:00",
+              "newDate": "2026-11-10",
+              "newTime": "09:00",
+              "rescheduledBy": "المشرف",
+              "rescheduledAt": "2026-11-09T21:30:05.204Z",
+              "note": "نقل مباشر بالسحب والإفلات إلى 2026-11-10"
+            },
+            {
+              "id": "b28e7a91-c355-4e38-963b-e225cd1a2aa9",
+              "previousDate": "2026-11-09",
+              "previousTime": "09:00",
+              "newDate": "2026-11-11",
+              "newTime": "09:00",
+              "rescheduledBy": "المشرف",
+              "rescheduledAt": "2026-11-09T21:29:34.669Z",
+              "note": "نقل مباشر بالسحب والإفلات إلى 2026-11-11"
+            }
+          ],
           "createdAt": "2026-11-09T19:54:30.571Z",
-          "updatedAt": "2026-11-09T19:54:30.571Z"
+          "updatedAt": "2026-11-09T21:30:05.204Z"
         },
         {
           "id": "cal_1794251524019_wsm8",
@@ -568,5 +589,5 @@
       "reminders": []
     }
   },
-  "updatedAt": "2026-11-09T20:10:24.538Z"
+  "updatedAt": "2026-11-09T21:30:05.204Z"
 }

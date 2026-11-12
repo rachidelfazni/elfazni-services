@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Monitor,
   Tablet,
@@ -151,22 +151,57 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
     );
   };
 
+  const [zoomMode, setZoomMode] = useState<'fit' | '100'>('fit');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [fitRatio, setFitRatio] = useState<number>(1);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const updateRatio = () => {
+      const availableW = el.clientWidth - 32;
+      if (device === 'desktop') {
+        const targetW = 1060;
+        if (availableW < targetW) {
+          setFitRatio(Math.max(0.4, Number((availableW / targetW).toFixed(3))));
+        } else {
+          setFitRatio(1);
+        }
+      } else if (device === 'tablet') {
+        const targetW = 768;
+        if (availableW < targetW) {
+          setFitRatio(Math.max(0.5, Number((availableW / targetW).toFixed(3))));
+        } else {
+          setFitRatio(1);
+        }
+      } else {
+        setFitRatio(1);
+      }
+    };
+    updateRatio();
+    const ro = new ResizeObserver(updateRatio);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [device]);
+
+  const effectiveZoom = zoomMode === 'fit' ? fitRatio : 1;
+
   const deviceWidthClass =
     device === 'mobile'
-      ? 'max-w-[375px]'
+      ? 'w-[375px] min-w-[375px]'
       : device === 'tablet'
-      ? 'max-w-[768px]'
-      : 'w-full max-w-full';
+      ? 'w-[768px] min-w-[768px]'
+      : 'w-[1060px] min-w-[1060px]';
 
-  const effectiveFormBg = config.formBg || colors.surface || '#FFFFFF';
-  const effectiveFormText = config.formTextColor || colors.text || '#0B2E57';
-  const effectiveFormMuted = config.formMutedColor || colors.mutedText || '#64748B';
-  const effectiveInputBg = config.inputBg || (isDarkColor(effectiveFormBg) ? '#1E293B' : '#F8FAFC');
+  const effectiveFormBg = config.menuPanel?.bgColor || config.formBg || colors.surface || '#FFFFFF';
+  const formIsDark = isDarkColor(effectiveFormBg);
+  const effectiveFormText = config.menuPanel?.headingColor || (formIsDark ? '#F8FAFC' : '#0B2E57');
+  const effectiveFormMuted = config.menuPanel?.descriptionColor || (formIsDark ? '#94A3B8' : '#5E7086');
+  const effectiveInputBg = config.inputBg || (formIsDark ? '#1E293B' : '#F8FAFC');
   const effectiveInputBorder = config.inputBorder || colors.border || '#D7E7F7';
   const effectiveInputText = config.inputTextColor || effectiveFormText;
   const effectiveBtnBg = config.primaryButtonBg || colors.button || colors.primary;
   const effectiveBtnText = config.primaryButtonTextColor || '#FFFFFF';
-  const formIsDark = isDarkColor(effectiveFormBg);
 
   return (
     <div className="flex-1 flex flex-col bg-slate-100/90 rounded-3xl border border-slate-200 overflow-hidden shadow-inner">
@@ -228,15 +263,43 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
           </button>
         </div>
 
+        {/* Zoom Mode Switcher */}
+        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+          <button
+            type="button"
+            onClick={() => setZoomMode('fit')}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition cursor-pointer ${
+              zoomMode === 'fit' ? 'bg-white text-[#004AA5] shadow-xs' : 'text-slate-500 hover:text-slate-900'
+            }`}
+            title="ملاءمة الشاشة بالكامل داخل مساحة العرض"
+          >
+            ملاءمة ({Math.round(fitRatio * 100)}%)
+          </button>
+          <button
+            type="button"
+            onClick={() => setZoomMode('100')}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition cursor-pointer ${
+              zoomMode === '100' ? 'bg-white text-[#004AA5] shadow-xs' : 'text-slate-500 hover:text-slate-900'
+            }`}
+            title="الحجم الأصلي 1:1"
+          >
+            100%
+          </button>
+        </div>
+
         <div className="text-[11px] text-slate-400 font-mono hidden md:block">
           معاينة حية فورية (اسحب الصورة للتحريك)
         </div>
       </div>
 
       {/* Preview Canvas Container */}
-      <div className="flex-1 overflow-auto p-4 flex items-center justify-center">
+      <div ref={containerRef} className="flex-1 overflow-auto p-4 flex items-start justify-center">
         <div
-          className={`transition-all duration-300 bg-white shadow-2xl rounded-2xl overflow-hidden border border-slate-300/80 ${deviceWidthClass}`}
+          className={`transition-all duration-200 bg-white shadow-2xl rounded-2xl overflow-hidden border border-slate-300/80 shrink-0 ${deviceWidthClass}`}
+          style={{
+            transform: effectiveZoom < 0.99 ? `scale(${effectiveZoom})` : undefined,
+            transformOrigin: 'top center',
+          }}
           dir={direction}
         >
           {/* ======================================================== */}
@@ -327,12 +390,14 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
 
                 {/* Zone B: Shell Card */}
                 <div
-                  className={`w-full max-w-4xl shadow-2xl overflow-hidden grid relative z-10 transition-all ${
+                  className={`w-full shadow-2xl overflow-hidden grid relative z-10 transition-all ${
                     device === 'mobile'
-                      ? 'grid-cols-1'
+                      ? 'grid-cols-1 max-w-[390px]'
+                      : config.layoutType === 'centered'
+                      ? 'grid-cols-1 max-w-lg'
                       : config.layoutType === 'split-left'
-                      ? 'grid-cols-1 md:grid-cols-2'
-                      : 'grid-cols-1 md:grid-cols-2'
+                      ? 'grid-cols-1 md:grid-cols-2 max-w-5xl'
+                      : 'grid-cols-1 md:grid-cols-2 max-w-5xl'
                   } ${selectedElementKey === 'menu_panel' ? 'ring-4 ring-[#004AA5]' : ''}`}
                   style={{
                     backgroundColor: mp?.bgColor || effectiveFormBg,
@@ -340,7 +405,7 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: (mp?.opacity ?? 100) / 100,
-                    borderRadius: mp?.borderRadius || config.cardRadius || '28px',
+                    borderRadius: mp?.borderRadius || config.cardRadius || '32px',
                     borderColor: mp?.borderColor || undefined,
                     borderWidth: mp?.borderColor ? '1px' : undefined,
                     borderStyle: mp?.borderColor ? 'solid' : undefined,
@@ -356,7 +421,13 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                         : mp?.shadowIntensity === '2xl'
                         ? '0 35px 60px -15px rgba(0, 0, 0, 0.4)'
                         : '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                    maxWidth: mp?.width || (config.layoutType === 'centered' ? '520px' : '1080px'),
+                    width: '100%',
+                    maxWidth:
+                      device === 'mobile'
+                        ? '390px'
+                        : config.layoutType === 'centered'
+                        ? (mp?.width && parseInt(mp.width, 10) <= 600 ? mp.width : '520px')
+                        : (mp?.width && parseInt(mp.width, 10) >= 800 ? mp.width : '1040px'),
                   }}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -365,7 +436,7 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                 >
                   {/* Illustration Area with Shared ThemeVisualPanel */}
                   {config.layoutType !== 'centered' && (
-                    <div className="w-full relative min-h-[460px] flex overflow-hidden">
+                    <div className="w-full relative min-h-[560px] flex overflow-hidden">
                       <ThemeVisualPanel
                         config={config}
                         language={direction === 'rtl' ? 'ar' : 'en'}
@@ -383,7 +454,7 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                   <section
                     className={`w-full ${
                       config.layoutType === 'centered' ? 'max-w-md mx-auto' : ''
-                    } p-8 flex flex-col justify-center transition-colors`}
+                    } p-8 sm:p-12 flex flex-col justify-center transition-colors`}
                     style={{
                       backgroundColor: mp?.bgColor || effectiveFormBg,
                       color: effectiveFormText,
@@ -425,7 +496,7 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                       <p
                         className="text-xs font-bold"
                         style={{
-                          color: config.kickerColor || colors.gold || '#CC9048',
+                          color: mp?.kickerColor || config.kickerColor || colors.gold || '#CC9048',
                           fontFamily: config.typography?.fontFamily,
                         }}
                       >
@@ -437,7 +508,7 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                       <h1
                         className="font-black mt-0.5 transition-all"
                         style={{
-                          color: config.titleColor || effectiveFormText,
+                          color: mp?.headingColor || effectiveFormText,
                           fontFamily: config.typography?.headingFontFamily || config.typography?.fontFamily,
                           fontSize: config.titleFontSize || config.typography?.h1Size || '1.35rem',
                           lineHeight: config.typography?.lineHeight || '1.25',
@@ -452,7 +523,7 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                       <p
                         className="text-xs mt-1 transition-all"
                         style={{
-                          color: config.noteColor || effectiveFormMuted,
+                          color: mp?.descriptionColor || effectiveFormMuted,
                           fontSize: config.noteFontSize || config.typography?.baseFontSize || '0.825rem',
                           fontFamily: config.typography?.fontFamily,
                         }}
@@ -636,12 +707,14 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
 
                 {/* Zone B: Shell Card */}
                 <div
-                  className={`w-full max-w-4xl shadow-2xl overflow-hidden grid relative z-10 transition-all ${
+                  className={`w-full shadow-2xl overflow-hidden grid relative z-10 transition-all ${
                     device === 'mobile'
-                      ? 'grid-cols-1'
+                      ? 'grid-cols-1 max-w-[390px]'
+                      : config.layoutType === 'centered'
+                      ? 'grid-cols-1 max-w-lg'
                       : config.layoutType === 'split-left'
-                      ? 'grid-cols-1 md:grid-cols-2'
-                      : 'grid-cols-1 md:grid-cols-2'
+                      ? 'grid-cols-1 md:grid-cols-2 max-w-5xl'
+                      : 'grid-cols-1 md:grid-cols-2 max-w-5xl'
                   } ${selectedElementKey === 'menu_panel' ? 'ring-4 ring-[#004AA5]' : ''}`}
                   style={{
                     backgroundColor: mp?.bgColor || effectiveFormBg,
@@ -649,7 +722,7 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: (mp?.opacity ?? 100) / 100,
-                    borderRadius: mp?.borderRadius || config.cardRadius || '28px',
+                    borderRadius: mp?.borderRadius || config.cardRadius || '32px',
                     borderColor: mp?.borderColor || undefined,
                     borderWidth: mp?.borderColor ? '1px' : undefined,
                     borderStyle: mp?.borderColor ? 'solid' : undefined,
@@ -665,6 +738,13 @@ export const ThemeLivePreview: React.FC<ThemeLivePreviewProps> = ({
                         : mp?.shadowIntensity === '2xl'
                         ? '0 35px 60px -15px rgba(0, 0, 0, 0.4)'
                         : '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                    width: '100%',
+                    maxWidth:
+                      device === 'mobile'
+                        ? '390px'
+                        : config.layoutType === 'centered'
+                        ? (mp?.width && parseInt(mp.width, 10) <= 600 ? mp.width : '520px')
+                        : (mp?.width && parseInt(mp.width, 10) >= 800 ? mp.width : '1040px'),
                   }}
                   onClick={(e) => {
                     e.stopPropagation();

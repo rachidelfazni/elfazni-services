@@ -501,9 +501,11 @@ export const HubPage: React.FC = () => {
             className="hub-entry-logo"
           />
 
-          <span className="hub-entry-kicker" style={{ color: theme?.kickerColor || mp?.kickerColor || '#CC9048' }}>
-            {heroKicker}
-          </span>
+          {theme?.texts?.heroKicker && (
+            <span className="hub-entry-kicker" style={{ color: theme?.kickerColor || mp?.kickerColor || '#CC9048' }}>
+              {heroKicker}
+            </span>
+          )}
           <h1
             id="hub-title"
             className="hub-entry-title"
@@ -567,10 +569,6 @@ export const HubPage: React.FC = () => {
           </div>
         </section>
       </div>
-
-      <p className="hub-entry-copyright" dir="ltr">
-        © {new Date().getFullYear()} ELFAZNI SERVICES · All rights reserved
-      </p>
     </main>
   );
 };

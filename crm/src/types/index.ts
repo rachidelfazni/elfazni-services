@@ -66,8 +66,11 @@ export interface ConsulateAppointment {
   customAppointmentType?: string;
   consulateResponse: ConsulateResponse;
   missingDocsNotes?: string;
+  cost?: number; // Cost price paid to provider (default 0)
+  costCurrency?: SupportedCurrency; // Currency paid for cost
   price: number;
   currency: SupportedCurrency; // Selling currency
+  netProfit?: number; // Computed net profit: price - cost (after conversion)
   paymentStatus: PaymentStatus;
   paidAmount: number;
   settlementCurrency: SupportedCurrency; // Currency customer actually paid with

@@ -43,6 +43,8 @@ export const ConsulateModal: React.FC<ConsulateModalProps> = ({
   const [customAppointmentType, setCustomAppointmentType] = useState('');
   const [consulateResponse, setConsulateResponse] = useState<ConsulateResponse>('pending');
   const [missingDocsNotes, setMissingDocsNotes] = useState('');
+  const [cost, setCost] = useState<number>(0);
+  const [costCurrency, setCostCurrency] = useState<SupportedCurrency>('TRY');
   const [price, setPrice] = useState<number>(3000);
   const [currency, setCurrency] = useState<SupportedCurrency>('MAD');
   const [settlementCurrency, setSettlementCurrency] = useState<SupportedCurrency>('MAD');
@@ -66,6 +68,8 @@ export const ConsulateModal: React.FC<ConsulateModalProps> = ({
       setCustomAppointmentType(editItem.customAppointmentType || '');
       setConsulateResponse(editItem.consulateResponse);
       setMissingDocsNotes(editItem.missingDocsNotes || '');
+      setCost(editItem.cost ?? 0);
+      setCostCurrency(editItem.costCurrency || editItem.currency || 'TRY');
       setPrice(editItem.price);
       setCurrency(editItem.currency || 'MAD');
       setSettlementCurrency(editItem.settlementCurrency || editItem.currency || 'MAD');
@@ -99,6 +103,8 @@ export const ConsulateModal: React.FC<ConsulateModalProps> = ({
       setCustomAppointmentType('');
       setConsulateResponse('pending');
       setMissingDocsNotes('');
+      setCost(0);
+      setCostCurrency('TRY');
       setPrice(bookingContact ? 0 : 3000);
       setCurrency('TRY');
       setSettlementCurrency('TRY');
@@ -139,8 +145,11 @@ export const ConsulateModal: React.FC<ConsulateModalProps> = ({
       customAppointmentType: appointmentType === 'أخرى' ? customAppointmentType.trim() : undefined,
       consulateResponse,
       missingDocsNotes: consulateResponse === 'missing_docs' ? missingDocsNotes.trim() : undefined,
+      cost: Number(cost) || 0,
+      costCurrency,
       price: Number(price) || 0,
       currency,
+      netProfit: (Number(price) || 0) - (Number(cost) || 0),
       settlementCurrency,
       paidAmount: Number(calculatedPaidAmount) || 0,
       remainingAmount: Number(calculatedRemaining) || 0,
@@ -348,42 +357,76 @@ export const ConsulateModal: React.FC<ConsulateModalProps> = ({
             </div>
           )}
 
-          {/* Section 4: Multi-Currency Price & Payments */}
+          {/* Section 4: Multi-Currency Price, Cost & Payments */}
           <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-            <h4 className="font-bold text-xs text-slate-800 flex items-center gap-1.5">
-              <DollarSign className="w-4 h-4 text-emerald-600" />{ui("البيانات المالية وتعدد العملات")}</h4>
+            <h4 className="font-bold text-xs text-slate-800 flex items-center justify-between">
+              <span className="flex items-center gap-1.5"><DollarSign className="w-4 h-4 text-emerald-600" />{ui("البيانات المالية وحساب التكلفة والربح")}</span>
+              <span className="text-[11px] font-black text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-md">
+                صافي الربح: {Math.max(-100000, (Number(price) || 0) - (Number(cost) || 0))} {currency}
+              </span>
+            </h4>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">{ui("سعر الخدمة المتفق عليه")}</label>
-                <input
-                  type="number"
-                  min="0"
-                  step="1"
-                  value={price}
-                  onChange={(e) => setPrice(Number(e.target.value) || 0)}
-                  className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-[#2A83D5] focus:outline-none"
-                />
+            {/* Cost and Selling Price in grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Cost Price */}
+              <div className="bg-white p-3 rounded-xl border border-slate-200">
+                <label className="block text-xs font-bold text-slate-700 mb-1">{ui("سعر الشراء / التكلفة")}<span className="text-slate-400 font-normal mr-1">(افتراضي 0)</span></label>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={cost}
+                    onChange={(e) => setCost(Number(e.target.value) || 0)}
+                    placeholder="0"
+                    className="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-900 focus:bg-white focus:outline-none"
+                  />
+                  <select
+                    value={costCurrency}
+                    onChange={(e) => setCostCurrency(e.target.value as SupportedCurrency)}
+                    className="w-20 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-bold"
+                  >
+                    {Object.values(SUPPORTED_CURRENCIES).map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.code}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">{ui("عملة المعاملة المتفق عليها")}</label>
-                <select
-                  value={currency}
-                  onChange={(e) => {
-                    const c = e.target.value as SupportedCurrency;
-                    setCurrency(c);
-                    setSettlementCurrency(c);
-                  }}
-                  className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-[#2A83D5] focus:outline-none"
-                >
-                  {Object.values(SUPPORTED_CURRENCIES).map((c) => (
-                    <option key={c.code} value={c.code}>
-                      {c.code} ({c.symbol})
-                    </option>
-                  ))}
-                </select>
+              {/* Selling Price */}
+              <div className="bg-white p-3 rounded-xl border border-slate-200">
+                <label className="block text-xs font-bold text-slate-700 mb-1">{ui("سعر البيع للزبون")}</label>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={price}
+                    onChange={(e) => setPrice(Number(e.target.value) || 0)}
+                    className="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-900 focus:bg-white focus:outline-none"
+                  />
+                  <select
+                    value={currency}
+                    onChange={(e) => {
+                      const c = e.target.value as SupportedCurrency;
+                      setCurrency(c);
+                      setSettlementCurrency(c);
+                    }}
+                    className="w-20 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-bold"
+                  >
+                    {Object.values(SUPPORTED_CURRENCIES).map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.code}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
               <div>
                 <label className="block text-xs font-semibold text-slate-600 mb-1">{ui("حالة الدفع")}</label>

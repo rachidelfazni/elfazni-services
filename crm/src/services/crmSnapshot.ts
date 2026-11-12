@@ -41,6 +41,8 @@ export function validSnapshot(value: unknown): value is CrmSnapshot {
       (row.contactId === undefined || contacts.has(row.contactId));
     if (!records(value.consulateAppointments) || !value.consulateAppointments.every(row =>
       operation(row) && text(row.appointmentType) && date(row.submissionDate) && money(row.price) &&
+      (row.cost === undefined || money(row.cost)) &&
+      (row.costCurrency === undefined || currency(row.costCurrency)) &&
       ['pending','accepted','rejected','missing_docs'].includes(row.consulateResponse) &&
       ['registered','submitted','response','completed'].includes(row.timelineStage))) return false;
     if (!records(value.flightBookings) || !value.flightBookings.every(row =>

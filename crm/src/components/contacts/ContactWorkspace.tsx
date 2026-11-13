@@ -18,6 +18,9 @@ import {
   Mail,
   MapPin,
   Camera,
+  Edit2,
+  Trash2,
+  Plane,
 } from "lucide-react";
 import { useApp } from "../../context/AppContext";
 import { useAuth } from "../../context/AuthContext";
@@ -25,6 +28,7 @@ import { useCopy } from "../../i18n/useCopy";
 import { useUITranslation } from "../../i18n/useUITranslation";
 import {
   CRMContact,
+  ContactActivity,
   ContactActivityKind,
   ManualDebt,
 } from "../../types/contactBook";
@@ -162,9 +166,9 @@ export const ContactWorkspace: React.FC = () => {
     [followupFilter, setFollowupFilter] = useState("all"),
     [sortBy, setSortBy] = useState("recent"),
     [editor, setEditor] = useState<CRMContact | "new" | null>(null),
-    [activity, setActivity] = useState(false),
+    [activity, setActivity] = useState<ContactActivity | boolean>(false),
     [reminder, setReminder] = useState(false),
-    [debt, setDebt] = useState(false),
+    [debt, setDebt] = useState<ManualDebt | boolean>(false),
     [payment, setPayment] = useState<ManualDebt | null>(null),
     [notice, setNotice] = useState("");
   const selected = contactBook.contacts.find((c) => c.id === selectedContactId);
@@ -186,16 +190,19 @@ export const ContactWorkspace: React.FC = () => {
     ? app.flightBookings.filter((item) => item.contactId === selected.id ||
         (!item.contactId && linked?.flightRecords.some((record) => record.id === item.id)))
     : [];
-  const startLinkedService = (type: 'consulate' | 'flight') => {
-    if (!selected || selected.status !== 'customer') return;
+  const startLinkedService = (type: 'consulate' | 'flight' | 'invoice') => {
+    if (!selected) return;
     app.setBookingContact(selected);
     if (type === 'consulate') {
       app.setPresetServiceType(null);
       app.setEditingConsulate(null);
       app.setIsConsulateModalOpen(true);
-    } else {
+    } else if (type === 'flight') {
       app.setEditingFlight(null);
       app.setIsFlightModalOpen(true);
+    } else if (type === 'invoice') {
+      app.setEditingInvoice(null);
+      app.setIsInvoiceModalOpen(true);
     }
   };
   const activities = contactBook.activities.filter(
@@ -585,17 +592,31 @@ export const ContactWorkspace: React.FC = () => {
                     <Star size={16} fill={selected.starred ? '#CC9048' : 'none'} />
                     {l("تمييز جهة الاتصال", "Star contact", "Mettre en favori")}
                   </button>}
-                  {canEditOperations && selected.status === 'customer' && <>
-                    {canConsulate && <button type="button" className="ws-primary-btn" onClick={() => startLinkedService('consulate')}>
-                      {l("ربط بمعاملة", "Add linked service", "Ajouter une démarche liée")}
-                    </button>}
-                    {canFlights && <button type="button" className="ws-secondary-btn" onClick={() => startLinkedService('flight')}>
-                      {l("ربط بحجز طيران", "Add linked flight", "Ajouter un vol lié")}
-                    </button>}
-                  </>}
+                  {canEditOperations && (
+                    <>
+                      {canConsulate && (
+                        <button type="button" className="ws-primary-btn" onClick={() => startLinkedService('consulate')}>
+                          <Plus size={16} />
+                          {l("ربط بمعاملة قنصلية", "Add linked consulate", "Ajouter démarche consulaire")}
+                        </button>
+                      )}
+                      {canFlights && (
+                        <button type="button" className="ws-secondary-btn" onClick={() => startLinkedService('flight')}>
+                          <Plane size={16} />
+                          {l("ربط بحجز طيران", "Add linked flight", "Ajouter un vol lié")}
+                        </button>
+                      )}
+                      {canViewAccounting && (
+                        <button type="button" className="ws-secondary-btn" onClick={() => startLinkedService('invoice')}>
+                          <FileText size={16} />
+                          {l("إصدار فاتورة", "Issue invoice", "Créer une facture")}
+                        </button>
+                      )}
+                    </>
+                  )}
                   {canWrite && selected.status === "lead" && (
                     <button
-                      className="ws-primary-btn"
+                      className="ws-secondary-btn"
                       onClick={() =>
                         setContactBook((b) => ({
                           ...b,
@@ -754,9 +775,43 @@ export const ContactWorkspace: React.FC = () => {
                     <li key={event.id} data-event-kind={event.tag}>
                       <span />
                       <div>
-                        <header>
-                          <strong>{event.title}</strong>
-                          <time>{formatDateTime(event.date)}</time>
+                        <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <div>
+                            <strong>{event.title}</strong>
+                            <time style={{ marginInlineStart: '8px' }}>{formatDateTime(event.date)}</time>
+                          </div>
+                          {canWrite && event.tag === "contact" && (
+                            <div style={{ display: 'inline-flex', gap: '6px' }}>
+                              <button
+                                type="button"
+                                className="ws-secondary-btn"
+                                style={{ padding: '2px 8px', fontSize: '12px' }}
+                                title={l("تعديل", "Edit", "Modifier")}
+                                onClick={() => {
+                                  const act = activities.find((a) => a.id === event.id);
+                                  if (act) setActivity(act);
+                                }}
+                              >
+                                <Edit2 size={13} />
+                              </button>
+                              <button
+                                type="button"
+                                className="ws-secondary-btn"
+                                style={{ padding: '2px 8px', fontSize: '12px', color: '#D32F2F' }}
+                                title={l("حذف", "Delete", "Supprimer")}
+                                onClick={() => {
+                                  if (window.confirm(l("هل أنت متأكد أنك تريد المسح؟", "Are you sure you want to delete?", "Êtes-vous sûr de vouloir supprimer ?"))) {
+                                    setContactBook((b) => ({
+                                      ...b,
+                                      activities: b.activities.filter((a) => a.id !== event.id),
+                                    }));
+                                  }
+                                }}
+                              >
+                                <Trash2 size={13} />
+                              </button>
+                            </div>
+                          )}
                         </header>
                         <p>{event.text}</p>
                         <small>
@@ -866,19 +921,51 @@ export const ContactWorkspace: React.FC = () => {
                           true,
                         )}
                       </b>
-                      {finance && manualDebtBalance(d) > 0 ? (
-                        <button
-                          className="ws-secondary-btn"
-                          onClick={() => setPayment(d)}
-                        >
-                          {l("تسديد", "Pay", "Régler")}
-                        </button>
-                      ) : manualDebtBalance(d) === 0 ? (
-                        <span className="crm-paid-badge">
-                          <Check size={14} />
-                          {l("مسدد", "Paid", "Réglée")}
-                        </span>
-                      ) : null}
+                      <div style={{ display: 'inline-flex', gap: '6px', alignItems: 'center' }}>
+                        {finance && (
+                          <>
+                            <button
+                              type="button"
+                              className="ws-secondary-btn"
+                              style={{ padding: '4px 8px', fontSize: '13px' }}
+                              title={l("تعديل الدين", "Edit debt", "Modifier la dette")}
+                              onClick={() => setDebt(d)}
+                            >
+                              <Edit2 size={14} />
+                            </button>
+                            <button
+                              type="button"
+                              className="ws-secondary-btn"
+                              style={{ padding: '4px 8px', fontSize: '13px', color: '#D32F2F' }}
+                              title={l("حذف الدين", "Delete debt", "Supprimer la dette")}
+                              onClick={() => {
+                                if (window.confirm(l("هل أنت متأكد أنك تريد مسح هذا الدين؟", "Are you sure you want to delete this debt?", "Êtes-vous sûr de vouloir supprimer cette dette ?"))) {
+                                  setContactBook((b) => ({
+                                    ...b,
+                                    manualDebts: b.manualDebts.filter((x) => x.id !== d.id),
+                                    reminders: b.reminders.filter((r) => r.debtId !== d.id),
+                                  }));
+                                }
+                              }}
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          </>
+                        )}
+                        {finance && manualDebtBalance(d) > 0 ? (
+                          <button
+                            className="ws-secondary-btn"
+                            onClick={() => setPayment(d)}
+                          >
+                            {l("تسديد", "Pay", "Régler")}
+                          </button>
+                        ) : manualDebtBalance(d) === 0 ? (
+                          <span className="crm-paid-badge">
+                            <Check size={14} />
+                            {l("مسدد", "Paid", "Réglée")}
+                          </span>
+                        ) : null}
+                      </div>
                     </article>
                   ))}
                   <button
@@ -941,7 +1028,11 @@ export const ContactWorkspace: React.FC = () => {
         />
       )}
       {activity && selected && (
-        <ActivityEditor contact={selected} onClose={() => setActivity(false)} />
+        <ActivityEditor
+          contact={selected}
+          activity={typeof activity === 'object' ? activity : undefined}
+          onClose={() => setActivity(false)}
+        />
       )}
       {reminder && selected && (
         <ReminderEditor contact={selected} onClose={() => setReminder(false)} />
@@ -949,6 +1040,7 @@ export const ContactWorkspace: React.FC = () => {
       {debt && selected && (
         <ManualDebtForm
           contactId={selected.id}
+          debt={typeof debt === 'object' ? debt : undefined}
           onClose={() => setDebt(false)}
         />
       )}
@@ -1226,13 +1318,20 @@ const ContactEditor: React.FC<{
 };
 const ActivityEditor: React.FC<{
   contact: CRMContact;
+  activity?: ContactActivity;
   onClose: () => void;
-}> = ({ contact, onClose }) => {
+}> = ({ contact, activity, onClose }) => {
   const { setContactBook } = useApp(),
     { l } = useCopy();
-  const [kind, setKind] = useState<ContactActivityKind>("call"),
-    [text, setText] = useState(""),
+  const [kind, setKind] = useState<ContactActivityKind>(activity?.kind || "call"),
+    [text, setText] = useState(activity?.text || ""),
     [date, setDate] = useState(() => {
+      if (activity?.occurredAt) {
+        const d = new Date(activity.occurredAt);
+        return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+          .toISOString()
+          .slice(0, 16);
+      }
       const d = new Date();
       return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
         .toISOString()
@@ -1241,11 +1340,15 @@ const ActivityEditor: React.FC<{
   return (
     <CRMDialog
       name="ActivityEditor"
-      title={l(
-        "تسجيل متابعة أو تعامل سابق",
-        "Log an interaction or past dealing",
-        "Enregistrer un échange ou un historique",
-      )}
+      title={
+        activity
+          ? l("تعديل متابعة أو ملاحظة", "Edit interaction or note", "Modifier l’échange ou la note")
+          : l(
+              "تسجيل متابعة أو تعامل سابق",
+              "Log an interaction or past dealing",
+              "Enregistrer un échange ou un historique",
+            )
+      }
       onClose={onClose}
     >
       <form
@@ -1254,6 +1357,31 @@ const ActivityEditor: React.FC<{
           e.preventDefault();
           if (!text.trim()) return;
           const now = new Date().toISOString();
+          if (activity) {
+            setContactBook((b) => ({
+              ...b,
+              activities: b.activities.map((a) =>
+                a.id === activity.id
+                  ? {
+                      ...a,
+                      kind,
+                      text: text.trim(),
+                      occurredAt: new Date(date).toISOString(),
+                    }
+                  : a,
+              ),
+              contacts:
+                kind === "agreement"
+                  ? b.contacts.map((c) =>
+                      c.id === contact.id
+                        ? { ...c, latestAgreement: text.trim(), updatedAt: now }
+                        : c,
+                    )
+                  : b.contacts,
+            }));
+            onClose();
+            return;
+          }
           setContactBook((b) => ({
             ...b,
             activities: [
@@ -1328,6 +1456,24 @@ const ActivityEditor: React.FC<{
           )}
         </p>
         <div className="crm-book-form-actions">
+          {activity && (
+            <button
+              type="button"
+              className="ws-secondary-btn"
+              style={{ color: '#D32F2F', borderColor: '#D32F2F', marginRight: 'auto' }}
+              onClick={() => {
+                if (window.confirm(l("هل أنت متأكد أنك تريد المسح؟", "Are you sure you want to delete this note?", "Êtes-vous sûr de vouloir supprimer cette note ?"))) {
+                  setContactBook((b) => ({
+                    ...b,
+                    activities: b.activities.filter((a) => a.id !== activity.id),
+                  }));
+                  onClose();
+                }
+              }}
+            >
+              {l("حذف الملاحظة", "Delete note", "Supprimer la note")}
+            </button>
+          )}
           <button type="button" className="ws-secondary-btn" onClick={onClose}>
             {l("إلغاء", "Cancel", "Annuler")}
           </button>

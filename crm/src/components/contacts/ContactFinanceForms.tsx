@@ -26,25 +26,26 @@ export function useContactFinanceAccess() {
 const today = () => new Date().toLocaleDateString("en-CA");
 export const ManualDebtForm: React.FC<{
   contactId?: string;
+  debt?: ManualDebt;
   onClose: () => void;
-}> = ({ contactId = "", onClose }) => {
+}> = ({ contactId = "", debt, onClose }) => {
   const { contactBook, setContactBook } = useApp(),
     { l } = useCopy(),
     allowed = useContactFinanceAccess();
-  const [id, setId] = useState(contactId),
-    [title, setTitle] = useState(""),
-    [direction, setDirection] = useState<DebtDirection>("receivable"),
-    [amount, setAmount] = useState(""),
-    [currency, setCurrency] = useState<SupportedCurrency>("TRY"),
-    [date, setDate] = useState(today),
-    [due, setDue] = useState(""),
-    [notes, setNotes] = useState(""),
+  const [id, setId] = useState(debt?.contactId || contactId),
+    [title, setTitle] = useState(debt?.title || ""),
+    [direction, setDirection] = useState<DebtDirection>(debt?.direction || "receivable"),
+    [amount, setAmount] = useState(debt ? String(fromMinorUnits(debt.amountMinor)) : ""),
+    [currency, setCurrency] = useState<SupportedCurrency>(debt?.currency || "TRY"),
+    [date, setDate] = useState(debt?.date || today),
+    [due, setDue] = useState(debt?.dueDate || ""),
+    [notes, setNotes] = useState(debt?.notes || ""),
     [reminder, setReminder] = useState(""),
     [error, setError] = useState("");
   if (!allowed) return null;
   return (
     <CRMDialog
-      title={l(
+      title={debt ? l("تعديل دين", "Edit debt", "Modifier la dette") : l(
         "تسجيل دين مستقل",
         "Record a standalone debt",
         "Enregistrer une dette indépendante",
@@ -70,6 +71,39 @@ export const ManualDebtForm: React.FC<{
                 "Choisissez un contact et un montant valide.",
               ),
             );
+            return;
+          }
+          if (debt) {
+            const alreadyPaid = debt.payments.reduce((s, p) => s + p.amountMinor, 0);
+            if (minor < alreadyPaid) {
+              setError(
+                l(
+                  `لا يمكن تقليل المبلغ عن مجموع التسديدات السابقة (${fromMinorUnits(alreadyPaid)} ${debt.currency}).`,
+                  `Cannot set amount lower than already settled payments (${fromMinorUnits(alreadyPaid)} ${debt.currency}).`,
+                  `Le montant ne peut pas être inférieur aux paiements déjà enregistrés (${fromMinorUnits(alreadyPaid)} ${debt.currency}).`,
+                ),
+              );
+              return;
+            }
+            setContactBook((b) => ({
+              ...b,
+              manualDebts: b.manualDebts.map((d) =>
+                d.id === debt.id
+                  ? {
+                      ...d,
+                      contactId: id,
+                      direction,
+                      title: title.trim(),
+                      currency,
+                      amountMinor: minor,
+                      date,
+                      dueDate: due,
+                      notes: notes.trim(),
+                    }
+                  : d,
+              ),
+            }));
+            onClose();
             return;
           }
           const now = new Date().toISOString(),
@@ -215,6 +249,25 @@ export const ManualDebtForm: React.FC<{
         </label>
         {error && <p role="alert">{error}</p>}
         <div className="crm-book-form-actions">
+          {debt && (
+            <button
+              type="button"
+              className="ws-secondary-btn"
+              style={{ color: '#D32F2F', borderColor: '#D32F2F', marginRight: 'auto' }}
+              onClick={() => {
+                if (window.confirm(l("هل أنت متأكد أنك تريد المسح؟", "Are you sure you want to delete this debt?", "Êtes-vous sûr de vouloir supprimer cette dette ?"))) {
+                  setContactBook((b) => ({
+                    ...b,
+                    manualDebts: b.manualDebts.filter((d) => d.id !== debt.id),
+                    reminders: b.reminders.filter((r) => r.debtId !== debt.id),
+                  }));
+                  onClose();
+                }
+              }}
+            >
+              {l("حذف الدين", "Delete debt", "Supprimer la dette")}
+            </button>
+          )}
           <button type="button" className="ws-secondary-btn" onClick={onClose}>
             {l("إلغاء", "Cancel", "Annuler")}
           </button>
